@@ -246,12 +246,16 @@
 
   .about-img1,
   .about-img2 {
-    width: 180px;
+    width: 200px;
     height: 280px;
+  }
+  .about-images {
+    right: 20px;
+    align-self: center;
   }
 
   .about-img2 {
-    width: 180px;
+    width: 200px;
     height: 280px;
     top: -150px;
     left: 100px;
