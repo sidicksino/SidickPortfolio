@@ -133,7 +133,7 @@
 
 .btn {
   padding: 14px 32px;
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.35s ease;
