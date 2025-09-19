@@ -197,8 +197,6 @@
   line-height: 1.6;
   color: var(--text-muted);
   margin: 0;
-  padding-inline-end: 1.5rem;
-  max-width: calc(100% - 1.5rem);
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
