@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Elsie:wght@400;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+@font-face {
+  font-family: "Cheap Fire";
+  src: url("./assets/fonts/CheapFire.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  /* ===== Couleurs principales ===== */
+  --primary: #e748c8;
+  --primary-light: #f087dd;
+  --primary-dark: #b52a9d;
+
+  --background: #181737;
+  --background-light: #232245;
+  --background-dark: #0e0d20;
+
+  --text: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #8888aa;
+
+  /* ===== Utilitaires ===== */
+  --shadow: rgba(0, 0, 0, 0.3);
+  --border: #0033a0;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  /* ===== Transparence utile ===== */
+  --primary-transparent: #e748c8cc;
+  --background-transparent: #181737cc;
+
+  /* ===== Typographie ===== */
+  --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-classic: "Times New Roman", Times, serif;
+  --font-display: "Elsie", serif;
+  --font-fire: "Abril Fatface", cursive;
+}
+
+.skills {
+  padding: 0rem 4rem;
+  color: #fff;
+}
+
+.skills-title {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 30px;
+  text-align: left;
+  position: relative;
+  padding-bottom: 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  bottom: 0px;
+}
+
+.skills-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 2px;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.text-block h3 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin: 0 0 12px 0;
+  color: white;
+  font-weight: 500;
+  font-family: var(--font-body);
+  line-height: 1.3;
+}
+
+.text-block p {
+  width: 95%;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.skill-category {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.skill-category .icon {
+  padding: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(231, 72, 200, 0.2);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateY(-8px);
+}
+
+/* Progress Bars */
+.progress-section {
+  margin-top: 3rem;
+}
+
+.progress-item {
+  margin-bottom: 1.5rem;
+}
+
+.progress-item span {
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #222;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar .fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 5px;
+  transition: width 1s ease-in-out;
+}
+@media (max-width: 992px) {
+  .skills-title {
+    font-size: 2.2rem;
+  }
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-title {
+    font-size: 2rem;
+  }
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  .text-block p {
+    text-wrap: pretty;
+    margin-right: 20px;
+  }
+  .skills-img {
+    width: 350px;
+    height: auto;
+  }
+  .skills {
+    padding: 0rem 2rem;
+  }
+}

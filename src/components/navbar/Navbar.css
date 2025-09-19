@@ -41,19 +41,6 @@
   --font-fire: "Abril Fatface", cursive;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background);
-  min-height: 100vh;
-  color: var(--text);
-  font-family: var(--font-body);
-}
-
 .navbar {
   position: fixed;
   top: 0;
