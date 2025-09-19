@@ -49,10 +49,9 @@ const ProjectsSection = () => {
   return (
     <section className="projects-section">
       <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial={{ opacity: 0, translateX: "50%" }}
+        whileInView={{ opacity: 1, translateX: 0 }}
+        transition={{ duration: 1 }}
       >
         Mes Projets <span>✨</span>
       </motion.h2>
