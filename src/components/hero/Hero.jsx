@@ -29,16 +29,8 @@ const Hero = () => {
           Data Analyst | Web Developer | ML Enthusiast
         </motion.p>
         <div className="hero-buttons">
-          <motion.button 
-          initial={{ opacity: 0, rotateX: "90deg" }}
-          whileInView={{ opacity: 1, rotateX: 0 }}
-          transition={{ duration: 0.5 }}
-          className="btn btn-primary">More About Me</motion.button>
-          <motion.button 
-          initial={{ opacity: 0, rotateY: "90deg" }}
-          whileInView={{ opacity: 1, rotateY: 0 }}
-          transition={{ duration: 0.5 }}
-          className="btn btn-secondary">Download CV</motion.button>
+          <button className="btn btn-primary">More About Me</button>
+          <button className="btn btn-secondary">Download CV</button>
         </div>
       </div>
       <div className="hero-image">
