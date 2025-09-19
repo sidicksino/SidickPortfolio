@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./Hero.css";
 import heroImage from "../../assets/sidick.jpg";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   useEffect(() => {
@@ -13,17 +14,35 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1>
+        <motion.h1
+          initial={{ opacity: 0, translateX: "-100%" }}
+          whileInView={{ opacity: 1, translateX: 0 }}
+          transition={{ duration: 1 }}
+        >
           Hi,
           <br />
           I'm <span className="span-sidick-hero">SIDICK</span>
           <br />
           <span>ABDOULAYE HISSEIN</span>
-        </h1>
-        <p>Data Analyst | Web Developer | ML Enthusiast</p>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, translateX: "-100%" }}
+          whileInView={{ opacity: 1, translateX: 0 }}
+          transition={{ duration: 2 }}
+        >
+          Data Analyst | Web Developer | ML Enthusiast
+        </motion.p>
         <div className="hero-buttons">
-          <button className="btn btn-primary">More About Me</button>
-          <button className="btn btn-secondary">Download CV</button>
+          <motion.button 
+          initial={{ opacity: 0, rotateX: "90deg" }}
+          whileInView={{ opacity: 1, rotateX: 0 }}
+          transition={{ duration: 0.5 }}
+          className="btn btn-primary">More About Me</motion.button>
+          <motion.button 
+          initial={{ opacity: 0, rotateY: "90deg" }}
+          whileInView={{ opacity: 1, rotateY: 0 }}
+          transition={{ duration: 0.5 }}
+          className="btn btn-secondary">Download CV</motion.button>
         </div>
       </div>
       <div className="hero-image">
