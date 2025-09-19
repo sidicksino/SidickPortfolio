@@ -17,7 +17,7 @@ const Hero = () => {
         <motion.h1
           initial={{ opacity: 0, translateX: "-100%" }}
           whileInView={{ opacity: 1, translateX: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.5 }}
         >
           Hi,
           <br />
@@ -28,7 +28,7 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, translateX: "-100%" }}
           whileInView={{ opacity: 1, translateX: 0 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1 }}
         >
           Data Analyst | Web Developer | ML Enthusiast
         </motion.p>
