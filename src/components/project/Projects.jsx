@@ -63,9 +63,9 @@ const ProjectsSection = () => {
             key={project.id}
             className="project-card"
             style={{ '--card-color': project.color }}
-            initial={{ opacity: 0, translateX: "50%" }}
+            initial={{ opacity: 0, translateX: "100%" }}
             whileInView={{ opacity: 1, translateX: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.3 }}
           >
             <div className="card-glow"></div>
 
