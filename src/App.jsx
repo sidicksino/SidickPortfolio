@@ -4,7 +4,7 @@ import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
 import Skills from "./components/skills/Skills";
-
+import Projects from "./components/project/Projects"
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -39,6 +39,7 @@ function App() {
       <Hero />
       <About />
       <Skills />
+      <Projects />
     </>
   );
 }

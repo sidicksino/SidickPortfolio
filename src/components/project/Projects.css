@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Elsie:wght@400;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+@font-face {
+  font-family: "Cheap Fire";
+  src: url("./assets/fonts/CheapFire.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --primary: #e748c8;
+  --primary-light: #f087dd;
+  --primary-dark: #b52a9d;
+
+  --background: #181737;
+  --background-light: #232245;
+  --background-dark: #0e0d20;
+
+  --text: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #8888aa;
+
+  --shadow: rgba(0, 0, 0, 0.3);
+  --border: #0033a0;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  --primary-transparent: #e748c8cc;
+  --background-transparent: #181737cc;
+
+  --font-body: "Epilogue", sans-serif;
+  --font-display: "Elsie", serif;
+  --font-fire: "Abril Fatface", cursive;
+}
+
+/* ===== Section ===== */
+.projects-section {
+  min-height: 100vh;
+  padding: 100px 20px;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+.projects-section h2 {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 80px;
+  letter-spacing: -1px;
+  position: relative;
+  font-family: var(--font-fire);
+}
+
+.projects-section h2 span {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+/* ===== Grid ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== Card ===== */
+.project-card {
+  position: relative;
+  background: var(--background-light);
+  border-radius: 24px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 15px 35px var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--card-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-glow {
+  position: absolute;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--card-color) 0%, transparent 70%);
+  opacity: 0.1;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.project-card:hover .card-glow {
+  width: 300px;
+  height: 300px;
+  opacity: 0.25;
+}
+
+/* ===== Content ===== */
+.project-icon {
+  font-size: 3rem;
+  color: var(--card-color);
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.project-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 30px;
+  flex: 1;
+}
+
+/* ===== Link ===== */
+.more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--card-color);
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  background: var(--background-transparent);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.more-link:hover {
+  background: var(--primary-transparent);
+  transform: translateX(8px);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.more-link:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 80px 15px;
+  }
+
+  .projects-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+  }
+
+  .project-card {
+    padding: 30px 20px;
+  }
+
+  .project-icon {
+    font-size: 2.5rem;
+  }
+
+  .project-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .project-card {
+    padding: 25px 15px;
+  }
+
+  .project-icon {
+    font-size: 2.2rem;
+  }
+
+  .project-title {
+    font-size: 1.3rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+  }
+}
