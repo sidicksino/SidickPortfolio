@@ -277,6 +277,7 @@
   .hero {
     padding: 100px 20px;
     gap: 40px;
+    margin-top: 20px;
   }
 
   .hero-image {
@@ -285,7 +286,8 @@
   }
 
   .hero-content{
-    margin-top: -3px;
+    margin-top: -0.1px;
+    padding-top: 20px;
   }
 
   .hero-content h1 {
