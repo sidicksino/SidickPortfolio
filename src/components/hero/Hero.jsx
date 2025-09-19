@@ -14,17 +14,13 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <motion.h1
-          initial={{ opacity: 0, translateX: "-100%" }}
-          whileInView={{ opacity: 1, translateX: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <h1>
           Hi,
           <br />
           I'm <span className="span-sidick-hero">SIDICK</span>
           <br />
           <span>ABDOULAYE HISSEIN</span>
-        </motion.h1>
+        </h1>
         <motion.p
           initial={{ opacity: 0, translateX: "-100%" }}
           whileInView={{ opacity: 1, translateX: 0 }}
