@@ -64,6 +64,7 @@
   flex-direction: column;
   gap: 20px;
   position: relative;
+  overflow: visible;
 }
 
 .about-img1,
@@ -93,9 +94,8 @@
 
 /* Contenu */
 .about-content {
-  width: 100%;
-  min-width: auto;
-  padding: 0 10px;
+  flex: 1;
+  min-width: 400px;
 }
 
 .section-title {
@@ -261,6 +261,12 @@
   .about-images {
     right: 20px;
     align-self: center;
+  }
+
+  .about-content {
+    width: 100%;
+    min-width: auto;
+    padding: 0 10px;
   }
 
   .about-img2 {
