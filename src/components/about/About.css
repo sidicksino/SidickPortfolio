@@ -190,6 +190,7 @@
 }
 
 .text-block p {
+    width: 95%;
   font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   line-height: 1.7;
   color: var(--text-muted);
@@ -303,6 +304,6 @@
   }
 
   .text-block p {
-    font-size: 0.9rem; /* un peu plus petit sur très petit écran */
+    font-size: 0.9rem;
   }
 }
