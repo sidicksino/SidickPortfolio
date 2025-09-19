@@ -12,7 +12,7 @@ const Skills = () => {
         <div className="skills-info">
           <div className="skill-category">
             <div className="icon"><FaChartBar /></div>
-            <div className="text-block">
+            <div className="text-blocks">
               <h3>Data Science & Visualization</h3>
               <p>R, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau, Matplotlib, Seaborn</p>
             </div>
@@ -20,7 +20,7 @@ const Skills = () => {
 
           <div className="skill-category">
             <div className="icon"><FaCode /></div>
-            <div className="text-block">
+            <div className="text-blocks">
               <h3>Frontend Development</h3>
               <p>HTML, CSS, JavaScript, React.js, React Native</p>
             </div>
@@ -28,7 +28,7 @@ const Skills = () => {
 
           <div className="skill-category">
             <div className="icon"><FaDatabase /></div>
-            <div className="text-block">
+            <div className="text-blocks">
               <h3>Backend Development</h3>
               <p>Python, Node.js, SQL, MySQL, PostgreSQL, MongoDB</p>
             </div>
