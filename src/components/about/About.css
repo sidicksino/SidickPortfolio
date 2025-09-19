@@ -124,7 +124,7 @@
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   padding: 15px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -190,7 +190,7 @@
 }
 
 .text-block p {
-    width: 95%;
+  padding-right: 40px;
   font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   line-height: 1.7;
   color: var(--text-muted);
