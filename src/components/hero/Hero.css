@@ -75,12 +75,26 @@
     rgba(231, 72, 200, 1) 82%,
     rgba(38, 163, 44, 1) 100%
   );
+  background-size: 50% 50%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent; /* Fallback */
+  color: transparent;
   position: relative;
   font-family: var(--font-display);
+  animation: rotateGradient 2s linear infinite;
+}
+
+@keyframes rotateGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes slide-in {
