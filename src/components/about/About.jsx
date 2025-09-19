@@ -2,18 +2,34 @@ import React from "react";
 import "./About.css";
 import photo1 from "../../assets/SI1.jpg";
 import photo2 from "../../assets/phote5.jpeg";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
     <section className="about" id="about">
       <div className="about-container">
         <div className="about-images">
-          <img src={photo1} alt="Sidick working" className="about-img1" />
-          <img src={photo2} alt="Sidick coding" className="about-img2" />
+          <motion.img
+            initial={{ opacity: 0, translateX: "-50%" }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            transition={{ duration: 1 }}
+          src={photo1} alt="Sidick working" className="about-img1" />
+          <motion.img
+            initial={{ opacity: 0, translateY: "50%" }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 1 }}
+           src={photo2} alt="Sidick coding" className="about-img2" />
         </div>
 
         <div className="about-content">
-          <h2 className="section-title">ABOUT ME</h2>
+          <motion.h2
+            initial={{ opacity: 0, translateX: "50%" }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            transition={{ duration: 1 }}
+            className="section-title"
+          >
+            ABOUT ME
+          </motion.h2>
           <div className="about-item">
             <div className="icon-circle-1">
               <svg
@@ -35,14 +51,19 @@ const About = () => {
                 />
               </svg>
             </div>
-            <div className="text-block">
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-block"
+            >
               <h3>Who I Am</h3>
               <p>
                 I'm a Data Science student and product-minded builder. Curious,
                 resourceful and detail-oriented, I care about clarity, usability
                 and a smooth experience for real users.
               </p>
-            </div>
+            </motion.div>
           </div>
 
           <div className="about-item">
@@ -60,7 +81,12 @@ const About = () => {
                 />
               </svg>
             </div>
-            <div className="text-block">
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-block"
+            >
               <h3>What I Do</h3>
               <p>
                 Data Analyst and developer of web, app platforms and small tools
@@ -68,7 +94,7 @@ const About = () => {
                 frequently, and validate ideas with working prototypes and
                 measurable outcomes.
               </p>
-            </div>
+            </motion.div>
           </div>
 
           <div className="about-item">
@@ -107,14 +133,19 @@ const About = () => {
                 <circle cx="50" cy="50" r="6" fill="#CE9178" />
               </svg>
             </div>
-            <div className="text-block">
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-block"
+            >
               <h3>My Mission</h3>
               <p>
                 Build thoughtful digital products that empower students and
                 entrepreneurs in Africa—scalable, reliable and simple to use.
                 I'm driven by impact and continuous improvement.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

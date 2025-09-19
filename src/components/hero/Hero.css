@@ -83,6 +83,17 @@
   font-family: var(--font-display);
 }
 
+@keyframes slide-in {
+  from {
+    translate: -60vw 0;
+    scale: 200% 1;
+  }
+  to {
+    translate: 0 0; 
+    scale: 100% 1;
+  }
+}
+
 .hero-content h1 {
   font-size: 3.8rem;
   line-height: 1.2;
@@ -90,6 +101,7 @@
   color: white;
   margin: 0 0 1.5rem 0;
   font-family: var(--font-body);
+  animation: slide-in 1s linear;
 }
 
 .hero-content h1 span:first-child {
