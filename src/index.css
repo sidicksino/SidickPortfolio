@@ -4,9 +4,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-text-size-adjust: 100%; /* Empêche le zoom texte automatique sur iOS/Android */
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
