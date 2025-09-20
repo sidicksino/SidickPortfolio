@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="custom-footer animate-footer">
+    <footer className="custom-footer animate-footer" id='footer'>
       <div className="footer-container">
         {/* Column 1 : Brand + Description */}
         <div className="footer-col fade-up">
