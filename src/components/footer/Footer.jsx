@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaFacebook } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -13,14 +13,14 @@ const Footer = () => {
             Creating tailor-made digital experiences — elegant, smart, and performant.
           </p>
           <div className="footer-socials">
-            <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <a href="https://github.com/sidicksino" target="_blank" rel="noreferrer" aria-label="GitHub">
               <FaGithub />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a href="http://linkedin.com/in/sidick-abdoulaye-sino-72153a384" target="_blank" rel="noreferrer" aria-label="LinkedIn">
               <FaLinkedin />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter">
-              <FaTwitter />
+            <a href="https://www.facebook.com/share/1BTDC1znZD/?mibextid=wwXIfr" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <FaFacebook />
             </a>
           </div>
         </div>
