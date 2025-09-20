@@ -69,16 +69,16 @@ const Skills = () => {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="skills-img">
-          <motion.img
-            initial={{ opacity: 0, translateX: "50%" }}
-            whileInView={{ opacity: 1, translateX: 0 }}
-            transition={{ duration: 1 }}
-            src={SkillsPhoto}
-            alt="Sidick Abdoulaye Hissein"
-            className="skills-img"
-          />
-        </div>
+        <motion.div
+          className="services-image-wrapper"
+          initial={{ opacity: 0, translateX: "50%" }}
+          whileInView={{ opacity: 1, translateX: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="skills-img">
+            <img src={SkillsPhoto} alt="Sidick Abdoulaye Hissein" className="skills-img" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
