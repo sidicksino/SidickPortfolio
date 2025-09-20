@@ -1,0 +1,398 @@
+@import url("https://fonts.googleapis.com/css2?family=Elsie:wght@400;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  /* ===== Couleurs principales ===== */
+  --primary: #e748c8;
+  --primary-light: #f087dd;
+  --primary-dark: #b52a9d;
+
+  --background: #181737;
+  --background-light: #232245;
+  --background-dark: #0e0d20;
+
+  --text: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #8888aa;
+
+  /* ===== Utilitaires ===== */
+  --shadow: rgba(0, 0, 0, 0.3);
+  --border: #0033a0;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  /* ===== Transparence utile ===== */
+  --primary-transparent: #e748c8cc;
+  --background-transparent: #181737cc;
+
+  /* ===== Typographie ===== */
+  --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-classic: "Times New Roman", Times, serif;
+  --font-display: "Elsie", serif;
+  --font-fire: "Abril Fatface", cursive;
+}
+
+/* ========== FOOTER ========== */
+.custom-footer {
+  background: var(--background-dark);
+  color: var(--text);
+  padding: 80px 20px 40px;
+  font-family: var(--font-body);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 50px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ========== COLONNES ========== */
+.footer-col h3,
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text);
+  position: relative;
+}
+
+.footer-col h4 {
+  font-size: 1.3rem;
+}
+
+.footer-col h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* Logo stylisé */
+.footer-logo {
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Description */
+.footer-desc {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+/* Liens de navigation */
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  padding-left: 8px;
+}
+
+.footer-col ul li a::before {
+  content: "→";
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+.footer-col ul li a:hover::before {
+  opacity: 1;
+  transform: translateX(-10px);
+}
+
+/* Contact Info */
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.contact-icon {
+  color: var(--primary);
+  font-size: 1rem;
+  min-width: 20px;
+  transition: transform 0.3s ease;
+}
+
+.contact-list li:hover .contact-icon {
+  transform: scale(1.2);
+}
+
+/* Réseaux sociaux */
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.footer-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-socials a:hover {
+  background: var(--primary-transparent);
+  color: white;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 15px rgba(231, 72, 200, 0.3);
+}
+
+/* Bas de page */
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.footer-bottom strong {
+  color: var(--primary);
+  font-family: var(--font-display);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .footer-container {
+    gap: 40px;
+    padding: 0 20px 60px;
+  }
+
+  .footer-col h3 {
+    font-size: 1.4rem;
+  }
+
+  .footer-col h4 {
+    font-size: 1.2rem;
+  }
+
+  .footer-socials {
+    gap: 12px;
+  }
+
+  .footer-socials a {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-footer {
+    padding: 60px 15px 30px;
+  }
+
+  .footer-container {
+    gap: 30px;
+  }
+
+  .footer-col h3 {
+    font-size: 1.3rem;
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+  }
+
+  .footer-socials a {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes glow {
+    0% { box-shadow: 0 0 5px var(--primary); }
+    50% { box-shadow: 0 0 20px var(--primary-light); }
+    100% { box-shadow: 0 0 5px var(--primary); }
+  }
+  
+  .animate-footer {
+    animation: fadeIn 1s ease forwards;
+  }
+  
+  /* Fade-up stagger effect */
+  .fade-up { animation: fadeUp 1s ease forwards; }
+  .delay-1 { animation-delay: 0.3s; }
+  .delay-2 { animation-delay: 0.6s; }
+  
+  .fade-in {
+    animation: fadeIn 2s ease forwards;
+  }
+  
+  /* ===== Glassmorphism hover ===== */
+  .footer-socials a {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease, transform 0.4s ease;
+  }
+  
+  .footer-socials a:hover {
+    background: rgba(231, 72, 200, 0.15);
+    transform: translateY(-5px) scale(1.15) rotate(6deg);
+    animation: glow 1.5s infinite alternate;
+    color: var(--primary-light);
+  }
+  
+  /* Glass hover for contact items */
+  .contact-list li {
+    transition: all 0.4s ease;
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+  
+  .contact-list li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    transform: translateX(6px);
+  }
+  
+  /* Keep your existing footer styles (colors, layout, responsive) */
+/* ===== Aurora Background Animation ===== */
+@keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .custom-footer {
+    position: relative;
+    background: linear-gradient(-45deg, #0e0d20, #181737, #232245, #0e0d20);
+    background-size: 400% 400%;
+    animation: aurora 20s ease infinite;
+    color: var(--text);
+    padding: 80px 20px 40px;
+    font-family: var(--font-body);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+  
+  /* Optional floating light blobs */
+  .custom-footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(231,72,200,0.1) 0%, transparent 70%);
+    animation: floatBlob 25s linear infinite;
+  }
+  
+  @keyframes floatBlob {
+    0% { transform: translate(0,0) rotate(0deg); }
+    50% { transform: translate(10%,10%) rotate(180deg); }
+    100% { transform: translate(0,0) rotate(360deg); }
+  }
+  
+  /* ===== Icon Animated Gradient ===== */
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .footer-socials a {
+    background: linear-gradient(270deg, #e748c8, #f087dd, #b52a9d);
+    background-size: 600% 600%;
+    animation: gradientMove 6s ease infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+  }
+  
+  .footer-socials a:hover {
+    transform: translateY(-6px) scale(1.2) rotate(8deg);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 20px rgba(231, 72, 200, 0.3);
+  }
+  
+  /* ===== Contact List Glass Hover ===== */
+  .contact-list li {
+    transition: all 0.4s ease;
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+  
+  .contact-list li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    transform: translateX(6px);
+  }
+  

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import Logo from "../../assets/Logo.svg";
+import { RiContactsBook2Line } from "react-icons/ri";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = ({ scrolled = false }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,28 +76,7 @@ const Navbar = ({ scrolled = false }) => {
         <li>
           <a href="#about">
             <span className="mobile-icon">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M19 14C19 10.134 15.866 7 12 7C8.13401 7 5 10.134 5 14V16C5 17.1046 5.89543 18 7 18H17C18.1046 18 19 17.1046 19 16V14Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <CgProfile/>
             </span>
             About
           </a>
@@ -161,6 +142,14 @@ const Navbar = ({ scrolled = false }) => {
         <li>
           <a href="#contact">
             <span className="mobile-icon">
+              <RiContactsBook2Line />
+            </span>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href="#footer">
+            <span className="mobile-icon">
               <svg
                 width="20"
                 height="20"
@@ -184,7 +173,7 @@ const Navbar = ({ scrolled = false }) => {
                 />
               </svg>
             </span>
-            Contact
+            Footer
           </a>
         </li>
       </ul>
