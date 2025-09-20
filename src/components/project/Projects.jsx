@@ -16,7 +16,7 @@ const ProjectsSection = () => {
       id: 'web-app',
       title: 'Web App',
       icon: <FaLaptopCode />,
-      desc: 'Applications web ultra-rapides, sécurisées et élégantes, conçues pour transformer l’expérience utilisateur.',
+      desc: 'Ultra-fast, secure, and elegant web applications designed to transform user experience.',
       link: '#web-app',
       color: '#6366f1',
     },
@@ -24,7 +24,7 @@ const ProjectsSection = () => {
       id: 'mobile-app',
       title: 'Mobile App',
       icon: <FaMobileAlt />,
-      desc: 'Applications mobiles intuitives avec des animations fluides, pensées pour iOS et Android.',
+      desc: 'Intuitive mobile apps with smooth animations, crafted for both iOS and Android.',
       link: '#mobile-app',
       color: '#8b5cf6',
     },
@@ -32,7 +32,7 @@ const ProjectsSection = () => {
       id: 'design',
       title: 'Design',
       icon: <FaPaintBrush />,
-      desc: 'Designs UI/UX sur mesure, esthétiques et fonctionnels, créés pour captiver et convertir.',
+      desc: 'Custom UI/UX designs that are aesthetic, functional, and made to captivate.',
       link: '#design',
       color: '#ec4899',
     },
@@ -40,7 +40,7 @@ const ProjectsSection = () => {
       id: 'ml-ai',
       title: 'ML & AI',
       icon: <FaBrain />,
-      desc: 'Modèles intelligents pour automatiser, prédire et révolutionner vos processus métiers.',
+      desc: 'Intelligent models to automate, predict, and revolutionize your business processes.',
       link: '#ml-ai',
       color: '#f59e0b',
     },
@@ -53,7 +53,7 @@ const ProjectsSection = () => {
         whileInView={{ opacity: 1, translateX: 0 }}
         transition={{ duration: 1 }}
       >
-        Mes Projets <span>✨</span>
+       My <span className='span1'>Projets</span>  <span className='span2'>✨</span>
       </motion.h2>
 
       <div className="projects-grid">

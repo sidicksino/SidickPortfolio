@@ -5,6 +5,8 @@ import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
 import Skills from "./components/skills/Skills";
 import Projects from "./components/project/Projects"
+import Services from "./components/services/Services";
+
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -40,6 +42,7 @@ function App() {
       <About />
       <Skills />
       <Projects />
+      <Services />
     </>
   );
 }

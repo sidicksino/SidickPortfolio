@@ -59,13 +59,43 @@
   font-family: var(--font-fire);
 }
 
-.projects-section h2 span {
+.projects-section h2 .span2 {
   animation: pulse 2s infinite;
+  color: var(--warning);
+}
+.projects-section h2 .span1 {
+  position: relative;
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.projects-section h2 .span1::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: slideIn 1s ease-out forwards 0.5s;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.1); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.1);
+  }
 }
 
 /* ===== Grid ===== */
@@ -97,10 +127,12 @@
 }
 
 .project-card::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 4px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
   background: var(--card-color);
   transform: scaleX(0);
   transform-origin: left;
@@ -113,7 +145,8 @@
 
 .card-glow {
   position: absolute;
-  width: 150px; height: 150px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background: radial-gradient(circle, var(--card-color) 0%, transparent 70%);
   opacity: 0.1;
@@ -163,7 +196,7 @@
   border-radius: 50px;
   background: var(--background-transparent);
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.3s ease;
   font-size: 1rem;
 }
