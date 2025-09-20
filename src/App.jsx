@@ -7,6 +7,7 @@ import Skills from "./components/skills/Skills";
 import Projects from "./components/project/Projects";
 import Services from "./components/services/Services";
 import Footer from "./components/footer/Footer";
+import Contact from "./components/contact/Contact";
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -44,6 +45,7 @@ function App() {
       <Skills />
       <Projects />
       <Services />
+      <Contact />
       <Footer />
     </>
   );

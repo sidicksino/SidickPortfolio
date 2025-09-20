@@ -13,7 +13,7 @@ const Services = () => {
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 1 }}
           >
-            My <span>Services</span>
+            My <span>Services</span> ✨
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, scale: 0 }}

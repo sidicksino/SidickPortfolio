@@ -202,7 +202,9 @@
     gap: 40px;
     padding: 0 20px 60px;
   }
-
+  .delay-2{
+    display: none;
+  }
   .footer-col h3 {
     font-size: 1.4rem;
   }
@@ -230,7 +232,9 @@
   .footer-container {
     gap: 30px;
   }
-
+  .delay-2{
+    display: none;
+  }
   .footer-col h3 {
     font-size: 1.3rem;
   }
