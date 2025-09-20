@@ -330,7 +330,7 @@
 
 @media (max-width: 480px) {
   .contact-section {
-    padding: 60px 15px;
+    padding: 0px 15px;
   }
 
   .contact-header {
