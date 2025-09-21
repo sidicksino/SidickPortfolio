@@ -4,7 +4,7 @@ import "./Services.css";
 import Service from "../../assets/service.png";
 const Services = () => {
   return (
-    <section className="services-section">
+    <section className="services-section" id="services">
       <div className="services-container">
         {/* Texte à gauche */}
         <div className="services-text">

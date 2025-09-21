@@ -148,7 +148,7 @@ const Navbar = ({ scrolled = false }) => {
           </a>
         </li>
         <li>
-          <a href="#footer">
+          <a href="#services">
             <span className="mobile-icon">
               <svg
                 width="20"
@@ -173,7 +173,7 @@ const Navbar = ({ scrolled = false }) => {
                 />
               </svg>
             </span>
-            Footer
+            Services
           </a>
         </li>
       </ul>
