@@ -328,7 +328,7 @@
   
   .custom-footer {
     position: relative;
-    background: linear-gradient(-45deg, #0e0d20, #181737, #232245, #0e0d20);
+    background: linear-gradient(-45deg, var(--background-light));
     background-size: 400% 400%;
     animation: aurora 20s ease infinite;
     color: var(--text);
