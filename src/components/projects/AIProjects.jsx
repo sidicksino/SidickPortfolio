@@ -6,54 +6,17 @@ import Insta from "../../assets/insta.png";
 import SinoEcommerce from "../../assets/team-work.png";
 
 const AIProjects = () => {
-  const projects = [
+  const projects = [   
     {
       id: 1,
-      title: "SinoCoffee",
-      description:
-        "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface.",
-      technologies: [
-        "React",
-        "Vite",
-        "Supabase",
-        "TypeScript",
-        "Tailwind CSS",
-        "shadcn-ui"
-      ],
-      image: SinoCoffee,
-      liveUrl: "#",
-      githubUrl: "#",
-    },    
-    {
-      id: 2,
       title: "Sino Ai",
       description:
         "A modern AI web application, providing intelligent features and real-time interactions.",
       technologies: ["React", "Node.js", "MongoDB", "OpenAI API", "Tailwind CSS", "Axios"],
       image: SinoAi,
-      liveUrl: "#",
-      githubUrl: "#",
-    },    
-    {
-      id: 3,
-      title: "Insta Abeche Website",
-      description:
-        "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
-      technologies: ["HTML", "CSS","JavaScript", "MySQL"],
-      image: Insta,
-      liveUrl: "#",
-      githubUrl: "#",
-    },    
-    {
-      id: 4,
-      title: "Sino Ecommerce Website",
-      description:
-        "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
-      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
-      image: SinoEcommerce,
-      liveUrl: "#",
-      githubUrl: "#",
-    }    
+      liveUrl: "https://sinoai-chi.vercel.app/",
+      githubUrl: "https://github.com/sidicksino/sino_Ai",
+    },      
   ];
 
   return (

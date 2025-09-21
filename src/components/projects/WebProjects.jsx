@@ -22,7 +22,7 @@ const WebProjects = () => {
       ],
       image: SinoCoffee,
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/sidicksino/SinoCoffee",
     },
     {
       id: 2,
@@ -38,8 +38,8 @@ const WebProjects = () => {
         "Axios",
       ],
       image: SinoAi,
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://sinoai-chi.vercel.app/",
+      githubUrl: "https://github.com/sidicksino/sino_Ai",
     },
     {
       id: 3,
@@ -48,8 +48,8 @@ const WebProjects = () => {
         "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
       technologies: ["HTML", "CSS", "JavaScript", "MySQL"],
       image: Insta,
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://insta-uxnh.onrender.com/",
+      githubUrl: "https://github.com/sidicksino/insta_abeche",
     },
     {
       id: 4,
@@ -58,8 +58,8 @@ const WebProjects = () => {
         "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
       technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
       image: SinoEcommerce,
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://team-work-30tj.onrender.com/",
+      githubUrl: "https://github.com/sidicksino/team_work",
     },
   ];
 
