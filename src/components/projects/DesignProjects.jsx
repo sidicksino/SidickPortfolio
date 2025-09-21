@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProjectsPage.css";
-import SinoAi from "../../assets/sino-ai.png";
-import SinoCoffee from "../../assets/SinoCoffee.png";
+import Ecomerce from "../../assets/ecomerce.png";
+import TchadInfos from "../../assets/tchadInfos.png";
 import Insta from "../../assets/insta.png";
 import SinoEcommerce from "../../assets/team-work.png";
 
@@ -9,51 +9,40 @@ const DesignProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "SinoCoffee",
+      title: "TchadInfos Design",
       description:
-        "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface.",
-      technologies: [
-        "React",
-        "Vite",
-        "Supabase",
-        "TypeScript",
-        "Tailwind CSS",
-        "shadcn-ui"
-      ],
-      image: SinoCoffee,
-      liveUrl: "#",
-      githubUrl: "#",
-    },    
+        "A modern news app design for TchadInfos, focusing on a clean layout and user-friendly reading experience.",
+      technologies: ["Figma"],
+      image: TchadInfos,
+      viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=477-727&p=f&t=DtBIxtgBPNmUUJ8u-0",
+    },       
     {
       id: 2,
-      title: "Sino Ai",
+      title: "Ecommerce Mobile Design",
       description:
-        "A modern AI web application, providing intelligent features and real-time interactions.",
-      technologies: ["React", "Node.js", "MongoDB", "OpenAI API", "Tailwind CSS", "Axios"],
-      image: SinoAi,
-      liveUrl: "#",
-      githubUrl: "#",
-    },    
+        "A modern e-commerce App UI/UX design for a seamless and engaging shopping experience.",
+      technologies: ["Figma"],
+      image: Ecomerce,
+      viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=0-1&p=f&t=DtBIxtgBPNmUUJ8u-0",
+    },  
     {
       id: 3,
-      title: "Insta Abeche Website",
+      title: "Sidick Portfolio Design",
       description:
-        "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
-      technologies: ["HTML", "CSS","JavaScript", "MySQL"],
-      image: Insta,
-      liveUrl: "#",
-      githubUrl: "#",
-    },    
+        "A modern portfolio web UI/UX design showcasing projects and skills with a clean, responsive layout.",
+      technologies: ["Figma"],
+      image: SinoEcommerce,
+      viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=173-168&p=f&t=DtBIxtgBPNmUUJ8u-0",
+    },       
     {
       id: 4,
-      title: "Sino Ecommerce Website",
+      title: "Sino Ecommerce Design",
       description:
-        "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
-      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
+        "A modern e-commerce Web UI/UX design for a seamless and engaging shopping experience.",
+      technologies: ["Figma"],
       image: SinoEcommerce,
-      liveUrl: "#",
-      githubUrl: "#",
-    }    
+      viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=156-132&t=DtBIxtgBPNmUUJ8u-0",
+    }      
   ];
 
   return (
@@ -87,23 +76,14 @@ const DesignProjects = () => {
   
               <div className="project-links">
                 <a
-                  href={project.liveUrl.trim()}
+                  href={project.viewUrl.trim()}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-live"
                 >
                   View Live
                 </a>
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl.trim()}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-github"
-                  >
-                    Code
-                  </a>
-                )}
+                
               </div>
             </div>
           </div>
