@@ -5,7 +5,7 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0); // remonte en haut de la page à chaque navigation
+    window.scrollTo(0, 0);
   }, [pathname]);
 
   return null;

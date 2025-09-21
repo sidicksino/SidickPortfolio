@@ -1,84 +1,68 @@
 import React from "react";
 import "./ProjectsPage.css";
+import SinoAi from "../../assets/sino-ai.png";
+import SinoCoffee from "../../assets/SinoCoffee.png";
+import Insta from "../../assets/insta.png";
+import SinoEcommerce from "../../assets/team-work.png";
 
 const MobileProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "App de Fitness",
+      title: "SinoCoffee",
       description:
-        "Application de suivi d'entraînement avec programmes personnalisés, suivi GPS et intégration Apple Health / Google Fit.",
-      technologies: ["React Native", "Firebase", "Redux", "Reanimated"],
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://apps.apple.com/app/id123456789",
-      githubUrl: "https://github.com/tonuser/fitness-app",
-    },
+        "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface.",
+      technologies: [
+        "React",
+        "Vite",
+        "Supabase",
+        "TypeScript",
+        "Tailwind CSS",
+        "shadcn-ui"
+      ],
+      image: SinoCoffee,
+      liveUrl: "#",
+      githubUrl: "#",
+    },    
     {
       id: 2,
-      title: "Chat App",
+      title: "Sino Ai",
       description:
-        "Messagerie instantanée sécurisée avec chiffrement de bout en bout, appels vidéo et partage de fichiers en temps réel.",
-      technologies: ["Flutter", "WebSocket", "Node.js", "Socket.IO"],
-      image:
-        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://play.google.com/store/apps/details?id=com.tonuser.chat",
-      githubUrl: "https://github.com/tonuser/chat-app",
-    },
+        "A modern AI web application, providing intelligent features and real-time interactions.",
+      technologies: ["React", "Node.js", "MongoDB", "OpenAI API", "Tailwind CSS", "Axios"],
+      image: SinoAi,
+      liveUrl: "#",
+      githubUrl: "#",
+    },    
     {
       id: 3,
-      title: "Gestionnaire de Budget",
+      title: "Insta Abeche Website",
       description:
-        "Suivi des dépenses, visualisation des catégories, alertes personnalisées et synchronisation multi-appareils.",
-      technologies: ["Kotlin", "SwiftUI", "Realm", "Charts"],
-      image:
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://apps.apple.com/app/budget-manager/id987654321",
-      githubUrl: "https://github.com/tonuser/budget-app",
-    },
+        "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
+      technologies: ["HTML", "CSS","JavaScript", "MySQL"],
+      image: Insta,
+      liveUrl: "#",
+      githubUrl: "#",
+    },    
     {
       id: 4,
-      title: "Gestionnaire de Budget",
+      title: "Sino Ecommerce Website",
       description:
-        "Suivi des dépenses, visualisation des catégories, alertes personnalisées et synchronisation multi-appareils.",
-      technologies: ["Kotlin", "SwiftUI", "Realm", "Charts"],
-      image:
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://apps.apple.com/app/budget-manager/id987654321",
-      githubUrl: "https://github.com/tonuser/budget-app",
-    },
-    {
-      id: 5,
-      title: "Gestionnaire de Budget",
-      description:
-        "Suivi des dépenses, visualisation des catégories, alertes personnalisées et synchronisation multi-appareils.",
-      technologies: ["Kotlin", "SwiftUI", "Realm", "Charts"],
-      image:
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://apps.apple.com/app/budget-manager/id987654321",
-      githubUrl: "https://github.com/tonuser/budget-app",
-    },
-    {
-      id: 6,
-      title: "Gestionnaire de Budget",
-      description:
-        "Suivi des dépenses, visualisation des catégories, alertes personnalisées et synchronisation multi-appareils.",
-      technologies: ["Kotlin", "SwiftUI", "Realm", "Charts"],
-      image:
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://apps.apple.com/app/budget-manager/id987654321",
-      githubUrl: "https://github.com/tonuser/budget-app",
-    },
+        "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
+      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
+      image: SinoEcommerce,
+      liveUrl: "#",
+      githubUrl: "#",
+    }    
   ];
 
   return (
     <div className="projects-page">
-      <h1>Mes Projets Mobiles</h1>
+      <h1>My Mobile Projects</h1>
       <p>
-        Applications iOS & Android conçues pour l’expérience utilisateur
-        maximale.
+        iOS & Android applications designed for the best user experience.
       </p>
-
+  
       <div className="projects-list">
         {projects.map((project) => (
           <div key={project.id} className="project-wrapper">
@@ -92,7 +76,7 @@ const MobileProjects = () => {
             <div className="project-card1">
               <h3 className="project-title">{project.title}</h3>
               <p className="project-description">{project.description}</p>
-
+  
               <div className="project-tech">
                 {project.technologies.map((tech, index) => (
                   <span key={index} className="tech-tag">
@@ -100,7 +84,7 @@ const MobileProjects = () => {
                   </span>
                 ))}
               </div>
-
+  
               <div className="project-links">
                 <a
                   href={project.liveUrl.trim()}
@@ -108,7 +92,7 @@ const MobileProjects = () => {
                   rel="noreferrer"
                   className="btn-live"
                 >
-                  Voir en ligne
+                  View Live
                 </a>
                 {project.githubUrl && (
                   <a
@@ -126,7 +110,7 @@ const MobileProjects = () => {
         ))}
       </div>
     </div>
-  );
+  );  
 };
 
 export default MobileProjects;

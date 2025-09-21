@@ -78,7 +78,7 @@
 /* ========== GRID ========== */
 .projects-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards par row laptop */
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
@@ -220,20 +220,20 @@
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   .projects-list {
-    grid-template-columns:  1fr; /* tablette */
+    grid-template-columns:  1fr;
     gap: 25px;
   }
 }
 
 @media (max-width: 480px) {
   .projects-list {
-    grid-template-columns:  1fr; /* téléphones */
+    grid-template-columns:  1fr;
     gap: 20px;
   }
 }
 
 @media (max-width: 300px) {
   .projects-list {
-    grid-template-columns: 1fr; /* mini téléphones */
+    grid-template-columns: 1fr;
   }
 }

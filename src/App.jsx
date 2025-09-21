@@ -8,7 +8,6 @@ import Services from "./components/services/Services";
 import Footer from "./components/footer/Footer";
 import Contact from "./components/contact/Contact";
 
-// Your project subpages
 import WebProjects from "./components/projects/WebProjects";
 import MobileProjects from "./components/projects/MobileProjects";
 import DesignProjects from "./components/projects/DesignProjects";

@@ -7,7 +7,7 @@ import {
   FaBrain,
   FaArrowRight,
 } from "react-icons/fa";
-import { Link } from "react-router-dom"; // ← Ajouté
+import { Link } from "react-router-dom";
 import "./Projects.css";
 
 const ProjectsSection = () => {
@@ -17,7 +17,7 @@ const ProjectsSection = () => {
       title: "Web App",
       icon: <FaLaptopCode />,
       desc: "Ultra-fast, secure, and elegant web applications designed to transform user experience.",
-      link: "/projects/web", // ← Route modifiée
+      link: "/projects/web",
       color: "#6366f1",
     },
     {
@@ -25,7 +25,7 @@ const ProjectsSection = () => {
       title: "Mobile App",
       icon: <FaMobileAlt />,
       desc: "Intuitive mobile apps with smooth animations, crafted for both iOS and Android.",
-      link: "/projects/mobile", // ← Route modifiée
+      link: "/projects/mobile",
       color: "#8b5cf6",
     },
     {
@@ -33,7 +33,7 @@ const ProjectsSection = () => {
       title: "Design",
       icon: <FaPaintBrush />,
       desc: "Custom UI/UX designs that are aesthetic, functional, and made to captivate.",
-      link: "/projects/design", // ← Route modifiée
+      link: "/projects/design",
       color: "#ec4899",
     },
     {
@@ -41,7 +41,7 @@ const ProjectsSection = () => {
       title: "ML & AI",
       icon: <FaBrain />,
       desc: "Intelligent models to automate, predict, and revolutionize your business processes.",
-      link: "/projects/ai", // ← Route modifiée
+      link: "/projects/ai",
       color: "#f59e0b",
     },
   ];

@@ -1,55 +1,86 @@
-import React from 'react';
-import './ProjectsPage.css';
+import React from "react";
+import "./ProjectsPage.css";
+import SinoAi from "../../assets/sino-ai.png";
+import SinoCoffee from "../../assets/SinoCoffee.png";
+import Insta from "../../assets/insta.png";
+import SinoEcommerce from "../../assets/team-work.png";
 
 const WebProjects = () => {
-  // 🗃️ Données structurées — à remplacer plus tard par une API
   const projects = [
     {
       id: 1,
-      title: "Application E-commerce",
-      description: "Plateforme complète de vente en ligne avec panier, paiement et dashboard admin.",
-      technologies: ["React", "Node.js", "Stripe", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://mon-ecommerce.com",
-      githubUrl: "https://github.com/tonuser/ecommerce",
+      title: "SinoCoffee",
+      description:
+        "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface.",
+      technologies: [
+        "React",
+        "Vite",
+        "Supabase",
+        "TypeScript",
+        "Tailwind CSS",
+        "shadcn-ui",
+      ],
+      image: SinoCoffee,
+      liveUrl: "#",
+      githubUrl: "#",
     },
     {
       id: 2,
-      title: "Dashboard Analytics",
-      description: "Tableau de bord interactif avec visualisations en temps réel et filtres avancés.",
-      technologies: ["Vue.js", "D3.js", "Firebase", "TailwindCSS"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://mon-dashboard.com",
-      githubUrl: "https://github.com/tonuser/dashboard",
+      title: "Sino Ai",
+      description:
+        "A modern AI web application, providing intelligent features and real-time interactions.",
+      technologies: [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "OpenAI API",
+        "Tailwind CSS",
+        "Axios",
+      ],
+      image: SinoAi,
+      liveUrl: "#",
+      githubUrl: "#",
     },
     {
       id: 3,
-      title: "Portfolio Créatif",
-      description: "Site vitrine animé avec effets 3D, scroll fluide et intégration CMS.",
-      technologies: ["Next.js", "Framer Motion", "Sanity", "GSAP"],
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-      liveUrl: "https://mon-portfolio.com",
-      githubUrl: "https://github.com/tonuser/portfolio",
+      title: "Insta Abeche Website",
+      description:
+        "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
+      technologies: ["HTML", "CSS", "JavaScript", "MySQL"],
+      image: Insta,
+      liveUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      id: 4,
+      title: "Sino Ecommerce Website",
+      description:
+        "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
+      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
+      image: SinoEcommerce,
+      liveUrl: "#",
+      githubUrl: "#",
     },
   ];
 
   return (
     <div className="projects-page">
-      <h1>Mes Projets Web</h1>
-      <p>Voici une sélection de mes applications web les plus récentes et impactantes.</p>
+      <h1>My Web Projects</h1>
+      <p>
+        Here is a selection of my most recent and impactful web applications.
+      </p>
 
       <div className="projects-list">
         {projects.map((project) => (
-          <div key={project.id} className="project-card">
-            <div className="project-image-wrapper">
+          <div key={project.id} className="project-wrapper">
+            <div className="project-image-container">
               <img
                 src={project.image}
                 alt={project.title}
                 className="project-image"
               />
             </div>
-
-            <div className="project-content">
+            <div className="project-card1">
               <h3 className="project-title">{project.title}</h3>
               <p className="project-description">{project.description}</p>
 
@@ -63,16 +94,16 @@ const WebProjects = () => {
 
               <div className="project-links">
                 <a
-                  href={project.liveUrl}
+                  href={project.liveUrl.trim()}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-live"
                 >
-                  Voir en ligne
+                  View Live
                 </a>
                 {project.githubUrl && (
                   <a
-                    href={project.githubUrl}
+                    href={project.githubUrl.trim()}
                     target="_blank"
                     rel="noreferrer"
                     className="btn-github"
