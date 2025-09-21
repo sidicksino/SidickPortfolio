@@ -128,11 +128,11 @@
 }
 
 .contact-form-wrapper {
-  background: rgba(35, 34, 69, 0.5);
+  background: var(--background-light);
   backdrop-filter: blur(16px);
   border-radius: 28px;
   padding: 20px 30px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   transition: all 0.4s ease;
 }
@@ -161,8 +161,8 @@
 .contact-form textarea {
   width: 100%;
   padding: 10px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  background: var(--background-light);
   border-radius: 14px;
   font-family: var(--font-body);
   font-size: 1rem;
@@ -210,7 +210,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, var(--background-light), transparent);
   transition: left 0.8s;
 }
 
@@ -238,11 +238,11 @@
 }
 
 .info-card {
-  background: rgba(35, 34, 69, 0.4);
+  background: var(--background-light);
   backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
   transition: all 0.4s ease;
   text-align: center;
 }
@@ -257,7 +257,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(231, 72, 200, 0.1);
+  background: var(--background-transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,7 +270,7 @@
 .info-card:hover .info-icon {
   transform: scale(1.2) rotate(10deg);
   background: var(--primary-transparent);
-  color: white;
+  color: var(--text);
   box-shadow: 0 0 20px var(--primary-transparent);
 }
 

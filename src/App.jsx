@@ -13,6 +13,7 @@ import MobileProjects from "./components/projects/MobileProjects";
 import DesignProjects from "./components/projects/DesignProjects";
 import AIProjects from "./components/projects/AIProjects";
 import ScrollToTop from "./components/ScrollToTop";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/projects/design" element={<DesignProjects />} />
         <Route path="/projects/ai" element={<AIProjects />} />
       </Routes>
+      <ThemeToggle />
     </>
   );
 }

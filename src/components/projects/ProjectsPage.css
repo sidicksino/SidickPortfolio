@@ -87,12 +87,12 @@
 
 /* ========== WRAPPER ========== */
 .project-wrapper {
-  background: rgba(35, 34, 69, 0.6);
+  background: var(--background-light);
   backdrop-filter: blur(8px);
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 25px var(--shadow);
   transition: all 0.3s ease;
   max-width: 340px;
   margin: 0 auto;
@@ -170,7 +170,7 @@
 
 .tech-tag:hover {
   background: var(--primary-transparent);
-  color: white;
+  color: var(--text);
   transform: translateY(-1px);
 }
 
@@ -194,7 +194,7 @@
 
 .btn-live {
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  color: white;
+  color: var(--text);
   border: none;
   box-shadow: 0 3px 10px rgba(231, 72, 200, 0.25);
 }
@@ -207,7 +207,7 @@
 .btn-github {
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
 }
 
 .btn-github:hover {

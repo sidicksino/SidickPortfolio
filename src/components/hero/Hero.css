@@ -112,7 +112,7 @@
   font-size: 3.8rem;
   line-height: 1.2;
   font-weight: 700;
-  color: white;
+  color: var(--text);
   margin: 0 0 1.5rem 0;
   font-family: var(--font-body);
   animation: slide-in 1s linear;

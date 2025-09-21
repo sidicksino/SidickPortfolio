@@ -1,4 +1,51 @@
 @import "tailwindcss";
+/* Thème par défaut = dark (déjà défini dans :root) */
+
+/* Mode sombre par défaut */
+:root {
+  --primary: #e748c8;
+  --primary-light: #f087dd;
+  --primary-dark: #b52a9d;
+
+  --background: #181737;
+  --background-light: #232245;
+  --background-dark: #0e0d20;
+
+  --text: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #8888aa;
+
+  --shadow: rgba(0, 0, 0, 0.3);
+  --border: #0033a0;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  --primary-transparent: #e748c8cc;
+  --background-transparent: #181737cc;
+
+  --font-body: "Epilogue", sans-serif;
+  --font-display: "Elsie", serif;
+}
+
+/* 🎨 Mode clair — appliqué quand <html class="light-theme"> */
+html.light-theme {
+  --background: #f8f9fa;
+  --background-light: #ffffff;
+  --background-dark: #e6e6e6;
+
+  --text: #111111;
+  --text-secondary: #444444;
+  --text-muted: #777777;
+
+  --border: #0033a0;
+  --primary: #e748c8;
+  --primary-light: #f087dd;
+  --primary-dark: #b52a9d;
+
+  --primary-transparent: #e748c8cc;
+  --background-transparent: #ffffffcc;
+}
 
 * {
   margin: 0;
@@ -10,13 +57,12 @@
   text-size-adjust: 100%;
 }
 
-html,
-body {
+html, body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #181737;
-  color: white;
+  background-color: var(--background);
+  color: var(--text);
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;

@@ -140,7 +140,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(231, 72, 200, 0.2);
-  color: white;
+  color: var(--text);
   transition: all 0.3s ease;
 }
 
@@ -156,7 +156,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(106, 153, 85, 0.2);
-  color: white;
+  color: var(--text);
   transition: all 0.3s ease;
 }
 
@@ -172,7 +172,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(206, 145, 120, 0.2);
-  color: white;
+  color: var(--text);
   transition: all 0.3s ease;
 }
 
@@ -184,7 +184,7 @@
 .text-block h3 {
   font-size: clamp(1.2rem, 4vw, 1.8rem);
   margin: 0 0 12px 0;
-  color: white;
+  color: var(--text);
   font-weight: 700;
   font-family: var(--font-body);
   line-height: 1.3;
