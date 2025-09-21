@@ -21,7 +21,7 @@ const WebProjects = () => {
         "shadcn-ui",
       ],
       image: SinoCoffee,
-      liveUrl: "#",
+      liveUrl: "https://sino-coffee.vercel.app/",
       githubUrl: "https://github.com/sidicksino/SinoCoffee",
     },
     {
