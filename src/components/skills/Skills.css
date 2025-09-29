@@ -152,3 +152,21 @@
     margin-top: 1rem;
   }
 }
+@media (max-width: 390px) {
+  .skills-title {
+    font-size: 1rem;
+  }
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  .skills-img {
+    width: 300px;
+    height: auto;
+  }
+  .skills {
+    padding: 0rem 2rem;
+  }
+  .skill-category {
+    margin-top: 1rem;
+  }
+}
