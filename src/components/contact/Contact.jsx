@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   FaPaperPlane,
@@ -6,27 +6,35 @@ import {
   FaPhoneAlt,
   FaEnvelope,
 } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 import "./Contact.css";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Message envoyé ! Je te réponds très vite 💜");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setLoading(true);
+
+    emailjs
+      .sendForm(
+        "service_c4vcw6c",
+        "template_1b290dh",
+        formRef.current,
+        "DGu360jLgTiYGNW6H"
+      )
+      .then(
+        (result) => {
+          alert("✅ Message envoyé ! Je te réponds très vite 💜");
+          setLoading(false);
+          formRef.current.reset();
+        },
+        (error) => {
+          alert(" Erreur, message non envoyé !");
+          setLoading(false);
+        }
+      );
   };
 
   return (
@@ -58,53 +66,25 @@ const Contact = () => {
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 1 }}
           >
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
               <div className="form-group">
                 <label htmlFor="name">Nom</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
+                <input type="text" id="name" name="name" required />
               </div>
 
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
+                <input type="email" id="email" name="email" required />
               </div>
 
               <div className="form-group">
                 <label htmlFor="subject">Sujet</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
+                <input type="text" id="subject" name="subject" required />
               </div>
 
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                ></textarea>
+                <textarea id="message" name="message" rows="5" required></textarea>
               </div>
 
               <motion.button
@@ -114,7 +94,7 @@ const Contact = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                Envoyer <FaPaperPlane className="plane-icon" />
+                {loading ? "Envoi..." : "Envoyer"} <FaPaperPlane className="plane-icon" />
               </motion.button>
             </form>
           </motion.div>
