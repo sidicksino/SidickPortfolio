@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import "./Contact.css";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -26,12 +27,24 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          alert("✅ Message envoyé ! Je te réponds très vite 💜");
+          Swal.fire({
+            icon: "success",
+            title: "Message envoyé !",
+            text: "Je te réponds très vite 💜",
+            showConfirmButton: false,
+            timer: 2500,
+          });
           setLoading(false);
           formRef.current.reset();
         },
         (error) => {
-          alert(" Erreur, message non envoyé !");
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Erreur, message non envoyé !",
+            footer:
+              '<a href="mailto:sidickabdoulayesino1@gmail.com">Contacte-nous par email</a>',
+          });
           setLoading(false);
         }
       );
@@ -66,7 +79,11 @@ const Contact = () => {
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 1 }}
           >
-            <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="contact-form"
+            >
               <div className="form-group">
                 <label htmlFor="name">Nom</label>
                 <input type="text" id="name" name="name" required />
@@ -84,7 +101,12 @@ const Contact = () => {
 
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
               </div>
 
               <motion.button
@@ -94,7 +116,8 @@ const Contact = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                {loading ? "Envoi..." : "Envoyer"} <FaPaperPlane className="plane-icon" />
+                {loading ? "Envoi..." : "Envoyer"}{" "}
+                <FaPaperPlane className="plane-icon" />
               </motion.button>
             </form>
           </motion.div>
