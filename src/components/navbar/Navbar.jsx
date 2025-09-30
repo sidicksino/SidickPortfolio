@@ -178,8 +178,10 @@ const Navbar = ({ scrolled = false }) => {
         </li>
       </ul>
 
-      <button className="nav-cta" aria-label="Connect with me">
+      <button className="nav-cta" aria-label="Connect with me"><a  href="#contact">
+
         Connect With Me
+      </a>
       </button>
     </nav>
   );
