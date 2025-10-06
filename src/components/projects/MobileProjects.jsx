@@ -1,9 +1,6 @@
 import React from "react";
 import "./ProjectsPage.css";
-import SinoAi from "../../assets/sino-ai.png";
-import SinoCoffee from "../../assets/SinoCoffee.png";
-import Insta from "../../assets/insta.png";
-import SinoEcommerce from "../../assets/team-work.png";
+import Wallet from "../../assets/wallet.png";
 import TchadInfos from "../../assets/tchadInfos.png";
 
 const MobileProjects = () => {
@@ -26,7 +23,7 @@ const MobileProjects = () => {
         "Nodemailer",
         "Twilio",
       ],
-      image: SinoCoffee,
+      image: "",
       liveUrl: "#",
       githubUrl: "https://github.com/sidicksino/Boutique_Frontend",
     },
@@ -66,7 +63,7 @@ const MobileProjects = () => {
         "Axios",
         "NewsData.io",
       ],
-      image: Insta,
+      image: Wallet,
       liveUrl: "#",
       githubUrl: "https://github.com/sidicksino/wallet",
     },
@@ -76,7 +73,7 @@ const MobileProjects = () => {
       description:
         "To-Do is a minimalist and efficient task management app built by Sidick, designed to help users organize their daily activities, set priorities, and stay productive with a clean and responsive interface.",
       technologies: ["React Native", "Expo", "TypeScript", "CSS", "Convex"],
-      image: SinoEcommerce,
+      image: "",
       liveUrl: "#",
       githubUrl: "https://github.com/sidicksino/to-do",
     },
