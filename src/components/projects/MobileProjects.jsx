@@ -4,65 +4,89 @@ import SinoAi from "../../assets/sino-ai.png";
 import SinoCoffee from "../../assets/SinoCoffee.png";
 import Insta from "../../assets/insta.png";
 import SinoEcommerce from "../../assets/team-work.png";
+import TchadInfos from "../../assets/tchadInfos.png";
 
 const MobileProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "SinoCoffee",
+      title: "SinoBoutique",
       description:
-        "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface.",
+        "SinoBoutique is a sleek and modern e-commerce app developed by Sidick, designed to provide a seamless shopping experience with real-time updates, secure transactions, and an intuitive user interface.",
       technologies: [
-        "React",
-        "Vite",
-        "Supabase",
-        "TypeScript",
-        "Tailwind CSS",
-        "shadcn-ui"
+        "React Native",
+        "Expo",
+        "Axios",
+        "JavaScript",
+        "CSS",
+        "Node.js",
+        "Express.js",
+        "NeonDatabase",
+        "Cloudinary",
+        "Nodemailer",
+        "Twilio",
       ],
       image: SinoCoffee,
       liveUrl: "#",
-      githubUrl: "#",
-    },    
+      githubUrl: "https://github.com/sidicksino/Boutique_Frontend",
+    },
     {
       id: 2,
-      title: "Sino Ai",
+      title: "TchadInfos",
       description:
-        "A modern AI web application, providing intelligent features and real-time interactions.",
-      technologies: ["React", "Node.js", "MongoDB", "OpenAI API", "Tailwind CSS", "Axios"],
-      image: SinoAi,
+        "TchadInfos is a modern and user-friendly news app developed by Sidick, providing real-time updates, curated news content, and an intuitive interface for effortless browsing of the latest headlines.",
+      technologies: [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "JavaScript",
+        "CSS",
+        "Axios",
+        "NewsData.io",
+      ],
+      image: TchadInfos,
       liveUrl: "#",
-      githubUrl: "#",
-    },    
+      githubUrl: "https://github.com/sidicksino/tchadInfos_version1",
+    },
     {
       id: 3,
-      title: "Insta Abeche Website",
+      title: "Wallet",
       description:
-        "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
-      technologies: ["HTML", "CSS","JavaScript", "MySQL"],
+        "Wallet is a modern digital finance app developed by Sidick, allowing users to manage their expenses, track transactions, and visualize spending insights through a secure and responsive interface.",
+      technologies: [
+        "React Native",
+        "Expo",
+        "JavaScript",
+        "CSS",
+        "Node.js",
+        "Express.js",
+        "Neon",
+        "Clerk",
+        "Upstash",
+        "Axios",
+        "NewsData.io",
+      ],
       image: Insta,
       liveUrl: "#",
-      githubUrl: "#",
-    },    
+      githubUrl: "https://github.com/sidicksino/wallet",
+    },
     {
       id: 4,
-      title: "Sino Ecommerce Website",
+      title: "To-Do",
       description:
-        "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
-      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
+        "To-Do is a minimalist and efficient task management app built by Sidick, designed to help users organize their daily activities, set priorities, and stay productive with a clean and responsive interface.",
+      technologies: ["React Native", "Expo", "TypeScript", "CSS", "Convex"],
       image: SinoEcommerce,
       liveUrl: "#",
-      githubUrl: "#",
-    }    
+      githubUrl: "https://github.com/sidicksino/to-do",
+    },
   ];
 
   return (
     <div className="projects-page">
       <h1>My Mobile Projects</h1>
-      <p>
-        iOS & Android applications designed for the best user experience.
-      </p>
-  
+      <p>iOS & Android applications designed for the best user experience.</p>
+
       <div className="projects-list">
         {projects.map((project) => (
           <div key={project.id} className="project-wrapper">
@@ -76,7 +100,7 @@ const MobileProjects = () => {
             <div className="project-card1">
               <h3 className="project-title">{project.title}</h3>
               <p className="project-description">{project.description}</p>
-  
+
               <div className="project-tech">
                 {project.technologies.map((tech, index) => (
                   <span key={index} className="tech-tag">
@@ -84,16 +108,8 @@ const MobileProjects = () => {
                   </span>
                 ))}
               </div>
-  
+
               <div className="project-links">
-                <a
-                  href={project.liveUrl.trim()}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-live"
-                >
-                  View Live
-                </a>
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl.trim()}
@@ -110,7 +126,7 @@ const MobileProjects = () => {
         ))}
       </div>
     </div>
-  );  
+  );
 };
 
 export default MobileProjects;
