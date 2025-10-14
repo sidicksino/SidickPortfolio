@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./Hero.css";
 import heroImage from "../../assets/sidick.jpg";
 import { motion } from "framer-motion";
+import MyPDF from "../../assets/sidick.pdf";
 
 const Hero = () => {
   useEffect(() => {
@@ -10,6 +11,13 @@ const Hero = () => {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = MyPDF;
+    link.download = "Sidick_CV.pdf";
+    link.click();
+  };
 
   return (
     <section className="hero" id="home">
@@ -30,7 +38,7 @@ const Hero = () => {
         </motion.p>
         <div className="hero-buttons">
           <button className="btn btn-primary">More About Me</button>
-          <button className="btn btn-secondary">Download CV</button>
+          <button onClick={handleDownload} className="btn btn-secondary">Download CV</button>
         </div>
       </div>
       <div className="hero-image">
