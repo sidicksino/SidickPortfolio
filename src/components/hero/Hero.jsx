@@ -42,7 +42,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="hero-image">
-        <img src={heroImage} alt="Sidick Abdoulaye Hissein" />
+        <img src={heroImage} loading="lazy" alt="Sidick Abdoulaye Hissein" />
       </div>
     </section>
   );

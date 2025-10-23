@@ -45,7 +45,7 @@ const Services = () => {
           transition={{ duration: 1 }}
         >
           <div className="floating-image">
-            <img src={Service} alt="Service Illustration" />
+            <img src={Service} loading="lazy" alt="Service Illustration" />
           </div>
         </motion.div>
       </div>

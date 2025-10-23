@@ -76,7 +76,7 @@ const Skills = () => {
           transition={{ duration: 1 }}
         >
           <div className="skills-img">
-            <img src={SkillsPhoto} alt="Sidick Abdoulaye Hissein" className="skills-img" />
+            <img src={SkillsPhoto} loading="lazy" alt="Sidick Abdoulaye Hissein" className="skills-img" />
           </div>
         </motion.div>
       </div>
