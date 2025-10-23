@@ -133,7 +133,7 @@ const Contact = () => {
               <div className="info-icon">
                 <FaMapMarkerAlt />
               </div>
-              <h4>Localisation</h4>
+              <h3>Localisation</h3>
               <p>
                 N'djamena, Tchad
                 <br />
@@ -145,7 +145,7 @@ const Contact = () => {
               <div className="info-icon">
                 <FaPhoneAlt />
               </div>
-              <h4>Téléphone</h4>
+              <h3>Téléphone</h3>
               <p>+250 793 22 58 53</p>
             </div>
 
@@ -153,7 +153,7 @@ const Contact = () => {
               <div className="info-icon">
                 <FaEnvelope />
               </div>
-              <h4>Email</h4>
+              <h3>Email</h3>
               <p>sidickabdoulayesino1@gmail.com</p>
             </div>
           </motion.div>
