@@ -13,12 +13,12 @@ const About = () => {
             initial={{ opacity: 0, translateX: "-50%" }}
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 1 }}
-          src={photo1} alt="Sidick working" className="about-img1" />
+          src={photo1} alt="Sidick working" className="about-img1" loading="lazy" />
           <motion.img
             initial={{ opacity: 0, translateY: "50%" }}
             whileInView={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 1 }}
-           src={photo2} alt="Sidick coding" className="about-img2" />
+           src={photo2} alt="Sidick coding" className="about-img2" loading="lazy" />
         </div>
 
         <div className="about-content">
