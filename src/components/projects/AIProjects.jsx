@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProjectsPage.css";
 import SinoAi from "../../assets/sino-ai.png";
-import SinoCoffee from "../../assets/SinoCoffee.png";
+import PimaDiabetes from "../../assets/pima.png";
 import Insta from "../../assets/insta.png";
 import SinoEcommerce from "../../assets/team-work.png";
 
@@ -23,6 +23,25 @@ const AIProjects = () => {
       image: SinoAi,
       liveUrl: "https://sinoai-chi.vercel.app/",
       githubUrl: "https://github.com/sidicksino/sino_Ai",
+    },
+    {
+      id: 1,
+      title: "Pima Diabetes Prediction App",
+      description:
+        "A machine learning web application built with Streamlit that predicts the likelihood of diabetes using the Pima Indians dataset. Trained using Logistic Regression and deployed with Streamlit Cloud.",
+      technologies: [
+        "Python",
+        "Scikit-learn",
+        "Pandas",
+        "Numpy",
+        "Streamlit",
+        "Joblib",
+        "GitHub",
+      ],
+      image: PimaDiabetes, // replace with your image import name or file
+      liveUrl:
+        "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
+      githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
     },
   ];
 
