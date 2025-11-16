@@ -2,7 +2,7 @@ import React from "react";
 import "./ProjectsPage.css";
 import SinoAi from "../../assets/sino-ai.png";
 import PimaDiabetes from "../../assets/pima.png";
-import Insta from "../../assets/insta.png";
+import Disease from "../../assets/disease.png";
 import SinoEcommerce from "../../assets/team-work.png";
 
 const AIProjects = () => {
@@ -25,7 +25,7 @@ const AIProjects = () => {
       githubUrl: "https://github.com/sidicksino/sino_Ai",
     },
     {
-      id: 1,
+      id: 2,
       title: "Pima Diabetes Prediction App",
       description:
         "A machine learning web application built with Streamlit that predicts the likelihood of diabetes using the Pima Indians dataset. Trained using Logistic Regression and deployed with Streamlit Cloud.",
@@ -38,10 +38,28 @@ const AIProjects = () => {
         "Joblib",
         "GitHub",
       ],
-      image: PimaDiabetes, // replace with your image import name or file
+      image: PimaDiabetes,
       liveUrl:
         "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
       githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
+    },
+    {
+      id: 3,
+      title: "Disease Prediction System",
+      description:
+        "A comprehensive disease prediction system utilizing machine learning algorithms to analyze symptoms and predict potential diseases. Built with Python and deployed as a web application using Streamlit.",
+      technologies: [
+        "Python",
+        "Scikit-learn",
+        "Pandas",
+        "Numpy",
+        "Streamlit",
+        "Joblib",
+        "GitHub",
+      ],
+      image: Disease,
+      liveUrl: "https://sidicksino-disease-risk-prediction-app-aqgd49.streamlit.app/",
+      githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
     },
   ];
 
