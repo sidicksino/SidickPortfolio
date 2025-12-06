@@ -369,3 +369,39 @@
     margin: 0 auto;
   }
 }
+
+/* Quadrillage (caro) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 45px 45px; /* taille des carreaux */
+  opacity: 0.45;             /* légère visibilité */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow subtil pour modern design */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 40% 30%,
+    rgba(231, 72, 200, 0.15),
+    transparent 60%
+  );
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Assure que le contenu passe AU-DESSUS du caro */
+.hero-content,
+.hero-image {
+  position: relative;
+  z-index: 2;
+}
