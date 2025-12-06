@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./Services.css";
-import Service from "../../assets/service.png";
+import Service from "../../assets/rr.png";
 const Services = () => {
   return (
     <section className="services-section" id="services">
