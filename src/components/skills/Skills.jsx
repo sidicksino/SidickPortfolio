@@ -11,9 +11,9 @@ const Skills = () => {
         initial={{ opacity: 0, translateX: "50%" }}
         whileInView={{ opacity: 1, translateX: 0 }}
         transition={{ duration: 1 }}
-        className="skills-title"
       >
-        Skills
+        My <span className="span1">Skills</span>{" "}
+        <span className="span2">✨</span>
       </motion.h2>
 
       <div className="skills-container">
