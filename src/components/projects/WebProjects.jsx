@@ -22,7 +22,7 @@ const WebProjects = () => {
       ],
       image: SinoCoffee,
       liveUrl: "https://sino-coffee.vercel.app/",
-      githubUrl: "https://github.com/sidicksino/SinoCoffee",
+      // githubUrl: "https://github.com/sidicksino/SinoCoffee",
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ const WebProjects = () => {
       ],
       image: SinoAi,
       liveUrl: "https://sinoai-chi.vercel.app/",
-      githubUrl: "https://github.com/sidicksino/sino_Ai",
+      // githubUrl: "https://github.com/sidicksino/sino_Ai",
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ const WebProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "MySQL"],
       image: Insta,
       liveUrl: "https://insta-uxnh.onrender.com/",
-      githubUrl: "https://github.com/sidicksino/insta_abeche",
+      // githubUrl: "https://github.com/sidicksino/insta_abeche",
     },
     {
       id: 4,
@@ -59,7 +59,7 @@ const WebProjects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
       image: SinoEcommerce,
       liveUrl: "https://team-work-30tj.onrender.com/",
-      githubUrl: "https://github.com/sidicksino/team_work",
+      // githubUrl: "https://github.com/sidicksino/team_work",
     },
   ];
 

@@ -1,0 +1,388 @@
+@import url("https://fonts.googleapis.com/css2?family=Elsie:wght@400;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+@font-face {
+  font-family: "Cheap Fire";
+  src: url("./assets/fonts/CheapFire.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  /* ===== Couleurs principales ===== */
+  --primary: #e748c8;
+  --primary-light: #f087dd;
+  --primary-dark: #b52a9d;
+
+  --background: #181737;
+  --background-light: #232245;
+  --background-dark: #0e0d20;
+
+  --text: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #8888aa;
+
+  /* ===== Utilitaires ===== */
+  --shadow: rgba(0, 0, 0, 0.3);
+  --border: #0033A0;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  /* ===== Transparence utile ===== */
+  --primary-transparent: #e748c8cc;
+  --background-transparent: #181737cc;
+
+  /* ===== Typographie ===== */
+  --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-classic: "Times New Roman", Times, serif;
+  --font-display: "Elsie", serif;
+  --font-fire: "Abril Fatface", cursive;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background-color: var(--background-transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  font-family: var(--font-body);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar.scrolled {
+  background-color: rgba(24, 23, 55, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.03);
+}
+
+.nav-logo img {
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+.nav-logo img:hover {
+  filter: drop-shadow(0 0 8px var(--primary));
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo-text span {
+    background: linear-gradient(10deg,rgba(231, 72, 200, 1) 0%, rgba(56, 142, 60, 1) 50%, rgba(231, 72, 200, 1) 82%, rgba(38, 163, 44, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback */
+    position: relative;
+    animation: rotateGradient 2s linear infinite;
+    background-size: 50% 50%;
+  }
+  
+  @keyframes rotateGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+.nav-logo-text span::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-logo-text span:hover::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+/* Cacher les icônes par défaut (desktop) */
+.mobile-icon {
+  display: none;
+}
+.nav-toggle:focus {
+  outline: none;
+}
+
+.menu-icon {
+  width: 30px;
+  height: 30px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.menu-icon path {
+  stroke: var(--text);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.4s ease;
+}
+
+.nav-toggle.open .menu-icon {
+  transform: rotate(135deg);
+}
+
+.nav-toggle.open .menu-icon path {
+  stroke: var(--primary);
+}
+
+.nav-toggle.open {
+  transform: rotate(0);
+}
+
+.bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text);
+  border-radius: 10px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+
+.nav-toggle .bar:nth-child(1) {
+  transform: translateY(-8px) rotate(0deg);
+}
+
+.nav-toggle .bar:nth-child(3) {
+  transform: translateY(8px) rotate(0deg);
+}
+
+.nav-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-menu li a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 4px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-menu li a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+  width: 100%;
+}
+
+.nav-menu li a:hover {
+  color: var(--primary-light);
+}
+
+.nav-cta {
+  background: var(--primary);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(231, 72, 200, 0.3);
+  border: none;
+  outline: none;
+}
+
+.nav-cta:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(231, 72, 200, 0.4);
+}
+
+/* Tablet & Mobile */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 16px 30px;
+  }
+
+  .nav-menu {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    flex-direction: column;
+    top: 65px;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    background: var(--background-dark);
+    backdrop-filter: blur(10px);
+    padding: 30px 20px;
+    text-align: left;
+    transform: translateX(150%);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    gap: 24px;
+    z-index: 999;
+    align-content: center;
+  }
+
+  /* Afficher les icônes seulement en mobile */
+  .mobile-icon {
+    display: inline-flex;
+    margin-right: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+  }
+  .nav-menu.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .nav-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.3rem;
+    padding: 12px 16px;
+    color: var(--text);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-menu li a svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    transition: stroke 0.3s ease;
+  }
+
+  .nav-menu li a:hover {
+    color: var(--primary-light);
+  }
+
+  .nav-menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+
+  .nav-menu li a:hover::after {
+    width: calc(100% - 32px);
+  }
+
+  .navbar > .nav-cta {
+    display: none;
+  }
+
+  .nav-menu::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+
+  .nav-logo-text {
+    font-size: 1.8rem;
+  }
+
+  .nav-menu li a {
+    font-size: 1.2rem;
+  }
+}

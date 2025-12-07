@@ -3,6 +3,7 @@ import "./Hero.css";
 import heroImage from "../../assets/sidick.jpg";
 import { motion } from "framer-motion";
 import MyPDF from "../../assets/sidick.pdf";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   useEffect(() => {
@@ -37,7 +38,7 @@ const Hero = () => {
           Data Analyst | Web Developer | ML Enthusiast
         </motion.p>
         <div className="hero-buttons">
-          <button className="btn btn-primary">More About Me</button>
+          <Link to="/pages/hero" className="btn btn-primary">More About Me</Link>
           <button onClick={handleDownload} className="btn btn-secondary">Download CV</button>
         </div>
       </div>

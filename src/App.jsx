@@ -15,6 +15,8 @@ import AIProjects from "./components/projects/AIProjects";
 import ScrollToTop from "./components/ScrollToTop";
 import ThemeToggle from "./components/ThemeToggle";
 
+import HeroPage from "./components/pages/HeroPage";
+
 function App() {
   return (
     <>
@@ -39,6 +41,8 @@ function App() {
         <Route path="/projects/mobile" element={<MobileProjects />} />
         <Route path="/projects/design" element={<DesignProjects />} />
         <Route path="/projects/ai" element={<AIProjects />} />
+
+        <Route path="/pages/hero" element={<HeroPage />} />
       </Routes>
       <ThemeToggle />
     </>

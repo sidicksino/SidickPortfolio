@@ -22,7 +22,7 @@ const AIProjects = () => {
       ],
       image: SinoAi,
       liveUrl: "https://sinoai-chi.vercel.app/",
-      githubUrl: "https://github.com/sidicksino/sino_Ai",
+      // githubUrl: "https://github.com/sidicksino/sino_Ai",
     },
     {
       id: 2,
@@ -41,7 +41,7 @@ const AIProjects = () => {
       image: PimaDiabetes,
       liveUrl:
         "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
-      githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
+      // githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
     },
     {
       id: 3,
@@ -59,7 +59,7 @@ const AIProjects = () => {
       ],
       image: Disease,
       liveUrl: "https://sidicksino-disease-risk-prediction-app-aqgd49.streamlit.app/",
-      githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
+      // githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
     },
   ];
 

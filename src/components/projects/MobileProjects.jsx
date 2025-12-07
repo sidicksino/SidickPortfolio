@@ -25,7 +25,7 @@ const MobileProjects = () => {
       ],
       image: "",
       liveUrl: "#",
-      githubUrl: "https://github.com/sidicksino/Boutique_Frontend",
+      // githubUrl: "https://github.com/sidicksino/Boutique_Frontend",
     },
     {
       id: 2,
@@ -43,7 +43,7 @@ const MobileProjects = () => {
       ],
       image: TchadInfos,
       liveUrl: "#",
-      githubUrl: "https://github.com/sidicksino/tchadInfos_version1",
+      // githubUrl: "https://github.com/sidicksino/tchadInfos_version1",
     },
     {
       id: 3,
@@ -65,7 +65,7 @@ const MobileProjects = () => {
       ],
       image: Wallet,
       liveUrl: "#",
-      githubUrl: "https://github.com/sidicksino/wallet",
+      // githubUrl: "https://github.com/sidicksino/wallet",
     },
     {
       id: 4,
@@ -75,7 +75,7 @@ const MobileProjects = () => {
       technologies: ["React Native", "Expo", "TypeScript", "CSS", "Convex"],
       image: "",
       liveUrl: "#",
-      githubUrl: "https://github.com/sidicksino/to-do",
+      // githubUrl: "https://github.com/sidicksino/to-do",
     },
   ];
 
