@@ -2,10 +2,24 @@ import React from "react";
 import { motion } from "framer-motion";
 import "./Services.css";
 import Service from "../../assets/rr.png";
+import Slight from "../../assets/image.png";
+
 const Services = () => {
   return (
     <section className="services-section" id="services">
+      {/* Image animée à droite */}
+        <motion.div
+          className="rrrr"
+          initial={{ opacity: 0, translateX: "50%" }}
+          whileInView={{ opacity: 1, translateX: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="floating-image-slight">
+            <img src={Slight} loading="lazy" alt="Slight Illustration" />
+          </div>
+        </motion.div>
       <div className="services-container">
+        
         {/* Texte à gauche */}
         <div className="services-text">
           <motion.h2

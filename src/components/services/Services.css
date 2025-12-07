@@ -38,7 +38,6 @@
   padding: 0px 120px;
   background: var(--background);
   color: var(--text);
-  display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -151,6 +150,10 @@
   letter-spacing: 0.5px;
 }
 
+.rrrr {
+  display: none;
+}
+
 /* ========== IMAGE À DROITE ========== */
 .services-image-wrapper {
   flex: 1;
@@ -254,5 +257,13 @@
   .cta-button {
     padding: 12px 28px;
     font-size: 1rem;
+  }
+
+  .rrrr {
+    display: block;
+    margin-bottom: 40px;
+  }
+  .services-section {
+    padding: 0px;
   }
 }
