@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "about": "À Propos",
+    "services": "Services",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "contact": "Contact",
+    "getStarted": "Commencer"
+  },
+  "hero": {
+    "greeting": "Salut, je suis Sidick",
+    "title": "Développeur Full-Stack & Designer UI",
+    "subtitle": "Créer des expériences numériques belles et fonctionnelles avec les technologies modernes",
+    "cta": "Explorez Mon Travail"
+  },
+  "features": {
+    "connectedCapabilities": "Capacités Connectées",
+    "advancedIntelligence": "Intelligence Avancée",
+    "trueFlexibility": "Véritable Flexibilité",
+    "collaborativeWork": "Travail Collaboratif",
+    "desc1": "Intégration transparente sur tous vos outils",
+    "desc2": "Perspectives et automatisation alimentées par l'IA",
+    "desc3": "Adaptez-vous à n'importe quel flux de travail ou besoin",
+    "desc4": "Travaillez ensemble en temps réel"
+  },
+  "about": {
+    "title": "À Propos",
+    "whoIAm": "Qui Suis-Je",
+    "whoIAmText": "Je suis un développeur passionné du Tchad avec une expertise dans la construction d'applications web et mobiles évolutives. J'aime transformer les idées en réalité grâce à un code propre et efficace.",
+    "whatIDo": "Ce Que Je Fais",
+    "whatIDoText": "Je suis spécialisé dans le développement full-stack en utilisant des frameworks modernes comme React, Node.js et bien d'autres. Je crée des interfaces réactives et intuitives ainsi que des solutions backend robustes.",
+    "myMission": "Ma Mission",
+    "myMissionText": "Fournir des solutions numériques de haute qualité qui ont un véritable impact, en combinant l'excellence technique avec la résolution créative de problèmes.",
+    "journey": "Mon Parcours",
+    "values": "Mes Valeurs"
+  },
+  "services": {
+    "title": "Services",
+    "webDevelopment": "Développement Web",
+    "webDevDesc": "Applications web full-stack construites avec React, Node.js et technologies modernes",
+    "mobileApp": "Développement Mobile",
+    "mobileAppDesc": "Applications mobiles multiplateformes avec React Native et Flutter",
+    "uiDesign": "Design UI/UX",
+    "uiDesignDesc": "Interfaces belles et centrées sur l'utilisateur qui engagent et convertissent",
+    "consulting": "Conseil Technologique",
+    "consultingDesc": "Conseils stratégiques pour vos projets technologiques et transformation numérique"
+  },
+  "skills": {
+    "title": "Compétences & Expertise",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Outils & Plateformes"
+  },
+  "projects": {
+    "title": "Projets En Vedette",
+    "viewProject": "Voir le Projet",
+    "liveDemo": "Démo En Ligne",
+    "allProjects": "Tous les Projets",
+    "webProjects": "Projets Web",
+    "mobileProjects": "Projets Mobiles",
+    "designProjects": "Projets Design",
+    "aiProjects": "Projets IA"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Prêt à créer quelque chose d'extraordinaire ensemble ? Écris-moi.",
+    "name": "Nom",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Message",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "sentSuccess": "Message envoyé !",
+    "sentSuccessMsg": "Je te réponds très vite 💜",
+    "sentError": "Erreur, message non envoyé !",
+    "contactByEmail": "Contacte-nous par email",
+    "location": "Localisation",
+    "phone": "Téléphone",
+    "ndjamena": "N'djamena, Tchad",
+    "kigali": "Kigali, Rwanda"
+  },
+  "footer": {
+    "madeWith": "Réalisé avec",
+    "byMe": "par Sidick",
+    "rights": "Tous droits réservés",
+    "followMe": "Me Suivre"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "greeting": "Hi, I'm Sidick",
+    "title": "Full-Stack Developer & UI Designer",
+    "subtitle": "Crafting beautiful, functional digital experiences with modern technologies",
+    "cta": "Explore My Work"
+  },
+  "features": {
+    "connectedCapabilities": "Connected Capabilities",
+    "advancedIntelligence": "Advanced Intelligence",
+    "trueFlexibility": "True Flexibility",
+    "collaborativeWork": "Collaborative Work",
+    "desc1": "Seamless integration across all your tools",
+    "desc2": "AI-powered insights and automation",
+    "desc3": "Adapt to any workflow or need",
+    "desc4": "Work together in real-time"
+  },
+  "about": {
+    "title": "About Me",
+    "whoIAm": "Who I Am",
+    "whoIAmText": "I'm a passionate developer from Chad with expertise in building scalable web and mobile applications. I love turning ideas into reality through clean, efficient code.",
+    "whatIDo": "What I Do",
+    "whatIDoText": "I specialize in full-stack development using modern frameworks like React, Node.js, and more. I create responsive, intuitive interfaces and robust backend solutions.",
+    "myMission": "My Mission",
+    "myMissionText": "To deliver high-quality digital solutions that make a real impact, combining technical excellence with creative problem-solving.",
+    "journey": "My Journey",
+    "values": "My Values"
+  },
+  "services": {
+    "title": "Services",
+    "webDevelopment": "Web Development",
+    "webDevDesc": "Full-stack web applications built with React, Node.js, and modern technologies",
+    "mobileApp": "Mobile Development",
+    "mobileAppDesc": "Cross-platform mobile apps with React Native and Flutter",
+    "uiDesign": "UI/UX Design",
+    "uiDesignDesc": "Beautiful, user-centric interfaces that engage and convert",
+    "consulting": "Tech Consulting",
+    "consultingDesc": "Strategic guidance for your tech projects and digital transformation"
+  },
+  "skills": {
+    "title": "Skills & Expertise",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools & Platforms"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewProject": "View Project",
+    "liveDemo": "Live Demo",
+    "allProjects": "All Projects",
+    "webProjects": "Web Projects",
+    "mobileProjects": "Mobile Projects",
+    "designProjects": "Design Projects",
+    "aiProjects": "AI Projects"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Ready to create something extraordinary together? Write to me.",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "sentSuccess": "Message sent!",
+    "sentSuccessMsg": "I'll reply very soon 💜",
+    "sentError": "Error, message not sent!",
+    "contactByEmail": "Contact us by email",
+    "location": "Location",
+    "phone": "Phone",
+    "ndjamena": "N'djamena, Chad",
+    "kigali": "Kigali, Rwanda"
+  },
+  "footer": {
+    "madeWith": "Made with",
+    "byMe": "by Sidick",
+    "rights": "All rights reserved",
+    "followMe": "Follow Me"
+  }
+}

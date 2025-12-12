@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import {
   FaPaperPlane,
@@ -11,6 +12,7 @@ import "./Contact.css";
 import Swal from "sweetalert2";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const formRef = useRef();
 
@@ -29,8 +31,8 @@ const Contact = () => {
         () => {
           Swal.fire({
             icon: "success",
-            title: "Message sent!",
-            text: "I'll reply very soon 💜",
+            title: t("contact.sentSuccess"),
+            text: t("contact.sentSuccessMsg"),
             showConfirmButton: false,
             timer: 2500,
           });
@@ -41,9 +43,9 @@ const Contact = () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Error, message not sent!",
+            text: t("contact.sentError"),
             footer:
-              '<a href="mailto:sidickabdoulayesino1@gmail.com">Contact us by email</a>',
+              `<a href="mailto:sidickabdoulayesino1@gmail.com">${t("contact.contactByEmail")}</a>`,
           });
           setLoading(false);
         }
@@ -60,14 +62,14 @@ const Contact = () => {
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 1 }}
           >
-            <span>Contact</span> ✨
+            <span>{t("contact.title")}</span> ✨
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            Ready to create something extraordinary together? Write to me.
+            {t("contact.subtitle")}
           </motion.p>
         </div>
 
@@ -85,22 +87,22 @@ const Contact = () => {
               className="contact-form"
             >
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">{t("contact.name")}</label>
                 <input type="text" id="name" name="name" required />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("contact.email")}</label>
                 <input type="email" id="email" name="email" required />
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">Subject</label>
+                <label htmlFor="subject">{t("contact.subject")}</label>
                 <input type="text" id="subject" name="subject" required />
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">{t("contact.message")}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -116,7 +118,7 @@ const Contact = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                {loading ? "Sending..." : "Send"}{" "}
+                {loading ? t("contact.sending") : t("contact.send")}{" "}
                 <FaPaperPlane className="plane-icon" />
               </motion.button>
             </form>
@@ -133,11 +135,11 @@ const Contact = () => {
               <div className="info-icon">
                 <FaMapMarkerAlt />
               </div>
-              <h3>Location</h3>
+              <h3>{t("contact.location")}</h3>
               <p>
-                N'djamena, Chad
+                {t("contact.ndjamena")}
                 <br />
-                Kigali, Rwanda
+                {t("contact.kigali")}
               </p>
             </div>
 
@@ -145,7 +147,7 @@ const Contact = () => {
               <div className="info-icon">
                 <FaPhoneAlt />
               </div>
-              <h3>Phone</h3>
+              <h3>{t("contact.phone")}</h3>
               <p>+250 793 22 58 53</p>
             </div>
 

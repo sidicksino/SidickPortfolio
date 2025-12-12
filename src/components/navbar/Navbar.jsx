@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./Navbar.css";
 import Logo from "../../assets/Logo.svg";
 import { RiContactsBook2Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
+import LanguageToggle from "../LanguageToggle";
 
 const Navbar = ({ scrolled = false }) => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -79,7 +82,7 @@ const Navbar = ({ scrolled = false }) => {
             <span className="mobile-icon">
               <CgProfile/>
             </span>
-            About
+            {t('nav.about')}
           </a>
         </li>
         <li>
@@ -101,7 +104,7 @@ const Navbar = ({ scrolled = false }) => {
                 />
               </svg>
             </span>
-            Skills
+            {t('nav.skills')}
           </a>
         </li>
         <li>
@@ -137,7 +140,7 @@ const Navbar = ({ scrolled = false }) => {
                 />
               </svg>
             </span>
-            Projects
+            {t('nav.projects')}
           </a>
         </li>
         <li>
@@ -145,7 +148,7 @@ const Navbar = ({ scrolled = false }) => {
             <span className="mobile-icon">
               <RiContactsBook2Line />
             </span>
-            Contact
+            {t('nav.contact')}
           </a>
         </li>
         <li>
@@ -174,16 +177,27 @@ const Navbar = ({ scrolled = false }) => {
                 />
               </svg>
             </span>
-            Services
+            {t('nav.services')}
           </a>
+        </li>
+        <li className="mobile-actions">
+          <LanguageToggle />
+        </li>
+        <li className="mobile-cta">
+          <button className="nav-cta" aria-label="Connect with me"><a href="#contact">
+            {t('nav.getStarted')}
+          </a>
+          </button>
         </li>
       </ul>
 
-      <button className="nav-cta" aria-label="Connect with me"><a  href="#contact">
-
-        Connect With Me
-      </a>
-      </button>
+      <div className="nav-actions">
+        <LanguageToggle />
+        <button className="nav-cta" aria-label="Connect with me"><a href="#contact">
+          {t('nav.getStarted')}
+        </a>
+        </button>
+      </div>
     </nav>
   );
 };
