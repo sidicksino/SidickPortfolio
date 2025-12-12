@@ -1,10 +1,9 @@
-import React from "react";
 import { motion } from "framer-motion";
 import "./Services.css";
 import Service from "../../assets/rr.png";
 import Dark from "../../assets/image.png";
 import Slight from "../../assets/sdark.png";
-import { useTheme } from "../../components/ThemeContext.jsx";
+import { useTheme } from "../theme/useTheme";
 
 const Services = () => {
   const { theme } = useTheme();

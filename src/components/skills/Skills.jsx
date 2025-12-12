@@ -1,4 +1,3 @@
-import React from "react";
 import "./Skills.css";
 import { FaDatabase, FaCode, FaChartBar } from "react-icons/fa";
 import SkillsPhoto from "../../assets/skills.png";

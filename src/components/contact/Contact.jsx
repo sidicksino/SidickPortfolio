@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   FaPaperPlane,
@@ -26,7 +26,7 @@ const Contact = () => {
         "DGu360jLgTiYGNW6H"
       )
       .then(
-        (result) => {
+        () => {
           Swal.fire({
             icon: "success",
             title: "Message envoyé !",
@@ -37,7 +37,7 @@ const Contact = () => {
           setLoading(false);
           formRef.current.reset();
         },
-        (error) => {
+        () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",

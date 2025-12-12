@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import {
   FaLaptopCode,
@@ -58,7 +57,7 @@ const ProjectsSection = () => {
       </motion.h2>
 
       <div className="projects-grid">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <motion.div
             key={project.id}
             className="project-card"

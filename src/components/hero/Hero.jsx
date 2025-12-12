@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./Hero.css";
 import heroImage from "../../assets/sidick.jpg";
 import { motion } from "framer-motion";

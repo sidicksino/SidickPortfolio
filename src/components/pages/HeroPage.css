@@ -142,7 +142,7 @@
   transition: transform 0.3s ease;
 }
 /* Cacher les icônes par défaut (desktop) */
-.mobile-icon {
+/* .mobile-icon {
   display: none;
 }
 .nav-toggle:focus {
@@ -261,10 +261,10 @@
   background: var(--primary-light);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(231, 72, 200, 0.4);
-}
+} */
 
 /* Tablet & Mobile */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .navbar {
     padding: 16px 30px;
   }
@@ -299,7 +299,6 @@
     align-content: center;
   }
 
-  /* Afficher les icônes seulement en mobile */
   .mobile-icon {
     display: inline-flex;
     margin-right: 12px;
@@ -385,4 +384,4 @@
   .nav-menu li a {
     font-size: 1.2rem;
   }
-}
+} */

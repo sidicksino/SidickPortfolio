@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useTheme } from "./ThemeContext";
-import { motion } from 'framer-motion';
+import { useTheme } from "./theme/useTheme";
+import { motion } from "framer-motion";
 import './ThemeToggle.css'
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
