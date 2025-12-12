@@ -29,8 +29,8 @@ const Contact = () => {
         () => {
           Swal.fire({
             icon: "success",
-            title: "Message envoyé !",
-            text: "Je te réponds très vite 💜",
+            title: "Message sent!",
+            text: "I'll reply very soon 💜",
             showConfirmButton: false,
             timer: 2500,
           });
@@ -41,9 +41,9 @@ const Contact = () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Erreur, message non envoyé !",
+            text: "Error, message not sent!",
             footer:
-              '<a href="mailto:sidickabdoulayesino1@gmail.com">Contacte-nous par email</a>',
+              '<a href="mailto:sidickabdoulayesino1@gmail.com">Contact us by email</a>',
           });
           setLoading(false);
         }
@@ -67,7 +67,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            Prêt à créer quelque chose d’extraordinaire ensemble ? Écris-moi.
+            Ready to create something extraordinary together? Write to me.
           </motion.p>
         </div>
 
@@ -85,7 +85,7 @@ const Contact = () => {
               className="contact-form"
             >
               <div className="form-group">
-                <label htmlFor="name">Nom</label>
+                <label htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" required />
               </div>
 
@@ -95,7 +95,7 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">Sujet</label>
+                <label htmlFor="subject">Subject</label>
                 <input type="text" id="subject" name="subject" required />
               </div>
 
@@ -116,7 +116,7 @@ const Contact = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                {loading ? "Envoi..." : "Envoyer"}{" "}
+                {loading ? "Sending..." : "Send"}{" "}
                 <FaPaperPlane className="plane-icon" />
               </motion.button>
             </form>
@@ -133,9 +133,9 @@ const Contact = () => {
               <div className="info-icon">
                 <FaMapMarkerAlt />
               </div>
-              <h3>Localisation</h3>
+              <h3>Location</h3>
               <p>
-                N'djamena, Tchad
+                N'djamena, Chad
                 <br />
                 Kigali, Rwanda
               </p>
@@ -145,7 +145,7 @@ const Contact = () => {
               <div className="info-icon">
                 <FaPhoneAlt />
               </div>
-              <h3>Téléphone</h3>
+              <h3>Phone</h3>
               <p>+250 793 22 58 53</p>
             </div>
 

@@ -11,7 +11,7 @@ const Services = () => {
   return (
     <section className="services-section" id="services">
       
-      {/* IMAGE .rrrr qui change selon le thème */}
+        {/* IMAGE .rrrr that changes based on theme */}
       <motion.div
         className="rrrr"
         initial={{ opacity: 0, translateX: "50%" }}

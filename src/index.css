@@ -1,7 +1,7 @@
 @import "tailwindcss";
-/* Thème par défaut = dark (déjà défini dans :root) */
+/* Default theme = dark (already defined in :root) */
 
-/* Mode sombre par défaut */
+/* Dark mode by default */
 :root {
   --primary: #e748c8;
   --primary-light: #f087dd;
@@ -28,7 +28,7 @@
   --font-display: "Elsie", serif;
 }
 
-/* 🎨 Mode clair — appliqué quand <html class="light-theme"> */
+/* 🎨 Light mode — applied when <html class="light-theme"> */
 html.light-theme {
   --background: #f8f9fa;
   --background-light: #ffffff;

@@ -9,7 +9,7 @@
 }
 
 :root {
-  /* ===== Couleurs principales ===== */
+  /* ===== Primary Colors ===== */
   --primary: #e748c8;
   --primary-light: #f087dd;
   --primary-dark: #b52a9d;
@@ -22,18 +22,18 @@
   --text-secondary: #cccccc;
   --text-muted: #8888aa;
 
-  /* ===== Utilitaires ===== */
+  /* ===== Utilities ===== */
   --shadow: rgba(0, 0, 0, 0.3);
   --border: #0033A0;
   --success: #4ade80;
   --warning: #fbbf24;
   --error: #f87171;
 
-  /* ===== Transparence utile ===== */
+  /* ===== Useful Transparency ===== */
   --primary-transparent: #e748c8cc;
   --background-transparent: #181737cc;
 
-  /* ===== Typographie ===== */
+  /* ===== Typography ===== */
   --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   --font-classic: "Times New Roman", Times, serif;
@@ -163,7 +163,7 @@
   z-index: 10;
   transition: transform 0.3s ease;
 }
-/* Cacher les icônes par défaut (desktop) */
+/* Hide icons by default (desktop) */
 .mobile-icon {
   display: none;
 }
