@@ -360,14 +360,14 @@
   background: var(--background-light);
 }
 
-.container {
+.about-section .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
   width: 100%;
 }
 
-.section-title {
+.about-section .section-title {
   font-size: 3rem;
   font-family: var(--font-display);
   margin-bottom: 50px;
@@ -378,20 +378,20 @@
   background-clip: text;
 }
 
-.about-content {
+.about-section .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
 
-.about-text h3 {
+.about-section .about-text h3 {
   font-size: 1.8rem;
   margin-bottom: 20px;
   color: var(--primary);
   font-weight: 700;
 }
 
-.about-text p {
+.about-section .about-text p {
   font-size: 1.1rem;
   line-height: 1.8;
   color: var(--text-muted);
