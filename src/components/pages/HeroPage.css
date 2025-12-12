@@ -16,6 +16,7 @@
   --border: #0033A0;
   --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Elsie", serif;
+  --background-transparent: #181737cc;
 }
 
 * {
@@ -50,7 +51,7 @@
 }
 
 .hero-navbar.scrolled {
-  background-color: rgba(24, 23, 55, 0.95);
+  background-color: var(--background-transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -148,8 +149,8 @@
 /* Animated active dot in navbar */
 .nav-active {
   position: absolute;
-  top: 6px;
-  right: 0px;
+  top: 8px;
+  right: 4px;
   width: 12px;
   height: 12px;
   background: #26a32c;
