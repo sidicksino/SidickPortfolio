@@ -145,6 +145,26 @@
   background-clip: text;
 }
 
+/* Animated active dot in navbar */
+.nav-active {
+  position: absolute;
+  top: 6px;
+  right: 0px;
+  width: 12px;
+  height: 12px;
+  background: #26a32c;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(38,163,44,0.6);
+  animation: navPulse 1.6s infinite ease-in-out;
+  border: 2px solid rgba(0,0,0,0.15);
+}
+
+@keyframes navPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 .nav-spacer {
   width: 100px;
 }
@@ -271,6 +291,66 @@
   box-shadow: 0 20px 60px rgba(231, 72, 200, 0.3);
   position: relative;
   z-index: 2;
+}
+
+/* When the image overflows, remove clipping on the hero-page to show full edges */
+.hero-page {
+  overflow: visible;
+}
+
+/* Features / Content Section (cards, animated, inspired by omc.com) */
+.features-section {
+  padding: 80px 40px;
+  background: linear-gradient(180deg, var(--background) 0%, rgba(24, 23, 55, 0.95) 100%);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.feature-card {
+  padding: 28px;
+  background: linear-gradient(180deg, var(--background-light), var(--background));
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.28s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 50px rgba(231, 72, 200, 0.18);
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  background: rgba(231, 72, 200, 0.08);
+  color: var(--primary);
+  border-radius: 10px;
+}
+
+.feature-card h3 {
+  font-size: 1.15rem;
+  color: var(--primary);
+  margin: 0;
+}
+
+.feature-card p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* About Section */

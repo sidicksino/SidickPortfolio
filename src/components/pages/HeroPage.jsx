@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { FaArrowLeft, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import "./HeroPage.css";
 import Logo from "../../assets/Logo.svg";
-import heroImage from "../../assets/sidick.jpg";
+import heroImageDark from "../../assets/image.png";
+import heroImageLight from "../../assets/sdark.png";
+import { useTheme } from "../theme/useTheme";
 
 const HeroPage = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -18,6 +20,46 @@ const HeroPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const features = [
+    {
+      icon: "🔗",
+      title: "Connected Capabilities",
+      desc: "Integrated services across data, media and creative to drive growth.",
+    },
+    {
+      icon: "🧠",
+      title: "Advanced Intelligence",
+      desc: "Data-driven insights and ML to power better decisions.",
+    },
+    {
+      icon: "⚡",
+      title: "True Flexibility",
+      desc: "Fast, scalable solutions built for real-world constraints.",
+    },
+    {
+      icon: "🤝",
+      title: "Collaborative Work",
+      desc: "Cross-discipline teams focused on outcomes and impact.",
+    },
+  ];
+
+  const containerVariants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  // Small component to select hero image based on current theme
+  function ThemeImage() {
+    const { theme } = useTheme();
+    const src = theme === "light" ? heroImageLight : heroImageDark;
+    return <img src={src} loading="lazy" alt="Sidick Abdoulaye Hissein" className="hero-img" />;
+  }
+
   return (
     <div className="hero-page">
       {/* Navigation */}
@@ -27,6 +69,7 @@ const HeroPage = () => {
         </Link>
         <div className="nav-logo">
           <img src={Logo} loading="lazy" alt="Logo" />
+          <span className="nav-active" aria-hidden="true"></span>
           <p className="nav-logo-text">
             <span>Sidick</span>Sino
           </p>
@@ -63,9 +106,46 @@ const HeroPage = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="image-wrapper">
-              <img src={heroImage} loading="lazy" alt="Sidick Abdoulaye Hissein" className="hero-img" />
+              {/* choose image based on theme (dark uses image.png, light uses sdark.png) */}
+              {/**/}
+              <ThemeImage />
               <div className="image-glow"></div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features / Content Section (inspired by omc.com) */}
+      <section className="features-section">
+        <div className="container">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="section-title"
+          >
+            Capabilities
+          </motion.h2>
+
+          <motion.div
+            className="features-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {features.map((f, idx) => (
+              <motion.div
+                className="feature-card"
+                key={idx}
+                variants={itemVariants}
+                whileHover={{ translateY: -8 }}
+              >
+                <div className="feature-icon">{f.icon}</div>
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
