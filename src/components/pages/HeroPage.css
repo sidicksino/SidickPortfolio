@@ -412,7 +412,7 @@
 
 .about-section .about-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
 }
 
@@ -428,6 +428,7 @@
   line-height: 1.8;
   color: var(--text-muted);
   margin-bottom: 15px;
+  text-align: justify;
 }
 
 /* Journey Section */
@@ -830,5 +831,21 @@
   .social-link {
     width: 100%;
     justify-content: center;
+  }
+  .about-content {
+    grid-template-columns: 1fr;
+    display: block;
+  }
+  /* About Section */
+  .about-section {
+    padding: 0px 30px;
+    background: var(--background-light);
+  }
+
+  .about-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+    width: 100%;
   }
 }
