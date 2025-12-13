@@ -152,11 +152,6 @@ const HeroPage = () => {
             >
               <h3>{t('about.whoIAm')}</h3>
               <p>{t('about.whoIAmText')}</p>
-              <p>
-                My unique blend of skills allows me to bridge the gap between data insights and user-centric
-                design. Whether it's building responsive web applications, analyzing complex datasets, or
-                developing intelligent models, I bring creativity and precision to every project.
-              </p>
             </motion.div>
 
             <motion.div
