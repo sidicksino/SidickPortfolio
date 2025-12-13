@@ -67,6 +67,77 @@
     "designDescription": "Creative UI/UX designs that prioritize user engagement and seamless interaction.",
     "aiProjects": "ML & AI Projects",
     "aiDescription": "Cutting-edge machine learning and AI solutions for real-world problems."
+    ,
+    "items": {
+      "web": {
+        "1": {
+          "title": "SinoCoffee",
+          "description": "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface."
+        },
+        "2": {
+          "title": "Sino Ai",
+          "description": "A modern AI web application, providing intelligent features and real-time interactions."
+        },
+        "3": {
+          "title": "Insta Abeche Website",
+          "description": "A simple and responsive website for Institut d'Abeche, providing essential information and services online."
+        },
+        "4": {
+          "title": "Sino Ecommerce Website",
+          "description": "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience."
+        }
+      },
+      "ai": {
+        "1": {
+          "title": "Sino Ai",
+          "description": "A modern AI web application, providing intelligent features and real-time interactions."
+        },
+        "2": {
+          "title": "Pima Diabetes Prediction App",
+          "description": "A machine learning web app that predicts diabetes likelihood using the Pima Indians dataset."
+        },
+        "3": {
+          "title": "Disease Prediction System",
+          "description": "A comprehensive disease prediction system using ML algorithms, built with Python and deployed with Streamlit."
+        }
+      },
+      "mobile": {
+        "1": {
+          "title": "SinoBoutique",
+          "description": "SinoBoutique is a sleek e-commerce app providing a seamless shopping experience with secure transactions and an intuitive UI."
+        },
+        "2": {
+          "title": "TchadInfos",
+          "description": "TchadInfos is a modern news app providing real-time updates, curated content, and an intuitive browsing experience."
+        },
+        "3": {
+          "title": "Wallet",
+          "description": "Wallet is a digital finance app that helps users manage expenses, track transactions, and visualize spending insights."
+        },
+        "4": {
+          "title": "To-Do",
+          "description": "To-Do is a minimalist task management app built to help users organize daily activities and priorities."
+        }
+      },
+      "design": {
+        "1": {
+          "title": "TchadInfos Design",
+          "description": "A modern news app design for TchadInfos, focusing on a clean layout and user-friendly reading experience."
+        },
+        "2": {
+          "title": "Ecommerce Mobile Design",
+          "description": "A modern e-commerce app UI/UX design for a seamless and engaging shopping experience."
+        },
+        "3": {
+          "title": "Sidick Portfolio Design",
+          "description": "A modern portfolio web UI/UX design showcasing projects and skills with a clean, responsive layout."
+        },
+        "4": {
+          "title": "Sino Ecommerce Design",
+          "description": "A modern e-commerce web UI/UX design for a seamless and engaging shopping experience."
+        }
+      }
+    }
   },
   "projectsPage": {
     "webTitle": "My Web Projects",

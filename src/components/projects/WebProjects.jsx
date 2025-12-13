@@ -10,9 +10,8 @@ const WebProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "SinoCoffee",
-      description:
-        "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface.",
+      titleKey: 'projects.items.web.1.title',
+      descriptionKey: 'projects.items.web.1.description',
       technologies: [
         "React",
         "Vite",
@@ -27,9 +26,8 @@ const WebProjects = () => {
     },
     {
       id: 2,
-      title: "Sino Ai",
-      description:
-        "A modern AI web application, providing intelligent features and real-time interactions.",
+      titleKey: 'projects.items.web.2.title',
+      descriptionKey: 'projects.items.web.2.description',
       technologies: [
         "React",
         "Node.js",
@@ -44,9 +42,8 @@ const WebProjects = () => {
     },
     {
       id: 3,
-      title: "Insta Abeche Website",
-      description:
-        "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
+      titleKey: 'projects.items.web.3.title',
+      descriptionKey: 'projects.items.web.3.description',
       technologies: ["HTML", "CSS", "JavaScript", "MySQL"],
       image: Insta,
       liveUrl: "https://insta-uxnh.onrender.com/",
@@ -54,9 +51,8 @@ const WebProjects = () => {
     },
     {
       id: 4,
-      title: "Sino Ecommerce Website",
-      description:
-        "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
+      titleKey: 'projects.items.web.4.title',
+      descriptionKey: 'projects.items.web.4.description',
       technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
       image: SinoEcommerce,
       liveUrl: "https://team-work-30tj.onrender.com/",
@@ -82,8 +78,8 @@ const WebProjects = () => {
               />
             </div>
             <div className="project-card1">
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-description">{project.description}</p>
+              <h3 className="project-title">{t(project.titleKey)}</h3>
+              <p className="project-description">{t(project.descriptionKey)}</p>
 
               <div className="project-tech">
                 {project.technologies.map((tech, index) => (

@@ -68,6 +68,77 @@
     "designDescription": "Designs UI/UX créatifs qui privilégient l'engagement de l'utilisateur et une interaction fluide.",
     "aiProjects": "Projets ML & IA",
     "aiDescription": "Solutions de Machine Learning et d'IA de pointe pour des problèmes concrets."
+    ,
+    "items": {
+      "web": {
+        "1": {
+          "title": "SinoCoffee",
+          "description": "SinoCoffee est une application moderne de Sidick, offrant une plateforme rapide et intuitive avec une interface élégante."
+        },
+        "2": {
+          "title": "Sino Ai",
+          "description": "Une application web IA moderne offrant des fonctionnalités intelligentes et des interactions en temps réel."
+        },
+        "3": {
+          "title": "Insta Abeche Website",
+          "description": "Un site simple et réactif pour l'Institut d'Abeche, fournissant des informations et services essentiels en ligne."
+        },
+        "4": {
+          "title": "Sino Ecommerce Website",
+          "description": "Un site e-commerce moderne pour vendre des produits en ligne avec un design épuré et une expérience fluide."
+        }
+      },
+      "ai": {
+        "1": {
+          "title": "Sino Ai",
+          "description": "Une application web IA moderne offrant des fonctionnalités intelligentes et des interactions en temps réel."
+        },
+        "2": {
+          "title": "Pima Diabetes Prediction App",
+          "description": "Une application de ML qui prédit la probabilité de diabète en utilisant le jeu de données Pima Indians."
+        },
+        "3": {
+          "title": "Disease Prediction System",
+          "description": "Un système complet de prédiction de maladies utilisant des algorithmes de ML, construit avec Python et déployé avec Streamlit."
+        }
+      },
+      "mobile": {
+        "1": {
+          "title": "SinoBoutique",
+          "description": "SinoBoutique est une application e-commerce offrant une expérience d'achat fluide, des transactions sécurisées et une interface intuitive."
+        },
+        "2": {
+          "title": "TchadInfos",
+          "description": "TchadInfos est une application d'actualités moderne fournissant des mises à jour en temps réel et un contenu éditorialisé."
+        },
+        "3": {
+          "title": "Wallet",
+          "description": "Wallet est une application de finance numérique permettant de gérer les dépenses, suivre les transactions et visualiser les dépenses."
+        },
+        "4": {
+          "title": "To-Do",
+          "description": "To-Do est une application de gestion de tâches minimaliste conçue pour aider les utilisateurs à organiser leurs activités quotidiennes."
+        }
+      },
+      "design": {
+        "1": {
+          "title": "TchadInfos Design",
+          "description": "Un design moderne d'application d'actualités pour TchadInfos, axé sur une mise en page claire et une lecture conviviale."
+        },
+        "2": {
+          "title": "Ecommerce Mobile Design",
+          "description": "Un design UI/UX mobile e-commerce moderne pour une expérience d'achat fluide et engageante."
+        },
+        "3": {
+          "title": "Sidick Portfolio Design",
+          "description": "Un design moderne de portfolio web présentant des projets et compétences avec une mise en page propre et réactive."
+        },
+        "4": {
+          "title": "Sino Ecommerce Design",
+          "description": "Un design web e-commerce moderne pour une expérience d'achat fluide et engageante."
+        }
+      }
+    }
   },
   "projectsPage": {
     "webTitle": "Mes Projets Web",

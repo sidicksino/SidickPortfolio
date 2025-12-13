@@ -10,9 +10,8 @@ const AIProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "Sino Ai",
-      description:
-        "A modern AI web application, providing intelligent features and real-time interactions.",
+      titleKey: 'projects.items.ai.1.title',
+      descriptionKey: 'projects.items.ai.1.description',
       technologies: [
         "React",
         "Node.js",
@@ -23,13 +22,13 @@ const AIProjects = () => {
       ],
       image: SinoAi,
       liveUrl: "https://sinoai-chi.vercel.app/",
-      // githubUrl: "https://github.com/sidicksino/sino_Ai",
+      // githubUrl: "https://github.com/sidicksino/SinoAI",
     },
     {
+
       id: 2,
-      title: "Pima Diabetes Prediction App",
-      description:
-        "A machine learning web application built with Streamlit that predicts the likelihood of diabetes using the Pima Indians dataset. Trained using Logistic Regression and deployed with Streamlit Cloud.",
+      titleKey: 'projects.items.ai.2.title',
+      descriptionKey: 'projects.items.ai.2.description',
       technologies: [
         "Python",
         "Scikit-learn",
@@ -40,15 +39,14 @@ const AIProjects = () => {
         "GitHub",
       ],
       image: PimaDiabetes,
-      liveUrl:
-        "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
-      // githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
+      liveUrl: "https://sidicksino-pima-diabetes-prediction-app-3gkqbb.streamlit.app/",
+      // githubUrl: "https://github.com/sidicksino/Pima-Diabetes-Prediction-App",
+      
     },
     {
       id: 3,
-      title: "Disease Prediction System",
-      description:
-        "A comprehensive disease prediction system utilizing machine learning algorithms to analyze symptoms and predict potential diseases. Built with Python and deployed as a web application using Streamlit.",
+      titleKey: 'projects.items.ai.3.title',
+      descriptionKey: 'projects.items.ai.3.description',
       technologies: [
         "Python",
         "Scikit-learn",
@@ -82,8 +80,8 @@ const AIProjects = () => {
               />
             </div>
             <div className="project-card1">
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-description">{project.description}</p>
+              <h3 className="project-title">{t(project.titleKey)}</h3>
+              <p className="project-description">{t(project.descriptionKey)}</p>
 
               <div className="project-tech">
                 {project.technologies.map((tech, index) => (

@@ -10,36 +10,32 @@ const DesignProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "TchadInfos Design",
-      description:
-        "A modern news app design for TchadInfos, focusing on a clean layout and user-friendly reading experience.",
+      titleKey: 'projects.items.design.1.title',
+      descriptionKey: 'projects.items.design.1.description',
       technologies: ["Figma"],
       image: TchadInfos,
       viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=477-727&p=f&t=DtBIxtgBPNmUUJ8u-0",
     },       
     {
       id: 2,
-      title: "Ecommerce Mobile Design",
-      description:
-        "A modern e-commerce App UI/UX design for a seamless and engaging shopping experience.",
+      titleKey: 'projects.items.design.2.title',
+      descriptionKey: 'projects.items.design.2.description',
       technologies: ["Figma"],
       image: Ecomerce,
       viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=0-1&p=f&t=DtBIxtgBPNmUUJ8u-0",
     },  
     {
       id: 3,
-      title: "Sidick Portfolio Design",
-      description:
-        "A modern portfolio web UI/UX design showcasing projects and skills with a clean, responsive layout.",
+      titleKey: 'projects.items.design.3.title',
+      descriptionKey: 'projects.items.design.3.description',
       technologies: ["Figma"],
       image: SinoEcommerce,
       viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=173-168&p=f&t=DtBIxtgBPNmUUJ8u-0",
     },       
     {
       id: 4,
-      title: "Sino Ecommerce Design",
-      description:
-        "A modern e-commerce Web UI/UX design for a seamless and engaging shopping experience.",
+      titleKey: 'projects.items.design.4.title',
+      descriptionKey: 'projects.items.design.4.description',
       technologies: ["Figma"],
       image: SinoEcommerce,
       viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=156-132&t=DtBIxtgBPNmUUJ8u-0",
@@ -64,8 +60,8 @@ const DesignProjects = () => {
               />
             </div>
             <div className="project-card1">
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-description">{project.description}</p>
+              <h3 className="project-title">{t(project.titleKey)}</h3>
+              <p className="project-description">{t(project.descriptionKey)}</p>
   
               <div className="project-tech">
                 {project.technologies.map((tech, index) => (

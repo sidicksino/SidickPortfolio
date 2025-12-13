@@ -8,9 +8,8 @@ const MobileProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "SinoBoutique",
-      description:
-        "SinoBoutique is a sleek and modern e-commerce app developed by Sidick, designed to provide a seamless shopping experience with real-time updates, secure transactions, and an intuitive user interface.",
+      titleKey: 'projects.items.mobile.1.title',
+      descriptionKey: 'projects.items.mobile.1.description',
       technologies: [
         "React Native",
         "Expo",
@@ -30,9 +29,8 @@ const MobileProjects = () => {
     },
     {
       id: 2,
-      title: "TchadInfos",
-      description:
-        "TchadInfos is a modern and user-friendly news app developed by Sidick, providing real-time updates, curated news content, and an intuitive interface for effortless browsing of the latest headlines.",
+      titleKey: 'projects.items.mobile.2.title',
+      descriptionKey: 'projects.items.mobile.2.description',
       technologies: [
         "React Native",
         "Expo",
@@ -48,9 +46,8 @@ const MobileProjects = () => {
     },
     {
       id: 3,
-      title: "Wallet",
-      description:
-        "Wallet is a modern digital finance app developed by Sidick, allowing users to manage their expenses, track transactions, and visualize spending insights through a secure and responsive interface.",
+      titleKey: 'projects.items.mobile.3.title',
+      descriptionKey: 'projects.items.mobile.3.description',
       technologies: [
         "React Native",
         "Expo",
@@ -70,9 +67,8 @@ const MobileProjects = () => {
     },
     {
       id: 4,
-      title: "To-Do",
-      description:
-        "To-Do is a minimalist and efficient task management app built by Sidick, designed to help users organize their daily activities, set priorities, and stay productive with a clean and responsive interface.",
+      titleKey: 'projects.items.mobile.4.title',
+      descriptionKey: 'projects.items.mobile.4.description',
       technologies: ["React Native", "Expo", "TypeScript", "CSS", "Convex"],
       image: "",
       liveUrl: "#",
@@ -98,8 +94,8 @@ const MobileProjects = () => {
               />
             </div>
             <div className="project-card1">
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-description">{project.description}</p>
+              <h3 className="project-title">{t(project.titleKey)}</h3>
+              <p className="project-description">{t(project.descriptionKey)}</p>
 
               <div className="project-tech">
                 {project.technologies.map((tech, index) => (
