@@ -1,9 +1,12 @@
 import "./About.css";
+import { useTranslation } from 'react-i18next';
 import photo1 from "../../assets/SI1.jpg";
 import photo2 from "../../assets/phote5.jpeg";
 import { motion } from "framer-motion";
 
 const About = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="about" id="about">
       <div className="about-container">
@@ -27,7 +30,7 @@ const About = () => {
             transition={{ duration: 1 }}
             className="section-title"
           >
-            ABOUT ME
+            {t('about.title')}
           </motion.h2>
           <div className="about-item">
             <div className="icon-circle-1">
@@ -56,12 +59,8 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="text-block"
             >
-              <h3>Who I Am</h3>
-              <p>
-                I'm a Data Science student and product-minded builder. Curious,
-                resourceful and detail-oriented, I care about clarity, usability
-                and a smooth experience for real users.
-              </p>
+              <h3>{t('about.whoIAm')}</h3>
+              <p>{t('about.whoIAmText')}</p>
             </motion.div>
           </div>
 
@@ -86,13 +85,8 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="text-block"
             >
-              <h3>What I Do</h3>
-              <p>
-                Data Analyst and developer of web, app platforms and small tools
-                that solve concrete problems. I iterate quickly, ship
-                frequently, and validate ideas with working prototypes and
-                measurable outcomes.
-              </p>
+              <h3>{t('about.whatIDo')}</h3>
+              <p>{t('about.whatIDoText')}</p>
             </motion.div>
           </div>
 
@@ -138,12 +132,8 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="text-block"
             >
-              <h3>My Mission</h3>
-              <p>
-                Build thoughtful digital products that empower students and
-                entrepreneurs in Africa—scalable, reliable and simple to use.
-                I'm driven by impact and continuous improvement.
-              </p>
+              <h3>{t('about.myMission')}</h3>
+              <p>{t('about.myMissionText')}</p>
             </motion.div>
           </div>
         </div>

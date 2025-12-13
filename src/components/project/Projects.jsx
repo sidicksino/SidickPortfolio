@@ -8,12 +8,13 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Projects.css";
+import { useTranslation } from 'react-i18next';
 
 const ProjectsSection = () => {
   const projects = [
     {
       id: "web-app",
-      title: "Web App",
+      titleKey: 'projects.webProjects',
       icon: <FaLaptopCode />,
       desc: "Ultra-fast, secure, and elegant web applications designed to transform user experience.",
       link: "/projects/web",
@@ -21,7 +22,7 @@ const ProjectsSection = () => {
     },
     {
       id: "mobile-app",
-      title: "Mobile App",
+      titleKey: 'projects.mobileProjects',
       icon: <FaMobileAlt />,
       desc: "Intuitive mobile apps with smooth animations, crafted for both iOS and Android.",
       link: "/projects/mobile",
@@ -29,7 +30,7 @@ const ProjectsSection = () => {
     },
     {
       id: "design",
-      title: "Design",
+      titleKey: 'projects.designProjects',
       icon: <FaPaintBrush />,
       desc: "Custom UI/UX designs that are aesthetic, functional, and made to captivate.",
       link: "/projects/design",
@@ -37,13 +38,15 @@ const ProjectsSection = () => {
     },
     {
       id: "ml-ai",
-      title: "ML & AI",
+      titleKey: 'projects.aiProjects',
       icon: <FaBrain />,
       desc: "Intelligent models to automate, predict, and revolutionize your business processes.",
       link: "/projects/ai",
       color: "#f59e0b",
     },
   ];
+
+  const { t } = useTranslation();
 
   return (
     <section className="projects-section" id="projects">
@@ -52,8 +55,7 @@ const ProjectsSection = () => {
         whileInView={{ opacity: 1, translateX: 0 }}
         transition={{ duration: 1 }}
       >
-        My <span className="span1">Projets</span>{" "}
-        <span className="span2">✨</span>
+        {t('projects.title')} <span className="span2">✨</span>
       </motion.h2>
 
       <div className="projects-grid">
@@ -76,12 +78,12 @@ const ProjectsSection = () => {
               {project.icon}
             </motion.div>
 
-            <motion.h3
+              <motion.h3
               className="project-title"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              {project.title}
+              {t(project.titleKey)}
             </motion.h3>
 
             <p className="project-desc">{project.desc}</p>
@@ -90,7 +92,7 @@ const ProjectsSection = () => {
             <motion.div>
               <Link to={project.link}>
                 <span className="more-link">
-                  More <FaArrowRight className="arrow-icon" />
+                  {t('projects.viewProject')} <FaArrowRight className="arrow-icon" />
                 </span>
               </Link>
             </motion.div>

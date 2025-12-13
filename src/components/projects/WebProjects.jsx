@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import "./ProjectsPage.css";
 import SinoAi from "../../assets/sino-ai.png";
 import SinoCoffee from "../../assets/SinoCoffee.png";
@@ -63,12 +64,12 @@ const WebProjects = () => {
     },
   ];
 
+  const { t } = useTranslation();
+
   return (
     <div className="projects-page">
-      <h1>My Web Projects</h1>
-      <p>
-        Here is a selection of my most recent and impactful web applications.
-      </p>
+      <h1>{t('projectsPage.webTitle')}</h1>
+      <p>{t('projectsPage.webIntro')}</p>
 
       <div className="projects-list">
         {projects.map((project) => (
@@ -99,7 +100,7 @@ const WebProjects = () => {
                   rel="noreferrer"
                   className="btn-live"
                 >
-                  View Live
+                  {t('projectsPage.viewLive')}
                 </a>
                 {project.githubUrl && (
                   <a
@@ -108,7 +109,7 @@ const WebProjects = () => {
                     rel="noreferrer"
                     className="btn-github"
                   >
-                    Code
+                    {t('projectsPage.viewCode')}
                   </a>
                 )}
               </div>

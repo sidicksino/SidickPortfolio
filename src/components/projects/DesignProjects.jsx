@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import "./ProjectsPage.css";
 import Ecomerce from "../../assets/ecomerce.png";
 import TchadInfos from "../../assets/tchadInfos.png";
@@ -45,12 +46,12 @@ const DesignProjects = () => {
     }      
   ];
 
+  const { t } = useTranslation();
+
   return (
     <div className="projects-page">
-      <h1>My Mobile Projects</h1>
-      <p>
-        iOS & Android applications designed for the best user experience.
-      </p>
+      <h1>{t('projectsPage.designTitle')}</h1>
+      <p>{t('projectsPage.designIntro')}</p>
   
       <div className="projects-list">
         {projects.map((project) => (
@@ -81,7 +82,7 @@ const DesignProjects = () => {
                   rel="noreferrer"
                   className="btn-live"
                 >
-                  View Live
+                  {t('projectsPage.viewLive')}
                 </a>
                 
               </div>

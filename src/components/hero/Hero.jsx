@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import "./Hero.css";
 import heroImage from "../../assets/sidick.jpg";
 import { motion } from "framer-motion";
@@ -13,6 +14,8 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const { t } = useTranslation();
+
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = MyPDF;
@@ -24,9 +27,9 @@ const Hero = () => {
     <section className="hero" id="home">
       <div className="hero-content">
         <h1>
-          Hi,
+          {t('hero.greeting')}
           <br />
-          I'm <span className="span-sidick-hero">SIDICK</span>
+          {t('hero.namePart')} <span className="span-sidick-hero">SIDICK</span>
           <br />
           <span>ABDOULAYE HISSEIN</span>
         </h1>
@@ -35,11 +38,11 @@ const Hero = () => {
           whileInView={{ opacity: 1, translateX: 0 }}
           transition={{ duration: 1 }}
         >
-          Data Analyst | Web Developer | ML Enthusiast
+          {t('hero.title')}
         </motion.p>
         <div className="hero-buttons">
-          <Link to="/pages/hero" className="btn btn-primary">More About Me</Link>
-          <button onClick={handleDownload} className="btn btn-secondary">Download CV</button>
+          <Link to="/pages/hero" className="btn btn-primary">{t('hero.cta')}</Link>
+          <button onClick={handleDownload} className="btn btn-secondary">{t('hero.downloadCV')}</button>
         </div>
       </div>
       <div className="hero-image">

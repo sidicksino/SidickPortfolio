@@ -2,8 +2,11 @@ import "./Skills.css";
 import { FaDatabase, FaCode, FaChartBar } from "react-icons/fa";
 import SkillsPhoto from "../../assets/skills.png";
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 const Skills = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="skills" id="skills">
       <motion.h2
@@ -11,7 +14,8 @@ const Skills = () => {
         whileInView={{ opacity: 1, translateX: 0 }}
         transition={{ duration: 1 }}
       >
-        My <span className="span1">Skills</span>{" "}
+        {t('skills.title')}
+        <span className="span1"> </span>
         <span className="span2">✨</span>
       </motion.h2>
 
@@ -28,7 +32,7 @@ const Skills = () => {
               transition={{ duration: 0.5 }}
               className="text-blocks"
             >
-              <h3>Data Science & Visualization</h3>
+              <h3>{t('skills.data')}</h3>
               <p>
                 R, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau,
                 Matplotlib, Seaborn
@@ -46,7 +50,7 @@ const Skills = () => {
               transition={{ duration: 0.5 }}
               className="text-blocks"
             >
-              <h3>Frontend Development</h3>
+              <h3>{t('skills.frontend')}</h3>
               <p>HTML, CSS, JavaScript, React.js, React Native</p>
             </motion.div>
           </div>
@@ -61,7 +65,7 @@ const Skills = () => {
               transition={{ duration: 0.5 }}
               className="text-blocks"
             >
-              <h3>Backend Development</h3>
+              <h3>{t('skills.backend')}</h3>
               <p>Python, Node.js, SQL, MySQL, PostgreSQL, MongoDB</p>
             </motion.div>
           </div>

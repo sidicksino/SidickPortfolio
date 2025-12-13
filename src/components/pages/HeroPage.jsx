@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -20,27 +21,13 @@ const HeroPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const { t } = useTranslation();
+
   const features = [
-    {
-      icon: "🔗",
-      title: "Connected Capabilities",
-      desc: "Integrated services across data, media and creative to drive growth.",
-    },
-    {
-      icon: "🧠",
-      title: "Advanced Intelligence",
-      desc: "Data-driven insights and ML to power better decisions.",
-    },
-    {
-      icon: "⚡",
-      title: "True Flexibility",
-      desc: "Fast, scalable solutions built for real-world constraints.",
-    },
-    {
-      icon: "🤝",
-      title: "Collaborative Work",
-      desc: "Cross-discipline teams focused on outcomes and impact.",
-    },
+    { icon: "🔗", title: t('features.connectedCapabilities'), desc: t('features.desc1') },
+    { icon: "🧠", title: t('features.advancedIntelligence'), desc: t('features.desc2') },
+    { icon: "⚡", title: t('features.trueFlexibility'), desc: t('features.desc3') },
+    { icon: "🤝", title: t('features.collaborativeWork'), desc: t('features.desc4') },
   ];
 
   const containerVariants = {
@@ -87,16 +74,10 @@ const HeroPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1>
-              Hey, I'm <span className="highlight">Sidick Abdoulaye Hissein</span>
+              {t('hero.greeting')} <span className="highlight">Sidick Abdoulaye Hissein</span>
             </h1>
-            <p className="subtitle">
-              A passionate Data Analyst, Web Developer, and ML Enthusiast from <span>Africa</span>
-            </p>
-            <p className="bio">
-              I love turning complex problems into simple, beautiful, and intuitive digital experiences.
-              With expertise in data science, web development, and machine learning, I create solutions
-              that not only look great but also deliver real value.
-            </p>
+            <p className="subtitle">{t('hero.subtitle')}</p>
+            <p className="bio">{t('about.whoIAmText')}</p>
           </motion.div>
 
           <motion.div
@@ -124,7 +105,7 @@ const HeroPage = () => {
             transition={{ duration: 0.6 }}
             className="section-title"
           >
-            Capabilities
+            {t('features.title')}
           </motion.h2>
 
           <motion.div
@@ -159,7 +140,7 @@ const HeroPage = () => {
             transition={{ duration: 0.6 }}
             className="section-title"
           >
-            About Me
+            {t('about.title')}
           </motion.h2>
 
           <div className="about-content">
@@ -169,12 +150,8 @@ const HeroPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h3>Who am I?</h3>
-              <p>
-                I'm a versatile tech professional with a deep passion for solving real-world problems
-                through technology. My journey began with a curiosity about data, which led me to explore
-                web development and machine learning.
-              </p>
+              <h3>{t('about.whoIAm')}</h3>
+              <p>{t('about.whoIAmText')}</p>
               <p>
                 My unique blend of skills allows me to bridge the gap between data insights and user-centric
                 design. Whether it's building responsive web applications, analyzing complex datasets, or
@@ -188,16 +165,8 @@ const HeroPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h3>What drives me?</h3>
-              <p>
-                I'm driven by the desire to create meaningful digital experiences that make a difference.
-                I believe in continuous learning and staying updated with the latest technologies and trends.
-              </p>
-              <p>
-                When I'm not coding or analyzing data, you'll find me exploring new technologies, contributing
-                to open-source projects, or helping others learn and grow in the tech space. I'm always excited
-                about opportunities to collaborate and create amazing things together.
-              </p>
+              <h3>{t('about.whatIDo')}</h3>
+              <p>{t('about.whatIDoText')}</p>
             </motion.div>
           </div>
         </div>
@@ -212,7 +181,7 @@ const HeroPage = () => {
             transition={{ duration: 0.6 }}
             className="section-title"
           >
-            My Journey
+            {t('about.journey')}
           </motion.h2>
 
           <div className="timeline">
@@ -292,7 +261,7 @@ const HeroPage = () => {
             transition={{ duration: 0.6 }}
             className="section-title"
           >
-            My Core Values
+            {t('about.values')}
           </motion.h2>
 
           <div className="values-grid">
@@ -352,10 +321,10 @@ const HeroPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2>Let's Work Together</h2>
-            <p>Interested in collaborating or have a project in mind?</p>
+            <h2>{t('cta.title')}</h2>
+            <p>{t('cta.text')}</p>
             <Link to="/#contact" className="cta-button">
-              Get in Touch
+              {t('cta.button')}
             </Link>
           </motion.div>
         </div>

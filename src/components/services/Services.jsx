@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 import "./Services.css";
 import Service from "../../assets/rr.png";
 import Dark from "../../assets/image.png";
@@ -7,6 +8,8 @@ import { useTheme } from "../theme/useTheme";
 
 const Services = () => {
   const { theme } = useTheme();
+
+  const { t } = useTranslation();
 
   return (
     <section className="services-section" id="services">
@@ -36,7 +39,7 @@ const Services = () => {
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 1 }}
           >
-            My <span>Services</span> ✨
+            {t('services.title')}
           </motion.h2>
 
           <motion.p
@@ -44,8 +47,7 @@ const Services = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            I create tailor-made digital experiences — performant, aesthetic,
-            and intelligent.
+            {t('services.webDevDesc')}
           </motion.p>
 
           <motion.ul
@@ -53,13 +55,13 @@ const Services = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <li>Web & Mobile Development</li>
-            <li>Elegant UI/UX Design</li>
-            <li>AI & Automation Solutions</li>
+            <li>{t('services.webDevelopment')}</li>
+            <li>{t('services.uiDesign')}</li>
+            <li>{t('services.consulting')}</li>
           </motion.ul>
 
           <a href="#contact" className="cta-button">
-            Let’s Talk →
+            {t('cta.button')} →
           </a>
         </div>
 

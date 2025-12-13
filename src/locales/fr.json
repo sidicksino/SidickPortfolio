@@ -8,12 +8,15 @@
     "getStarted": "Commencer"
   },
   "hero": {
-    "greeting": "Salut, je suis Sidick",
-    "title": "Développeur Full-Stack & Designer UI",
+    "greeting": "Salut,",
+    "namePart": "je suis",
+    "title": "Analyste de Données | Développeur Web | Passionné de ML",
     "subtitle": "Créer des expériences numériques belles et fonctionnelles avec les technologies modernes",
-    "cta": "Explorez Mon Travail"
+    "cta": "En Savoir Plus Sur Moi",
+    "downloadCV": "Télécharger CV"
   },
   "features": {
+    "title": "Capacités",
     "connectedCapabilities": "Capacités Connectées",
     "advancedIntelligence": "Intelligence Avancée",
     "trueFlexibility": "Véritable Flexibilité",
@@ -26,18 +29,23 @@
   "about": {
     "title": "À Propos",
     "whoIAm": "Qui Suis-Je",
-    "whoIAmText": "Je suis un développeur passionné du Tchad avec une expertise dans la construction d'applications web et mobiles évolutives. J'aime transformer les idées en réalité grâce à un code propre et efficace.",
+    "whoIAmText": "Je suis étudiant en Data Science et constructeur axé sur le produit. Curieux, ingénieux et soucieux du détail, je me soucie de la clarté, de l'utilisabilité et d'une expérience fluide pour les utilisateurs réels.",
     "whatIDo": "Ce Que Je Fais",
-    "whatIDoText": "Je suis spécialisé dans le développement full-stack en utilisant des frameworks modernes comme React, Node.js et bien d'autres. Je crée des interfaces réactives et intuitives ainsi que des solutions backend robustes.",
+    "whatIDoText": "Analyste de Données et développeur de plateformes web, d'applications et de petits outils qui résolvent des problèmes concrets. J'itère rapidement, je livre fréquemment et je valide les idées avec des prototypes fonctionnels et des résultats mesurables.",
     "myMission": "Ma Mission",
-    "myMissionText": "Fournir des solutions numériques de haute qualité qui ont un véritable impact, en combinant l'excellence technique avec la résolution créative de problèmes.",
+    "myMissionText": "Construire des produits numériques réfléchis qui autonomisent les étudiants et les entrepreneurs en Afrique—scalables, fiables et simples à utiliser. Je suis motivé par l'impact et l'amélioration continue.",
     "journey": "Mon Parcours",
     "values": "Mes Valeurs"
+  },
+  "cta": {
+    "title": "Travaillons ensemble",
+    "text": "Intéressé par une collaboration ou un projet ?",
+    "button": "Contactez-moi"
   },
   "services": {
     "title": "Services",
     "webDevelopment": "Développement Web",
-    "webDevDesc": "Applications web full-stack construites avec React, Node.js et technologies modernes",
+    "webDevDesc": "Je crée des expériences numériques sur mesure performantes, esthétiques et intelligentes.",
     "mobileApp": "Développement Mobile",
     "mobileAppDesc": "Applications mobiles multiplateformes avec React Native et Flutter",
     "uiDesign": "Design UI/UX",
@@ -60,6 +68,24 @@
     "mobileProjects": "Projets Mobiles",
     "designProjects": "Projets Design",
     "aiProjects": "Projets IA"
+  },
+  "projectsPage": {
+    "webTitle": "Mes Projets Web",
+    "webIntro": "Voici une sélection de mes applications web récentes et impactantes.",
+    "aiTitle": "Mes Projets IA & ML",
+    "aiIntro": "Modèles intelligents pour l'automatisation, la prédiction et l'optimisation.",
+    "mobileTitle": "Mes Projets Mobiles",
+    "mobileIntro": "Applications iOS & Android conçues pour la meilleure expérience utilisateur.",
+    "designTitle": "Mes Projets Design",
+    "designIntro": "Designs UI/UX et produits présentant des interfaces modernes.",
+    "viewLive": "Voir en Ligne",
+    "viewCode": "Code"
+  },
+  "skills": {
+    "title": "Mes Compétences",
+    "data": "Science des Données & Visualisation",
+    "frontend": "Développement Frontend",
+    "backend": "Développement Backend"
   },
   "contact": {
     "title": "Contact",

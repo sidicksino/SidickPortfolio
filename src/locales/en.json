@@ -8,12 +8,15 @@
     "getStarted": "Get Started"
   },
   "hero": {
-    "greeting": "Hi, I'm Sidick",
-    "title": "Full-Stack Developer & UI Designer",
+    "greeting": "Hi,",
+    "namePart": "I'm",
+    "title": "Data Analyst | Web Developer | ML Enthusiast",
     "subtitle": "Crafting beautiful, functional digital experiences with modern technologies",
-    "cta": "Explore My Work"
+    "cta": "More About Me",
+    "downloadCV": "Download CV"
   },
   "features": {
+    "title": "Capabilities",
     "connectedCapabilities": "Connected Capabilities",
     "advancedIntelligence": "Advanced Intelligence",
     "trueFlexibility": "True Flexibility",
@@ -26,18 +29,23 @@
   "about": {
     "title": "About Me",
     "whoIAm": "Who I Am",
-    "whoIAmText": "I'm a passionate developer from Chad with expertise in building scalable web and mobile applications. I love turning ideas into reality through clean, efficient code.",
+    "whoIAmText": "I'm a Data Science student and product-minded builder. Curious, resourceful and detail-oriented, I care about clarity, usability and a smooth experience for real users.",
     "whatIDo": "What I Do",
-    "whatIDoText": "I specialize in full-stack development using modern frameworks like React, Node.js, and more. I create responsive, intuitive interfaces and robust backend solutions.",
+    "whatIDoText": "Data Analyst and developer of web, app platforms and small tools that solve concrete problems. I iterate quickly, ship frequently, and validate ideas with working prototypes and measurable outcomes.",
     "myMission": "My Mission",
-    "myMissionText": "To deliver high-quality digital solutions that make a real impact, combining technical excellence with creative problem-solving.",
+    "myMissionText": "Build thoughtful digital products that empower students and entrepreneurs in Africa—scalable, reliable and simple to use. I'm driven by impact and continuous improvement.",
     "journey": "My Journey",
     "values": "My Values"
+  },
+  "cta": {
+    "title": "Let's Work Together",
+    "text": "Interested in collaborating or have a project in mind?",
+    "button": "Get in Touch"
   },
   "services": {
     "title": "Services",
     "webDevelopment": "Web Development",
-    "webDevDesc": "Full-stack web applications built with React, Node.js, and modern technologies",
+    "webDevDesc": "I create tailor made digital experiences performant, aesthetic, and intelligent.",
     "mobileApp": "Mobile Development",
     "mobileAppDesc": "Cross-platform mobile apps with React Native and Flutter",
     "uiDesign": "UI/UX Design",
@@ -60,6 +68,24 @@
     "mobileProjects": "Mobile Projects",
     "designProjects": "Design Projects",
     "aiProjects": "AI Projects"
+  },
+  "projectsPage": {
+    "webTitle": "My Web Projects",
+    "webIntro": "Here is a selection of my most recent and impactful web applications.",
+    "aiTitle": "My AI & ML Projects",
+    "aiIntro": "Intelligent models for automation, prediction, and optimization.",
+    "mobileTitle": "My Mobile Projects",
+    "mobileIntro": "iOS & Android applications designed for the best user experience.",
+    "designTitle": "My Design Projects",
+    "designIntro": "UI/UX and product designs showcasing modern interfaces.",
+    "viewLive": "View Live",
+    "viewCode": "Code"
+  },
+  "skills": {
+    "title": "My Skills",
+    "data": "Data Science & Visualization",
+    "frontend": "Frontend Development",
+    "backend": "Backend Development"
   },
   "contact": {
     "title": "Contact",
