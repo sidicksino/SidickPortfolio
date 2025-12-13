@@ -55,14 +55,14 @@
   },
 
   "projects": {
-    "title": "Projets En Vedette",
+    "title": "Mes Projets",
     "viewProject": "Voir le Projet",
     "liveDemo": "Démo En Ligne",
     "allProjects": "Tous les Projets",
     "webProjects": "Projets Web",
     "mobileProjects": "Projets Mobiles",
     "designProjects": "Projets Design",
-    "aiProjects": "Projets IA"
+    "aiProjects": "Projets ML &IA"
   },
   "projectsPage": {
     "webTitle": "Mes Projets Web",

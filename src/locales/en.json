@@ -54,19 +54,19 @@
     "consultingDesc": "Strategic guidance for your tech projects and digital transformation"
   },
   "projects": {
-    "title": "Featured Projects",
+    "title": "My Projects",
     "viewProject": "View Project",
     "liveDemo": "Live Demo",
     "allProjects": "All Projects",
     "webProjects": "Web Projects",
     "mobileProjects": "Mobile Projects",
     "designProjects": "Design Projects",
-    "aiProjects": "AI Projects"
+    "aiProjects": "ML & AI Projects"
   },
   "projectsPage": {
     "webTitle": "My Web Projects",
     "webIntro": "Here is a selection of my most recent and impactful web applications.",
-    "aiTitle": "My AI & ML Projects",
+    "aiTitle": "My ML & AI Projects",
     "aiIntro": "Intelligent models for automation, prediction, and optimization.",
     "mobileTitle": "My Mobile Projects",
     "mobileIntro": "iOS & Android applications designed for the best user experience.",
