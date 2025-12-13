@@ -53,12 +53,7 @@
     "consulting": "Conseil Technologique",
     "consultingDesc": "Conseils stratégiques pour vos projets technologiques et transformation numérique"
   },
-  "skills": {
-    "title": "Compétences & Expertise",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "tools": "Outils & Plateformes"
-  },
+
   "projects": {
     "title": "Projets En Vedette",
     "viewProject": "Voir le Projet",

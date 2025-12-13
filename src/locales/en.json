@@ -53,12 +53,6 @@
     "consulting": "Tech Consulting",
     "consultingDesc": "Strategic guidance for your tech projects and digital transformation"
   },
-  "skills": {
-    "title": "Skills & Expertise",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "tools": "Tools & Platforms"
-  },
   "projects": {
     "title": "Featured Projects",
     "viewProject": "View Project",
