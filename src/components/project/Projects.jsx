@@ -16,7 +16,7 @@ const ProjectsSection = () => {
       id: "web-app",
       titleKey: 'projects.webProjects',
       icon: <FaLaptopCode />,
-      desc: "Ultra-fast, secure, and elegant web applications designed to transform user experience.",
+      desc: 'projects.webDescription',
       link: "/projects/web",
       color: "#6366f1",
     },
@@ -24,7 +24,7 @@ const ProjectsSection = () => {
       id: "mobile-app",
       titleKey: 'projects.mobileProjects',
       icon: <FaMobileAlt />,
-      desc: "Intuitive mobile apps with smooth animations, crafted for both iOS and Android.",
+      desc: 'projects.mobileDescription',
       link: "/projects/mobile",
       color: "#8b5cf6",
     },
@@ -32,7 +32,7 @@ const ProjectsSection = () => {
       id: "design",
       titleKey: 'projects.designProjects',
       icon: <FaPaintBrush />,
-      desc: "Custom UI/UX designs that are aesthetic, functional, and made to captivate.",
+      desc: 'projects.designDescription',
       link: "/projects/design",
       color: "#ec4899",
     },
@@ -40,7 +40,7 @@ const ProjectsSection = () => {
       id: "ml-ai",
       titleKey: 'projects.aiProjects',
       icon: <FaBrain />,
-      desc: "Intelligent models to automate, predict, and revolutionize your business processes.",
+      desc: 'projects.aiDescription',
       link: "/projects/ai",
       color: "#f59e0b",
     },
@@ -86,7 +86,7 @@ const ProjectsSection = () => {
               {t(project.titleKey)}
             </motion.h3>
 
-            <p className="project-desc">{project.desc}</p>
+            <p className="project-desc">{t(project.desc)}</p>
 
             {/* 🔥 LIEN DYNAMIQUE ICI */}
             <motion.div>

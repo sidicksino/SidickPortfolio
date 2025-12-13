@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Accueil",
     "about": "À Propos",
     "services": "Services",
     "skills": "Compétences",
@@ -10,7 +11,7 @@
   "hero": {
     "greeting": "Salut,",
     "namePart": "je suis",
-    "title": "Analyste de Données | Développeur Web | Passionné de ML",
+    "title": "Data Scientist | Développeur Full Stack | Passionné de ML",
     "subtitle": "Créer des expériences numériques belles et fonctionnelles avec les technologies modernes",
     "cta": "En Savoir Plus Sur Moi",
     "downloadCV": "Télécharger CV"
@@ -60,9 +61,13 @@
     "liveDemo": "Démo En Ligne",
     "allProjects": "Tous les Projets",
     "webProjects": "Projets Web",
+    "webDescription": "Applications web ultra-rapides, sécurisées et élégantes conçues pour transformer l'expérience utilisateur.",
     "mobileProjects": "Projets Mobiles",
+    "mobileDescription": "Applications mobiles innovantes pour iOS et Android, axées sur l'ergonomie et la performance.",
     "designProjects": "Projets Design",
-    "aiProjects": "Projets ML &IA"
+    "designDescription": "Designs UI/UX créatifs qui privilégient l'engagement de l'utilisateur et une interaction fluide.",
+    "aiProjects": "Projets ML & IA",
+    "aiDescription": "Solutions de Machine Learning et d'IA de pointe pour des problèmes concrets."
   },
   "projectsPage": {
     "webTitle": "Mes Projets Web",
@@ -102,8 +107,11 @@
   },
   "footer": {
     "madeWith": "Réalisé avec",
-    "byMe": "par Sidick",
+    "text": "Création d'expériences numériques sur mesure élégantes, intelligentes et performantes.",
+    "byMe": "MonPortfolio",
     "rights": "Tous droits réservés",
-    "followMe": "Me Suivre"
+    "followMe": "Me Suivre",
+    "navigation": "Navigation",
+    "contact": "Contact"
   }
 }

@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Home",
     "about": "About",
     "services": "Services",
     "skills": "Skills",
@@ -10,7 +11,7 @@
   "hero": {
     "greeting": "Hi,",
     "namePart": "I'm",
-    "title": "Data Analyst | Web Developer | ML Enthusiast",
+    "title": "Data Scientist | Full Stack Developer | ML Enthusiast",
     "subtitle": "Crafting beautiful, functional digital experiences with modern technologies",
     "cta": "More About Me",
     "downloadCV": "Download CV"
@@ -59,9 +60,13 @@
     "liveDemo": "Live Demo",
     "allProjects": "All Projects",
     "webProjects": "Web Projects",
+    "webDescription": "Ultra-fast, secure, and elegant web applications designed to transform user experience.",
     "mobileProjects": "Mobile Projects",
+    "mobileDescription": "Innovative mobile apps for iOS and Android, focused on usability and performance.",
     "designProjects": "Design Projects",
-    "aiProjects": "ML & AI Projects"
+    "designDescription": "Creative UI/UX designs that prioritize user engagement and seamless interaction.",
+    "aiProjects": "ML & AI Projects",
+    "aiDescription": "Cutting-edge machine learning and AI solutions for real-world problems."
   },
   "projectsPage": {
     "webTitle": "My Web Projects",
@@ -101,8 +106,11 @@
   },
   "footer": {
     "madeWith": "Made with",
-    "byMe": "by Sidick",
+    "text": "Creating tailor-made digital experiences elegant, smart, and performant.",
+    "byMe": "MyPortfolio",
     "rights": "All rights reserved",
-    "followMe": "Follow Me"
+    "followMe": "Follow Me",
+    "navigation": "Navigation",
+    "contact": "Contact"
   }
 }

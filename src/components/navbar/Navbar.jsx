@@ -74,7 +74,7 @@ const Navbar = ({ scrolled = false }) => {
                 />
               </svg>
             </span>
-            Home
+            {t('nav.home')}
           </a>
         </li>
         <li>

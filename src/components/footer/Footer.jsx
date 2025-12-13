@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="footer-col fade-up">
           <h3 className="footer-logo">{t('footer.byMe')}</h3>
           <p className="footer-desc">
-            {t('footer.madeWith')} {t('footer.byMe')} — {t('footer.rights')}
+            {t('footer.text')}
           </p>
           <div className="footer-socials">
             <a href="https://github.com/sidicksino" target="_blank" rel="noreferrer" aria-label="GitHub">
