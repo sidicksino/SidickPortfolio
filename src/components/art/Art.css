@@ -152,7 +152,7 @@
 
 @media (max-width: 480px) {
   #art{
-    padding: 2rem 0.5rem;
+    padding: -5rem -5rem;
   }
   #art .cocktail-img {
     height: 40vh;
