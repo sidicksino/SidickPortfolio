@@ -1,73 +1,90 @@
-import gsap from 'gsap';
-import { useMediaQuery } from 'react-responsive'
-import { useGSAP } from '@gsap/react'
-import { featureLists, goodLists } from '../../../constants/index.js'
-import './Art.css';
+import gsap from "gsap";
+import { useMediaQuery } from "react-responsive";
+import { useGSAP } from "@gsap/react";
+import { featureLists, goodLists } from "../../../constants/index.js";
+import "./Art.css";
 
 const Art = () => {
- const isMobile = useMediaQuery({ maxWidth: 767 });
- 
- useGSAP(() => {
-	const start = isMobile ? 'top top' : 'top top';
-	
-	const maskTimeline = gsap.timeline({
-     scrollTrigger: {
-        trigger: '#art',
-        start, // Utilise 'top top' en desktop et mobile
-        end: 'bottom center',
-        scrub: 1.5,
-        pin: true
-     }
-    })
-	
-	maskTimeline
-	 .to('.will-fade', { opacity: 0, stagger: 0.2, ease: 'power1.inOut', })
-	 .to('.masked-img', { scale: 1.3, maskPosition: 'center', maskSize: '400%', duration: 1, ease: 'power1.inOut '})
-	 .to('#masked-content', { opacity: 1, duration: 1, ease: 'power1.inOut'})
- })
- 
- return (
-	<div id="art">
-	 <div className="container mx-auto h-full pt-20">
-		<h2 className="will-fade ">Sidick Sino</h2>
-		
-		<div className="content">
-		 {/* <ul className="space-y-4 will-fade">
-			{goodLists.map((feature, index) => (
-			 <li key={index} className="flex items-center gap-2">
-				<img src="/images/check.png" alt="check" />
-				<p className="md:w-fit w-60">{feature}</p>
-			 </li>
-			))}
-		 </ul> */}
-		 
-		 <div className="cocktail-img">
-			<img
-				src="/images/under-img.jpg"
-				alt="cocktail"
-				className="abs-center masked-img size-full object-contain"
-			/>
-		 </div>
-		 
-		 <ul className="space-y-4 will-fade">
-			{featureLists.map((feature, index) => (
-			 <li key={index} className="flex items-center justify-start gap-2">
-				<img src="/images/check.png" alt="check" />
-				<p className="md:w-fit w-60">{feature}</p>
-			 </li>
-			))}
-		 </ul>
-		</div>
-		
-		<div className="masked-container">
-		 <h2 className="will-fade">Code qui Convertit, Design qui Captive</h2>
-		 <div id="masked-content">
-			<h3>Made with Craft, Poured with Passion</h3>
-			<p>This isn’t just a drink. It’s a carefully crafted moment made just for you.</p>
-		 </div>
-		</div>
-	 </div>
-	</div>
- )
-}
-export default Art
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+
+  useGSAP(() => {
+    const maskTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#art",
+        start: "top top", // animation starts exactly at top
+        end: isMobile ? "+=120%" : "bottom center",
+        scrub: 1.2,
+        pin: !isMobile, // ✅ pin only on desktop
+        anticipatePin: 1,
+      },
+    });
+
+    maskTimeline
+      .to(".will-fade", {
+        opacity: 0,
+        stagger: 0.15,
+        ease: "power1.out",
+      })
+      .to(
+        ".masked-img",
+        {
+          scale: isMobile ? 1.15 : 1.3,
+          maskSize: "400%",
+          ease: "power2.out",
+        },
+        "<"
+      )
+      .to("#masked-content", {
+        opacity: 1,
+        ease: "power2.out",
+      });
+  });
+
+  return (
+    <div id="art">
+      <div className="container mx-auto h-full pt-20">
+        <h2 className="will-fade ">Sidick Sino</h2>
+
+        <div className="content">
+          <ul className="space-y-4 will-fade nonOnMobile">
+            {goodLists.map((feature, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <img src="/images/check.png" alt="check" />
+                <p className="md:w-fit w-60">{feature}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="cocktail-img">
+            <img
+              src="/images/under-img.jpg"
+              alt="cocktail"
+              className="abs-center masked-img size-full object-contain"
+            />
+          </div>
+
+          <ul className="space-y-4 will-fade">
+            {featureLists.map((feature, index) => (
+              <li key={index} className="flex items-center justify-start gap-2">
+                <img src="/images/check.png" alt="check" />
+                <p className="md:w-fit w-60">{feature}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="masked-container">
+          <h2 className="will-fade">Code qui Convertit, Design qui Captive</h2>
+          <div id="masked-content">
+            <h3>Made with Craft, Poured with Passion</h3>
+            <p>
+              This isn’t just a drink. It’s a carefully crafted moment made just
+              for you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Art;
