@@ -127,39 +127,51 @@
   opacity: 1;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE FIXES (Mobile: Max 768px) ===== */
 @media (max-width: 768px) {
-  #art{
-    padding: 3rem 1rem;
-    position: relative;
-    min-height: auto;
-  }
-  #art .content {
-    flex-direction: column;
-    margin-top: 12rem;
+  #art {
+    padding: 4rem 1rem;
+    min-height: 100vh; /* Garder min-height pour l'effet de pin de GSAP */
   }
 
+  /* Centrer les listes et les faire s'empiler */
+  #art .content {
+    flex-direction: column;
+    margin-top: 4rem; /* Réduire la marge pour que les listes soient visibles */
+    gap: 3rem;
+  }
+  
+  /* S'assurer que les listes prennent toute la largeur en mobile */
+  #art ul {
+    width: 100%;
+    align-items: flex-start;
+    padding: 0 1rem;
+  }
+
+  /* Fixer la largeur du texte de liste (écrase le w-60 du JSX) */
+  #art li p {
+    max-width: 90vw;
+    width: auto;
+  }
+
+  /* Centrer l'image verticalement */
   #art .cocktail-img {
     width: 100%;
     height: 50vh;
-    top: 30%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
-
+  
+  /* Centrer le texte masqué en bas */
   #masked-content {
-    bottom: 12rem;
-  }
-}
-
-@media (max-width: 480px) {
-  #art{
-    padding: -5rem -5rem;
-  }
-  #art .cocktail-img {
-    height: 40vh;
-    top: 30%;
+    position: relative; /* Le sortir du flux pour éviter les chevauchements */
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 4rem;
+    padding: 0 1rem;
+    max-width: 100%;
   }
 
-  #masked-content {
-    bottom: 10rem;
-  }
+  /* Retirer le bloc 480px, car il introduisait des paddings négatifs incorrects */
 }
