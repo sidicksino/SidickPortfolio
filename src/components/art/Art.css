@@ -1,7 +1,7 @@
 /* ===== ART SECTION ===== */
 #art {
-  /* position: relative;
-  min-height: 100dvh; */
+  position: relative;
+  min-height: 100dvh;
   padding: 5rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -129,9 +129,14 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  #art{
+    padding: 3rem 1rem;
+    position: relative;
+    min-height: auto;
+  }
   #art .content {
     flex-direction: column;
-    margin-top: 4rem;
+    margin-top: 12rem;
   }
 
   #art .cocktail-img {
@@ -145,3 +150,16 @@
   }
 }
 
+@media (max-width: 480px) {
+  #art{
+    padding: 2rem 0.5rem;
+  }
+  #art .cocktail-img {
+    height: 40vh;
+    top: 30%;
+  }
+
+  #masked-content {
+    bottom: 10rem;
+  }
+}
