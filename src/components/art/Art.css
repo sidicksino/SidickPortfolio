@@ -140,7 +140,7 @@
     margin-top: 4rem; /* Réduire la marge pour que les listes soient visibles */
     gap: 3rem;
   }
-  
+
   /* S'assurer que les listes prennent toute la largeur en mobile */
   #art ul {
     width: 100%;
@@ -161,7 +161,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   /* Centrer le texte masqué en bas */
   #masked-content {
     position: relative; /* Le sortir du flux pour éviter les chevauchements */
@@ -174,4 +174,7 @@
   }
 
   /* Retirer le bloc 480px, car il introduisait des paddings négatifs incorrects */
+  #art .cocktail-img img {
+    mask-size: 80%;
+  }
 }
