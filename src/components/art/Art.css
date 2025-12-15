@@ -178,7 +178,7 @@
     opacity: 0;
   }
 
-  .nonOnMobile {
+  #art content ul .nonOnMobile {
     display: none;
   }
 }
