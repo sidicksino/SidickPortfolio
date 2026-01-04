@@ -130,47 +130,70 @@
 /* ===== RESPONSIVE FIXES (Mobile: Max 768px) ===== */
 @media (max-width: 768px) {
   #art {
-    padding: 4rem 1rem;
-    min-height: 100vh; /* Garder min-height pour l'effet de pin de GSAP */
+    padding: 6rem 1rem 2rem; /* Add padding top to not hide behind navbar */
+    min-height: auto; /* Remove min-height constraint */
+    display: block; /* Allow natural flow */
   }
 
-  /* Centrer les listes et les faire s'empiler */
+  /* Improve contrast for the main title */
+  #art > .container > h2 {
+    font-size: 3.5rem;
+    color: #e0e0e0; /* Lighter color for visibility */
+    margin-bottom: 2rem;
+  }
+
+  /* Stack content vertically with proper spacing */
   #art .content {
     flex-direction: column;
-    margin-top: 4rem; /* Réduire la marge pour que les listes soient visibles */
-    gap: 3rem;
+    margin-top: 1rem;
+    gap: 2rem;
   }
 
-  /* S'assurer que les listes prennent toute la largeur en mobile */
+  /* List items styling */
   #art ul {
     width: 100%;
     align-items: flex-start;
-    padding: 0 1rem;
+    padding: 0;
   }
 
-  /* Fixer la largeur du texte de liste (écrase le w-60 du JSX) */
-  #art li p {
-    max-width: 90vw;
-    width: auto;
-  }
-
-  /* Centrer l'image verticalement */
+  /* Image container - Remove absolute positioning to stop overlap */
   #art .cocktail-img {
+    position: relative;
     width: 100%;
-    height: 50vh;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    height: 40vh; /* Reduced height */
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 2rem 0;
+    border-radius: 1.5rem;
+  }
+
+  /* Image scaling */
+  #art .cocktail-img img {
+    mask-size: 100%;
+    object-fit: cover;
   }
 
   /* Centrer le texte masqué en bas */
+  /* Ensure text below image is visible */
   #masked-content {
-    position: relative; /* Le sortir du flux pour éviter les chevauchements */
+    position: relative;
+    opacity: 1 !important; /* Force visibility in case JS animation fails/delays */
     bottom: auto;
     left: auto;
     transform: none;
-    margin-top: 4rem;
-    padding: 0 1rem;
+    margin-top: 2rem;
+    padding-bottom: 3rem;
+    width: 100%;
     max-width: 100%;
+  }
+
+  #art .masked-container {
+    margin-top: 0;
+  }
+  
+  #art .masked-container h2 {
+      font-size: 2rem;
   }
 
   /* Retirer le bloc 480px, car il introduisait des paddings négatifs incorrects */
