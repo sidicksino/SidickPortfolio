@@ -10,14 +10,14 @@ const Art = () => {
  useGSAP(() => {
 	const start = isMobile ? 'top top' : 'top top';
 	
-     const maskTimeline = gsap.timeline({
-      scrollTrigger: {
+	const maskTimeline = gsap.timeline({
+     scrollTrigger: {
         trigger: '#art',
-        start: 'top top',
+        start, // Utilise 'top top' en desktop et mobile
         end: 'bottom center',
         scrub: 1.5,
-        pin: !isMobile // Disable pinning on mobile
-      }
+        pin: true
+     }
     })
 	
 	maskTimeline
@@ -32,7 +32,7 @@ const Art = () => {
 		<h2 className="will-fade ">Sidick Sino</h2>
 		
 		<div className="content">
-		 <ul className="space-y-4 will-fade">
+		 <ul className="space-y-4 will-fade nonOnMobile">
 			{goodLists.map((feature, index) => (
 			 <li key={index} className="flex items-center gap-2">
 				<img src="/images/check.png" alt="check" />
