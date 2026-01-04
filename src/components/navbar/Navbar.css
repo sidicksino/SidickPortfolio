@@ -453,3 +453,19 @@
     font-size: 1.2rem;
   }
 }
+
+/* Active link style for ScrollSpy */
+.nav-menu li a.active {
+  color: var(--primary);
+}
+
+.nav-menu li a.active::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .nav-menu li a.active {
+    background: rgba(231, 72, 200, 0.1);
+    border-radius: 8px;
+  }
+}

@@ -7,9 +7,14 @@ import { CgProfile } from "react-icons/cg";
 import LanguageToggle from "../LanguageToggle";
 import { MenuIcon, HomeIcon, SkillsIcon, ProjectsIcon, ServicesIcon } from "../common/Icons";
 
+import { useActiveSection } from "../../hooks/useActiveSection";
+
+const SECTION_IDS = ["home", "about", "skills", "projects", "contact", "services"];
+
 const Navbar = ({ scrolled = false }) => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const activeSection = useActiveSection(SECTION_IDS);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -36,7 +41,7 @@ const Navbar = ({ scrolled = false }) => {
 
       <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
         <li>
-          <a href="#home">
+          <a href="#home" className={activeSection === "home" ? "active" : ""}>
             <span className="mobile-icon">
               <HomeIcon />
             </span>
@@ -44,7 +49,7 @@ const Navbar = ({ scrolled = false }) => {
           </a>
         </li>
         <li>
-          <a href="#about">
+          <a href="#about" className={activeSection === "about" ? "active" : ""}>
             <span className="mobile-icon">
               <CgProfile/>
             </span>
@@ -52,7 +57,7 @@ const Navbar = ({ scrolled = false }) => {
           </a>
         </li>
         <li>
-          <a href="#skills">
+          <a href="#skills" className={activeSection === "skills" ? "active" : ""}>
             <span className="mobile-icon">
               <SkillsIcon />
             </span>
@@ -60,7 +65,7 @@ const Navbar = ({ scrolled = false }) => {
           </a>
         </li>
         <li>
-          <a href="#projects">
+          <a href="#projects" className={activeSection === "projects" ? "active" : ""}>
             <span className="mobile-icon">
               <ProjectsIcon />
             </span>
@@ -68,7 +73,7 @@ const Navbar = ({ scrolled = false }) => {
           </a>
         </li>
         <li>
-          <a href="#contact">
+          <a href="#contact" className={activeSection === "contact" ? "active" : ""}>
             <span className="mobile-icon">
               <RiContactsBook2Line />
             </span>
@@ -76,7 +81,7 @@ const Navbar = ({ scrolled = false }) => {
           </a>
         </li>
         <li>
-          <a href="#services">
+          <a href="#services" className={activeSection === "services" ? "active" : ""}>
             <span className="mobile-icon">
               <ServicesIcon />
             </span>

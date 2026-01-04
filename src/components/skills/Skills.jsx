@@ -1,8 +1,11 @@
 import "./Skills.css";
-import { FaDatabase, FaCode, FaChartBar } from "react-icons/fa";
+import "./Skills.css";
+// Icons imported in siteData.js
 import SkillsPhoto from "../../assets/skills.png";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
+
+import { skillsData } from "../../data/siteData";
 
 const Skills = () => {
   const { t } = useTranslation();
@@ -21,53 +24,22 @@ const Skills = () => {
       <div className="skills-container">
         {/* LEFT SIDE */}
         <div className="skills-info">
-          <div className="skill-category">
-            <div className="icon">
-              <FaChartBar />
+          {skillsData.map((skill) => (
+            <div key={skill.id} className="skill-category">
+              <div className="icon">
+                <skill.icon />
+              </div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="text-blocks"
+              >
+                <h3>{t(skill.titleKey)}</h3>
+                <p>{skill.desc}</p>
+              </motion.div>
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-blocks"
-            >
-              <h3>{t('skills.data')}</h3>
-              <p>
-                R, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau,
-                Matplotlib, Seaborn
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="skill-category">
-            <div className="icon">
-              <FaCode />
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-blocks"
-            >
-              <h3>{t('skills.frontend')}</h3>
-              <p>HTML, CSS, JavaScript, React.js, React Native</p>
-            </motion.div>
-          </div>
-
-          <div className="skill-category">
-            <div className="icon">
-              <FaDatabase />
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-blocks"
-            >
-              <h3>{t('skills.backend')}</h3>
-              <p>Python, Node.js, SQL, MySQL, PostgreSQL, MongoDB</p>
-            </motion.div>
-          </div>
+          ))}
         </div>
 
         {/* RIGHT SIDE */}

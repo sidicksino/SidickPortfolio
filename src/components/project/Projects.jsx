@@ -1,51 +1,14 @@
 import { motion } from "framer-motion";
 import {
-  FaLaptopCode,
-  FaMobileAlt,
-  FaPaintBrush,
-  FaBrain,
   FaArrowRight,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Projects.css";
 import { useTranslation } from 'react-i18next';
 
-const ProjectsSection = () => {
-  const projects = [
-    {
-      id: "web-app",
-      titleKey: 'projects.webProjects',
-      icon: <FaLaptopCode />,
-      desc: 'projects.webDescription',
-      link: "/projects/web",
-      color: "#6366f1",
-    },
-    {
-      id: "mobile-app",
-      titleKey: 'projects.mobileProjects',
-      icon: <FaMobileAlt />,
-      desc: 'projects.mobileDescription',
-      link: "/projects/mobile",
-      color: "#8b5cf6",
-    },
-    {
-      id: "design",
-      titleKey: 'projects.designProjects',
-      icon: <FaPaintBrush />,
-      desc: 'projects.designDescription',
-      link: "/projects/design",
-      color: "#ec4899",
-    },
-    {
-      id: "ml-ai",
-      titleKey: 'projects.aiProjects',
-      icon: <FaBrain />,
-      desc: 'projects.aiDescription',
-      link: "/projects/ai",
-      color: "#f59e0b",
-    },
-  ];
+import { mainProjectsData } from "../../data/siteData";
 
+const ProjectsSection = () => {
   const { t } = useTranslation();
 
   return (
@@ -60,7 +23,7 @@ const ProjectsSection = () => {
       </motion.h2>
 
       <div className="projects-grid">
-        {projects.map((project) => (
+        {mainProjectsData.map((project) => (
           <motion.div
             key={project.id}
             className="project-card"
@@ -76,7 +39,7 @@ const ProjectsSection = () => {
               whileHover={{ rotate: 15, scale: 1.2 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
-              {project.icon}
+              <project.icon /> 
             </motion.div>
 
               <motion.h3

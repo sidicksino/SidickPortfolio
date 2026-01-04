@@ -6,6 +6,8 @@ import Dark from "../../assets/image.png";
 import Slight from "../../assets/sdark.png";
 import { useTheme } from "../theme/useTheme";
 
+import { servicesData } from "../../data/siteData";
+
 const Services = () => {
   const { theme } = useTheme();
 
@@ -55,9 +57,9 @@ const Services = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <li>{t('services.webDevelopment')}</li>
-            <li>{t('services.uiDesign')}</li>
-            <li>{t('services.consulting')}</li>
+            {servicesData.map((serviceKey, index) => (
+              <li key={index}>{t(serviceKey)}</li>
+            ))}
           </motion.ul>
 
           <a href="#contact" className="cta-button">
