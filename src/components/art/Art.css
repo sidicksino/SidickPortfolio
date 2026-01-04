@@ -136,7 +136,7 @@
 
   /* Centrer les listes et les faire s'empiler */
   #art .content {
-    flex-direction: column;
+    /* flex-direction: column; */
     margin-top: 4rem; /* Réduire la marge pour que les listes soient visibles */
     gap: 3rem;
   }
