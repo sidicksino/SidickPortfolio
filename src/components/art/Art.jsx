@@ -10,14 +10,14 @@ const Art = () => {
  useGSAP(() => {
 	const start = isMobile ? 'top top' : 'top top';
 	
-	const maskTimeline = gsap.timeline({
-     scrollTrigger: {
+     const maskTimeline = gsap.timeline({
+      scrollTrigger: {
         trigger: '#art',
-        start, // Utilise 'top top' en desktop et mobile
+        start: 'top top',
         end: 'bottom center',
         scrub: 1.5,
-        pin: true
-     }
+        pin: !isMobile // Disable pinning on mobile
+      }
     })
 	
 	maskTimeline
