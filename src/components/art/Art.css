@@ -130,15 +130,15 @@
 /* ===== RESPONSIVE FIXES (Mobile: Max 768px) ===== */
 @media (max-width: 768px) {
   #art {
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
     min-height: 100vh; /* Garder min-height pour l'effet de pin de GSAP */
   }
 
   /* Centrer les listes et les faire s'empiler */
   #art .content {
     /* flex-direction: column; */
-    margin-top: 4rem; /* Réduire la marge pour que les listes soient visibles */
-    gap: 3rem;
+    margin-top: 1rem; /* Réduire la marge pour que les listes soient visibles */
+    gap: 1rem;
   }
 
   /* S'assurer que les listes prennent toute la largeur en mobile */
