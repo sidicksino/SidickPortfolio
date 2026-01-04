@@ -1,75 +1,25 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import "./ProjectsPage.css";
-import SinoAi from "../../assets/sino-ai.png";
-import PimaDiabetes from "../../assets/pima.png";
-import Disease from "../../assets/disease.png";
-import SinoEcommerce from "../../assets/team-work.png";
+// Images are now imported in projectData.js
+import { aiProjects as projects } from "../../data/projectData";
+import { Helmet } from "react-helmet-async";
 
 const AIProjects = () => {
-  const projects = [
-    {
-      id: 1,
-      titleKey: 'projects.items.ai.1.title',
-      descriptionKey: 'projects.items.ai.1.description',
-      technologies: [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "OpenAI API",
-        "Tailwind CSS",
-        "Axios",
-      ],
-      image: SinoAi,
-      liveUrl: "https://sinoai-chi.vercel.app/",
-      // githubUrl: "https://github.com/sidicksino/sino_Ai",
-    },
-    {
-
-      id: 2,
-      titleKey: 'projects.items.ai.2.title',
-      descriptionKey: 'projects.items.ai.2.description',
-      technologies: [
-        "Python",
-        "Scikit-learn",
-        "Pandas",
-        "Numpy",
-        "Streamlit",
-        "Joblib",
-        "GitHub",
-      ],
-      image: PimaDiabetes,
-      liveUrl:
-        "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
-      // githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
-    },
-    {
-      id: 3,
-      titleKey: 'projects.items.ai.3.title',
-      descriptionKey: 'projects.items.ai.3.description',
-      technologies: [
-        "Python",
-        "Scikit-learn",
-        "Pandas",
-        "Numpy",
-        "Streamlit",
-        "Joblib",
-        "GitHub",
-      ],
-      image: Disease,
-      liveUrl: "https://sidicksino-disease-risk-prediction-app-aqgd49.streamlit.app/",
-      // githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
-    },
-  ];
-
   const { t } = useTranslation();
 
   return (
-    <div className="projects-page">
+    <>
+      <Helmet>
+        <title>{t('projectsPage.aiTitle')} | Sidick Sino</title>
+        <meta name="description" content={t('projectsPage.aiIntro')} />
+      </Helmet>
+      <div className="projects-page">
       <h1>{t('projectsPage.aiTitle')}</h1>
       <p>{t('projectsPage.aiIntro')}</p>
 
       <div className="projects-list">
+
         {projects.map((project) => (
           <div key={project.id} className="project-wrapper">
             <div className="project-image-container">
@@ -116,6 +66,7 @@ const AIProjects = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

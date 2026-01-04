@@ -1,55 +1,25 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import "./ProjectsPage.css";
-import Ecomerce from "../../assets/ecomerce.png";
-import TchadInfos from "../../assets/tchadInfos.png";
-import Insta from "../../assets/insta.png";
-import SinoEcommerce from "../../assets/team-work.png";
+// Images are now imported in projectData.js
+import { designProjects as projects } from "../../data/projectData";
+import { Helmet } from "react-helmet-async";
 
 const DesignProjects = () => {
-  const projects = [
-    {
-      id: 1,
-      titleKey: 'projects.items.design.1.title',
-      descriptionKey: 'projects.items.design.1.description',
-      technologies: ["Figma"],
-      image: TchadInfos,
-      viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=477-727&p=f&t=DtBIxtgBPNmUUJ8u-0",
-    },       
-    {
-      id: 2,
-      titleKey: 'projects.items.design.2.title',
-      descriptionKey: 'projects.items.design.2.description',
-      technologies: ["Figma"],
-      image: Ecomerce,
-      viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=0-1&p=f&t=DtBIxtgBPNmUUJ8u-0",
-    },  
-    {
-      id: 3,
-      titleKey: 'projects.items.design.3.title',
-      descriptionKey: 'projects.items.design.3.description',
-      technologies: ["Figma"],
-      image: SinoEcommerce,
-      viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=173-168&p=f&t=DtBIxtgBPNmUUJ8u-0",
-    },       
-    {
-      id: 4,
-      titleKey: 'projects.items.design.4.title',
-      descriptionKey: 'projects.items.design.4.description',
-      technologies: ["Figma"],
-      image: SinoEcommerce,
-      viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=156-132&t=DtBIxtgBPNmUUJ8u-0",
-    }      
-  ];
-
   const { t } = useTranslation();
 
   return (
-    <div className="projects-page">
+    <>
+      <Helmet>
+        <title>{t('projectsPage.designTitle')} | Sidick Sino</title>
+        <meta name="description" content={t('projectsPage.designIntro')} />
+      </Helmet>
+      <div className="projects-page">
       <h1>{t('projectsPage.designTitle')}</h1>
       <p>{t('projectsPage.designIntro')}</p>
   
       <div className="projects-list">
+
         {projects.map((project) => (
           <div key={project.id} className="project-wrapper">
             <div className="project-image-container">
@@ -87,6 +57,7 @@ const DesignProjects = () => {
         ))}
       </div>
     </div>
+    </>
   );  
 };
 
