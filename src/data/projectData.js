@@ -23,7 +23,7 @@ export const webProjects = [
     ],
     image: SinoCoffee,
     liveUrl: "https://sino-coffee.vercel.app/",
-    githubUrl: "https://github.com/sidicksino/SinoCoffee",
+    // githubUrl: "https://github.com/sidicksino/SinoCoffee",
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ export const webProjects = [
     ],
     image: SinoAi,
     liveUrl: "https://sinoai-chi.vercel.app/",
-    githubUrl: "https://github.com/sidicksino/sino_Ai",
+    // githubUrl: "https://github.com/sidicksino/sino_Ai",
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ export const webProjects = [
     technologies: ["HTML", "CSS", "JavaScript", "MySQL"],
     image: Insta,
     liveUrl: "https://insta-uxnh.onrender.com/",
-    githubUrl: "https://github.com/sidicksino/insta_abeche",
+    // githubUrl: "https://github.com/sidicksino/insta_abeche",
   },
   {
     id: 4,
@@ -57,7 +57,7 @@ export const webProjects = [
     technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
     image: SinoEcommerce,
     liveUrl: "https://team-work-30tj.onrender.com/",
-    githubUrl: "https://github.com/sidicksino/team_work",
+    // githubUrl: "https://github.com/sidicksino/team_work",
   },
 ];
 
@@ -81,7 +81,7 @@ export const mobileProjects = [
     ],
     image: "",
     liveUrl: "#",
-    githubUrl: "https://github.com/sidicksino/Boutique_Frontend",
+    // githubUrl: "https://github.com/sidicksino/Boutique_Frontend",
   },
   {
     id: 2,
@@ -98,7 +98,7 @@ export const mobileProjects = [
     ],
     image: TchadInfos,
     liveUrl: "#",
-    githubUrl: "https://github.com/sidicksino/tchadInfos_version1",
+    // githubUrl: "https://github.com/sidicksino/tchadInfos_version1",
   },
   {
     id: 3,
@@ -119,7 +119,7 @@ export const mobileProjects = [
     ],
     image: Wallet,
     liveUrl: "#",
-    githubUrl: "https://github.com/sidicksino/wallet",
+    // githubUrl: "https://github.com/sidicksino/wallet",
   },
   {
     id: 4,
@@ -128,7 +128,7 @@ export const mobileProjects = [
     technologies: ["React Native", "Expo", "TypeScript", "CSS", "Convex"],
     image: "",
     liveUrl: "#",
-    githubUrl: "https://github.com/sidicksino/to-do",
+    // githubUrl: "https://github.com/sidicksino/to-do",
   },
 ];
 
@@ -182,7 +182,7 @@ export const aiProjects = [
     ],
     image: SinoAi,
     liveUrl: "https://sinoai-chi.vercel.app/",
-    githubUrl: "https://github.com/sidicksino/sino_Ai",
+    // githubUrl: "https://github.com/sidicksino/sino_Ai",
   },
   {
 
@@ -201,7 +201,7 @@ export const aiProjects = [
     image: PimaDiabetes,
     liveUrl:
       "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
-    githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
+    // githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
   },
   {
     id: 3,
@@ -218,6 +218,6 @@ export const aiProjects = [
     ],
     image: Disease,
     liveUrl: "https://sidicksino-disease-risk-prediction-app-aqgd49.streamlit.app/",
-    githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
+    // githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
   },
 ];
