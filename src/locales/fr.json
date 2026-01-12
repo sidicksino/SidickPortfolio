@@ -54,7 +54,6 @@
     "consulting": "Conseil Technologique",
     "consultingDesc": "Conseils stratégiques pour vos projets technologiques et transformation numérique"
   },
-
   "projects": {
     "title": "Mes Projets",
     "viewProject": "Voir le Projet",
@@ -67,23 +66,30 @@
     "designProjects": "Projets Design",
     "designDescription": "Designs UI/UX créatifs qui privilégient l'engagement de l'utilisateur et une interaction fluide.",
     "aiProjects": "Projets ML & IA",
-    "aiDescription": "Solutions de Machine Learning et d'IA de pointe pour des problèmes concrets."
-    ,
+    "aiDescription": "Solutions de Machine Learning et d'IA de pointe pour des problèmes concrets.",
     "items": {
       "web": {
         "1": {
+          "title": "AAPT",
+          "description": "Une plateforme web pour l'Association Actions Pour Tous Tchad, promouvant la cohésion sociale et l'entraide communautaire."
+        },
+        "2": {
+          "title": "Académie Royale",
+          "description": "Site web de l'Académie Royale, une institution éducative d'élite à N'Djamena axée sur l'excellence."
+        },
+        "3": {
           "title": "SinoCoffee",
           "description": "SinoCoffee est une application moderne de Sidick, offrant une plateforme rapide et intuitive avec une interface élégante."
         },
-        "2": {
+        "4": {
           "title": "Sino Ai",
           "description": "Une application web IA moderne offrant des fonctionnalités intelligentes et des interactions en temps réel."
         },
-        "3": {
+        "5": {
           "title": "Insta Abeche Website",
           "description": "Un site simple et réactif pour l'Institut d'Abeche, fournissant des informations et services essentiels en ligne."
         },
-        "4": {
+        "6": {
           "title": "Sino Ecommerce Website",
           "description": "Un site e-commerce moderne pour vendre des produits en ligne avec un design épuré et une expérience fluide."
         }

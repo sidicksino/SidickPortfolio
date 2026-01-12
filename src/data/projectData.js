@@ -15,6 +15,32 @@ export const webProjects = [
     descriptionKey: 'projects.items.web.1.description',
     technologies: [
       "React",
+      "Tailwind CSS",
+      "i18next",
+      "Vercel",
+    ],
+    image: "", // Needs an image asset, using placeholder for now or empty if none available
+    liveUrl: "https://aapt-eight.vercel.app/",
+  },
+  {
+    id: 2,
+    titleKey: 'projects.items.web.2.title',
+    descriptionKey: 'projects.items.web.2.description',
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "i18next",
+      "Vercel",
+    ],
+    image: "", // Needs an image asset
+    liveUrl: "https://school-rosy-nine.vercel.app/",
+  },
+  {
+    id: 3,
+    titleKey: 'projects.items.web.3.title',
+    descriptionKey: 'projects.items.web.3.description',
+    technologies: [
+      "React",
       "Vite",
       "Supabase",
       "TypeScript",
@@ -26,9 +52,9 @@ export const webProjects = [
     // githubUrl: "https://github.com/sidicksino/SinoCoffee",
   },
   {
-    id: 2,
-    titleKey: 'projects.items.web.2.title',
-    descriptionKey: 'projects.items.web.2.description',
+    id: 4,
+    titleKey: 'projects.items.web.4.title',
+    descriptionKey: 'projects.items.web.4.description',
     technologies: [
       "React",
       "Node.js",
@@ -42,18 +68,18 @@ export const webProjects = [
     // githubUrl: "https://github.com/sidicksino/sino_Ai",
   },
   {
-    id: 3,
-    titleKey: 'projects.items.web.3.title',
-    descriptionKey: 'projects.items.web.3.description',
+    id: 5,
+    titleKey: 'projects.items.web.5.title',
+    descriptionKey: 'projects.items.web.5.description',
     technologies: ["HTML", "CSS", "JavaScript", "MySQL"],
     image: Insta,
     liveUrl: "https://insta-uxnh.onrender.com/",
     // githubUrl: "https://github.com/sidicksino/insta_abeche",
   },
   {
-    id: 4,
-    titleKey: 'projects.items.web.4.title',
-    descriptionKey: 'projects.items.web.4.description',
+    id: 6,
+    titleKey: 'projects.items.web.6.title',
+    descriptionKey: 'projects.items.web.6.description',
     technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
     image: SinoEcommerce,
     liveUrl: "https://team-work-30tj.onrender.com/",

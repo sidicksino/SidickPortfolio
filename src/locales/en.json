@@ -66,23 +66,30 @@
     "designProjects": "Design Projects",
     "designDescription": "Creative UI/UX designs that prioritize user engagement and seamless interaction.",
     "aiProjects": "ML & AI Projects",
-    "aiDescription": "Cutting-edge machine learning and AI solutions for real-world problems."
-    ,
+    "aiDescription": "Cutting-edge machine learning and AI solutions for real-world problems.",
     "items": {
       "web": {
         "1": {
+          "title": "AAPT",
+          "description": "A web platform for the Association Actions Pour Tous Tchad, promoting social cohesion and community support."
+        },
+        "2": {
+          "title": "Académie Royale",
+          "description": "An official website for Académie Royale, an elite educational institution in N'Djamena focusing on excellence."
+        },
+        "3": {
           "title": "SinoCoffee",
           "description": "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface."
         },
-        "2": {
+        "4": {
           "title": "Sino Ai",
           "description": "A modern AI web application, providing intelligent features and real-time interactions."
         },
-        "3": {
+        "5": {
           "title": "Insta Abeche Website",
           "description": "A simple and responsive website for Institut d'Abeche, providing essential information and services online."
         },
-        "4": {
+        "6": {
           "title": "Sino Ecommerce Website",
           "description": "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience."
         }
