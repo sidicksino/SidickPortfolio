@@ -7,6 +7,8 @@ import TchadInfos from "../assets/tchadInfos.png";
 import Ecomerce from "../assets/ecomerce.png";
 import PimaDiabetes from "../assets/pima.png";
 import Disease from "../assets/disease.png";
+import AAPT from "../assets/aapt.png";
+import ROYAL from "../assets/royal.png";
 
 export const webProjects = [
   {
@@ -16,10 +18,11 @@ export const webProjects = [
     technologies: [
       "React",
       "Tailwind CSS",
+      "Supabase",
       "i18next",
       "Vercel",
     ],
-    image: "", // Needs an image asset, using placeholder for now or empty if none available
+    image: AAPT,
     liveUrl: "https://aapt-eight.vercel.app/",
   },
   {
@@ -29,10 +32,11 @@ export const webProjects = [
     technologies: [
       "React",
       "Tailwind CSS",
+      "Supabase",
       "i18next",
       "Vercel",
     ],
-    image: "", // Needs an image asset
+    image: ROYAL,
     liveUrl: "https://school-rosy-nine.vercel.app/",
   },
   {
