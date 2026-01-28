@@ -82,18 +82,22 @@
           "description": "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface."
         },
         "4": {
+          "title": "SinoAgency",
+          "description": "Risk-Free Web Design. Your Dream Website. Preview It First. Pay Later. We build a custom preview of your future website before you commit."
+        },
+        "5": {
           "title": "Sino Ai",
           "description": "A modern AI web application, providing intelligent features and real-time interactions."
         },
-        "5": {
+        "6": {
           "title": "Insta Abeche Website",
           "description": "A simple and responsive website for Institut d'Abeche, providing essential information and services online."
         },
-        "6": {
+        "7": {
           "title": "Sino Ecommerce Website",
           "description": "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience."
         },
-        "7": {
+        "8": {
           "title": "SINOINFOS",
           "description": "A dynamic news aggregator platform built with Django, featuring real-time content delivery through seamless integration with NewsData.io API."
         }
