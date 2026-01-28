@@ -10,6 +10,7 @@ import Disease from "../assets/disease.png";
 import AAPT from "../assets/aapt.png";
 import News from "../assets/news.png";
 import ROYAL from "../assets/royal.png";
+import SinoAgency from "../assets/sinoagency.png";
 
 export const webProjects = [
   {
@@ -60,8 +61,8 @@ export const webProjects = [
     id: 4,
     titleKey: 'projects.items.web.4.title',
     descriptionKey: 'projects.items.web.4.description',
-    technologies: ["React", "Vite", "TypeScript", "Tailwind CSS"],
-    image: SinoAi,
+    technologies: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
+    image: SinoAgency,
     liveUrl: "https://sinoagency.netlify.app/",
   },
   {
