@@ -8,6 +8,7 @@ import Ecomerce from "../assets/ecomerce.png";
 import PimaDiabetes from "../assets/pima.png";
 import Disease from "../assets/disease.png";
 import AAPT from "../assets/aapt.png";
+import News from "../assets/news.png";
 import ROYAL from "../assets/royal.png";
 
 export const webProjects = [
@@ -88,6 +89,14 @@ export const webProjects = [
     image: SinoEcommerce,
     liveUrl: "https://team-work-30tj.onrender.com/",
     // githubUrl: "https://github.com/sidicksino/team_work",
+  },
+  {
+    id: 7,
+    titleKey: 'projects.items.web.7.title',
+    descriptionKey: 'projects.items.web.7.description',
+    technologies: ["Django", "HTML", "CSS", "JavaScript", "SQLite", "newsdata.io"],
+    image: News,
+    liveUrl: "https://news-7oyn.onrender.com",
   },
 ];
 

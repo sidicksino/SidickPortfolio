@@ -92,6 +92,10 @@
         "6": {
           "title": "Sino Ecommerce Website",
           "description": "Un site e-commerce moderne pour vendre des produits en ligne avec un design épuré et une expérience fluide."
+        },
+        "7": {
+          "title": "SINOINFOS",
+          "description": "Sur ce site, j'utilise Django pour récupérer des données de newsdata.io et les afficher."
         }
       },
       "ai": {
