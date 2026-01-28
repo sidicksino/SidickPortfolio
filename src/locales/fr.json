@@ -95,7 +95,7 @@
         },
         "7": {
           "title": "SINOINFOS",
-          "description": "Sur ce site, j'utilise Django pour récupérer des données de newsdata.io et les afficher."
+          "description": "Une plateforme d'agrégation d'actualités dynamique construite avec Django, intégrant du contenu en temps réel via l'API NewsData.io."
         }
       },
       "ai": {
