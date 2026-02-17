@@ -37,10 +37,10 @@ function App() {
                 <Navbar />
                 <Hero />
                 <About />
-                <Art />
                 <Skills />
                 <Projects />
                 <Services />
+                <Art />
                 <Contact />
                 <Footer />
               </>
