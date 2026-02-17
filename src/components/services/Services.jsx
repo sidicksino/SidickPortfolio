@@ -5,6 +5,7 @@ import Service from "../../assets/rr.png";
 import Dark from "../../assets/image.png";
 import Slight from "../../assets/sdark.png";
 import { useTheme } from "../theme/useTheme";
+import Art from "../art/Art";
 
 import { servicesData } from "../../data/siteData";
 
@@ -15,7 +16,7 @@ const Services = () => {
 
   return (
     <section className="services-section" id="services">
-      
+      <Art />
         {/* IMAGE .rrrr that changes based on theme */}
       <motion.div
         className="rrrr"
