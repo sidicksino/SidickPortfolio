@@ -60,7 +60,7 @@ export const skillsData = [
     id: "backend",
     icon: FaDatabase,
     titleKey: 'skills.backend',
-    desc: "Python, Node.js, SQL, MySQL, PostgreSQL, MongoDB",
+    desc: "Python, Node.js, SQL, MySQL, MongoDB",
   },
 ];
 
