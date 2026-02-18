@@ -16,7 +16,7 @@ const Services = () => {
 
   return (
     <section className="services-section" id="services">
-      <Art />
+      
         {/* IMAGE .rrrr that changes based on theme */}
       <motion.div
         className="rrrr"
@@ -80,6 +80,7 @@ const Services = () => {
           </div>
         </motion.div>
       </div>
+      <Art />
     </section>
   );
 };
