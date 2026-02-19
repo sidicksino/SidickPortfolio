@@ -5,7 +5,6 @@ import Service from "../../assets/rr.png";
 import Dark from "../../assets/image.png";
 import Slight from "../../assets/sdark.png";
 import { useTheme } from "../theme/useTheme";
-import Art from "../art/Art";
 
 import { servicesData } from "../../data/siteData";
 
@@ -80,7 +79,6 @@ const Services = () => {
           </div>
         </motion.div>
       </div>
-      <Art />
     </section>
   );
 };
