@@ -12,7 +12,7 @@ import Contact from "./components/contact/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import ThemeToggle from "./components/ThemeToggle";
 import HeroPage from "./components/pages/HeroPage";
-import Art from "../art/Art";
+import Art from "./components/art/Art";
 
 import { ScrollTrigger, SplitText } from "gsap/all";
 import gsap from "gsap";
