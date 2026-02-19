@@ -40,7 +40,7 @@ function App() {
                 <Skills />
                 <Projects />
                 <Services />
-                <Art />
+                {/* <Art /> */}
                 <Contact />
                 <Footer />
               </>
