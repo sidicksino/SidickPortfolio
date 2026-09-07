@@ -18,8 +18,7 @@ const ProjectsSection = () => {
         whileInView={{ opacity: 1, translateX: 0 }}
         transition={{ duration: 1 }}
       >
-        <span className="span1">{t('projects.title')} </span>{" "}
-        <span className="span2">✨</span>
+        <span className="span1">{t('projects.title')}</span>
       </motion.h2>
 
       <div className="projects-grid">

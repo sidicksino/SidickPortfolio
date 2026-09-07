@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import "./Hero.css";
-import heroImage from "../../assets/sidick.jpg";
+import heroImage from "../../assets/hero-cutout.webp";
 import { motion } from "framer-motion";
 import MyPDF from "../../assets/sidick.pdf";
 import { Link } from "react-router-dom";

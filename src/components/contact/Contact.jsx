@@ -62,7 +62,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 1 }}
           >
-            <span>{t("contact.title")}</span> ✨
+            <span>{t("contact.title")}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, scale: 0 }}

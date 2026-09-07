@@ -56,7 +56,6 @@ const HeroPage = () => {
         </Link>
         <div className="nav-logo">
           <img src={Logo} loading="lazy" alt="Logo" />
-          <span className="nav-active" aria-hidden="true"></span>
           <p className="nav-logo-text">
             <span>Sidick</span>Sino
           </p>

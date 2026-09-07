@@ -27,7 +27,6 @@ const Navbar = ({ scrolled = false }) => {
         <p className="nav-logo-text">
           <span>Sidick</span>Sino
         </p>
-        <span className="nav-active" aria-hidden="true"></span>
       </div>
 
       {/* Nouveau bouton avec SVG animé */}
