@@ -328,6 +328,42 @@ That's deliberate — capping them to 100vh would shrink the portrait to ~150px
 wide. The name, tagline and buttons are all above the fold there, which is what
 matters; the portrait below is a scroll reward.
 
+#### 2.0c Bottom-edge alignment ✅ **Done** (2026-09-07)
+
+Spotted by Sidick from a zoomed screenshot: the figure didn't line up with the
+bottom of the grid rectangles. Investigating found **three competing horizontal
+edges** stacked within 40px:
+
+1. the grid's bottom boundary,
+2. where the figure faded out,
+3. the top of the About section.
+
+- [x] **Fade set to `72% → 100%`.** Briefly shortened to `93% → 100%` to stop
+      the figure floating, but that removed an effect Sidick liked: with a long
+      fade the background grid reads **through** the legs, so the figure looks
+      like it recedes behind the rectangles rather than being chopped off.
+      The two goals weren't in conflict — the long fade is back, with the
+      gradient reaching zero at exactly `100%` (the element bottom = hero
+      bottom = where the grid stops) instead of the original `97%`, which left
+      him dissolving a few px shy of the seam.
+
+> **Keep the long fade.** `72% → 100%` is deliberate: the see-through legs are
+> the intended look. Don't "tidy" it to a short fade.
+- [x] **Grid anchored to the bottom** (`background-position: left bottom`). It
+      tiled from the top, so the final row was cut mid-cell and the rectangles
+      never completed at the section edge. Any partial row now falls at the
+      top, behind the navbar.
+- [x] **`margin-bottom: 40px` removed from `.hero`** — it exposed a 40px band
+      of bare body background between the grid and About, reading as an extra
+      stripe under the figure. About supplies its own top padding.
+
+Result: grid end, figure base and About top all land on the **same pixel**
+(882 at 1728×962). Verified aligned at 1280 / 1440 / 1728 / 1920.
+
+Tablet and mobile intentionally differ — the stacked layout keeps 100px of
+bottom padding, so the figure floats rather than sitting on the seam. Checked
+at 390px: the short fade still dissolves cleanly there, no hard edge.
+
 **Still open from this work:**
 
 - [ ] The generated expression is neutral-stern rather than the "slight smile"

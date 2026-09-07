@@ -58,7 +58,9 @@
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  margin-bottom: 40px;
+  /* No bottom margin: it exposed a 40px band of bare body background between
+     the grid's bottom edge and the About section, reading as an extra stripe
+     under the figure. About brings its own top padding. */
 }
 
 .hero.animate {
@@ -224,6 +226,14 @@
   max-height: calc(100vh - 280px);
   /* Lets the figure sit on the section's baseline instead of floating */
   margin-bottom: -1px;
+  /* The source photo is cropped mid-shin. A long fade from ~72% down lets the
+     background grid read *through* the legs, so the figure looks like it
+     recedes behind the rectangles rather than being chopped off. The gradient
+     reaches zero at exactly 100% — the element's bottom, which is also the
+     hero's bottom and where the grid stops — so he dissolves right on that
+     seam instead of a few px above it. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
   transition: transform 0.5s ease;
 }
 
@@ -417,6 +427,11 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 45px 45px;
   /* taille des carreaux */
+  /* Anchor the grid to the bottom so a full cell completes on the hero's
+     bottom edge — the figure's base then lands on a real grid line instead
+     of part-way through a row. Any partial row falls at the top, behind
+     the navbar. */
+  background-position: left bottom;
   opacity: 0.45;
   /* légère visibilité */
 }
