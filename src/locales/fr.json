@@ -198,5 +198,12 @@
     "followMe": "Me Suivre",
     "navigation": "Navigation",
     "contact": "Contact"
+  },
+  "featured": {
+    "title": "Projets en Vedette",
+    "subtitle": "Une sélection de projets que j'ai conçus et réalisés — plateformes clients, produits et applications de machine learning.",
+    "viewLive": "Voir le site",
+    "seeAll": "Voir les {{count}} projets",
+    "viewDetails": "Voir les détails"
   }
 }

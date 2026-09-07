@@ -269,3 +269,37 @@ export const aiProjects = [
     // githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
   },
 ];
+
+/* ---------------------------------------------------------------------------
+   FEATURED — what appears on the homepage.
+
+   The homepage used to show only four category cards with generic copy, so a
+   visitor saw no evidence of actual work in the first screen. These are the
+   real builds, surfaced directly.
+
+   To change what's featured: edit this list. Each entry references a project
+   that already exists above by its id, so titles, descriptions, images, tech
+   and links stay in one place. `category` drives the card's colour and label.
+
+   Aim for 4–6. More than six and the section stops feeling curated.
+--------------------------------------------------------------------------- */
+const pick = (list, id) => {
+  const found = list.find((p) => p.id === id);
+  if (!found) throw new Error(`featuredProjects: no project with id ${id}`);
+  return found;
+};
+
+export const featuredProjects = [
+  { ...pick(webProjects, 1), category: "web" }, // AAPT — NGO platform
+  { ...pick(webProjects, 2), category: "web" }, // Académie Royale
+  { ...pick(webProjects, 8), category: "web" }, // SINOINFOS — Django aggregator
+  { ...pick(mobileProjects, 2), category: "mobile" }, // TchadInfos
+  { ...pick(aiProjects, 2), category: "ai" }, // Pima Diabetes
+  { ...pick(aiProjects, 3), category: "ai" }, // Disease Prediction
+];
+
+export const totalProjectCount =
+  webProjects.length +
+  mobileProjects.length +
+  designProjects.length +
+  aiProjects.length;

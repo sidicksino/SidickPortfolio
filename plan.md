@@ -31,7 +31,7 @@ Update this table whenever a phase starts or finishes. Status markers:
 | 0 — Critical fixes | ✅ **Done** | 2026-09-07 | All 5 items verified in-browser |
 | 1 — Design system | ✅ **Done** | 2026-09-07 | 11 `:root` blocks → 1; navy purged |
 | 2 — Apply the system | ✅ **Done** | 2026-09-07 | One accent everywhere; 27 → 8 stray hex |
-| 3 — Show the work | ⬜ Not started | — | **Biggest win** |
+| 3 — Show the work | ✅ **Done** | 2026-09-07 | Featured grid live on the homepage |
 | 4 — Typography | ⬜ Not started | — | |
 | 5 — Light mode | ⬜ Not started | — | |
 | 6 — Polish & a11y | ⬜ Not started | — | |
@@ -563,7 +563,58 @@ Magenta, green and brown across three adjacent items.
 
 ---
 
-## Phase 3 — Show the work, not the categories
+## Phase 3 — Show the work, not the categories ✅ **DONE** (2026-09-07)
+
+New `Featured` section on the homepage, above the category cards. Six real
+projects with their own screenshots, descriptions, tech and links.
+
+**Which six, and how to change them:** `featuredProjects` at the bottom of
+`src/data/projectData.js`. Each entry references an existing project *by id*,
+so titles, images, tech and URLs stay defined once. Editing that one list is
+the whole job — aim for 4–6, since more stops feeling curated.
+
+Currently: AAPT, Académie Royale, SINOINFOS (web) · TchadInfos (mobile) ·
+Pima Diabetes, Disease Prediction (ML). Chosen for real clients plus technical
+range across dev and ML — swap freely, it's a taste call.
+
+- [x] `Featured.jsx` + `Featured.css`, wired into `App.jsx` before `<Projects />`
+- [x] Category pills coloured from the `--cat-*` aliases, so the featured grid
+      and the category cards below agree on what colour "web" is
+- [x] Whole card is the link, with a visible `:focus-visible` ring
+- [x] Three tech chips per card (`technologies.slice(0, 3)`)
+- [x] `featured.*` strings added to **both** `en.json` and `fr.json`; key parity
+      between locales verified programmatically
+- [x] `Browse all 19 projects` CTA — count derived from `totalProjectCount`,
+      not typed by hand, so it can't go stale
+- [x] Reduced-motion guard; entrance animations only
+
+### Two problems this surfaced
+
+**All four mobile projects have `liveUrl: "#"`** — they're apps, so there is no
+public web URL. The card would have looked clickable and gone nowhere. Cards
+without a real URL now route to their category page instead, with the CTA
+reading *"See details →"* rather than *"Visit site"*. Verified by clicking
+through to `/projects/mobile`.
+
+**`SinoBoutique` and `To-Do` have no screenshot in `projectData.js`**, so
+`MobileProjects.jsx` was rendering `<img src="">` — React warns about this and
+the browser re-requests the page. Pre-existing, but Phase 3 made that page far
+more reachable, so it's fixed: the image block is conditional now.
+
+- [ ] **Add screenshots for SinoBoutique and To-Do**, then they can be featured
+      too. Two of your 19 projects currently have no image at all.
+
+### Still worth doing (yours, not mine)
+
+- [ ] **Sharpen the descriptions.** They're currently adjective-led ("modern",
+      "sleek", "seamless"). Concrete outcomes read far better — what it does,
+      for whom, and any real number you can stand behind. I deliberately did
+      not invent metrics.
+- [ ] The subtitle originally claimed "every one is live" — corrected, since
+      TchadInfos isn't. Keep an eye on that if you change the featured six.
+
+<details>
+<summary>Original Phase 3 instructions (superseded)</summary>
 
 **The most valuable content change on this list.**
 
@@ -584,6 +635,8 @@ zero evidence that you have built anything.
       "Bilingual news platform for Chad, 2k monthly readers" beats
       "ultra-fast and elegant"
 - [ ] Make the whole card clickable, not just the button
+
+</details>
 
 ---
 

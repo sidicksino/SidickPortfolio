@@ -22,13 +22,19 @@ const MobileProjects = () => {
 
         {projects.map((project) => (
           <div key={project.id} className="project-wrapper">
-            <div className="project-image-container">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="project-image"
-              />
-            </div>
+            {/* SinoBoutique and To-Do have no screenshot in projectData yet.
+                Rendering the <img> anyway gave src="" — which React warns
+                about and which makes the browser re-request the page. */}
+            {project.image && (
+              <div className="project-image-container">
+                <img
+                  src={project.image}
+                  alt={t(project.titleKey)}
+                  className="project-image"
+                  loading="lazy"
+                />
+              </div>
+            )}
             <div className="project-card1">
               <h3 className="project-title">{t(project.titleKey)}</h3>
               <p className="project-description">{t(project.descriptionKey)}</p>

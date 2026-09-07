@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
 import Skills from "./components/skills/Skills";
+import Featured from "./components/featured/Featured";
 import Projects from "./components/project/Projects";
 import Services from "./components/services/Services";
 import Footer from "./components/footer/Footer";
@@ -38,6 +39,8 @@ function App() {
                 <Hero />
                 <About />
                 <Skills />
+                {/* Real work first, category navigation after it */}
+                <Featured />
                 <Projects />
                 <Services />
                 {/* <Art /> */}

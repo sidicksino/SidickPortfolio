@@ -198,5 +198,12 @@
     "followMe": "Follow Me",
     "navigation": "Navigation",
     "contact": "Contact"
+  },
+  "featured": {
+    "title": "Featured Work",
+    "subtitle": "A selection of things I've built and shipped — client platforms, products and machine-learning apps.",
+    "viewLive": "Visit site",
+    "seeAll": "Browse all {{count}} projects",
+    "viewDetails": "See details"
   }
 }
