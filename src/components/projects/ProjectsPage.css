@@ -114,7 +114,7 @@
 }
 
 .project-wrapper:hover .project-title {
-  color: var(--primary);
+  color: var(--accent-text);
 }
 
 .project-description {
@@ -134,7 +134,7 @@
 
 .tech-tag {
   background: rgba(231, 72, 200, 0.1);
-  color: var(--primary);
+  color: var(--accent-text);
   padding: 4px 10px;
   border-radius: 50px;
   font-size: 0.75rem;
@@ -187,7 +187,7 @@
 
 .btn-github:hover {
   background: rgba(231, 72, 200, 0.1);
-  color: var(--primary);
+  color: var(--accent-text);
   border-color: var(--primary);
   transform: translateY(-2px);
 }

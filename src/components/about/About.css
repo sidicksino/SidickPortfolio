@@ -61,7 +61,7 @@
 
 .section-title {
   font-size: 2.5rem;
-  color: var(--primary);
+  color: var(--accent-text);
   margin-bottom: 30px;
   text-align: left;
   position: relative;

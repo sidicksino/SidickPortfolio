@@ -241,8 +241,10 @@
 }
 
 .nav-cta {
-  background: var(--primary);
-  color: white;
+  /* White on plain --accent is 3.41:1 and fails. --accent-strong carries
+     white at 5.55:1. */
+  background: var(--accent-strong);
+  color: var(--on-accent);
   padding: 10px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -255,7 +257,7 @@
 }
 
 .nav-cta:hover {
-  background: var(--primary-light);
+  background: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(231, 72, 200, 0.4);
 }
@@ -431,7 +433,7 @@
 
 /* Active link style for ScrollSpy */
 .nav-menu li a.active {
-  color: var(--primary);
+  color: var(--accent-text);
 }
 
 .nav-menu li a.active::after {

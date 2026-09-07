@@ -147,15 +147,18 @@
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: var(--text);
+  /* color was var(--text), which flips to near-black in light mode — the
+     button read black-on-magenta there and white-on-magenta here. Pinned,
+     with the fill stepped to the variant that actually carries white. */
+  background: var(--accent-strong);
+  color: var(--on-accent);
   border: 2px solid transparent;
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
+  color: var(--accent-text);
+  border: 2px solid var(--accent-text);
 }
 
 .btn:hover {

@@ -33,7 +33,7 @@ Update this table whenever a phase starts or finishes. Status markers:
 | 2 — Apply the system | ✅ **Done** | 2026-09-07 | One accent everywhere; 27 → 8 stray hex |
 | 3 — Show the work | ✅ **Done** | 2026-09-07 | Featured grid live on the homepage |
 | 4 — Typography | ✅ **Done** | 2026-09-07 | Arial purged; 26 @imports → 1 <link> |
-| 5 — Light mode | ⬜ Not started | — | |
+| 5 — Light mode | ✅ **Done** | 2026-09-08 | 0 contrast failures, both themes |
 | 6 — Polish & a11y | ⬜ Not started | — | |
 | 7 — Repo hygiene | ⬜ Not started | — | |
 
@@ -730,7 +730,61 @@ The Google Fonts `@import` is repeated across **10 CSS files**.
 
 ---
 
-## Phase 5 — Light mode
+## Phase 5 — Light mode ✅ **DONE** (2026-09-08)
+
+Audited rather than eyeballed: a script walked every visible leaf text node,
+resolved its **effective** background by climbing ancestors until it hit an
+opaque one, and computed the real contrast ratio against the WCAG AA threshold
+for that text's size and weight.
+
+| | Before | After |
+|---|---|---|
+| Light-theme contrast failures | **6** | **0** |
+| Dark-theme contrast failures | **3** | **0** |
+
+### The framing in this plan was wrong
+
+I had this filed as "light mode is an afterthought". The audit showed **dark
+mode was failing too**, on the same root cause: white text on `--accent`
+(`#e748c8`) is **3.41:1** — under the 4.5:1 minimum — wherever it appears.
+Every accent-filled button on the site had been failing in both themes.
+
+So this wasn't a light-mode bug list, it was one systemic issue with a
+light-mode-only symptom. Fixed with a token rather than patched per component:
+
+- **`--accent-text`** — accent used as *glyphs* rather than as a fill. Resolves
+  to `--accent` on dark (5.06:1) and steps down to `--accent-strong` on light
+  (5.27:1, vs plain accent's 3.23:1). Applied to **20** `color:` declarations
+  across 8 stylesheets.
+- **Accent fills that carry white text** now use `--accent-strong` (white on it
+  is 5.55:1): `.btn-primary`, `.nav-cta`, `.language-toggle`.
+- **`.btn-primary` had `color: var(--text)`** — which flips with the theme, so
+  the button read white-on-magenta in dark and black-on-magenta in light.
+  Pinned to `--on-accent`.
+
+### Also fixed
+
+- **The theme toggle was hard-coded `#0077ff`** — the brand turned *blue* on the
+  light theme. The source even carried a comment saying "ou garde
+  `var(--primary)` si tu veux". Now `--accent-strong`.
+- **The featured category pills** sat at ~4.15:1 — 11.5px text over a
+  *translucent* chip on top of a photo, so the effective background was
+  unpredictable. Chip is opaque now.
+- Footer brand gradient moved off raw `--primary` onto the theme-aware tokens.
+
+### Re-verified with animations forced off
+
+The first clean run was suspicious: entrance animations start at `opacity: 0`,
+and the audit skips anything under 0.5 opacity — so un-revealed elements were
+being silently excluded. Re-ran with `*{opacity:1;animation:none}` injected to
+force everything visible. Still **0 failures** in both themes.
+
+**No longer relevant:** the note below suggesting "ship dark-only if you can't
+give light mode real attention". Light mode now passes everything dark mode
+does.
+
+<details>
+<summary>Original Phase 5 instructions (superseded)</summary>
 
 Currently an afterthought, and it shows.
 
@@ -743,6 +797,8 @@ Currently an afterthought, and it shows.
 - [ ] Re-check contrast on every muted text colour once flipped
 - [ ] **If you can't give light mode real attention, ship dark-only.** A good
       dark theme beats a good dark theme plus a broken light one.
+
+</details>
 
 ---
 

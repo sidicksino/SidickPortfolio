@@ -95,7 +95,7 @@
   content: "✦";
   position: absolute;
   left: 0;
-  color: var(--primary);
+  color: var(--accent-text);
   font-weight: bold;
 }
 
@@ -104,7 +104,7 @@
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1.1rem;
-  color: var(--primary);
+  color: var(--accent-text);
   text-decoration: none;
   padding: 14px 32px;
   border: 2px solid var(--primary);

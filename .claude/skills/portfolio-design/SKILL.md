@@ -26,11 +26,16 @@ if you need a colour that isn't here, that's a signal to reconsider, not to add
 one.
 
 ```css
---accent / --accent-hover / --accent-strong / --accent-subtle / --on-accent
+--accent / --accent-hover / --accent-strong / --accent-subtle
+--accent-text                /* accent as GLYPHS — theme-aware, see below */
+--on-accent                  /* text colour on an accent fill */
 --bg / --surface / --elevated
 --text / --text-2 / --text-muted
---border
+--border / --grid-line       /* --grid-line is theme-aware; it was white-only
+                                and invisible on the light page */
 --success / --error          /* status messages only */
+--fam-1..4                   /* the hue family */
+--cat-web / --cat-mobile / --cat-design / --cat-ai   /* semantic aliases */
 --font-display / --font-body
 --s-1 … --s-9                /* 4px scale */
 --radius / --radius-lg
@@ -51,10 +56,19 @@ Measured, not guessed:
 | `--accent-strong` as text on light | 5.27:1 | ✅ |
 | `--accent` as text on dark `#181737` | 5.06:1 | ✅ |
 
-So: **`--accent` is the fill** (buttons on dark, glows, borders, large text).
-**`--accent-strong` is what you use behind white text, and for accent text on
-light backgrounds.** Reach for it whenever a magenta surface carries white
-type — otherwise you ship a contrast failure that looks fine to you.
+So, three rules:
+
+- **Filling a shape** → `--accent`.
+- **Filling a shape that carries white text** → `--accent-strong` with
+  `--on-accent`. Never `--accent`: white on it is 3.41:1 and fails in *both*
+  themes, not just light.
+- **Colouring glyphs** (text, icons, thin borders) → **`--accent-text`**. It is
+  `--accent` on dark and `--accent-strong` on light, so it stays legible
+  either way. Never use raw `--accent`/`--primary` as a `color:`.
+
+And never set a button's text to `var(--text)` — that token flips with the
+theme, which is how `.btn-primary` ended up white-on-magenta in dark and
+black-on-magenta in light.
 
 ### Legacy aliases
 
@@ -148,15 +162,16 @@ If you think one of these is wrong, say so — don't silently change it.
 
 ## Components
 
-**Buttons** — primary: `--accent` background, **white text in both themes**
-(don't let `--text` flip it to black in light mode; that was a real bug).
-Secondary: transparent, `--accent` border and text.
+**Buttons** — primary: **`--accent-strong` background with `--on-accent` text**
+(white on plain `--accent` is 3.41:1 and fails in both themes; never let
+`--text` set button text — it flips with the theme).
+Secondary: transparent, `--accent-text` border and text.
 
 **Cards** — `--surface` background, `--border` 1px, `--radius-lg`. Hover lifts
 `translateY(-4px)` with a shadow. The whole card is the click target, not just
 the button inside it.
 
-**Inputs** — `--border`, not a coloured border. Focus ring in `--accent`.
+**Inputs** — `--border`, not a coloured border. Focus ring in `--accent-text`.
 Every input needs a real `<label for>`.
 
 **Icons** — `--accent` on `--accent-subtle` circles. Consistent size per group.
@@ -185,6 +200,13 @@ npm run dev    # http://localhost:5173
 - [ ] Keyboard tab-through shows visible focus
 - [ ] Console clean, no failed requests
 - [ ] `grep -rhoE "#[0-9a-fA-F]{3,8}" src/ | sort -u` — under ~12 values
+- [ ] **Contrast audited, not eyeballed.** Walk every visible leaf text node,
+      resolve its *effective* background by climbing ancestors to the first
+      opaque one, and check against 4.5:1 (3:1 for large text). Run it in
+      **both** themes — the accent-button failure lived in dark mode too, and
+      eyeballing never caught it.
+      Force `*{opacity:1;animation:none}` first, or elements that haven't
+      finished their entrance animation get skipped and you get a false pass.
 
 Note: a full-page screenshot shows blank sections because scroll-triggered
 reveals haven't fired. Scroll to each section before capturing.

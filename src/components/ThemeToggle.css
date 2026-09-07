@@ -43,13 +43,14 @@
 }
 
 /* ========== LIGHT THEME ========== */
+/* Was a hard-coded #0077ff — the brand turned blue on the light theme. */
 html.light-theme .theme-toggle-btn {
-  background: #0077ff; /* Ou garde var(--primary) si tu veux */
-  box-shadow: 0 8px 25px rgba(0, 119, 255, 0.3);
+  background: var(--accent-strong);
+  box-shadow: 0 8px 25px rgba(181, 42, 157, 0.3);
 }
 
 html.light-theme .theme-toggle-btn:hover {
-  box-shadow: 0 12px 35px rgba(0, 119, 255, 0.5);
+  box-shadow: 0 12px 35px rgba(181, 42, 157, 0.5);
 }
 
 /* ========== RESPONSIVE ========== */

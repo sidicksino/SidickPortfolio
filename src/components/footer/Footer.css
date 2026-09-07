@@ -49,7 +49,7 @@
 
 /* Logo stylisé */
 .footer-logo {
-  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  background: linear-gradient(to right, var(--accent-text), var(--accent));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -89,12 +89,12 @@
   opacity: 0;
   position: absolute;
   left: 0;
-  color: var(--primary);
+  color: var(--accent-text);
   transition: all 0.3s ease;
 }
 
 .footer-col ul li a:hover {
-  color: var(--primary);
+  color: var(--accent-text);
   transform: translateX(5px);
 }
 
@@ -114,7 +114,7 @@
 }
 
 .contact-icon {
-  color: var(--primary);
+  color: var(--accent-text);
   font-size: 1rem;
   min-width: 20px;
   transition: transform 0.3s ease;
@@ -161,7 +161,7 @@
 }
 
 .footer-bottom strong {
-  color: var(--primary);
+  color: var(--accent-text);
   font-family: var(--font-display);
 }
 

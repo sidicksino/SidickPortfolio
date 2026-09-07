@@ -1,6 +1,7 @@
 .language-toggle {
-  background: var(--primary);
-  color: var(--text);
+  /* --text flipped this to near-black in light mode; pin it. */
+  background: var(--accent-strong);
+  color: var(--on-accent);
   border: none;
   padding: 8px 14px;
   border-radius: 20px;
@@ -14,7 +15,7 @@
 }
 
 .language-toggle:hover {
-  background: var(--primary-light);
+  background: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(231, 72, 200, 0.3);
 }

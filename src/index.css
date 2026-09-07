@@ -30,6 +30,13 @@
   --accent-subtle: rgba(231, 72, 200, 0.12);
   --on-accent: #ffffff;
 
+  /* Accent used as TEXT or a thin border, rather than as a fill.
+     On dark, plain --accent is fine (5.06:1). On light it drops to 3.23:1,
+     so the light theme steps this down to --accent-strong (5.27:1).
+     Rule of thumb: filling a shape → --accent (or --accent-strong when white
+     type sits on it). Colouring glyphs → --accent-text. */
+  --accent-text: var(--accent);
+
   /* --- Surfaces (dark) --------------------------------------------------- */
   --bg: #181737;
   --surface: #1f1e42;
@@ -134,6 +141,7 @@ html.light-theme {
   /* Plain --accent is only 3.23:1 on this background, so accent *text* and
      accent *borders* step down to the strong variant here. Fills keep
      --accent. */
+  --accent-text: var(--accent-strong);
   --accent-subtle: rgba(231, 72, 200, 0.1);
 
   --background-dark: #e6e6e6;
