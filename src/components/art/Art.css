@@ -1,3 +1,17 @@
+/* Design tokens live in src/index.css — the single source of truth.
+
+   NOTE: <Art /> is currently commented out of App.jsx, so none of this renders.
+   Kept working anyway so it isn't broken if re-enabled.
+
+   "Modern Negra" was used with no @font-face at all, even though the .ttf sits
+   in public/fonts/ — so it silently fell back to a generic serif. Declared
+   properly now. */
+@font-face {
+  font-family: "Modern Negra";
+  src: url("/fonts/Modern Negra Demo.ttf") format("truetype");
+  font-display: swap;
+}
+
 /* ===== ART SECTION ===== */
 #art {
   position: relative;
@@ -111,7 +125,7 @@
 }
 
 #masked-content h3 {
-  font-family: "DM Serif Text", serif;
+  font-family: var(--font-display);
   font-size: clamp(1.5rem, 4vw, 3rem);
   color: white;
   margin-bottom: 0.5rem;

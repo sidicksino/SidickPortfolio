@@ -40,6 +40,24 @@
     />
     <meta name="twitter:image" content="https://sidick.vercel.app/preview.jpg" />
     <meta name="google-site-verification" content="-MDj_7J5aMW8x4XK-D202rj7wAS8awtx2z7JY_QARgQ" />
+
+    <!-- Fonts, loaded once.
+         Previously each of 10 component stylesheets carried its own
+         @import url(...) for the same families. @import inside CSS is
+         render-blocking and serialised — the browser must fetch the CSS,
+         parse it, then start the font request — so it was both duplicated and
+         on the slow path. A <link> here starts the fetch immediately.
+
+         Weights are only the ones actually used: 400/500/600/700/800/900,
+         no italics (none are used anywhere in src/). Abril Fatface was
+         dropped — --font-fire aliases to --font-display, so it was being
+         downloaded and never rendered. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Elsie:wght@400;900&family=Epilogue:wght@400;500;600;700;800;900&display=swap"
+    />
   </head>
   <body>
     <div id="root"></div>

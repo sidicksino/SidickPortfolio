@@ -32,7 +32,7 @@ Update this table whenever a phase starts or finishes. Status markers:
 | 1 — Design system | ✅ **Done** | 2026-09-07 | 11 `:root` blocks → 1; navy purged |
 | 2 — Apply the system | ✅ **Done** | 2026-09-07 | One accent everywhere; 27 → 8 stray hex |
 | 3 — Show the work | ✅ **Done** | 2026-09-07 | Featured grid live on the homepage |
-| 4 — Typography | ⬜ Not started | — | |
+| 4 — Typography | ✅ **Done** | 2026-09-07 | Arial purged; 26 @imports → 1 <link> |
 | 5 — Light mode | ⬜ Not started | — | |
 | 6 — Polish & a11y | ⬜ Not started | — | |
 | 7 — Repo hygiene | ⬜ Not started | — | |
@@ -640,7 +640,50 @@ zero evidence that you have built anything.
 
 ---
 
-## Phase 4 — Typography
+## Phase 4 — Typography ✅ **DONE** (2026-09-07)
+
+Verified in the browser via `getComputedStyle`, not guessed — an audit script
+walked every leaf text node and reported which face, size and weight actually
+rendered.
+
+| | Before | After |
+|---|---|---|
+| Elements computing to Arial | many | **0** |
+| Body text set in a display serif | 4 form labels | **0** |
+| `@import` lines in component CSS | 26 across 10 files | **0** |
+| Google-Fonts CSS requests | 3 distinct, render-blocking | **1 `<link>`** |
+| Font families downloaded | 3 | **2** |
+| Epilogue weights requested | 14 (incl. 7 italics) | **6** |
+
+### What was actually wrong
+
+**4.1 — `body { font-family: Arial }`** while Epilogue was being downloaded.
+Anything without an explicit family fell back to Arial. Now `var(--font-body)`;
+the audit confirms **zero** elements compute to Arial.
+
+**4.2 — the offender was the contact form's `<label>`s**, not paragraphs.
+They were Elsie at 17.6px — a decorative display serif used for UI text, and
+the source of the odd ball-terminal glyphs visible in "Subject". Now the body
+face at 0.9rem/500. Every heading correctly stays in Elsie.
+
+**4.3 — three broken font declarations, all failing silently:**
+- `@font-face` for `"Cheap Fire"` pointed at `./assets/fonts/CheapFire.ttf`,
+  which does not exist — declared in **5** stylesheets. Removed.
+- `"Modern Negra"` was used in `Art.css` with **no `@font-face` at all**, even
+  though the `.ttf` sits in `public/fonts/`. Declared properly.
+- `"DM Serif Text"` was never imported from anywhere → now `--font-display`.
+
+**4.4 — `@import` duplication.** CSS `@import` is render-blocking *and*
+serialised: the browser must fetch the stylesheet, parse it, then start the
+font request. Moved to one `<link>` in `index.html` with `preconnect`.
+
+**Bonus found while measuring:** `--font-fire` aliases to `--font-display`
+(Phase 1), so **Abril Fatface was downloaded on every page load and never
+rendered**. Dropped. Italic weights were requested too — `font-style: italic`
+appears **nowhere** in `src/`. Requesting only the 6 weights actually used.
+
+<details>
+<summary>Original Phase 4 instructions (superseded)</summary>
 
 Verified in the browser via `getComputedStyle`, not guessed.
 
@@ -682,6 +725,8 @@ The Google Fonts `@import` is repeated across **10 CSS files**.
       component CSS
 - [ ] Move to `<link rel="preconnect">` + one `<link>` in `index.html` — this is
       faster than `@import`, which blocks rendering in a chain
+
+</details>
 
 ---
 
