@@ -127,6 +127,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  /* Anchors the .nav-active status dot to the logo rather than the
+     fixed navbar */
+  position: relative;
+  padding-right: 20px;
 }
 
 .nav-logo img {
@@ -146,6 +150,40 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+
+/* Animated status dot in the navbar — signals "available".
+   Kept deliberately: green reads as a status indicator, not decoration,
+   so it's an intentional exception to the one-accent rule. */
+.nav-active {
+  position: absolute;
+  top: 8px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  background: #26a32c;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(38, 163, 44, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-active {
+    animation: navPulse 1.6s infinite ease-in-out;
+  }
+}
+
+@keyframes navPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
 
 .nav-spacer {
   width: 100px;

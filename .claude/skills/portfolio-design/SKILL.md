@@ -71,9 +71,24 @@ Body default is `var(--font-body)`, not Arial.
   `ease-out`.
 - **No infinite loops on content.** A spinning headshot reads as a bug, not a
   feature. This was a real defect (`Hero.css:222`) — don't reintroduce it.
+  **Exception:** the green `.nav-active` status dot beside the logo pulses, and
+  that is intentional — see "Deliberate exceptions" below.
 - Always wrap in `@media (prefers-reduced-motion: no-preference)`.
 - Never animate `transform` on an element that also uses `transform` on hover —
   they fight.
+
+## Deliberate exceptions
+
+Rules Sidick has explicitly overruled. **Do not "fix" these** — they were
+removed once and restored on request.
+
+- **The green status dot** (`.nav-active`, `#26a32c`) beside the logo, in both
+  `Navbar` and `HeroPage`. It breaks the one-accent rule and it pulses forever.
+  Sidick likes it and it stays. Its pulse *is* wrapped in
+  `prefers-reduced-motion: no-preference`, and its parent `.nav-logo` needs
+  `position: relative` in both stylesheets or it anchors to the fixed navbar.
+
+If you think one of these is wrong, say so — don't silently change it.
 
 ## Components
 

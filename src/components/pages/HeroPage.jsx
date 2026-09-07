@@ -59,6 +59,7 @@ const HeroPage = () => {
           <p className="nav-logo-text">
             <span>Sidick</span>Sino
           </p>
+          <span className="nav-active" aria-hidden="true"></span>
         </div>
         <div className="nav-spacer"></div>
       </nav>

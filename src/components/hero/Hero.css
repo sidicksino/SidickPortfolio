@@ -45,11 +45,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 150px 100px 0px;
+  /* Was 150px top — sized for the old circular portrait, mostly dead space.
+     80px clears the fixed navbar, the rest is breathing room. */
+  padding: 110px 100px 0px;
   max-width: 1400px;
   margin: 0 auto;
   gap: 80px;
   background: var(--background);
+  /* Height is viewport-driven, not image-driven. Slightly under 100vh so the
+     next section peeks above the fold and gives people a reason to scroll. */
+  min-height: calc(100vh - 80px);
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -202,8 +207,10 @@
   align-self: flex-end;
   display: flex;
   justify-content: center;
-  /* Sized by the image; the glow behind is what fills the space */
-  width: 420px;
+  /* Height-driven, not width-driven: the portrait scales to the viewport so
+     it can never push the hero past one screen. */
+  width: auto;
+  max-width: 420px;
   transition: transform 0.4s ease;
 }
 
@@ -211,8 +218,10 @@
   position: relative;
   z-index: 1;
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 280px);
   /* Lets the figure sit on the section's baseline instead of floating */
   margin-bottom: -1px;
   transition: transform 0.5s ease;
@@ -230,8 +239,9 @@
   left: 50%;
   top: 48%;
   transform: translate(-50%, -50%);
-  width: 520px;
-  height: 520px;
+  /* Scales with the portrait so the glow stays proportional */
+  width: min(520px, 58vh);
+  height: min(520px, 58vh);
   border-radius: 50%;
   background: radial-gradient(circle,
       rgba(231, 72, 200, 0.42) 0%,
@@ -261,17 +271,18 @@
 
 @media (max-width: 1200px) {
   .hero {
-    padding: 200px 60px;
+    /* Was 200px top/bottom — pushed the hero well past one screen */
+    padding: 110px 60px 0;
     gap: 60px;
   }
 
   .hero-image {
-    width: 340px;
+    max-width: 340px;
   }
 
   .hero-image::before {
-    width: 420px;
-    height: 420px;
+    width: min(420px, 52vh);
+    height: min(420px, 52vh);
   }
 
   .hero-content h1 {
@@ -297,7 +308,13 @@
     order: 2;
     margin-bottom: 0;
     align-self: center;
-    width: 300px;
+    max-width: 300px;
+  }
+
+  /* Stacked layout: the text already fills the first screen, so cap the
+     portrait by viewport height rather than the desktop calc(). */
+  .hero-image img {
+    max-height: 50vh;
   }
 
   .hero-buttons {
@@ -313,12 +330,12 @@
   }
 
   .hero-image {
-    width: 260px;
+    max-width: 260px;
   }
 
   .hero-image::before {
-    width: 340px;
-    height: 340px;
+    width: min(340px, 46vh);
+    height: min(340px, 46vh);
   }
 
   .hero-content {
@@ -350,12 +367,12 @@
   }
 
   .hero-image {
-    width: 220px;
+    max-width: 220px;
   }
 
   .hero-image::before {
-    width: 280px;
-    height: 280px;
+    width: min(280px, 42vh);
+    height: min(280px, 42vh);
   }
 
   .hero-content h1 {

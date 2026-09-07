@@ -132,7 +132,24 @@ sparkle is in the `<h2>` content.
 
 `grep -rn '✨' src/` now returns nothing.
 
-### 0.5 Remove the green dot beside the logo ✅ **Done**
+### 0.5 Remove the green dot beside the logo ↩️ **Reverted — keeping it**
+
+> **Sidick's call (2026-09-07): the green dot stays.** It was removed, then
+> restored on request. This overrides the original recommendation — it's his
+> brand and he likes it. Recorded here and in
+> `.claude/skills/portfolio-design/SKILL.md` so it doesn't get stripped out
+> again by a future pass.
+>
+> Restored in both `Navbar.jsx` and `HeroPage.jsx`, with two improvements over
+> the original:
+> - the pulse is now wrapped in `prefers-reduced-motion: no-preference`
+> - `HeroPage.css`'s `.nav-logo` was missing `position: relative`, so the
+>   absolutely-positioned dot would have anchored to the *fixed navbar* instead
+>   of the logo. Added. (The bug was latent — it never showed because the dot
+>   pre-dated that stylesheet's layout.)
+
+<details>
+<summary>Original recommendation (superseded)</summary>
 
 A lone green circle next to "SidickSino" that belongs to no other colour on the
 page.
@@ -144,6 +161,8 @@ page.
 
 If you do want an "available for work" badge later, build it as a labelled pill
 in `--accent` with real text — not an unexplained coloured dot.
+
+</details>
 
 ---
 
@@ -276,6 +295,38 @@ viewport. Invisible below 1400px, obvious above it.
 - [x] Confirmed **no horizontal overflow** introduced at any width
       (`html, body { overflow-x: hidden }` in index.css contains the
       scrollbar-width difference)
+
+#### 2.0b Hero height — viewport-driven ✅ **Done** (2026-09-07)
+
+The hero was a fixed **1073px tall on every device**, because height came from
+the image (924px) plus 150px of padding — the viewport had no say. On a
+1280×800 laptop that's 1.34× the screen, and `#about` never peeked above the
+fold on *any* device, so nothing invited a scroll.
+
+- [x] `.hero` now has `min-height: calc(100vh - 80px)`
+- [x] Top padding 150px → **110px** (the 150 was sized for the old circle)
+- [x] `.hero-image` is height-driven: `width: auto`, and the img takes
+      `max-height: calc(100vh - 280px)` so the portrait scales to the screen
+      and can never push the hero past one viewport
+- [x] Glow scales with it: `min(520px, 58vh)`
+- [x] Fixed the 1200px breakpoint's `padding: 200px` (worse than the base rule)
+- [x] Converted every breakpoint's fixed `width` to `max-width` so the
+      height cap wins
+
+| Device | Before | After | Portrait |
+|---|---|---|---|
+| 1280×800 | 1.34× | **0.90×** | 236×520 |
+| 1440×900 | 1.19× | **0.91×** | 282×620 |
+| 1512×982 | 1.09× | **0.92×** | 319×702 |
+| 1920×1080 | 0.99× | **0.93×** | 364×800 |
+
+`#about` now peeks above the fold on every desktop size, and the portrait
+*grows* on bigger screens instead of being frozen.
+
+**Known trade-off:** tablet (1.06×) and phone (1.26×) still exceed one screen.
+That's deliberate — capping them to 100vh would shrink the portrait to ~150px
+wide. The name, tagline and buttons are all above the fold there, which is what
+matters; the portrait below is a scroll reward.
 
 **Still open from this work:**
 
