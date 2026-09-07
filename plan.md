@@ -29,8 +29,8 @@ Update this table whenever a phase starts or finishes. Status markers:
 | Phase | Status | Finished | Notes |
 |---|---|---|---|
 | 0 — Critical fixes | ✅ **Done** | 2026-09-07 | All 5 items verified in-browser |
-| 1 — Design system | ⬜ Not started | — | Next up |
-| 2 — Apply the system | 🚧 **In progress** | — | Hero cut-out done early; colour work still pending |
+| 1 — Design system | ✅ **Done** | 2026-09-07 | 11 `:root` blocks → 1; navy purged |
+| 2 — Apply the system | ✅ **Done** | 2026-09-07 | One accent everywhere; 27 → 8 stray hex |
 | 3 — Show the work | ⬜ Not started | — | **Biggest win** |
 | 4 — Typography | ⬜ Not started | — | |
 | 5 — Light mode | ⬜ Not started | — | |
@@ -166,12 +166,58 @@ in `--accent` with real text — not an unexplained coloured dot.
 
 ---
 
-## Phase 1 — Build one real design system
+## Phase 1 — Build one real design system ✅ **DONE** (2026-09-07)
 
-The root problem: **33 distinct hex values** and no rule about which to use
-where. This phase replaces guesswork with tokens. Everything after depends on it.
+The root problem turned out to be worse than "33 hex values with no rule":
+**every one of the 11 stylesheets declared its own `:root` block**, each a
+near-identical copy of the same ~20 tokens. They all had equal specificity, so
+whichever file loaded last silently won. There was no source of truth to
+change.
 
-### 1.1 Kill the rogue navy blue
+| | Before | After |
+|---|---|---|
+| Files declaring `:root` | **11** | **1** (`src/index.css`) |
+| Hex values outside `index.css` | 27 | **10** |
+| `#0033a0` (the navy) | 12 declarations | **0** |
+
+Each component file now carries a pointer comment where its block used to be,
+so the next person sees why it's gone.
+
+### Two corrections to this plan, found by measuring
+
+The token values written below were **guessed**. Measuring contrast ratios
+before applying them caught two that would have shipped accessibility bugs:
+
+1. **`--text-muted: #7d7a9e` fails** — 4.23:1 on the dark background, under the
+   4.5:1 minimum. It was *worse* than the `#8888aa` it replaced (5.05:1).
+   Shipped **`#9c99bd`** instead: **6.33:1**.
+2. **White text on `--accent` (`#e748c8`) fails at 3.41:1.** The design skill
+   said "white text in both themes" — that would have been an accessibility
+   bug on every primary button. Black on the same magenta is 6.16:1.
+   Added **`--accent-strong: #b52a9d`**, which carries white at **5.55:1** and
+   also works as accent *text* on light backgrounds (5.27:1, vs plain accent's
+   3.23:1). Every ratio is recorded as a comment beside its token.
+
+**Deviation:** kept `--bg: #181737` rather than the `#12112a` written below.
+The darker value was arbitrary, and the hero glow, grid and portrait mask are
+all tuned against `#181737`. Changing the base background is a large visual
+risk for no stated benefit. Layering comes from `--surface: #1f1e42` and
+`--elevated: #262550` instead.
+
+**Legacy aliases:** ~10 stylesheets still use the old names (`--primary`,
+`--background`, `--text-secondary`, …). They're aliased onto the canonical
+tokens in `index.css`, so nothing broke. Retire them per component during
+Phase 2; don't add new uses.
+
+Verified: production build passes, lint clean, all six sections screenshotted
+in both themes at 1440×900, zero console errors, zero failed requests.
+
+**Found but deferred to Phase 2:** `--card-color` is used four times in
+`Projects.css` but was never defined in *any* of the 11 blocks — it's set
+inline per-card from `project.color` in `Projects.jsx:29`. That is the exact
+mechanism behind the four-colour button row in 2.1.
+
+### 1.1 Kill the rogue navy blue ✅
 
 `src/index.css:19` defines `--border: #0033a0` — a saturated navy in an
 otherwise magenta/violet palette. It is currently the contact form's input
@@ -372,7 +418,126 @@ at 390px: the short fade still dissolves cleanly there, no hard edge.
       section fade, but a mid-thigh or waist crop would be tidier
 - [ ] `phote5.jpeg` is now free again — it's still in About
 
-### 2.1 Unify the four "View Project" buttons
+### 2.1 Unify the four "View Project" buttons ✅ **Done** (2026-09-07)
+
+The four colours lived in **`src/data/siteData.js`** as a `color` field per
+category — `#6366f1`, `#8b5cf6`, `#ec4899`, `#f59e0b`. **None of them was the
+brand magenta.** `Projects.jsx` piped each into `--card-color` as an inline
+style, and `Projects.css` used it for the icon, the top bar, the glow and the
+link.
+
+- [x] Deleted the `color` field from all four entries — presentation doesn't
+      belong in the data layer
+- [x] Removed the inline `style={{ "--card-color": … }}` from `Projects.jsx`
+- [x] Replaced all four `var(--card-color)` uses with `var(--accent)`
+
+**↩️ Then revised, on Sidick's push-back (2026-09-07).** He was right that
+colour-coding the categories has real value — visitors can tell them apart at a
+glance — and flattening all four to one magenta lost that. The mistake in my
+original analysis was conflating *"four colours"* with *"four **unrelated**
+colours"*. Only the second was the problem.
+
+Shipped a third option instead of either extreme: **one derived family.**
+
+- [x] Four tokens `--cat-web` / `--cat-mobile` / `--cat-design` / `--cat-ai`
+      in `index.css` — one shared saturation, hues spaced evenly and anchored
+      on the brand magenta, **lightness solved per hue so each lands at ~5:1
+      against its own theme's card surface**
+- [x] Separate light-theme values — the dark set is unreadable on a white card
+- [x] `siteData.js` references the token by name (`var(--cat-web)`), never a
+      raw hex, so colour stays in the design system
+- [x] `Projects.css` uses `var(--card-color, var(--accent))` — accent fallback
+      if a card ever ships without one
+
+| | Old | New (dark) | New (light) |
+|---|---|---|---|
+| Web | `#6366f1` indigo | `#e24dc4` | `#c720a5` |
+| Mobile | `#8b5cf6` violet | `#e45b77` | `#d62347` |
+| Design | `#ec4899` pink | `#b468e6` | `#9e3ddf` |
+| ML & AI | `#f59e0b` amber | `#5e87e5` | `#3668de` |
+
+Matched *contrast* rather than matched lightness is what makes them read as one
+set. Verified in both themes; resolved `--card-color` confirmed per card in the
+browser.
+
+### 2.2c Hero grid invisible in light mode ✅ **Done** (2026-09-07)
+
+Reported by Sidick. The grid was drawn with a hard-coded
+`rgba(255, 255, 255, 0.08)` — **white lines**, so it only ever existed on the
+dark theme and vanished completely on the light page.
+
+- [x] Added a theme-aware `--grid-line` token: white at 8% on dark, dark ink at
+      7% on light
+- [x] `Hero.css` consumes it instead of the literal
+
+Verified the token resolves differently per theme and the grid is visible in
+both.
+
+### 2.2 About + Skills icons ✅ **Done** (2026-09-07)
+
+Originally flattened all three About icons to one magenta. **Reverted on the
+same reasoning as the project cards** — Sidick asked for both About *and*
+Skills icons to be varied.
+
+- [x] Generalised the palette: `--fam-1..4` are the family; `--cat-*` are now
+      semantic aliases onto it, so components name a *meaning* and the hues are
+      re-derivable in one place
+- [x] About: one `.icon-circle` rule taking `--icon-color` per item (was three
+      near-identical rules in three unrelated hues, with those hues *also*
+      hard-coded into the SVG `fill` attributes — the CSS alone did nothing;
+      fills are now `currentColor`)
+- [x] Skills: colour moved into `skillsData` as a token reference, passed
+      through `--icon-color`. The glyph had been `var(--text)` — a white icon on
+      a magenta wash, so its colour carried no meaning at all.
+- [x] Circle tint derives from the icon hue via `color-mix()` rather than a
+      second hard-coded rgba per item
+
+<details>
+<summary>Original 2.2 (superseded — single accent)</summary>
+
+Three near-identical CSS rules (`.icon-circle-1/2/3`) differing only in hue —
+magenta, olive green, tan — **and the SVGs had those same hues hard-coded as
+`fill=`**, so fixing the CSS alone would not have worked.
+
+- [x] Collapsed three classes into one `.icon-circle`
+- [x] SVG fills → `currentColor`, so icons inherit from the circle
+- [x] Circle is now `--accent-subtle` background with `--accent` icons
+
+</details>
+
+### 2.2b The "SIDICK" headline gradient ✅ **Done** (2026-09-07)
+
+Flagged in the very first audit as "a broken gradient, rendering green/magenta
+patchy". Root cause found: **your name ran magenta → olive green (`#6A9955`) →
+dark magenta.** Two rules targeted the same span, the later one winning.
+
+- [x] Both rules rewritten magenta-only using `--accent` / `--accent-hover` /
+      `--accent-strong`; the animated shimmer is kept
+- [ ] **The logo `SidickSino` still uses the same magenta→green gradient**
+      (`Navbar.css:71`). Left alone deliberately — it's the brand mark and it
+      pairs with the green status dot Sidick chose to keep. Ask before changing.
+
+### 2.3 Audit every remaining colour ✅ **Done** (2026-09-07)
+
+- [x] Removed dead `.span2` rules from `Projects.css` and `Skills.css`
+      (orphaned when the ✨ emoji went in Phase 0)
+- [x] Tokenised the Footer's hard-coded magenta gradient
+
+**Stray hex outside `index.css`: 27 at session start → 10 after Phase 1 → 8 now.**
+
+All eight remaining are deliberate or dead:
+
+| File | Values | Verdict |
+|---|---|---|
+| `art/Art.css` | 5 | Dead — `<Art />` is commented out in `App.jsx:43` |
+| `hero/Hero.css` | `#000` | Correct — a mask gradient needs opaque black |
+| `navbar/Navbar.css` | `#26a32c` | Deliberate — the green status dot |
+| `pages/HeroPage.css` | `#000`, `#26a32c` | Dot + button hover text; `/pages/hero` is a side route |
+
+<details>
+<summary>Original 2.1–2.3 instructions (superseded)</summary>
+
+### Original 2.1 — Unify the four "View Project" buttons
 
 Currently blue, purple, pink and orange — on a single row. This is the single
 most amateur-looking element on the site. Their icons are mismatched too.
@@ -393,6 +558,8 @@ Magenta, green and brown across three adjacent items.
 - [ ] `grep -rhoE "#[0-9a-fA-F]{3,8}" src/ | sort -u` — should end up under ~12
 - [ ] Replace every survivor with a token
 - [ ] Any colour that isn't accent, a surface, text, or a border: delete it
+
+</details>
 
 ---
 

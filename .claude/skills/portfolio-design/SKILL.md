@@ -15,9 +15,9 @@ a full audit found 33 distinct hex values and no colour discipline. See
    Everything interactive is magenta. Nothing else is chromatic.
 2. **Colour carries meaning, never decoration.** Interactive, success, error.
    If a colour isn't communicating one of those, it shouldn't be there.
-3. **Categories differ by shape and label, not hue.** Four buttons in four
-   colours is the single most amateur pattern this site has had. Use different
-   *icons*, same accent.
+3. **Categories differ by shape and label, not hue** — with one sanctioned
+   exception, the project-category palette below. Do not invent new colour
+   codings beyond it.
 
 ## Tokens
 
@@ -26,7 +26,7 @@ if you need a colour that isn't here, that's a signal to reconsider, not to add
 one.
 
 ```css
---accent / --accent-hover / --accent-press / --accent-subtle
+--accent / --accent-hover / --accent-strong / --accent-subtle / --on-accent
 --bg / --surface / --elevated
 --text / --text-2 / --text-muted
 --border
@@ -38,6 +38,40 @@ one.
 
 Theme switching overrides **only** surfaces, text and border. `--accent` is
 constant across themes — a brand colour that changes isn't a brand colour.
+
+### `--accent` vs `--accent-strong` — this one matters
+
+Measured, not guessed:
+
+| Combination | Ratio | Verdict |
+|---|---|---|
+| white on `--accent` `#e748c8` | 3.41:1 | ❌ fails body text |
+| white on `--accent-strong` `#b52a9d` | 5.55:1 | ✅ |
+| `--accent` as text on light `#f8f9fa` | 3.23:1 | ⚠️ large text only |
+| `--accent-strong` as text on light | 5.27:1 | ✅ |
+| `--accent` as text on dark `#181737` | 5.06:1 | ✅ |
+
+So: **`--accent` is the fill** (buttons on dark, glows, borders, large text).
+**`--accent-strong` is what you use behind white text, and for accent text on
+light backgrounds.** Reach for it whenever a magenta surface carries white
+type — otherwise you ship a contrast failure that looks fine to you.
+
+### Legacy aliases
+
+`--primary`, `--background`, `--text-secondary`, `--background-light` and
+friends still exist in `index.css`, mapped onto the canonical tokens, because
+~10 stylesheets consume them. **Retire them as you touch each component; never
+introduce a new use.**
+
+### Never redeclare `:root`
+
+Until 2026-09-07 all 11 stylesheets declared their own `:root` copy and
+whichever loaded last won. `src/index.css` is now the only file that may
+declare tokens. If a component needs a value that isn't there, that's a signal
+to reconsider — not to add a local block.
+
+(Per-instance custom properties set inline from data, like `--card-color` on a
+project card, are a different thing and are fine.)
 
 ## Typography
 
@@ -87,6 +121,28 @@ removed once and restored on request.
   Sidick likes it and it stays. Its pulse *is* wrapped in
   `prefers-reduced-motion: no-preference`, and its parent `.nav-logo` needs
   `position: relative` in both stylesheets or it anchors to the fixed navbar.
+
+- **The hue family** `--fam-1..4`, and its semantic aliases `--cat-web` /
+  `--cat-mobile` / `--cat-design` / `--cat-ai`. Project cards, About icons and
+  Skills icons are all colour-coded from it on purpose — Sidick's call, so
+  visitors can tell items apart at a glance. **Do not collapse any of them to a
+  single accent.** Components reference a meaning (`--icon-color`, `--card-color`,
+  `--cat-*`), never a raw hue.
+
+  It is not four arbitrary colours, and that distinction is the whole point:
+  one shared saturation, hues spaced evenly and anchored on the brand magenta,
+  lightness tuned per hue so each lands at **~5:1 against its own theme's card
+  surface** (both themes are defined; the dark values are unreadable on white).
+  The set it replaced — `#6366f1` / `#8b5cf6` / `#ec4899` / `#f59e0b` — was
+  default palette entries with no relationship to each other or the brand, and
+  *that* was what looked amateur, not the colour-coding.
+
+  Adding a fifth category means re-deriving the whole set, not appending a
+  colour you like. Reach for the solver approach: fix saturation, spread hue,
+  solve lightness for equal contrast.
+
+- **The logo gradient** (`.nav-logo-text span`) still runs magenta → green.
+  Left alone deliberately; it pairs with the green dot. Ask before changing.
 
 If you think one of these is wrong, say so — don't silently change it.
 

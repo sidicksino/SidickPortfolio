@@ -1,50 +1,153 @@
 @import "tailwindcss";
-/* Default theme = dark (already defined in :root) */
 
-/* Dark mode by default */
+/* ==========================================================================
+   DESIGN TOKENS — the single source of truth for this site.
+   Every other stylesheet consumes these; none of them may redeclare :root.
+   (Until 2026-09-07 all 11 stylesheets defined their own copy, so whichever
+   loaded last silently won.)
+
+   THE RULE: one accent. Magenta is the brand — everything interactive is
+   magenta and nothing else is chromatic. Colour carries meaning
+   (interactive / success / error), never decoration. Distinguish categories
+   by icon and label, never by hue.
+
+   Contrast is measured, not guessed. Ratios below are against their own
+   theme's --bg, WCAG AA needs 4.5:1 for body text and 3:1 for large text.
+   ========================================================================== */
+
 :root {
-  --primary: #e748c8;
-  --primary-light: #f087dd;
-  --primary-dark: #b52a9d;
+  /* --- Accent ------------------------------------------------------------
+     --accent is the brand fill: buttons, glows, borders, large text. 5.06:1
+     on dark, so it passes for body text there.
+     --accent-strong is the accessible variant. Use it in two places:
+       1. as a FILL behind white text  (white on it = 5.55:1; white on plain
+          --accent is only 3.41:1 and fails)
+       2. as accent TEXT on light backgrounds (5.27:1; plain --accent on
+          light is 3.23:1, large text only) */
+  --accent: #e748c8;
+  --accent-hover: #f087dd;
+  --accent-strong: #b52a9d;
+  --accent-subtle: rgba(231, 72, 200, 0.12);
+  --on-accent: #ffffff;
 
-  --background: #181737;
-  --background-light: #232245;
-  --background-dark: #0e0d20;
+  /* --- Surfaces (dark) --------------------------------------------------- */
+  --bg: #181737;
+  --surface: #1f1e42;
+  --elevated: #262550;
 
-  --text: #ffffff;
-  --text-secondary: #cccccc;
-  --text-muted: #8888aa;
+  /* --- Text -------------------------------------------------------------- */
+  --text: #ffffff;      /* 17.26:1 */
+  --text-2: #b8b6d4;    /*  8.78:1 */
+  --text-muted: #9c99bd;/*  6.33:1 */
 
-  --shadow: rgba(0, 0, 0, 0.3);
-  --border: #0033a0;
+  /* --- Lines ------------------------------------------------------------- */
+  --border: rgba(255, 255, 255, 0.1);
+
+  /* --- Status — messages only, never decoration -------------------------- */
   --success: #4ade80;
-  --warning: #fbbf24;
   --error: #f87171;
 
-  --primary-transparent: #e748c8cc;
-  --background-transparent: #181737cc;
+  /* --- Category palette --------------------------------------------------
+     A DELIBERATE exception to the one-accent rule, chosen by Sidick: the four
+     project categories are colour-coded so they stay scannable.
 
-  --font-body: "Epilogue", sans-serif;
-  --font-display: "Elsie", serif;
+     This is not four arbitrary colours. All four share one saturation and are
+     spaced evenly by hue, anchored on the brand magenta, with lightness tuned
+     per hue so every one lands at ~5:1 against its own theme's card surface.
+     Matched contrast (not matched lightness) is what makes them read as one
+     set rather than four unrelated picks — the previous values were default
+     palette entries (#6366f1 / #8b5cf6 / #ec4899 / #f59e0b) with no
+     relationship to each other or to the brand.
+
+     Consumed via `--card-color`, set inline per card in Projects.jsx.
+     Do not add a fifth without re-deriving the whole set. */
+  --fam-1: #e24dc4; /* magenta — the brand anchor */
+  --fam-2: #e45b77; /* rose   */
+  --fam-3: #b468e6; /* purple */
+  --fam-4: #5e87e5; /* blue   */
+
+  /* Semantic aliases. Components name the *meaning*, never the raw hue, so
+     the family can be re-derived in one place. */
+  --cat-web: var(--fam-1);
+  --cat-mobile: var(--fam-2);
+  --cat-design: var(--fam-3);
+  --cat-ai: var(--fam-4);
+
+  /* --- Decorative lines ---------------------------------------------------
+     The hero's background grid. Theme-aware: it used to be a hard-coded
+     rgba(255,255,255,.08), i.e. white lines — invisible on a light page. */
+  --grid-line: rgba(255, 255, 255, 0.08);
+
+  /* --- Type -------------------------------------------------------------- */
+  --font-display: "Elsie", Georgia, serif;
+  --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+
+  /* --- Spacing (4px base) ------------------------------------------------ */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --shadow: rgba(0, 0, 0, 0.3);
+
+  /* --- Legacy aliases ----------------------------------------------------
+     The old names are still used across ~10 stylesheets. They map onto the
+     canonical tokens so nothing breaks; retire them as each component is
+     migrated, and do not introduce new uses. */
+  --primary: var(--accent);
+  --primary-light: var(--accent-hover);
+  --primary-dark: var(--accent-strong);
+  --primary-transparent: rgba(231, 72, 200, 0.8);
+  --background: var(--bg);
+  --background-light: var(--surface);
+  --background-dark: #0e0d20;
+  --background-transparent: rgba(24, 23, 55, 0.8);
+  --text-secondary: var(--text-2);
+  --warning: #fbbf24;
+  --font-classic: Georgia, "Times New Roman", serif;
+  --font-fire: var(--font-display);
 }
 
-/* 🎨 Light mode — applied when <html class="light-theme"> */
+/* Light mode — <html class="light-theme">.
+   Overrides ONLY surfaces, text and lines. --accent never changes: a brand
+   colour that shifts per theme isn't a brand colour. */
 html.light-theme {
-  --background: #f8f9fa;
-  --background-light: #ffffff;
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --elevated: #f0f0f4;
+
+  --text: #111111;      /* 17.91:1 */
+  --text-2: #444444;    /*  9.24:1 */
+  --text-muted: #616175;/*  5.73:1 */
+
+  --border: rgba(17, 17, 17, 0.12);
+
+  /* Plain --accent is only 3.23:1 on this background, so accent *text* and
+     accent *borders* step down to the strong variant here. Fills keep
+     --accent. */
+  --accent-subtle: rgba(231, 72, 200, 0.1);
+
   --background-dark: #e6e6e6;
+  --background-transparent: rgba(255, 255, 255, 0.8);
 
-  --text: #111111;
-  --text-secondary: #444444;
-  --text-muted: #777777;
+  /* Same four hues, re-derived against a white card so they still hit ~5:1.
+     The dark-theme values are far too light to read on white. */
+  --fam-1: #c720a5;
+  --fam-2: #d62347;
+  --fam-3: #9e3ddf;
+  --fam-4: #3668de;
 
-  --border: #0033a0;
-  --primary: #e748c8;
-  --primary-light: #f087dd;
-  --primary-dark: #b52a9d;
-
-  --primary-transparent: #e748c8cc;
-  --background-transparent: #ffffffcc;
+  /* Dark ink instead of white, or the grid vanishes on a light page. */
+  --grid-line: rgba(17, 17, 17, 0.07);
 }
 
 * {

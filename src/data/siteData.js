@@ -15,7 +15,7 @@ export const mainProjectsData = [
     icon: FaLaptopCode,
     desc: 'projects.webDescription',
     link: "/projects/web",
-    color: "#6366f1",
+    color: "var(--cat-web)",
   },
   {
     id: "mobile-app",
@@ -23,7 +23,7 @@ export const mainProjectsData = [
     icon: FaMobileAlt,
     desc: 'projects.mobileDescription',
     link: "/projects/mobile",
-    color: "#8b5cf6",
+    color: "var(--cat-mobile)",
   },
   {
     id: "design",
@@ -31,7 +31,7 @@ export const mainProjectsData = [
     icon: FaPaintBrush,
     desc: 'projects.designDescription',
     link: "/projects/design",
-    color: "#ec4899",
+    color: "var(--cat-design)",
   },
   {
     id: "ml-ai",
@@ -39,7 +39,7 @@ export const mainProjectsData = [
     icon: FaBrain,
     desc: 'projects.aiDescription',
     link: "/projects/ai",
-    color: "#f59e0b",
+    color: "var(--cat-ai)",
   },
 ];
 
@@ -47,18 +47,21 @@ export const skillsData = [
   {
     id: "data",
     icon: FaChartBar,
+    color: "var(--fam-1)",
     titleKey: 'skills.data',
     desc: "R, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau, Matplotlib, Seaborn",
   },
   {
     id: "frontend",
     icon: FaCode,
+    color: "var(--fam-2)",
     titleKey: 'skills.frontend',
     desc: "HTML, CSS, JavaScript, React.js, React Native",
   },
   {
     id: "backend",
     icon: FaDatabase,
+    color: "var(--fam-3)",
     titleKey: 'skills.backend',
     desc: "Python, Node.js, SQL, MySQL, MongoDB",
   },

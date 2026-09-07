@@ -25,7 +25,7 @@ const Skills = () => {
         <div className="skills-info">
           {skillsData.map((skill) => (
             <div key={skill.id} className="skill-category">
-              <div className="icon">
+              <div className="icon" style={{ "--icon-color": skill.color }}>
                 <skill.icon />
               </div>
               <motion.div

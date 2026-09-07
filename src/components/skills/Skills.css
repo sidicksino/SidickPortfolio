@@ -8,38 +8,9 @@
   font-display: swap;
 }
 
-:root {
-  /* ===== Primary Colors ===== */
-  --primary: #e748c8;
-  --primary-light: #f087dd;
-  --primary-dark: #b52a9d;
-
-  --background: #181737;
-  --background-light: #232245;
-  --background-dark: #0e0d20;
-
-  --text: #ffffff;
-  --text-secondary: #cccccc;
-  --text-muted: #8888aa;
-
-  /* ===== Utilities ===== */
-  --shadow: rgba(0, 0, 0, 0.3);
-  --border: #0033a0;
-  --success: #4ade80;
-  --warning: #fbbf24;
-  --error: #f87171;
-
-  /* ===== Useful Transparency ===== */
-  --primary-transparent: #e748c8cc;
-  --background-transparent: #181737cc;
-
-  /* ===== Typography ===== */
-  --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  --font-classic: "Times New Roman", Times, serif;
-  --font-display: "Elsie", serif;
-  --font-fire: "Abril Fatface", cursive;
-}
+/* Design tokens live in src/index.css — the single source of truth.
+   This file's duplicate :root block was removed 2026-09-07.
+   Do not redeclare tokens here. */
 
 .skills {
   padding: 0rem 6rem;
@@ -61,10 +32,6 @@
   font-family: var(--font-fire);
 }
 
-.skills h2 .span2 {
-  animation: pulse 2s infinite;
-  color: var(--warning);
-}
 .skills h2 .span1 {
   position: relative;
   background: linear-gradient(to right, var(--primary), var(--primary-light));
@@ -128,15 +95,32 @@
   align-items: flex-start;
 }
 
+/* Hue comes per-category from --icon-color (set in Skills.jsx from
+   skillsData), drawn from the shared --fam-* family. The icon itself was
+   var(--text) — a white glyph on a magenta wash, so the colour carried no
+   meaning. */
 .skill-category .icon {
   padding: 15px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(231, 72, 200, 0.2);
-  color: var(--text);
+  color: var(--icon-color, var(--accent));
+  background: var(--accent-subtle);
+  background: color-mix(
+    in srgb,
+    var(--icon-color, var(--accent)) 16%,
+    transparent
+  );
   transition: all 0.3s ease;
+}
+
+.skill-category .icon:hover {
+  background: color-mix(
+    in srgb,
+    var(--icon-color, var(--accent)) 30%,
+    transparent
+  );
 }
 .text-blocks h3 {
   font-size: clamp(1.2rem, 3vw, 1.8rem);
