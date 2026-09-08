@@ -94,7 +94,7 @@ exactly **1** description tag per page.
 >   Sino` is two. Fixed with a template literal — caught only because the check
 >   printed the actual titles rather than asserting they existed.
 
-- [ ] **`react-helmet-async` can now be uninstalled** — nothing imports it.
+- [x] **`react-helmet-async` uninstalled** (Phase 10).
 
 ### Phase 9 — Nothing that ages is typed by hand ✅ **Done** (2026-09-08)
 
@@ -152,12 +152,10 @@ console or page errors, no failed requests.
 `package.json` / `package-lock.json` were backed up to `/tmp` before the bump
 so the dependency change could be reverted on its own if the build broke.
 
-- [ ] **Minor, pre-existing:** `/pages/hero` has no `<meta name="description">`.
-      It's a side route, not in the nav or the sitemap, so it isn't indexed —
-      but it's the one page without one.
-- [ ] The chunk-size warning now suggests `build.rolldownOptions.output.codeSplitting`
-      rather than the old Rollup option. The 655 kB main bundle is still worth
-      splitting one day; unrelated to this upgrade.
+- [x] **`/pages/hero` meta description added** (Phase 11). All 7 routes now
+      carry a title and a description.
+- [x] **Bundle cut 655 kB → 453 kB** (Phase 11); the chunk-size warning is gone
+      and `codeSplitting` config was never needed.
 
 ### Phase 11 — Last two loose ends ✅ **Done** (2026-09-08)
 
@@ -192,6 +190,33 @@ anything needing clever chunking:
 Verified without sending a real email: the EmailJS request was blocked at the
 network layer to force the error path. Neither chunk is requested on page load;
 both are fetched on submit; the styled alert renders correctly.
+
+### Phase 12 — Logo wordmark ✅ **Done** (2026-09-08)
+
+- [x] **Gradient fixed.** The logo ran magenta → olive → magenta → green, the
+      same muddy patchwork already fixed on the `SIDICK` headline. At logo size
+      the green read as a rendering fault. Now magenta-only, built from tokens.
+- [x] **Font changed to Outfit 700** (`--font-logo`), chosen from a rendered
+      comparison of 9 candidates at real navbar size. Elsie's ball terminals
+      collided at 2.2rem — the "k" in "Sidick" ran into the next letter.
+- [x] **Shimmer slowed 2s → 8s.** Two seconds flickered; eight sweeps. The
+      global `prefers-reduced-motion` reset stops it entirely for anyone who
+      asks for less motion.
+- [x] Applied to **both** navbars — `/pages/hero` had its own copy of the green
+      gradient, so the logo differed between routes.
+- [x] Only one weight added to the font link (Outfit 700), keeping the payload
+      minimal.
+
+**Green is now confined to the `.nav-active` status dot** — the one place
+Sidick asked to keep it. Verified: zero other green values in `src/`.
+
+> **Found while verifying.** The computed gradient on the homepage came back
+> with two colour stops, not the four in `Navbar.css`. Cause: `HeroPage.css`
+> also declares `.nav-logo-text span`, CSS isn't scoped, both files ship in one
+> bundle, and HeroPage.css loads later — **so it was overriding the navbar on
+> every route.** Both were magenta by then so nothing looked wrong, which is
+> exactly what makes it dangerous. Kept byte-identical with a warning comment in
+> both files. Same class of bug as the 11 duplicate `:root` blocks in Phase 1.
 
 ### Environment setup
 
@@ -379,9 +404,9 @@ mechanism behind the four-colour button row in 2.1.
 otherwise magenta/violet palette. It is currently the contact form's input
 borders and the line under the navbar. It matches nothing.
 
-- [ ] Replace with a neutral: `--border: rgba(255, 255, 255, 0.10);`
-- [ ] Light mode: `--border: rgba(17, 17, 17, 0.12);`
-- [ ] Grep for hard-coded `#0033a0` and remove every instance
+- [x] Replace with a neutral: `--border: rgba(255, 255, 255, 0.10);`
+- [x] Light mode: `--border: rgba(17, 17, 17, 0.12);`
+- [x] Grep for hard-coded `#0033a0` and remove every instance
 
 ### 1.2 Adopt this token set
 
@@ -427,10 +452,11 @@ else is.
 }
 ```
 
-- [ ] Replace `:root` with the above
-- [ ] Update `html.light-theme` to override **only** `--bg`, `--surface`,
-      `--elevated`, `--text`, `--text-2`, `--text-muted`, `--border`
-- [ ] Never redefine `--accent` per theme — the brand colour is constant
+- [x] Replace `:root` with the above
+- [x] Update `html.light-theme` to override **only** surfaces, text, border —
+      plus the theme-aware `--accent-text`, `--fam-*` and `--grid-line` added
+      later. `--accent` itself is never redefined.
+- [x] Never redefine `--accent` per theme — the brand colour is constant
 
 ### 1.3 The rule to hold from here on
 

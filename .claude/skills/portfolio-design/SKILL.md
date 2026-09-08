@@ -28,6 +28,7 @@ one.
 ```css
 --accent / --accent-hover / --accent-strong / --accent-subtle
 --accent-text                /* accent as GLYPHS — theme-aware, see below */
+--font-logo                  /* Outfit 700 — the wordmark ONLY, not headings */
 --on-accent                  /* text colour on an accent fill */
 --bg / --surface / --elevated
 --text / --text-2 / --text-muted
@@ -155,8 +156,16 @@ removed once and restored on request.
   colour you like. Reach for the solver approach: fix saturation, spread hue,
   solve lightness for equal contrast.
 
-- **The logo gradient** (`.nav-logo-text span`) still runs magenta → green.
-  Left alone deliberately; it pairs with the green dot. Ask before changing.
+- ~~The logo gradient runs magenta → green.~~ **Resolved 2026-09-08** — Sidick
+  asked for it fixed. The wordmark is now `--font-logo` (Outfit 700) with a
+  magenta-only gradient, and the shimmer was slowed 2s → 8s. Green now survives
+  in exactly one place site-wide: the `.nav-active` status dot.
+
+  ⚠️ `.nav-logo-text` and `.nav-logo-text span` are declared in **both**
+  `Navbar.css` and `HeroPage.css`. CSS isn't scoped, both ship in the same
+  bundle, and HeroPage.css loads later — so **its rule wins on every route,
+  including the homepage**. They are kept byte-identical on purpose. Change
+  both together, or the homepage will silently take the other file's styling.
 
 If you think one of these is wrong, say so — don't silently change it.
 

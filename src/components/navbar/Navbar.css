@@ -49,24 +49,37 @@
 }
 
 .nav-logo-text {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-logo);
+  font-weight: 700;
   font-size: 2.2rem;
   color: var(--text);
   line-height: 1;
   letter-spacing: -0.5px;
 }
 
+/* Magenta-only. This ran magenta -> olive green -> magenta -> green, the same
+   muddy patchwork that was fixed on the SIDICK headline — at logo size the
+   green read as a rendering fault rather than a colour choice.
+   The shimmer was also looping every 2s, fast enough to pull the eye away from
+   the page on every visit; slowed to 8s and it now sweeps rather than flickers.
+   (The global prefers-reduced-motion reset in index.css stops it entirely for
+   anyone who asks for less motion.) */
 .nav-logo-text span {
-    background: linear-gradient(10deg,rgba(231, 72, 200, 1) 0%, rgba(56, 142, 60, 1) 50%, rgba(231, 72, 200, 1) 82%, rgba(38, 163, 44, 1) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent; /* Fallback */
-    position: relative;
-    animation: rotateGradient 2s linear infinite;
-    background-size: 50% 50%;
-  }
+  background: linear-gradient(
+    92deg,
+    var(--accent) 0%,
+    var(--accent-hover) 45%,
+    var(--accent) 70%,
+    var(--accent-strong) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback */
+  position: relative;
+  animation: rotateGradient 8s ease-in-out infinite;
+}
 
   @keyframes rotateGradient {
     0% {

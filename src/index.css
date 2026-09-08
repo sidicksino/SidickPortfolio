@@ -86,6 +86,9 @@
   --grid-line: rgba(255, 255, 255, 0.08);
 
   /* --- Type -------------------------------------------------------------- */
+  /* The wordmark only. Elsie's ball terminals collide at logo size — the "k"
+     in "Sidick" ran into the following letter. */
+  --font-logo: "Outfit", system-ui, sans-serif;
   --font-display: "Elsie", Georgia, serif;
   --font-body: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;

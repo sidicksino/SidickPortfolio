@@ -120,14 +120,25 @@
 }
 
 .nav-logo-text {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-logo);
+  font-weight: 700;
   font-size: 1.8rem;
   color: var(--text);
 }
 
+/* NOTE: this selector also exists in Navbar.css. CSS isn't scoped here, both
+   files are in the same bundle, and this one loads later — so this rule wins
+   on EVERY route, including the homepage navbar. Kept byte-identical to
+   Navbar.css so the two can't silently diverge. Change both together. */
 .nav-logo-text span {
-  background: linear-gradient(45deg, var(--primary), #26a32c);
+  background: linear-gradient(
+    92deg,
+    var(--accent) 0%,
+    var(--accent-hover) 45%,
+    var(--accent) 70%,
+    var(--accent-strong) 100%
+  );
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
