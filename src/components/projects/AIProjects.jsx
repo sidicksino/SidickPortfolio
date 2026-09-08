@@ -23,10 +23,13 @@ const AIProjects = () => {
         {projects.map((project) => (
           <div key={project.id} className="project-wrapper">
             <div className="project-image-container">
+              {/* alt was {project.title}, but projects only have titleKey —
+                  so every image shipped with alt={undefined} */}
               <img
                 src={project.image}
-                alt={project.title}
+                alt={t(project.titleKey)}
                 className="project-image"
+                loading="lazy"
               />
             </div>
             <div className="project-card1">

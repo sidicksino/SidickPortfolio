@@ -1,7 +1,7 @@
 import "./Skills.css";
 import "./Skills.css";
 // Icons imported in siteData.js
-import SkillsPhoto from "../../assets/skills.png";
+import SkillsPhoto from "../../assets/skills.webp";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 

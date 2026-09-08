@@ -195,6 +195,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Keyboard focus, site-wide.
+   Components had bare `outline: none` with nothing put back, which leaves
+   keyboard users with no idea where they are. `:focus-visible` shows the ring
+   for keyboard/AT navigation only — mouse clicks stay clean, so there's no
+   reason to suppress it. Specificity here (0,1,1) beats a component class
+   (0,1,0), so this holds even if someone reintroduces `outline: none`. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 section {
   width: 100%;
   padding: 4rem 1.5rem;
@@ -202,9 +220,24 @@ section {
   scroll-margin-top: 96px;
 }
 
+/* Reduced motion, site-wide.
+   16 infinite animations existed across 8 stylesheets and only 3 were guarded.
+   Wrapping each one individually is fragile — anything added later would slip
+   through. This catches every CSS animation and transition at once.
+   (framer-motion animates via JS, so CSS can't reach it — App.jsx wraps the
+   tree in <MotionConfig reducedMotion="user"> for that half.) */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

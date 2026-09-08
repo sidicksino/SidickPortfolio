@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { FaArrowLeft, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import "./HeroPage.css";
 import Logo from "../../assets/Logo.svg";
-import heroImageDark from "../../assets/image.png";
-import heroImageLight from "../../assets/sdark.png";
+import heroImageDark from "../../assets/image.webp";
+import heroImageLight from "../../assets/sdark.webp";
 import { useTheme } from "../theme/useTheme";
 
 const HeroPage = () => {

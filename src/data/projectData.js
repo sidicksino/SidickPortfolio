@@ -1,16 +1,16 @@
-import SinoAi from "../assets/sino-ai.png";
-import SinoCoffee from "../assets/SinoCoffee.png";
-import Insta from "../assets/insta.png";
-import SinoEcommerce from "../assets/team-work.png";
-import Wallet from "../assets/wallet.png";
-import TchadInfos from "../assets/tchadInfos.png";
-import Ecomerce from "../assets/ecomerce.png";
-import PimaDiabetes from "../assets/pima.png";
-import Disease from "../assets/disease.png";
-import AAPT from "../assets/aapt.png";
-import News from "../assets/news.png";
-import ROYAL from "../assets/royal.png";
-import SinoAgency from "../assets/sinoagency.png";
+import SinoAi from "../assets/sino-ai.webp";
+import SinoCoffee from "../assets/SinoCoffee.webp";
+import Insta from "../assets/insta.webp";
+import SinoEcommerce from "../assets/team-work.webp";
+import Wallet from "../assets/wallet.webp";
+import TchadInfos from "../assets/tchadInfos.webp";
+import Ecomerce from "../assets/ecomerce.webp";
+import PimaDiabetes from "../assets/pima.webp";
+import Disease from "../assets/disease.webp";
+import AAPT from "../assets/aapt.webp";
+import News from "../assets/news.webp";
+import ROYAL from "../assets/royal.webp";
+import SinoAgency from "../assets/sinoagency.webp";
 
 export const webProjects = [
   {

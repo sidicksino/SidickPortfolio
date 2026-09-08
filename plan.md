@@ -34,7 +34,7 @@ Update this table whenever a phase starts or finishes. Status markers:
 | 3 — Show the work | ✅ **Done** | 2026-09-07 | Featured grid live on the homepage |
 | 4 — Typography | ✅ **Done** | 2026-09-07 | Arial purged; 26 @imports → 1 <link> |
 | 5 — Light mode | ✅ **Done** | 2026-09-08 | 0 contrast failures, both themes |
-| 6 — Polish & a11y | ⬜ Not started | — | |
+| 6 — Polish & a11y | ✅ **Done** | 2026-09-08 | Images 15.5MB→1.2MB; 19 missing alts fixed |
 | 7 — Repo hygiene | ⬜ Not started | — | |
 
 ### Environment setup
@@ -802,7 +802,60 @@ Currently an afterthought, and it shows.
 
 ---
 
-## Phase 6 — Polish, accessibility, performance
+## Phase 6 — Polish, accessibility, performance ✅ **DONE** (2026-09-08)
+
+| Check | Before | After |
+|---|---|---|
+| Images shipped | **15.5 MB** | **1.2 MB** (−91%) |
+| Project images with `alt` | **0 of 19** | **19 of 19** |
+| Infinite animations guarded for reduced motion | 3 of 16 | **all** |
+| Tab stops with a visible focus ring | some | **14 of 14** |
+| `<html lang>` | hard-coded `fr`, site defaulted to English | follows the locale |
+| Horizontal overflow (1920/1440/768/390) | — | none |
+
+### The two that actually mattered
+
+**Every project image shipped with no `alt` attribute.** Not empty — *absent*.
+`WebProjects`, `DesignProjects` and `AIProjects` all rendered
+`alt={project.title}`, but **no project object has a `title` field** — they use
+`titleKey` for i18n. So `alt` resolved to `undefined` and React omitted it, and
+a screen reader announced the filename. Confirmed in the browser (`alt: null`
+on all 8 web images) before and after. Now `alt={t(project.titleKey)}`, verified
+0 of 17 missing across all four routes.
+
+**15.5 MB of images.** `sdark.png` alone was 5.4 MB. Converted every raster to
+WebP (quality 82, capped at 1600px wide) — `sdark` went 5408 KB → 172 KB, 97%
+off. 21 imports rewritten; the build now bundles **no** PNG or JPEG at all.
+Originals removed from the working tree (git history still has them).
+
+### The rest
+
+- **Focus rings.** `.nav-cta` and `.nav-toggle` set `outline: none` with nothing
+  in its place. Removed, plus a site-wide `:focus-visible` baseline in
+  `index.css` whose specificity (0,1,1) beats a component class — so it holds
+  even if someone reintroduces `outline: none`. Tabbed 14 elements: all ringed.
+- **Reduced motion.** Only 3 of 16 infinite animations were guarded. Wrapping
+  each is fragile, so: a global `@media (prefers-reduced-motion: reduce)` reset
+  for CSS, plus `<MotionConfig reducedMotion="user">` in `App.jsx` — framer
+  animates in JS, so CSS can't reach it. Verified under an emulated
+  reduced-motion profile: **0** animations still running.
+- **`<html lang>`** was `fr` while i18next defaulted to `en`. `src/i18n.js` now
+  syncs it on boot and on `languageChanged`. Verified `en → fr → en`.
+- **Layout shift** was already handled — both grids use `aspect-ratio`
+  containers, so images reserve their space before loading.
+- **Form labels** were already correct (`htmlFor`/`id` pairs). No change needed.
+- Horizontal overflow: `document.scrollWidth` never exceeds `clientWidth` at any
+  tested width. (`body.scrollWidth` reads larger — that's off-screen animation
+  start states, contained by `overflow-x: hidden`.)
+
+> **A false negative worth recording.** The first automated pass reported
+> `<html lang>` as "static". There are **two** `.language-toggle` buttons
+> (desktop + mobile menu) and the test clicked the hidden one, with the failure
+> swallowed by a `.catch()`. Re-run against `:visible`, it worked. A silent
+> catch around an assertion turns a broken test into a passing lie.
+
+<details>
+<summary>Original Phase 6 instructions (superseded)</summary>
 
 - [ ] **Reduced motion:** wrap all entrance animations in
       `@media (prefers-reduced-motion: no-preference)`. Currently unconditional.
@@ -817,6 +870,8 @@ Currently an afterthought, and it shows.
       `overflow-x: hidden` — confirm none of it is reachable on mobile
 - [ ] **`<html lang="fr">`** in `index.html` is hard-coded while the site
       defaults to English — sync it with i18next on language change
+
+</details>
 
 ---
 

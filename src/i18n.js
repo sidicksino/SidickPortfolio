@@ -15,4 +15,15 @@ i18n.use(initReactI18next).init({
   }
 });
 
+/* Keep <html lang> honest.
+   index.html hard-codes lang="fr" while this defaults to English, so screen
+   readers and translation tools were told the wrong language for most
+   visitors. Sync it on boot and on every switch. */
+const syncHtmlLang = (lng) => {
+  document.documentElement.setAttribute('lang', lng);
+};
+
+syncHtmlLang(i18n.language);
+i18n.on('languageChanged', syncHtmlLang);
+
 export default i18n;

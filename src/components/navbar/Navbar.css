@@ -142,7 +142,7 @@
 .mobile-icon {
   display: none;
 }
-.nav-toggle:focus {
+.nav-toggle:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -253,7 +253,6 @@
   font-size: 1rem;
   box-shadow: 0 4px 12px rgba(231, 72, 200, 0.3);
   border: none;
-  outline: none;
 }
 
 .nav-cta:hover {

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 import "./Services.css";
-import Service from "../../assets/rr.png";
-import Dark from "../../assets/image.png";
-import Slight from "../../assets/sdark.png";
+import Service from "../../assets/rr.webp";
+import Dark from "../../assets/image.webp";
+import Slight from "../../assets/sdark.webp";
 import { useTheme } from "../theme/useTheme";
 
 import { servicesData } from "../../data/siteData";

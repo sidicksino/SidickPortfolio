@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import { MotionConfig } from "framer-motion";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
@@ -21,43 +22,51 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // Lazy Load Project Pages
 const WebProjects = lazy(() => import("./components/projects/WebProjects"));
-const MobileProjects = lazy(() => import("./components/projects/MobileProjects"));
-const DesignProjects = lazy(() => import("./components/projects/DesignProjects"));
+const MobileProjects = lazy(
+  () => import("./components/projects/MobileProjects"),
+);
+const DesignProjects = lazy(
+  () => import("./components/projects/DesignProjects"),
+);
 const AIProjects = lazy(() => import("./components/projects/AIProjects"));
 
 function App() {
   return (
     <HelmetProvider>
-      <ScrollToTop />
-      <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar />
-                <Hero />
-                <About />
-                <Skills />
-                {/* Real work first, category navigation after it */}
-                <Featured />
-                <Projects />
-                <Services />
-                {/* <Art /> */}
-                <Contact />
-                <Footer />
-              </>
-            }
-          />
-          <Route path="/projects/web" element={<WebProjects />} />
-          <Route path="/projects/mobile" element={<MobileProjects />} />
-          <Route path="/projects/design" element={<DesignProjects />} />
-          <Route path="/projects/ai" element={<AIProjects />} />
+      {/* framer-motion animates in JS, so the CSS reduced-motion reset in
+          index.css can't reach it. "user" makes it follow the OS setting. */}
+      <MotionConfig reducedMotion="user">
+        <ScrollToTop />
+        <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Navbar />
+                  <Hero />
+                  <About />
+                  <Skills />
+                  {/* Real work first, category navigation after it */}
+                  <Featured />
+                  <Projects />
+                  <Services />
+                  {/* <Art /> */}
+                  <Contact />
+                  <Footer />
+                </>
+              }
+            />
+            <Route path="/projects/web" element={<WebProjects />} />
+            <Route path="/projects/mobile" element={<MobileProjects />} />
+            <Route path="/projects/design" element={<DesignProjects />} />
+            <Route path="/projects/ai" element={<AIProjects />} />
 
-          <Route path="/pages/hero" element={<HeroPage />} />
-        </Routes>
-      </Suspense>
-      <ThemeToggle />
+            <Route path="/pages/hero" element={<HeroPage />} />
+          </Routes>
+        </Suspense>
+        <ThemeToggle />
+      </MotionConfig>
     </HelmetProvider>
   );
 }

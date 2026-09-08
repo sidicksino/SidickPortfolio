@@ -1,7 +1,7 @@
 import "./About.css";
 import { useTranslation } from 'react-i18next';
-import photo1 from "../../assets/SI1.jpg";
-import photo2 from "../../assets/phote5.jpeg";
+import photo1 from "../../assets/SI1.webp";
+import photo2 from "../../assets/phote5.webp";
 import { motion } from "framer-motion";
 
 const About = () => {
