@@ -54,10 +54,75 @@ filename. **Every share on WhatsApp / LinkedIn / X / Slack had no preview card.*
       card reliably instead of guessing
 - [x] `sitemap.xml` `lastmod` was frozen at **2025-10-24** on all 5 URLs —
       now today's date, which is the signal crawlers use to re-fetch
-- [ ] **Inconsistency for Sidick to settle:** `og:description` and
-      `twitter:description` are in **French** while the site defaults to English
-      and `og:locale` is now `en_US`. Pick one — it's a positioning call, not a
-      technical one.
+**Sidick's answer: both French and English are primary audiences.** That made
+the single-URL setup the real problem — the language lived only in
+`localStorage`, so both translations shared one URL, and a search engine can
+only index one version of a URL. **The French site was invisible to search.**
+
+- [x] `?lang=` support in `src/i18n.js`, resolved most-explicit-first:
+      URL param → localStorage → browser language → `en`
+- [x] The toggle writes `?lang=` via `replaceState`, so a shared link keeps its
+      language and doesn't trap anyone behind extra back presses
+- [x] `hreflang` alternates (en / fr / x-default) and a rewritten `sitemap.xml`
+      — 5 pages × 2 languages, with **reciprocal** annotations, which Google
+      requires or it ignores them
+- [x] `seo.title` / `seo.description` per locale, key parity verified
+- [x] New `src/components/Seo.jsx` owns `<title>`, description, canonical and
+      hreflang; `index.html` keeps `og:*`/`twitter:*`. **Nothing is declared in
+      both places.**
+
+### The bug this uncovered: metadata was never rendering
+
+`react-helmet-async` 2.0.5 under **React 19** emitted `<title>` but **silently
+dropped every `<meta>` and `<link>`**. Verified in the DOM: `/projects/web` had
+`descCount: 0` despite having a `<meta name="description">` in its Helmet.
+**All four project pages have been shipping with no meta description** — this
+predates every change in this plan.
+
+React 19 hoists `<title>`/`<meta>`/`<link>` natively, so Helmet is redundant
+here and actively harmful. Removed from all five components plus the now-dead
+`HelmetProvider`. Confirmed: 6 pages, correct title and description on each,
+exactly **1** description tag per page.
+
+> Two of my own verification steps were wrong before this landed, both worth
+> remembering:
+> - A `grep -c` for `<meta name="description"` returned **0** while the tag was
+>   still there — the attribute sits on its own line and the single-line
+>   pattern missed it. Re-checked with a multi-line regex.
+> - Switching to native hoisting blanked every project-page `<title>`. React 19
+>   only hoists a `<title>` with a **single** text child; `{t(...)} | Sidick
+>   Sino` is two. Fixed with a template literal — caught only because the check
+>   printed the actual titles rather than asserting they existed.
+
+- [ ] **`react-helmet-async` can now be uninstalled** — nothing imports it.
+
+### Phase 9 — Nothing that ages is typed by hand ✅ **Done** (2026-09-08)
+
+Raised by Sidick: the SEO copy said *"19 shipped projects"* — wrong the day he
+ships the twentieth, and it appeared in six places. The principle generalises,
+so the sweep covered every value that drifts, not just that one.
+
+**Counts removed from prose.** A description should describe, not tally.
+`seo.description` (en + fr), `og:description`, `twitter:description` and two
+places in the README now say *"web platforms, mobile apps and machine-learning
+products"* — accurate at any number.
+
+**`sitemap.xml` `lastmod` was the same mistake, and I made it.** I typed
+`2026-09-08` in this session; the value before that had been frozen at
+`2025-10-24` for months, which tells crawlers nothing has changed. Now generated
+by `scripts/generate-sitemap.mjs`, wired to `prebuild` so it can't be forgotten.
+Routes and languages live in one list in that script.
+
+**README said `react-helmet-async`** under SEO after Helmet had been removed —
+documentation drifts too.
+
+Already correct, left alone: the footer year (`getFullYear()`) and the
+"Browse all N projects" link (`totalProjectCount`, derived from the arrays).
+Those are the pattern to copy — a number is fine when it computes itself.
+
+- [ ] **Sidick's to review:** `about.whoIAmText` says *"I'm a Data Science
+      student"* (both locales). True today, dated after graduation. Not
+      something to automate — just worth a diary note.
 
 ### Environment setup
 

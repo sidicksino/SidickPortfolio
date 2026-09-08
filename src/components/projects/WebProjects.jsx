@@ -3,17 +3,18 @@ import { useTranslation } from 'react-i18next';
 import "./ProjectsPage.css";
 // Images are now imported in projectData.js
 import { webProjects as projects } from "../../data/projectData";
-import { Helmet } from "react-helmet-async";
 
 const WebProjects = () => {
   const { t } = useTranslation();
 
   return (
     <>
-      <Helmet>
-        <title>{t('projectsPage.webTitle')} | Sidick Sino</title>
+      <>
+        {/* Plain elements, not <Helmet>: React 19 hoists these natively and
+            react-helmet-async 2.x was silently dropping every <meta> under it. */}
+        <title>{`${t('projectsPage.webTitle')} | Sidick Sino`}</title>
         <meta name="description" content={t('projectsPage.webIntro')} />
-      </Helmet>
+      </>
       <div className="projects-page">
       <h1>{t('projectsPage.webTitle')}</h1>
       <p>{t('projectsPage.webIntro')}</p>

@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
-import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "framer-motion";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
@@ -12,6 +11,7 @@ import Services from "./components/services/Services";
 import Footer from "./components/footer/Footer";
 import Contact from "./components/contact/Contact";
 import ScrollToTop from "./components/ScrollToTop";
+import Seo from "./components/Seo";
 import ThemeToggle from "./components/ThemeToggle";
 import HeroPage from "./components/pages/HeroPage";
 
@@ -31,7 +31,7 @@ const AIProjects = lazy(() => import("./components/projects/AIProjects"));
 
 function App() {
   return (
-    <HelmetProvider>
+    <>
       {/* framer-motion animates in JS, so the CSS reduced-motion reset in
           index.css can't reach it. "user" makes it follow the OS setting. */}
       <MotionConfig reducedMotion="user">
@@ -42,6 +42,7 @@ function App() {
               path="/"
               element={
                 <>
+                  <Seo />
                   <Navbar />
                   <Hero />
                   <About />
@@ -65,7 +66,7 @@ function App() {
         </Suspense>
         <ThemeToggle />
       </MotionConfig>
-    </HelmetProvider>
+    </>
   );
 }
 

@@ -8,10 +8,18 @@ const LanguageToggle = () => {
     const newLng = i18n.language === 'en' ? 'fr' : 'en';
     i18n.changeLanguage(newLng);
     localStorage.setItem('language', newLng);
+
+    /* Reflect the choice in the URL so the link stays shareable and each
+       language has its own address for search engines. replaceState keeps it
+       out of the back-button history — toggling twice shouldn't trap someone
+       behind two back presses. */
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', newLng);
+    window.history.replaceState({}, '', url);
   };
 
   return (
-    <button 
+    <button
       className="language-toggle"
       onClick={toggleLanguage}
       aria-label="Toggle language"

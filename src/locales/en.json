@@ -205,5 +205,9 @@
     "viewLive": "Visit site",
     "seeAll": "Browse all {{count}} projects",
     "viewDetails": "See details"
+  },
+  "seo": {
+    "title": "Sidick Abdoulaye Hissein | Data Scientist & Full-Stack Developer",
+    "description": "Portfolio of Sidick Abdoulaye Hissein — Data Scientist and Full-Stack Developer based in N'Djamena and Kigali. Web platforms, mobile apps and machine-learning products."
   }
 }

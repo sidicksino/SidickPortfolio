@@ -8,7 +8,7 @@ Full-Stack Developer based between N'Djamena, Chad and Kigali, Rwanda.
 ![The portfolio homepage](docs/screenshot-hero.webp)
 
 A bilingual (English / French) single-page site with a dark and light theme,
-featuring 19 shipped projects across web, mobile, design and machine learning.
+featuring shipped projects across web, mobile, design and machine learning.
 
 ![Featured work section](docs/screenshot-work.webp)
 
@@ -24,7 +24,7 @@ featuring 19 shipped projects across web, mobile, design and machine learning.
 | **Styling** | Hand-written CSS with a design-token system, Tailwind v4 available |
 | **Motion** | Framer Motion, GSAP (ScrollTrigger) |
 | **Forms** | EmailJS + SweetAlert2 |
-| **SEO** | react-helmet-async, sitemap.xml, robots.txt |
+| **SEO** | React 19 native document metadata, generated sitemap, robots.txt, hreflang (en/fr) |
 | **Hosting** | Vercel |
 
 ## Running it
@@ -39,7 +39,7 @@ npm run dev     # http://localhost:5173
 | Script | Does |
 |---|---|
 | `npm run dev` | Dev server with HMR |
-| `npm run build` | Production build to `dist/` |
+| `npm run build` | Production build to `dist/` (regenerates `sitemap.xml` first) |
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | ESLint |
 
@@ -56,7 +56,7 @@ src/
 ├─ i18n.js                ← i18next setup; also keeps <html lang> in sync
 ├─ App.jsx                ← routes
 ├─ data/
-│  ├─ projectData.js      ← all 19 projects + the homepage `featuredProjects` list
+│  ├─ projectData.js      ← every project + the homepage `featuredProjects` list
 │  └─ siteData.js         ← skills, service and category metadata
 ├─ locales/               ← en.json / fr.json (keys must stay in parity)
 └─ components/
@@ -66,7 +66,7 @@ src/
    └─ contact/  footer/  navbar/
 ```
 
-### Two conventions worth knowing
+### Three conventions worth knowing
 
 **All design tokens live in `src/index.css`.** No other stylesheet may declare
 `:root`. Colours, spacing, type and radii are tokens — component CSS consumes
@@ -77,6 +77,13 @@ them and never hard-codes a hex value.
 what the homepage features, edit the `featuredProjects` array in
 `projectData.js` — it references existing projects by id, so nothing is
 duplicated.
+
+**Nothing that changes over time is typed by hand.** Project counts come from
+`totalProjectCount`, the copyright year from `getFullYear()`, and
+`sitemap.xml`'s `lastmod` from `scripts/generate-sitemap.mjs` at build time.
+Marketing copy avoids counts entirely — a description that says "19 projects"
+is wrong the day you ship the twentieth. If you add a route, add it to the
+`ROUTES` list in that script.
 
 ## Contributing to this repo
 
