@@ -286,6 +286,42 @@ LinkedIn's own share URLs use.
 > made the logo gradient diverge between routes. Renamed to `.social-row`
 > before it shipped.
 
+### Phase 14 — Navbar ✅ **Done** (2026-09-08)
+
+Sidick reported two things: the nav doesn't cover all the sections, and the
+highlight shows the wrong one. Investigating found five defects.
+
+| # | Defect | Evidence |
+|---|---|---|
+| 1 | **`#work` was never watched.** `SECTION_IDS` was hand-maintained and Featured Work was added later, so the highlight went stale and kept showing Skills. | Scrolled to `#work`, navbar said `#skills` |
+| 2 | **Nav order ≠ page order.** Nav listed Contact before Services; the page renders Services then Contact, so scrolling moved the highlight backwards. | — |
+| 3 | **`threshold: 0.5` can't work on tall sections.** It asks "is half of this on screen", impossible above 2× viewport. Latent, but `#work` is 1541px — it would have failed on any screen under 770px tall. | Measured every section height |
+| 4 | **The observer was rebuilt on every render.** `options = {}` defaulted to a fresh object sitting in the effect's dependency array. | — |
+| 5 | **Mobile menu stayed open after tapping a link** — one `onClick` in the whole component, on the toggle. | — |
+
+- [x] Hook rewritten to observe a **band** (25–35% of viewport, just under the
+      navbar) instead of a proportion of the section, so height stops mattering.
+      When two sections overlap the band the **topmost** wins, so the highlight
+      moves in reading order rather than by observer callback order.
+- [x] `options` parameter removed entirely.
+- [x] Nav rebuilt from a `NAV_ITEMS` array in page order; **`SECTION_IDS` is
+      derived from it**, so the watch list can no longer drift from the nav —
+      that was the root cause of #1.
+- [x] "Projects" points at `#work` (the real work) and stays lit across the
+      category cards in `#projects`, via a `match` array. Keeps the nav at six.
+- [x] Mobile menu closes on link tap; added `aria-expanded` and `aria-current`.
+- [x] **Fixed invalid HTML**: the CTA was `<button><a href>…</a></button>`.
+      An anchor inside a button is not valid and breaks keyboard and screen
+      reader behaviour. Now a single `<a class="nav-cta">`.
+
+Verified at **700px and 900px** viewport heights: all seven scroll positions
+highlight correctly, mobile menu closes, no console errors.
+
+> **A lint quirk worth recording.** Destructuring `Icon` in the map parameter
+> tripped `no-unused-vars` — `eslint-plugin-react` isn't installed, so ESLint
+> can't tell that `<Icon />` is a use, and the config's `varsIgnorePattern`
+> `^[A-Z_]` covers *variables* but not *arguments*. Held as a local instead.
+
 ### Environment setup
 
 - ✅ **Context7 MCP installed** (2026-09-07) — user scope, health check passing.
