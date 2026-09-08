@@ -1,0 +1,220 @@
+/* Design tokens live in src/index.css — the single source of truth.
+   Do not redeclare tokens here.
+
+   Isometric cube cluster, built in code rather than generated.
+
+   Each cube is three real faces in 3D space (preserve-3d): a lit top plus two
+   shaded side planes. An earlier attempt faked depth with a chain of
+   drop-shadows under a flat rhombus — one flat colour, no distinct planes, so
+   it read as a sticker rather than a solid.
+
+   The layout is driven by the cube's *projected* size, not its footprint. A
+   W-wide cube at the isometric angle paints a rhombus 1.414W wide and 0.817W
+   tall, so laying the grid out in W left every cell ~30% too small and the
+   cubes collided. --rw / --rh / --dp below are those projected values. */
+
+.tech-cubes {
+  --cube: 76px;    /* footprint of one cube */
+  --depth: 25px;   /* height of the extrusion */
+  --gap-x: 34px;   /* clear space between cubes in the same row */
+  --gap-y: 8px;    /* clear space between rows */
+  --float: 5px;    /* idle-float amplitude; padded for, so nothing clips */
+
+  /* Projected geometry at rotateX(54.7deg) rotateZ(45deg) */
+  --rw: calc(var(--cube) * 1.4142); /* rhombus width  */
+  --rh: calc(var(--cube) * 0.8172); /* rhombus height */
+  --dp: calc(var(--depth) * 0.8161); /* wall height    */
+  /* One lattice step down is half a rhombus, plus room for the wall to clear
+     the cube below it. */
+  --row-pitch: calc(var(--rh) / 2 + var(--dp) + var(--gap-y));
+
+  display: grid;
+  /* A cube spans 2 columns, so 2 * col + gap = one rhombus. */
+  grid-template-columns: repeat(5, calc((var(--rw) - var(--gap-x)) / 2));
+  grid-auto-rows: var(--row-pitch);
+  justify-content: center;
+  column-gap: var(--gap-x);
+  row-gap: 0; /* the pitch already carries the spacing */
+  list-style: none;
+  margin: 0;
+  /* Each cube is taller than its row — that overlap is the isometric lattice —
+     so the last row hangs below the grid box. */
+  padding: var(--float) 0 calc(var(--rh) + var(--dp) - var(--row-pitch) + var(--float));
+  /* No `perspective`: perspective vanishes toward one point, so cubes away
+     from centre tilt differently and the lattice stops reading as isometric.
+     True isometric projection is orthographic. */
+}
+
+.tech-cube {
+  grid-column: var(--col) / span 2;
+  grid-row: var(--row);
+  align-self: start;
+  position: relative;
+  width: var(--rw);
+  height: calc(var(--rh) + var(--dp));
+}
+
+.tech-cube__body {
+  position: absolute;
+  inset: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tech-cube__body {
+    /* Staggered so the cluster breathes rather than pulsing as one block.
+       Kept small — a tall float reintroduces the collisions the gaps fix. */
+    animation: cubeFloat 6s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -0.7s);
+  }
+}
+
+@keyframes cubeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--float) * -1));
+  }
+}
+
+.tech-cube__box {
+  position: absolute;
+  /* The W x W footprint, centred inside the wider projected box */
+  width: var(--cube);
+  height: var(--cube);
+  left: 50%;
+  top: 0;
+  margin-left: calc(var(--cube) / -2);
+  transform-style: preserve-3d;
+  /* 54.7deg is the true isometric tilt; 45deg turns the square so a corner
+     faces the viewer, exposing both side planes. */
+  transform: translateY(calc(var(--cube) / -2 + var(--rh) / 2))
+    rotateX(54.7deg) rotateZ(45deg);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-cube:hover .tech-cube__box {
+  transform: translateY(calc(var(--cube) / -2 + var(--rh) / 2 - 10px))
+    rotateX(54.7deg) rotateZ(45deg);
+}
+
+.tech-cube__face {
+  position: absolute;
+  border-radius: 15%;
+}
+
+.tech-cube__face--top {
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translateZ(var(--depth));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--top) 78%, #fff),
+    var(--top)
+  );
+}
+
+/* The walls hang off the top square's edges; transform-origin folds each one
+   down into a vertical plane. */
+.tech-cube__face--front {
+  width: 100%;
+  height: var(--depth);
+  top: 100%;
+  left: 0;
+  transform-origin: top center;
+  transform: rotateX(-90deg);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--side) 92%, #fff),
+    var(--side)
+  );
+  border-radius: 0 0 15% 15%;
+}
+
+.tech-cube__face--right {
+  width: var(--depth);
+  height: 100%;
+  top: 0;
+  left: 100%;
+  transform-origin: left center;
+  transform: rotateY(90deg);
+  /* Darker — this plane turns away from the light */
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--side) 84%, #000),
+    color-mix(in srgb, var(--side) 76%, #000)
+  );
+  border-radius: 0 15% 15% 0;
+}
+
+.tech-cube__face--top svg {
+  /* --icon defaults to 44%; thin-stroked marks set it larger so every cube
+     carries similar visual weight. */
+  width: var(--icon, 44%);
+  height: var(--icon, 44%);
+  color: var(--ink);
+  /* No counter-rotation: the mark sits ON the tilted face, as it does in the
+     illustration this replaces. */
+}
+
+.tech-cube__label {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 9px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 3;
+}
+
+.tech-cube:hover .tech-cube__label,
+.tech-cube:focus-within .tech-cube__label {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-cube__box {
+    transition: none;
+  }
+
+  .tech-cube:hover .tech-cube__box {
+    transform: translateY(calc(var(--cube) / -2 + var(--rh) / 2))
+      rotateX(54.7deg) rotateZ(45deg);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px) {
+  .tech-cubes {
+    --cube: 64px;
+    --depth: 21px;
+    --gap-x: 28px;
+  }
+}
+
+@media (max-width: 992px) {
+  .tech-cubes {
+    --cube: 70px;
+    --depth: 23px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-cubes {
+    --cube: 50px;
+    --depth: 17px;
+    --gap-x: 20px;
+    --gap-y: 6px;
+  }
+}

@@ -487,6 +487,134 @@ back to two at 900 (once the card moves above the text).
 Verified in both themes at 1440 / 1280 / 1100 / 900 / 600 / 390: no horizontal
 overflow at any width, no console errors.
 
+### Phase 17 — Skills cube cluster, built in code ✅ **Done** (2026-09-08)
+
+Three rounds of image generation couldn't produce a usable illustration. Round
+1 fused the cubes into a honeycomb wrapped in a fake halo. Round 2 fixed the
+layout but drew Expo as a meaningless starburst and Power BI as a chart in a
+box. There was no round 3 — Sidick's call:
+
+> *"if you can do it for me from the code, why am I going to generate the
+> image? So just do it."*
+
+Right call. The generator problem was never solvable: it can't draw a mark it
+doesn't know, and every regeneration re-rolled the layout too.
+
+- [x] New `TechCubes.jsx` + `TechCubes.css`; the generated PNG is deleted
+- [x] **Official brand paths** via Simple Icons in `react-icons` — already a
+      dependency, so no new package. 8 of 9 were available directly.
+      **`SiExpo` exists** — the logo the generator failed at twice was sitting
+      in the project the whole time.
+- [x] **Power BI isn't in Simple Icons** (Microsoft's marks were removed over
+      licensing), so **scikit-learn** takes that slot — it's in the Skills list
+      already, so it's a claim Sidick already makes.
+- [x] Layout is **exact by construction**: a 5×5 lattice gives the 1-2-3-2-1
+      diamond. Verified from the DOM, not by eye.
+- [x] Colours are each brand's real value, clamped into a lightness band so the
+      near-blacks stay visible on a dark page (pandas `#150458`, Expo
+      `#000020`). **Ink is chosen per cube** — white or near-black, whichever
+      contrasts better. All ≥ 4.76:1. That's also what the real JavaScript and
+      React marks do: dark on yellow, dark on cyan.
+- [x] Float animation kept, now **staggered** per cube and behind
+      `prefers-reduced-motion`
+- [x] Hover reveals each technology's name; the `<ul>` carries an aria-label
+
+### Two bugs found while building
+
+**Transform order.** `rotate(45deg) scaleY(0.575)` rendered tilted lozenges,
+not isometric diamonds — CSS applies transform functions **right to left**, so
+it squashed the square first and rotated the result. `scaleY() rotate()` is the
+correct order.
+
+**The last cube was clipped**, hanging 52px below the container. The grid rows
+are deliberately shorter than the cubes — that overlap is what makes the
+lattice read as isometric — so the final row overflows. The container now
+reserves `calc(var(--cube) * 0.56)` of bottom padding.
+
+Also fixed in passing: **`Skills.jsx` imported `./Skills.css` twice**, and the
+old `.skills-img` rules that were stretching the PNG by 36% are gone with it.
+
+### Phase 17b — the cubes rebuilt as real solids ✅ **Done** (2026-09-08)
+
+Sidick rejected the first build: *"the one you create with code is not looking
+good"* — next to the reference illustration the cubes read as flat stickers.
+He was right, and the reason was structural, not cosmetic.
+
+**A drop-shadow chain cannot make a solid.** The extrusion was
+`drop-shadow(0 3px 0 var(--side))` repeated five times. That paints one flat
+colour under the rhombus — a slab, with no separate planes. A cube reads as a
+cube because you see **three differently-lit faces at once**. So each cube is
+now three real elements in a `preserve-3d` context: a lit top, a lighter
+left wall, a shadowed right wall, folded into place with `transform-origin`.
+
+**The layout was sized in the wrong units.** The grid was laid out in the cube's
+footprint (`--cube`), but a cube at the isometric angle *paints* a rhombus
+`1.4142 × --cube` wide and `0.8172 × --cube` tall. Every cell was therefore
+~30% narrower than the art in it, which is why the cubes collided. The
+container now derives `--rw` / `--rh` / `--dp` from that projection and lays
+the grid out in those, so the spacing is real.
+
+**`perspective` was breaking the isometry.** Perspective converges on a
+vanishing point, so cubes away from centre tilted differently from the ones
+near it and the lattice stopped looking like one grid. True isometric
+projection is orthographic — the `perspective` declaration is gone, and all
+nine cubes are now identical in shape.
+
+Also: the walls were mixed too far toward black and read as mud rather than as
+shaded planes, and the idle float pushed the top and bottom cubes outside the
+container — the padding now accounts for `--float`.
+
+### Phase 17c — two defects visible in Sidick's crop ✅ **Done** (2026-09-08)
+
+**Dark cubes lost their right wall.** The shadowed face was a fixed
+`color-mix(... 66%, #000)`, which is fine for a bright side but sinks an
+already-dark one into the page. Python's `#20517a` landed near `#0a1a28`
+against a `#181737` background, so the cube looked like it had only one wall —
+same for Expo. The step is gentler now (84%/76%) and the two darkest `side`
+values were lifted. Shading has to be *relative* to the colour it shades.
+
+**scikit-learn's logo is a wordmark**, so at ~40px it rendered as a smudge
+rather than a mark. Replaced with **Tableau** — same Skills row, keeps the
+orange in that lattice slot, geometric enough to read small. Its strokes are
+thin, so cubes now support an optional `icon` scale (`--icon`, default 44%) to
+keep visual weight even across the cluster.
+
+Expo stays despite a minimal mark — Sidick asked for it by name.
+
+### Phase 17d — closed cubes, wider gaps, lid opens on hover ✅ **Done** (2026-09-09)
+
+**The lids were floating.** `rotateX(-90deg)` about a hinge at the base sends a
+wall to `z = 0 .. -depth`, but the top face sits at `z = +depth` — so every wall
+hung a full depth *below* its own lid, and the dark seam under each top face was
+the page showing through the gap. Sidick spotted it as "the top is more open."
+The walls now `translateZ(var(--depth))` before folding, so they span
+`0 .. depth` and meet the lid. This also made the geometry match the layout
+maths that `--rw / --rh / --dp` already assumed.
+
+**Gaps widened** — `--gap-x` 34→48px, `--gap-y` 8→20px — so the cubes read as
+separate objects rather than a fused lattice.
+
+**Hover now opens the lid** instead of lifting the whole cube: the top face
+rises by `--lift` (15px) along the cube's own up-axis, which is the "open" look
+the closed default gave up. Verified from the DOM: `translateZ` steps 25 → 40px
+and the name label goes 0 → 1 opacity.
+
+Note: the section has `padding-bottom: 0`, so on phone the bottom cube sits
+flush against the next section. Pre-existing, not caused by this change —
+raised with Sidick rather than changed, since section spacing is his call.
+
+### A test that lied
+
+The first pass at verifying both themes reported light mode passing while the
+screenshot was plainly still dark. The script set `data-theme` on `<html>`; the
+app actually toggles a **`.light-theme` class** driven by `localStorage`
+(`ThemeProvider.jsx`). Setting an attribute nothing reads fails silently.
+
+This is the same failure as the `.language-toggle` false negative in Phase 6.
+The check now asserts the class landed *and* that `body`'s computed background
+actually changed, and throws if it didn't — a theme test that cannot detect the
+theme is worse than no test.
+
 ### Environment setup
 
 - ✅ **Context7 MCP installed** (2026-09-07) — user scope, health check passing.

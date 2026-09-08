@@ -1,7 +1,6 @@
 import "./Skills.css";
-import "./Skills.css";
 // Icons imported in siteData.js
-import SkillsPhoto from "../../assets/skills.webp";
+import TechCubes from "./TechCubes";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 
@@ -43,14 +42,13 @@ const Skills = () => {
 
         {/* RIGHT SIDE */}
         <motion.div
-          className="services-image-wrapper"
+          className="skills-visual"
           initial={{ opacity: 0, translateX: "50%" }}
           whileInView={{ opacity: 1, translateX: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1 }}
         >
-          <div className="skills-img">
-            <img src={SkillsPhoto} loading="lazy" alt="Sidick Abdoulaye Hissein" className="skills-img" />
-          </div>
+          <TechCubes />
         </motion.div>
       </div>
     </section>
