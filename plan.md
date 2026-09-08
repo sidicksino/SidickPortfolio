@@ -413,6 +413,50 @@ doing work here — holding the layout open.)*
       thing, what changed. The copy is accurate now but still describes
       capability rather than result.
 
+### Phase 16 — About section redesigned ✅ **Done** (2026-09-08)
+
+Sidick asked for a full redesign — the layout was a year old. Three directions
+were mocked up with his real content and tokens (editorial / profile+facts /
+journey timeline); he chose **profile card + fact tiles**.
+
+**The problem it solves:** the old section made a visitor read three paragraphs
+to learn where he is, what he focuses on, or what he builds with — and none of
+those were actually stated. The tiles surface all four at a glance; the
+paragraph carries the voice.
+
+- [x] `About.jsx` and `About.css` rewritten (CSS 270 → 223 lines)
+- [x] Portrait card with name and role, beside a lead paragraph and a **2×2
+      grid of fact tiles**: Based in · Focus · Working with · Mission
+- [x] Tiles take their hue from the existing `--fam-*` family, so the section
+      joins the system rather than introducing new colour. Hue on the left edge
+      only — four filled colour blocks would have fought the rest of the page.
+- [x] **13 new locale keys in both languages**, parity verified
+- [x] **Copy kept durable, on Sidick's correction.** My first draft named the
+      current builds — *"a site for a Chadian non-profit… diabetes and
+      disease-risk models deployed with Streamlit"* — and the stack tile listed
+      Django/Streamlit/Supabase, tools tied to those same projects. Both go
+      stale the moment the portfolio grows.
+
+      > *"imagine if I built a big project, many other projects, not only those…
+      > don't focus on my projects that I have."*
+
+      He's right, and it's the same rule he set in Phase 9: **nothing that
+      changes over time gets typed by hand.** I applied it to counts and then
+      broke it with project names. About now describes the work; **Featured
+      Work names the projects, and that section is generated from the data** —
+      so the specifics stay in the one place that updates itself.
+      Stack tile broadened to the core, durable set: React · Python ·
+      React Native · Node.js · TypeScript · SQL.
+- [x] Verified no About string names a project or a count, in either locale
+- [x] Kept the **80px gutters** Sidick asked for; verified 80/80 at 1440
+
+`auto-fit` on the tile grid packed three across and stranded the fourth on its
+own row — replaced with a fixed 2×2 that collapses to one column at 1100 and
+back to two at 900 (once the card moves above the text).
+
+Verified in both themes at 1440 / 1280 / 1100 / 900 / 600 / 390: no horizontal
+overflow at any width, no console errors.
+
 ### Environment setup
 
 - ✅ **Context7 MCP installed** (2026-09-07) — user scope, health check passing.

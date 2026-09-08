@@ -1,146 +1,83 @@
-import "./About.css";
-import { useTranslation } from 'react-i18next';
-import photo1 from "../../assets/SI1.webp";
-/* Was phote5.webp — the same photo the hero cut-out was generated from, so a
-   visitor met the same person, outfit and pose twice in one scroll. */
-import photo2 from "../../assets/sidick1.webp";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import "./About.css";
+
+import portrait from "../../assets/sidick1.webp";
+
+/* Fact tiles. Each takes a hue from the shared --fam-* family already used by
+   the project cards and the Skills icons, so this section belongs to the same
+   system rather than introducing new colour. */
+const TILES = [
+  { id: "Location", color: "var(--fam-1)" },
+  { id: "Focus", color: "var(--fam-2)" },
+  { id: "Stack", color: "var(--fam-3)" },
+  { id: "Mission", color: "var(--fam-4)" },
+];
 
 const About = () => {
   const { t } = useTranslation();
 
   return (
     <section className="about" id="about">
+      <motion.div
+        className="about-head"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="section-title">{t("about.title")}</h2>
+      </motion.div>
+
       <div className="about-container">
-        <div className="about-images">
-          <motion.img
-            initial={{ opacity: 0, translateX: "-50%" }}
-            whileInView={{ opacity: 1, translateX: 0 }}
-            transition={{ duration: 1 }}
-          src={photo1} alt="Sidick working" className="about-img1" loading="lazy" />
-          <motion.img
-            initial={{ opacity: 0, translateY: "50%" }}
-            whileInView={{ opacity: 1, translateY: 0 }}
-            transition={{ duration: 1 }}
-           src={photo2} alt="Sidick coding" className="about-img2" loading="lazy" />
-        </div>
+        <motion.figure
+          className="about-card"
+          initial={{ opacity: 0, x: -28 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55 }}
+        >
+          <img src={portrait} alt="Sidick Abdoulaye Hissein" loading="lazy" />
+          <figcaption>
+            <span className="about-card-name">Sidick Abdoulaye Hissein</span>
+            <span className="about-card-role">{t("about.eyebrow")}</span>
+          </figcaption>
+        </motion.figure>
 
-        <div className="about-content">
-          <motion.h2
-            initial={{ opacity: 0, translateX: "50%" }}
-            whileInView={{ opacity: 1, translateX: 0 }}
-            transition={{ duration: 1 }}
-            className="section-title"
+        <div className="about-body">
+          <motion.p
+            className="about-lead"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55 }}
           >
-            {t('about.title')}
-          </motion.h2>
-          <div className="about-item">
-            <div className="icon-circle"
-              style={{ "--icon-color": "var(--fam-1)" }}>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 51 51"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M34.7595 22.2596C34.7595 27.4471 30.572 31.6346 25.3845 31.6346C20.197 31.6346 16.0095 27.4471 16.0095 22.2596C16.0095 17.0721 20.197 12.8846 25.3845 12.8846C30.572 12.8846 34.7595 17.0721 34.7595 22.2596Z"
-                  fill="currentColor"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M50.3845 25.3846C50.3845 39.1971 39.197 50.3846 25.3845 50.3846C11.572 50.3846 0.384521 39.1971 0.384521 25.3846C0.384521 11.5721 11.572 0.384644 25.3845 0.384644C39.197 0.384644 50.3845 11.5721 50.3845 25.3846ZM12.8845 43.3534C13.3845 42.5221 18.2283 34.7596 25.3533 34.7596C32.447 34.7596 37.322 42.5409 37.822 43.3534C40.7279 41.344 43.1021 38.6588 44.7406 35.5288C46.3791 32.3988 47.2328 28.9176 47.2283 25.3846C47.2283 13.2909 37.447 3.50964 25.3533 3.50964C13.2595 3.50964 3.47827 13.2909 3.47827 25.3846C3.47827 32.8221 7.19702 39.4159 12.8845 43.3534Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-block"
-            >
-              <h3>{t('about.whoIAm')}</h3>
-              <p>{t('about.whoIAmText')}</p>
-            </motion.div>
-          </div>
+            {t("about.whatIDoText")}
+          </motion.p>
 
-          <div className="about-item">
-            <div className="icon-circle"
-              style={{ "--icon-color": "var(--fam-2)" }}>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 44 44"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+          <ul className="about-tiles">
+            {TILES.map((tile, i) => (
+              <motion.li
+                key={tile.id}
+                className="about-tile"
+                style={{ "--tile-color": tile.color }}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.45, delay: Math.min(i * 0.07, 0.28) }}
               >
-                <path
-                  d="M36.1083 37.9137C38.0943 37.9137 39.7192 35.4764 39.7192 32.4975V5.41625C39.7192 2.43731 38.0943 0 36.1083 0H7.22167C5.23571 0 3.61083 2.43731 3.61083 5.41625V32.4975C3.61083 35.4764 5.23571 37.9137 7.22167 37.9137H0V43.33H43.33V37.9137H36.1083ZM7.22167 5.41625H36.1083V32.4975H7.22167V5.41625Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-block"
-            >
-              <h3>{t('about.whatIDo')}</h3>
-              <p>{t('about.whatIDoText')}</p>
-            </motion.div>
-          </div>
-
-          <div className="about-item">
-            <div className="icon-circle"
-              style={{ "--icon-color": "var(--fam-3)" }}>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="48"
-                  stroke="#CE9178"
-                  strokeWidth="2"
-                  fill="none"
-                />
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="32"
-                  stroke="#CE9178"
-                  strokeWidth="2"
-                  fill="none"
-                />
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="16"
-                  stroke="#CE9178"
-                  strokeWidth="2"
-                  fill="none"
-                />
-                <circle cx="50" cy="50" r="6" fill="currentColor" />
-              </svg>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-block"
-            >
-              <h3>{t('about.myMission')}</h3>
-              <p>{t('about.myMissionText')}</p>
-            </motion.div>
-          </div>
+                <span className="about-tile-label">
+                  {t(`about.tile${tile.id}Label`)}
+                </span>
+                <span className="about-tile-value">
+                  {t(`about.tile${tile.id}Value`)}
+                </span>
+                <span className="about-tile-sub">
+                  {t(`about.tile${tile.id}Sub`)}
+                </span>
+              </motion.li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
