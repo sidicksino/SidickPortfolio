@@ -72,3 +72,35 @@ export const servicesData = [
   'services.uiDesign',
   'services.consulting',
 ];
+
+/* ---------------------------------------------------------------------------
+   SOCIAL LINKS — one definition, consumed by the hero, the footer and
+   /pages/hero.
+
+   These were previously hard-coded in all three components, which had already
+   caused two problems: two different LinkedIn URLs were live at once, and
+   /pages/hero linked to a Twitter account that returns 404.
+
+   `icon` is the react-icons name; components map it to the component so this
+   file stays free of JSX imports.
+--------------------------------------------------------------------------- */
+export const socialLinks = [
+  {
+    id: "github",
+    label: "GitHub",
+    icon: "FaGithub",
+    url: "https://github.com/sidicksino",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    icon: "FaLinkedin",
+    url: "https://www.linkedin.com/in/sidick-abdoulaye-sino-72153a384",
+  },
+  {
+    id: "facebook",
+    label: "Facebook",
+    icon: "FaFacebook",
+    url: "https://www.facebook.com/share/1BTDC1znZD/?mibextid=wwXIfr",
+  },
+];

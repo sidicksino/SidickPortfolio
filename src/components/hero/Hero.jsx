@@ -5,6 +5,7 @@ import heroImage from "../../assets/hero-cutout.webp";
 import { motion } from "framer-motion";
 import MyPDF from "../../assets/sidick.pdf";
 import { Link } from "react-router-dom";
+import SocialLinks from "../SocialLinks";
 
 const Hero = () => {
   useEffect(() => {
@@ -44,6 +45,7 @@ const Hero = () => {
           <Link to="/pages/hero" className="btn btn-primary">{t('hero.cta')}</Link>
           <button onClick={handleDownload} className="btn btn-secondary">{t('hero.downloadCV')}</button>
         </div>
+        <SocialLinks variant="hero" />
       </div>
       <div className="hero-image">
         <img src={heroImage} loading="lazy" alt="Sidick Abdoulaye Hissein" />

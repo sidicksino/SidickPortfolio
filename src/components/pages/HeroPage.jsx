@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FaArrowLeft, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+import SocialLinks from "../SocialLinks";
 import "./HeroPage.css";
 import Logo from "../../assets/Logo.svg";
 import heroImageDark from "../../assets/image.webp";
@@ -340,38 +341,7 @@ const HeroPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h3>Connect With Me</h3>
-            <div className="social-links">
-              <motion.a
-                href="https://github.com/sidicksino"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaGithub /> GitHub
-              </motion.a>
-              <motion.a
-                href="https://linkedin.com/in/sidick-abdoulaye"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaLinkedin /> LinkedIn
-              </motion.a>
-              <motion.a
-                href="https://twitter.com/sidick_sino"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaTwitter /> Twitter
-              </motion.a>
-            </div>
+            <SocialLinks variant="page" showLabels />
           </motion.div>
         </div>
       </section>

@@ -218,6 +218,43 @@ Sidick asked to keep it. Verified: zero other green values in `src/`.
 > exactly what makes it dangerous. Kept byte-identical with a warning comment in
 > both files. Same class of bug as the 11 duplicate `:root` blocks in Phase 1.
 
+### Phase 13 — Social links in the hero ✅ **Done** (2026-09-08)
+
+Sidick's idea, and a good one: the left column ended at the CTAs, leaving a
+dead band of ~200px in the most valuable space on the site. For a developer,
+GitHub above the fold is worth more than GitHub in the footer.
+
+- [x] New `SocialLinks` component, links defined once in
+      `siteData.js` → `socialLinks`
+- [x] Rendered under the hero buttons, **muted at rest** (`--text-muted`) so it
+      doesn't compete with the primary CTAs — colour only on hover/focus
+- [x] Footer and `/pages/hero` now consume the same component. Zero hard-coded
+      social URLs left in `src/components/`.
+
+### Two live bugs this surfaced
+
+**`https://twitter.com/sidick_sino` returns 404.** `/pages/hero` had been
+linking to an account that doesn't exist. Dropped.
+
+**Two different LinkedIn URLs were live at once:**
+- Footer: `http://linkedin.com/in/sidick-abdoulaye-sino-72153a384` — note `http`
+- `/pages/hero`: `https://linkedin.com/in/sidick-abdoulaye`
+
+Standardised on the long-slug one over `https://www.`, since that's the shape
+LinkedIn's own share URLs use.
+
+- [ ] **Sidick to confirm** which LinkedIn slug is the real profile. Both return
+      200, but LinkedIn serves a page for almost any `/in/` path, so the check
+      is not conclusive.
+
+> **Two near-misses while building this.** First, my initial string-slicing
+> edit to `HeroPage.jsx` matched nothing and corrupted the file — caught by
+> `npm run lint` ("Unexpected token"), restored with `git checkout`, redone
+> against the real markup. Second, I had named the component's class
+> `.social-links` — which **`HeroPage.css` already owns**. Same collision that
+> made the logo gradient diverge between routes. Renamed to `.social-row`
+> before it shipped.
+
 ### Environment setup
 
 - ✅ **Context7 MCP installed** (2026-09-07) — user scope, health check passing.

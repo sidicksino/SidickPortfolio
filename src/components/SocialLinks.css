@@ -1,0 +1,89 @@
+/* Design tokens live in src/index.css — the single source of truth.
+   Do not redeclare tokens here.
+
+   The class is `social-row`, not `social-links`: HeroPage.css already owns
+   `.social-links`, CSS here isn't scoped, and two files styling one class is
+   how the logo gradient silently diverged between routes. */
+
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  /* Muted at rest: these sit under the primary CTAs and must not compete
+     with them for attention. Colour arrives on hover. */
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.social-row a:hover,
+.social-row a:focus-visible {
+  color: var(--accent-text);
+  border-color: var(--accent-text);
+  background: var(--accent-subtle);
+  transform: translateY(-3px);
+}
+
+.social-row svg {
+  font-size: 1.05rem;
+  flex: none;
+}
+
+/* Hero: sits below the buttons, so it gets breathing room above it */
+.social-row--hero {
+  margin-top: var(--s-6);
+}
+
+/* Footer: smaller, already in a dense block */
+.social-row--footer a {
+  width: 38px;
+  height: 38px;
+}
+
+/* Labelled: a pill with the network name, not a circle */
+.social-row--labelled {
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.social-row--labelled a {
+  width: auto;
+  height: auto;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-row a {
+    transition: none;
+  }
+
+  .social-row a:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 992px) {
+  /* The hero stacks and centres on small screens */
+  .social-row--hero {
+    justify-content: center;
+    margin-top: var(--s-5);
+  }
+}
