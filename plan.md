@@ -228,6 +228,15 @@ GitHub above the fold is worth more than GitHub in the footer.
       `siteData.js` → `socialLinks`
 - [x] Rendered under the hero buttons, **muted at rest** (`--text-muted`) so it
       doesn't compete with the primary CTAs — colour only on hover/focus
+- [x] **Hover: each network's own brand colour floods in from the centre** —
+      `::before` scales 0 → 1 on a 0.4s `cubic-bezier(.16,1,.3,1)`, icon turns
+      white and scales 1.15, the card lifts 5px and casts a shadow tinted with
+      the same brand colour. Scaling rather than fading makes the colour read as
+      *arriving*. All of it is disabled under `prefers-reduced-motion`.
+- [x] Brand values are **tokens, not hex in the data** (`--brand-github` etc.),
+      and `--brand-github` is theme-aware: its official `#24292f` is nearly
+      invisible on the dark page, so the dark theme lifts it to `#4a5261`.
+      Verified by hovering each icon in both themes.
 - [x] Footer and `/pages/hero` now consume the same component. Zero hard-coded
       social URLs left in `src/components/`.
 

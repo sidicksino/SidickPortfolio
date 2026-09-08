@@ -156,6 +156,17 @@ removed once and restored on request.
   colour you like. Reach for the solver approach: fix saturation, spread hue,
   solve lightness for equal contrast.
 
+- **Social brand colours on hover** (`--brand-github` / `--brand-linkedin` /
+  `--brand-facebook`). The social icons are muted at rest and flood with their
+  own network colour on hover. A narrow, deliberate exception: people recognise
+  these marks by colour, and a GitHub icon that turns magenta reads as a theme
+  rather than as GitHub. **Nothing else on the site may use these values.**
+
+  `--brand-github` is theme-aware — its official `#24292f` is nearly invisible
+  on the dark page, so the dark theme lifts it to `#4a5261` until it separates.
+  As everywhere else, `siteData.js` names the token; the values live in
+  `index.css`.
+
 - ~~The logo gradient runs magenta → green.~~ **Resolved 2026-09-08** — Sidick
   asked for it fixed. The wordmark is now `--font-logo` (Outfit 700) with a
   magenta-only gradient, and the shimmer was slowed 2s → 8s. Green now survives

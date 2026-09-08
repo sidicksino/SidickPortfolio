@@ -21,12 +21,13 @@ const SocialLinks = ({ variant = "default", showLabels = false, className = "" }
       showLabels ? " social-row--labelled" : ""
     } ${className}`.trim()}
   >
-    {socialLinks.map(({ id, label, icon, url }) => {
+    {socialLinks.map(({ id, label, icon, url, brand }) => {
       const Icon = ICONS[icon];
       if (!Icon) return null;
       return (
         <li key={id}>
           <a
+            style={{ "--brand": brand }}
             href={url}
             target="_blank"
             rel="noreferrer"

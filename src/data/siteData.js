@@ -83,6 +83,12 @@ export const servicesData = [
 
    `icon` is the react-icons name; components map it to the component so this
    file stays free of JSX imports.
+
+   `brand` names a token, never a raw hex — the values live in index.css so
+   GitHub's can differ per theme.
+   This is a deliberate, narrow exception to the one-accent rule: people
+   recognise these marks by colour, and a GitHub icon that turns magenta reads
+   as a theme, not as GitHub. Nothing else on the site may use them.
 --------------------------------------------------------------------------- */
 export const socialLinks = [
   {
@@ -90,17 +96,20 @@ export const socialLinks = [
     label: "GitHub",
     icon: "FaGithub",
     url: "https://github.com/sidicksino",
+    brand: "var(--brand-github)",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
     icon: "FaLinkedin",
     url: "https://www.linkedin.com/in/sidick-abdoulaye-sino-72153a384",
+    brand: "var(--brand-linkedin)",
   },
   {
     id: "facebook",
     label: "Facebook",
     icon: "FaFacebook",
     url: "https://www.facebook.com/share/1BTDC1znZD/?mibextid=wwXIfr",
+    brand: "var(--brand-facebook)",
   },
 ];

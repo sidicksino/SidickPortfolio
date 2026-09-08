@@ -3,7 +3,12 @@
 
    The class is `social-row`, not `social-links`: HeroPage.css already owns
    `.social-links`, CSS here isn't scoped, and two files styling one class is
-   how the logo gradient silently diverged between routes. */
+   how the logo gradient silently diverged between routes.
+
+   HOVER: each network's own brand colour floods in from the centre. `--brand`
+   is set per link from siteData.js. This is a narrow, deliberate exception to
+   the one-accent rule — people recognise these marks by colour, and a GitHub
+   icon that turns magenta reads as a theme rather than as GitHub. */
 
 .social-row {
   display: flex;
@@ -15,33 +20,73 @@
 }
 
 .social-row a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--s-2);
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--border);
   /* Muted at rest: these sit under the primary CTAs and must not compete
      with them for attention. Colour arrives on hover. */
   color: var(--text-muted);
   text-decoration: none;
-  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease,
-    background 0.25s ease;
+  overflow: hidden;
+  /* Contains the ::before fill so it can't paint over the icon */
+  isolation: isolate;
+  transition:
+    color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The fill. Scales from the centre rather than fading, so the colour reads as
+   arriving rather than appearing. */
+.social-row a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--brand, var(--accent));
+  transform: scale(0);
+  opacity: 0;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease;
+}
+
+.social-row a:hover::before,
+.social-row a:focus-visible::before {
+  transform: scale(1);
+  opacity: 1;
 }
 
 .social-row a:hover,
 .social-row a:focus-visible {
-  color: var(--accent-text);
-  border-color: var(--accent-text);
-  background: var(--accent-subtle);
-  transform: translateY(-3px);
+  color: #fff;
+  /* Lighten the ring so dark brands (GitHub) still separate from a dark page */
+  border-color: color-mix(in srgb, var(--brand, var(--accent)) 65%, #fff);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px
+    color-mix(in srgb, var(--brand, var(--accent)) 45%, transparent);
+}
+
+.social-row a:active {
+  transform: translateY(-2px);
 }
 
 .social-row svg {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   flex: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-row a:hover svg {
+  transform: scale(1.15);
 }
 
 /* Hero: sits below the buttons, so it gets breathing room above it */
@@ -51,8 +96,8 @@
 
 /* Footer: smaller, already in a dense block */
 .social-row--footer a {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
 }
 
 /* Labelled: a pill with the network name, not a circle */
@@ -64,18 +109,25 @@
 .social-row--labelled a {
   width: auto;
   height: auto;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.95rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .social-row a {
+  .social-row a,
+  .social-row a::before,
+  .social-row svg {
     transition: none;
   }
 
-  .social-row a:hover {
+  .social-row a:hover,
+  .social-row a:active {
+    transform: none;
+  }
+
+  .social-row a:hover svg {
     transform: none;
   }
 }

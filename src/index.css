@@ -80,6 +80,17 @@
   --cat-design: var(--fam-3);
   --cat-ai: var(--fam-4);
 
+  /* --- Social brand colours -----------------------------------------------
+     Hover state for the social icons only. A narrow, deliberate exception to
+     the one-accent rule: people recognise these marks by colour.
+
+     GitHub is theme-aware. Its official #24292f is nearly invisible against
+     this dark page, so the dark theme lifts it until it separates; the light
+     theme uses the real brand value. LinkedIn and Facebook read on both. */
+  --brand-github: #4a5261;
+  --brand-linkedin: #0a66c2;
+  --brand-facebook: #1877f2;
+
   /* --- Decorative lines ---------------------------------------------------
      The hero's background grid. Theme-aware: it used to be a hard-coded
      rgba(255,255,255,.08), i.e. white lines — invisible on a light page. */
@@ -159,6 +170,9 @@ html.light-theme {
 
   /* Dark ink instead of white, or the grid vanishes on a light page. */
   --grid-line: rgba(17, 17, 17, 0.07);
+
+  /* GitHub's real brand value works here — it's a white page. */
+  --brand-github: #24292f;
 }
 
 * {
