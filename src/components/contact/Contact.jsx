@@ -7,49 +7,59 @@ import {
   FaPhoneAlt,
   FaEnvelope,
 } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
 import "./Contact.css";
-import Swal from "sweetalert2";
+
+/* emailjs and sweetalert2 are only needed once someone actually submits the
+   form, but as static imports they were bundled into the initial page load —
+   sweetalert2 in particular ships its own CSS. Imported dynamically below so
+   they're fetched on submit instead. */
 
 const Contact = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const formRef = useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .sendForm(
+    const [{ default: emailjs }, { default: Swal }] = await Promise.all([
+      import("@emailjs/browser"),
+      import("sweetalert2"),
+    ]);
+
+    /* SweetAlert's default confirm button is its own blue-purple. Pull the
+       brand accent out of the live tokens so it follows the active theme. */
+    const accent = getComputedStyle(document.documentElement)
+      .getPropertyValue("--accent-strong")
+      .trim();
+
+    try {
+      await emailjs.sendForm(
         "service_c4vcw6c",
         "template_1b290dh",
         formRef.current,
         "DGu360jLgTiYGNW6H"
-      )
-      .then(
-        () => {
-          Swal.fire({
-            icon: "success",
-            title: t("contact.sentSuccess"),
-            text: t("contact.sentSuccessMsg"),
-            showConfirmButton: false,
-            timer: 2500,
-          });
-          setLoading(false);
-          formRef.current.reset();
-        },
-        () => {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: t("contact.sentError"),
-            footer:
-              `<a href="mailto:sidickabdoulayesino1@gmail.com">${t("contact.contactByEmail")}</a>`,
-          });
-          setLoading(false);
-        }
       );
+      Swal.fire({
+        icon: "success",
+        title: t("contact.sentSuccess"),
+        text: t("contact.sentSuccessMsg"),
+        showConfirmButton: false,
+        timer: 2500,
+      });
+      formRef.current?.reset();
+    } catch {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        confirmButtonColor: accent,
+        text: t("contact.sentError"),
+        footer: `<a href="mailto:sidickabdoulayesino1@gmail.com">${t("contact.contactByEmail")}</a>`,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

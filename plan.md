@@ -159,6 +159,40 @@ so the dependency change could be reverted on its own if the build broke.
       rather than the old Rollup option. The 655 kB main bundle is still worth
       splitting one day; unrelated to this upgrade.
 
+### Phase 11 — Last two loose ends ✅ **Done** (2026-09-08)
+
+**`/pages/hero` had no meta description** — the one route without one. Added
+`seo.heroPageTitle` / `seo.heroPageDescription` in both locales, rendered as
+plain elements (React 19 hoists them). All **7** routes now carry a title and a
+description.
+
+**The 655 kB main bundle.** Most of it turned out to be dead weight rather than
+anything needing clever chunking:
+
+| Step | Bundle | gzip |
+|---|---|---|
+| Starting point | 655.6 kB | 213.8 kB |
+| Remove dead GSAP import | **535.2 kB** | 166.4 kB |
+| Defer emailjs + sweetalert2 | **453.3 kB** | **144.1 kB** |
+
+**−31% raw, −33% gzip. The chunk-size warning is gone** (453 < 500 kB), so
+`build.rolldownOptions.output.codeSplitting` was never needed.
+
+- [x] **GSAP was imported and its plugins registered in `App.jsx`, but the only
+      component that ever used it is `<Art />`, which is disabled.** The whole
+      of gsap + ScrollTrigger + SplitText was shipping for nothing — 120 kB.
+      Removed with a note to register inside `Art.jsx` if it's ever re-enabled.
+- [x] **`emailjs` and `sweetalert2` were static imports** but are only reachable
+      from `handleSubmit`. Now dynamically imported on submit — sweetalert2 is
+      its own 77.7 kB chunk that most visitors never download.
+- [x] `react-anchor-link-smooth-scroll` uninstalled — imported nowhere.
+- [x] SweetAlert's confirm button was its own blue-purple; it now reads
+      `--accent-strong` from the live tokens, so it follows the active theme.
+
+Verified without sending a real email: the EmailJS request was blocked at the
+network layer to force the error path. Neither chunk is requested on page load;
+both are fetched on submit; the styled alert renders correctly.
+
 ### Environment setup
 
 - ✅ **Context7 MCP installed** (2026-09-07) — user scope, health check passing.

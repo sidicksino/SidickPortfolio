@@ -208,6 +208,8 @@
   },
   "seo": {
     "title": "Sidick Abdoulaye Hissein | Data Scientist & Développeur Full-Stack",
-    "description": "Portfolio de Sidick Abdoulaye Hissein — Data Scientist et développeur full-stack basé à N'Djamena et Kigali. Plateformes web, applications mobiles et projets de machine learning."
+    "description": "Portfolio de Sidick Abdoulaye Hissein — Data Scientist et développeur full-stack basé à N'Djamena et Kigali. Plateformes web, applications mobiles et projets de machine learning.",
+    "heroPageTitle": "À propos de Sidick Abdoulaye Hissein | Data Scientist & Développeur Full-Stack",
+    "heroPageDescription": "En savoir plus sur Sidick Abdoulaye Hissein — parcours, approche et cheminement de l'analyse de données vers le full-stack et le machine learning."
   }
 }

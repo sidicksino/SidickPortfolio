@@ -49,6 +49,11 @@ const HeroPage = () => {
 
   return (
     <div className="hero-page">
+      {/* React 19 hoists these into <head>. This was the one route with no
+          meta description. */}
+      <title>{t("seo.heroPageTitle")}</title>
+      <meta name="description" content={t("seo.heroPageDescription")} />
+
       {/* Navigation */}
       <nav className={`hero-navbar ${scrolled ? "scrolled" : ""}`}>
         <Link to="/" className="nav-back">

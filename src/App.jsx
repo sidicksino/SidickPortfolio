@@ -15,9 +15,10 @@ import Seo from "./components/Seo";
 import ThemeToggle from "./components/ThemeToggle";
 import HeroPage from "./components/pages/HeroPage";
 
-import { ScrollTrigger, SplitText } from "gsap/all";
-import gsap from "gsap";
-gsap.registerPlugin(ScrollTrigger, SplitText);
+/* GSAP was imported and its plugins registered here, but the only component
+   that ever used it is <Art />, which is disabled. That pulled the whole of
+   gsap + ScrollTrigger + SplitText into the main bundle for nothing. If Art is
+   re-enabled, register the plugins inside Art.jsx where they're used. */
 
 // Lazy Load Project Pages
 const WebProjects = lazy(() => import("./components/projects/WebProjects"));
