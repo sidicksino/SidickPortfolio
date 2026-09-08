@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./Navbar.css";
 import Logo from "../../assets/Logo.svg";
@@ -26,9 +26,27 @@ import { useActiveSection } from "../../hooks/useActiveSection";
  * cards in #projects that follow it, so those don't need their own entry.
  */
 const NAV_ITEMS = [
-  { key: "home", label: "nav.home", href: "#home", match: ["home"], Icon: HomeIcon },
-  { key: "about", label: "nav.about", href: "#about", match: ["about"], Icon: CgProfile },
-  { key: "skills", label: "nav.skills", href: "#skills", match: ["skills"], Icon: SkillsIcon },
+  {
+    key: "home",
+    label: "nav.home",
+    href: "#home",
+    match: ["home"],
+    Icon: HomeIcon,
+  },
+  {
+    key: "about",
+    label: "nav.about",
+    href: "#about",
+    match: ["about"],
+    Icon: CgProfile,
+  },
+  {
+    key: "skills",
+    label: "nav.skills",
+    href: "#skills",
+    match: ["skills"],
+    Icon: SkillsIcon,
+  },
   {
     key: "projects",
     label: "nav.projects",
@@ -36,8 +54,20 @@ const NAV_ITEMS = [
     match: ["work", "projects"],
     Icon: ProjectsIcon,
   },
-  { key: "services", label: "nav.services", href: "#services", match: ["services"], Icon: ServicesIcon },
-  { key: "contact", label: "nav.contact", href: "#contact", match: ["contact"], Icon: RiContactsBook2Line },
+  {
+    key: "services",
+    label: "nav.services",
+    href: "#services",
+    match: ["services"],
+    Icon: ServicesIcon,
+  },
+  {
+    key: "contact",
+    label: "nav.contact",
+    href: "#contact",
+    match: ["contact"],
+    Icon: RiContactsBook2Line,
+  },
 ];
 
 /* Derived, not hand-maintained: the watch list can't drift out of sync with
@@ -50,74 +80,107 @@ const Navbar = ({ scrolled = false }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const activeSection = useActiveSection(SECTION_IDS);
 
+  /* Lock the page behind the drawer. Without this the content keeps scrolling
+     under an open menu, which on iOS leaves you somewhere unexpected when it
+     closes. */
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMenuOpen]);
+
+  /* Escape closes it, like any other dialog-ish overlay. */
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+    const onKey = (e) => e.key === "Escape" && setIsMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isMenuOpen]);
+
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   /* Tapping a link scrolled the page but left the mobile menu open on top of
      the section it had just scrolled to. */
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-      <div className="nav-logo">
-        <img src={Logo} loading="lazy" alt="Logo" />
-        <p className="nav-logo-text">
-          <span>Sidick</span>Sino
-        </p>
-        <span className="nav-active" aria-hidden="true"></span>
-      </div>
+    <>
+      {/* Rendered OUTSIDE <nav> on purpose. The navbar has backdrop-filter,
+          which makes it the containing block for position:fixed descendants —
+          inside it, this element's inset:0 resolved to the navbar's own 65px
+          box instead of the viewport, so it covered nothing and swallowed no
+          taps. Dims the page and closes the drawer. */}
+      <div
+        className={`nav-backdrop ${isMenuOpen ? "active" : ""}`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
 
-      {/* Nouveau bouton avec SVG animé */}
-      <button
-        className={`nav-toggle ${isMenuOpen ? "open" : ""}`}
-        onClick={toggleMenu}
-        aria-label="Toggle navigation"
-        aria-expanded={isMenuOpen}
-      >
-        <MenuIcon className="menu-icon" />
-      </button>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+        <div className="nav-logo">
+          <img src={Logo} loading="lazy" alt="Logo" />
+          <p className="nav-logo-text">
+            <span>Sidick</span>Sino
+          </p>
+          <span className="nav-active" aria-hidden="true"></span>
+        </div>
 
-      <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
-        {NAV_ITEMS.map((item) => {
-          const { key, label, href, match } = item;
-          /* Held as a local rather than destructured in the parameter list:
+        {/* Nouveau bouton avec SVG animé */}
+        <button
+          className={`nav-toggle ${isMenuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+          aria-label="Toggle navigation"
+          aria-expanded={isMenuOpen}
+        >
+          <MenuIcon className="menu-icon" />
+        </button>
+
+        <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
+          {NAV_ITEMS.map((item) => {
+            const { key, label, href, match } = item;
+            /* Held as a local rather than destructured in the parameter list:
              eslint-plugin-react isn't installed, so ESLint can't tell that
              <Icon /> counts as a use. The config's varsIgnorePattern ^[A-Z_]
              covers variables but not arguments. */
-          const Icon = item.Icon;
-          const isActive = match.includes(activeSection);
-          return (
-            <li key={key}>
-              <a
-                href={href}
-                onClick={closeMenu}
-                className={isActive ? "active" : ""}
-                aria-current={isActive ? "true" : undefined}
-              >
-                <span className="mobile-icon">
-                  <Icon />
-                </span>
-                {t(label)}
-              </a>
-            </li>
-          );
-        })}
+            const Icon = item.Icon;
+            const isActive = match.includes(activeSection);
+            return (
+              <li key={key}>
+                <a
+                  href={href}
+                  onClick={closeMenu}
+                  className={isActive ? "active" : ""}
+                  aria-current={isActive ? "true" : undefined}
+                >
+                  <span className="mobile-icon">
+                    <Icon />
+                  </span>
+                  {t(label)}
+                </a>
+              </li>
+            );
+          })}
 
-        <li className="mobile-actions">
+          <li className="mobile-actions">
+            <LanguageToggle />
+          </li>
+          <li className="mobile-cta">
+            <a href="#contact" className="nav-cta" onClick={closeMenu}>
+              {t("nav.getStarted")}
+            </a>
+          </li>
+        </ul>
+
+        <div className="nav-actions">
           <LanguageToggle />
-        </li>
-        <li className="mobile-cta">
-          <a href="#contact" className="nav-cta" onClick={closeMenu}>
+          <a href="#contact" className="nav-cta">
             {t("nav.getStarted")}
           </a>
-        </li>
-      </ul>
-
-      <div className="nav-actions">
-        <LanguageToggle />
-        <a href="#contact" className="nav-cta">
-          {t("nav.getStarted")}
-        </a>
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </>
   );
 };
 

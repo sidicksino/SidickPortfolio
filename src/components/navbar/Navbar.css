@@ -333,99 +333,171 @@
 @media (max-width: 768px) {
   .nav-toggle {
     display: flex;
+    /* Above the drawer. The navbar's backdrop-filter makes it a stacking
+       context, so the drawer (z-index 999) sits inside it and was painting
+       over the logo and the close button — leaving no way to shut the menu. */
+    z-index: 1001;
+  }
+
+  .nav-logo {
+    position: relative;
+    z-index: 1001;
+  }
+
+  /* ===== Mobile drawer =================================================
+     Redesigned 2026-09-08. The previous version used --background-dark,
+     darker than the page itself so it read as a different app; sat at
+     top: 65px with height: 100vh so it overhung the bottom by 65px; had a
+     stray magenta "handle" bar floating above it; and left the page behind
+     at full opacity with no scrim. Item spacing was a 24px gap plus 12px
+     padding, so the list sprawled.
+
+     Now: a full-height panel on --surface, spanning behind the navbar (which
+     is z-index 1000 and stays on top), with a dimmed backdrop. */
+
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 5, 18, 0.55);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    z-index: 998;
+  }
+
+  .nav-backdrop.active {
+    opacity: 1;
+    visibility: visible;
   }
 
   .nav-menu {
+    /* NOTE: this stays inside <nav> because on desktop it's a flex child of
+       it. The navbar has backdrop-filter, so it is the containing block for
+       position:fixed descendants — `bottom: 0` here would resolve to the
+       navbar's 65px box, not the viewport. Height is set explicitly instead,
+       and no `bottom` is declared. */
     position: fixed;
-    flex-direction: column;
-    top: 65px;
+    top: 0;
     right: 0;
-    width: 70%;
-    height: 100vh;
-    background: var(--background-dark);
-    backdrop-filter: blur(10px);
-    padding: 30px 20px;
-    text-align: left;
-    transform: translateX(150%);
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    gap: 24px;
+    /* dvh, not vh: vh ignores the mobile browser's collapsing address bar
+       and leaves the last item under it. */
+    height: 100dvh;
+    width: min(82%, 330px);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    /* clears the 65px navbar, which floats above this panel */
+    /* Bottom padding clears the floating theme toggle (fixed, 56px, 30px from
+       each edge, z-index 1000) — it was sitting on top of the Get Started
+       button. 30 + 56 + 12 of breathing room. */
+    padding: calc(65px + var(--s-5)) var(--s-4) 98px;
+    gap: var(--s-1);
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    box-shadow: -18px 0 44px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.4s;
     z-index: 999;
-    align-content: center;
   }
 
-  /* Afficher les icônes seulement en mobile */
+  .nav-menu.active {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
   .mobile-icon {
     display: inline-flex;
-    margin-right: 12px;
     align-items: center;
     justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 10px;
+    background: var(--elevated);
+    color: var(--text-2);
+    transition: background 0.25s ease, color 0.25s ease;
   }
 
   .mobile-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
     stroke: currentColor;
-  }
-  .nav-menu.active {
-    transform: translateX(0);
-    opacity: 1;
   }
 
   .nav-menu li a {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 1.3rem;
-    padding: 12px 16px;
-    color: var(--text);
+    gap: var(--s-3);
+    font-size: 1.02rem;
+    font-weight: 500;
+    padding: var(--s-3) var(--s-3);
+    border-radius: var(--radius);
+    color: var(--text-2);
     text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
+    border-bottom: none;
+    transition: background 0.25s ease, color 0.25s ease;
   }
 
-  .nav-menu li a svg {
-    width: 20px;
-    height: 20px;
-    stroke: currentColor;
-    transition: stroke 0.3s ease;
-  }
-
-  .nav-menu li a:hover {
-    color: var(--primary-light);
-  }
-
+  /* The desktop underline is meaningless here and it overflowed the panel:
+     it was positioned at left:16px with width:100%, so it ran 16px past the
+     right edge. The active state is a filled row instead. */
   .nav-menu li a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 16px;
-    width: 0;
-    height: 1px;
-    background: var(--primary);
-    transition: width 0.3s ease;
+    content: none;
   }
 
-  .nav-menu li a:hover::after {
-    width: calc(100% - 32px);
+  .nav-menu li a:hover,
+  .nav-menu li a:focus-visible {
+    background: var(--elevated);
+    color: var(--text);
+  }
+
+  .nav-menu li a.active {
+    background: var(--accent-subtle);
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+
+  .nav-menu li a.active .mobile-icon {
+    background: var(--accent-text);
+    color: var(--on-accent);
   }
 
   .navbar > .nav-cta {
     display: none;
   }
 
-  .nav-menu::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: var(--primary);
-    border-radius: 2px;
-    opacity: 0.7;
+  /* Language + CTA pinned to the bottom of the drawer */
+  .mobile-actions {
+    margin-top: auto;
+    padding: var(--s-5) var(--s-2) var(--s-3) !important;
+    border-top: 1px solid var(--border);
+  }
+
+  .mobile-cta {
+    padding: 0 var(--s-2) !important;
+  }
+
+  .mobile-cta .nav-cta {
+    display: block;
+    width: 100%;
+    padding: var(--s-3) var(--s-4);
+    border-radius: var(--radius);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-menu,
+    .nav-backdrop,
+    .nav-menu li a,
+    .mobile-icon {
+      transition: none;
+    }
   }
 }
 
@@ -452,9 +524,3 @@
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .nav-menu li a.active {
-    background: rgba(231, 72, 200, 0.1);
-    border-radius: 8px;
-  }
-}

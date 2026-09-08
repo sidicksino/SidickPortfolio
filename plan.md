@@ -317,6 +317,41 @@ highlight shows the wrong one. Investigating found five defects.
 Verified at **700px and 900px** viewport heights: all seven scroll positions
 highlight correctly, mobile menu closes, no console errors.
 
+### Mobile drawer redesigned
+
+The old panel used `--background-dark` — darker than the page itself, so it
+read as a different app. It sat at `top: 65px` with `height: 100vh`, overhanging
+the bottom by 65px. A stray magenta "handle" bar floated above it. The page
+behind stayed at full opacity with no scrim. And the desktop underline followed
+it in: positioned at `left: 16px` with `width: 100%`, so the active item's line
+ran 16px **past the right edge of the panel**.
+
+- [x] Full-height panel on `--surface`, `100dvh` (not `vh`, which ignores the
+      mobile browser's collapsing address bar and hides the last item)
+- [x] Dimmed, blurred backdrop that closes the drawer on tap
+- [x] Body scroll locked while open; **Escape** closes it
+- [x] Items on the `--s-*` scale; active state is a filled row with an accent
+      icon chip. The overflowing `::after` is `content: none` here.
+- [x] Language toggle and CTA pinned to the bottom
+
+**Two stacking-context bugs, same root cause.** `.navbar` has
+`backdrop-filter`, which makes it the containing block for `position: fixed`
+descendants:
+
+1. The backdrop was rendered *inside* `<nav>`, so `inset: 0` resolved to the
+   navbar's own **65px box** — it covered nothing and swallowed no taps.
+   Moved outside `<nav>`.
+2. The drawer is a `z-index: 999` child of that same context, so it painted
+   **over the logo and the close button** — leaving no way to shut the menu.
+   Both raised to 1001.
+
+The drawer stays inside `<nav>` because on desktop it's a flex child of it; its
+`bottom: 0` was removed, since that would have resolved to the navbar's box
+too. Height is set explicitly instead, and the reason is commented in place.
+
+- [x] Bottom padding clears the floating theme toggle, which was sitting on top
+      of the Get Started button (verified: CTA bottom 746, toggle top 785).
+
 > **A lint quirk worth recording.** Destructuring `Icon` in the map parameter
 > tripped `no-unused-vars` — `eslint-plugin-react` isn't installed, so ESLint
 > can't tell that `<Icon />` is a use, and the config's `varsIgnorePattern`
