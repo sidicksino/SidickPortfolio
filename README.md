@@ -18,7 +18,7 @@ featuring shipped projects across web, mobile, design and machine learning.
 
 | | |
 |---|---|
-| **Framework** | React 19 + Vite 7 |
+| **Framework** | React 19 + Vite 8 (Rolldown) |
 | **Routing** | React Router 7 |
 | **i18n** | i18next / react-i18next — English + French |
 | **Styling** | Hand-written CSS with a design-token system, Tailwind v4 available |

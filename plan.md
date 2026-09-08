@@ -124,6 +124,41 @@ Those are the pattern to copy — a number is fine when it computes itself.
       student"* (both locales). True today, dated after graduation. Not
       something to automate — just worth a diary note.
 
+### Phase 10 — Dependency upgrades ✅ **Done** (2026-09-08)
+
+- [x] **`react-helmet-async` uninstalled.** Nothing imported it after Phase 8
+      replaced it with React 19's native metadata hoisting.
+- [x] **Vite 7.1.6 → 8.2.2** with `@vitejs/plugin-react` 5.0.3 → 6.1.1.
+      Checked first that `@tailwindcss/vite` 4.3.3 already declares `vite ^8`
+      and that plugin-react 6's extra peers (`oxc-transform-react`,
+      `@rolldown/plugin-babel`, `babel-plugin-react-compiler`) are all
+      **optional** — otherwise this needed three more installs.
+- [x] **`npm audit fix`** for the last 6, all transitive under `eslint@9.35.0`
+      and touching only `npm run lint`.
+
+| | Before | After |
+|---|---|---|
+| Total advisories | 13 | **0** |
+| Production advisories | 0 | **0** |
+| Build time | 1.46 s | **0.21 s** |
+| Main bundle | 670.4 kB | **654.9 kB** |
+
+Vite 8 swaps Rollup for **Rolldown**, so this was a real bundler change, not a
+version number. Verified after: lint clean, build clean, all **7** routes
+render with correct per-language title and description, language toggle,
+theme toggle, the 6 featured cards and client-side navigation all work, no
+console or page errors, no failed requests.
+
+`package.json` / `package-lock.json` were backed up to `/tmp` before the bump
+so the dependency change could be reverted on its own if the build broke.
+
+- [ ] **Minor, pre-existing:** `/pages/hero` has no `<meta name="description">`.
+      It's a side route, not in the nav or the sitemap, so it isn't indexed —
+      but it's the one page without one.
+- [ ] The chunk-size warning now suggests `build.rolldownOptions.output.codeSplitting`
+      rather than the old Rollup option. The 655 kB main bundle is still worth
+      splitting one day; unrelated to this upgrade.
+
 ### Environment setup
 
 - ✅ **Context7 MCP installed** (2026-09-07) — user scope, health check passing.
