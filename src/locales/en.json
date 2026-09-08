@@ -46,12 +46,14 @@
     "tileFocusLabel": "Focus",
     "tileFocusValue": "Data Science",
     "tileFocusSub": "and full-stack product work",
-    "tileStackLabel": "Working with",
-    "tileStackValue": "React · Python",
-    "tileStackSub": "React Native · Node.js · TypeScript · SQL",
+    "tileStackLabel": "Working on",
     "tileMissionLabel": "Mission",
     "tileMissionValue": "Students & entrepreneurs",
-    "tileMissionSub": "across Africa — scalable, reliable, simple"
+    "tileMissionSub": "across Africa — scalable, reliable, simple",
+    "tileStackDataLabel": "Data",
+    "tileStackDataValue": "Machine learning, analysis and visualisation",
+    "tileStackProductLabel": "Product",
+    "tileStackProductValue": "Web platforms and mobile apps"
   },
   "cta": {
     "title": "Let's Work Together",

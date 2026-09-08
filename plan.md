@@ -445,8 +445,32 @@ paragraph carries the voice.
       broke it with project names. About now describes the work; **Featured
       Work names the projects, and that section is generated from the data** —
       so the specifics stay in the one place that updates itself.
-      Stack tile broadened to the core, durable set: React · Python ·
-      React Native · Node.js · TypeScript · SQL.
+      Stack tile then split again, on Sidick's second correction:
+
+      > *"Actually I'm a data scientist. So I will mention those of machine
+      > learning analysis things."*
+
+      Also correct, and it was a positioning contradiction, not just a list
+      problem. The role says *Data Scientist · Full-Stack Developer*, the Focus
+      tile says *Data Science*, and the Skills section **leads** with R, Pandas,
+      NumPy, Scikit-learn and TensorFlow — while the one tile naming tools
+      showed an almost entirely web stack. A reader would have concluded the
+      data-science claim was thin.
+
+      Then raised again, on his third note — the Skills section directly below
+      already lists every tool, so naming them here was duplication:
+
+      > *"we have also my skill section… not listing all the tools that I'm
+      > using or framework that I'm using."*
+
+      The tile is now **"Working on"** at discipline level:
+      **Data** — Machine learning, analysis and visualisation
+      **Product** — Web platforms and mobile apps
+
+      **Zero tool or framework names remain anywhere in the About copy**, in
+      either locale — verified. The division is now clean: About says what the
+      work *is*, Skills says what it's *built with*, Featured Work says what was
+      *shipped*. Each fact lives in exactly one place.
 - [x] Verified no About string names a project or a count, in either locale
 - [x] Kept the **80px gutters** Sidick asked for; verified 80/80 at 1440
 

@@ -161,6 +161,45 @@
   color: var(--text-muted);
 }
 
+/* Stack tile: Data / Product on their own labelled rows, data first — it's
+   the identity claimed by the role, the Focus tile and the Skills section. */
+.about-tile-rows {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-2) var(--s-4);
+  margin: 0;
+  align-items: baseline;
+}
+
+.about-tile-rows dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.about-tile-rows dd {
+  margin: 0;
+  font-size: 0.93rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+@media (max-width: 480px) {
+  /* Stack the label above its list rather than squeezing two columns */
+  .about-tile-rows {
+    grid-template-columns: 1fr;
+    gap: var(--s-1);
+  }
+
+  .about-tile-rows dt:not(:first-child) {
+    margin-top: var(--s-2);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .about-card,
   .about-tile {

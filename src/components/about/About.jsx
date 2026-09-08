@@ -69,12 +69,26 @@ const About = () => {
                 <span className="about-tile-label">
                   {t(`about.tile${tile.id}Label`)}
                 </span>
-                <span className="about-tile-value">
-                  {t(`about.tile${tile.id}Value`)}
-                </span>
-                <span className="about-tile-sub">
-                  {t(`about.tile${tile.id}Sub`)}
-                </span>
+                {tile.id === "Stack" ? (
+                  /* Two labelled rows. A single list read as an all-web stack,
+                     which contradicted the role, the Focus tile and the Skills
+                     section — all of which lead with data science. */
+                  <dl className="about-tile-rows">
+                    <dt>{t("about.tileStackDataLabel")}</dt>
+                    <dd>{t("about.tileStackDataValue")}</dd>
+                    <dt>{t("about.tileStackProductLabel")}</dt>
+                    <dd>{t("about.tileStackProductValue")}</dd>
+                  </dl>
+                ) : (
+                  <>
+                    <span className="about-tile-value">
+                      {t(`about.tile${tile.id}Value`)}
+                    </span>
+                    <span className="about-tile-sub">
+                      {t(`about.tile${tile.id}Sub`)}
+                    </span>
+                  </>
+                )}
               </motion.li>
             ))}
           </ul>
