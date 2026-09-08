@@ -269,7 +269,12 @@ LinkedIn's own share URLs use.
 - [x] Removed the redundant `.footer-socials` wrapper (a second rule set on the
       same links) and the `@keyframes glow` it orphaned.
 
-- [ ] **Sidick to confirm** which LinkedIn slug is the real profile. Both return
+- [x] **LinkedIn resolved** (2026-09-08). Sidick's share sheet returned a
+      **third** slug — `/in/sidick-sino` — matching neither of the two that were
+      live in the code. Both of those were wrong: the long
+      `sidick-abdoulaye-sino-72153a384` was LinkedIn's auto-generated fallback,
+      and `sidick-abdoulaye` didn't correspond to anything. `?utm_source=share_via`
+      and the other iOS share-sheet markers stripped. Both return
       200, but LinkedIn serves a page for almost any `/in/` path, so the check
       is not conclusive.
 
