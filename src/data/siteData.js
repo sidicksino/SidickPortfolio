@@ -105,6 +105,27 @@ export const socialLinks = [
     url: "https://www.linkedin.com/in/sidick-abdoulaye-sino-72153a384",
     brand: "var(--brand-linkedin)",
   },
+  /* Tracking parameters stripped from the URLs Sidick supplied:
+       ?stkn=… &utm_source=qr   (Instagram — a share token tied to his device)
+       ?s=11                    (X — the app's share-source marker)
+     They add nothing, and the Instagram one is personal to the device that
+     generated the QR code. An entry with an empty `url` is skipped entirely,
+     so a network can wait for its handle without rendering a dead link. */
+  {
+    id: "instagram",
+    label: "Instagram",
+    icon: "FaInstagram",
+    url: "https://www.instagram.com/sidick_abdoulaye_sino",
+    brand: "var(--brand-instagram)",
+    glow: "var(--brand-instagram-glow)",
+  },
+  {
+    id: "x",
+    label: "X",
+    icon: "FaXTwitter",
+    url: "https://x.com/sinobour",
+    brand: "var(--brand-x)",
+  },
   {
     id: "facebook",
     label: "Facebook",

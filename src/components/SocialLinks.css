@@ -68,11 +68,12 @@
 .social-row a:hover,
 .social-row a:focus-visible {
   color: #fff;
-  /* Lighten the ring so dark brands (GitHub) still separate from a dark page */
-  border-color: color-mix(in srgb, var(--brand, var(--accent)) 65%, #fff);
+  /* Ring and shadow use --glow, a SOLID value: --brand may be a gradient
+     (Instagram), and color-mix() can't take one. --glow defaults to --brand. */
+  border-color: color-mix(in srgb, var(--glow, var(--accent)) 65%, #fff);
   transform: translateY(-5px);
   box-shadow: 0 10px 24px
-    color-mix(in srgb, var(--brand, var(--accent)) 45%, transparent);
+    color-mix(in srgb, var(--glow, var(--accent)) 45%, transparent);
 }
 
 .social-row a:active {
@@ -94,7 +95,15 @@
   margin-top: var(--s-6);
 }
 
-/* Footer: smaller, already in a dense block */
+/* Footer: smaller, already in a dense block.
+   The margin came from a `.footer-socials` wrapper that also styled these
+   links — two rule sets on one element, which pushed the icons out of their
+   circles and `overflow: hidden` then clipped them. Wrapper removed; the
+   spacing lives here now. */
+.social-row--footer {
+  margin-top: var(--s-5);
+}
+
 .social-row--footer a {
   width: 40px;
   height: 40px;

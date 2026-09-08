@@ -65,17 +65,17 @@
 }
 
 /* Liens de navigation */
-.footer-col ul {
+.footer-col ul:not(.social-row) {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-col ul li {
+.footer-col ul:not(.social-row) li {
   margin-bottom: 12px;
 }
 
-.footer-col ul li a {
+.footer-col ul:not(.social-row) li a {
   color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.3s ease;
@@ -84,7 +84,7 @@
   padding-left: 8px;
 }
 
-.footer-col ul li a::before {
+.footer-col ul:not(.social-row) li a::before {
   content: "→";
   opacity: 0;
   position: absolute;
@@ -93,12 +93,12 @@
   transition: all 0.3s ease;
 }
 
-.footer-col ul li a:hover {
+.footer-col ul:not(.social-row) li a:hover {
   color: var(--accent-text);
   transform: translateX(5px);
 }
 
-.footer-col ul li a:hover::before {
+.footer-col ul:not(.social-row) li a:hover::before {
   opacity: 1;
   transform: translateX(-10px);
 }
@@ -122,34 +122,6 @@
 
 .contact-list li:hover .contact-icon {
   transform: scale(1.2);
-}
-
-/* Réseaux sociaux */
-.footer-socials {
-  display: flex;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.footer-socials a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--border);
-  color: var(--text-secondary);
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  border: 1px solid var(--border);
-}
-
-.footer-socials a:hover {
-  background: var(--primary-transparent);
-  color: var(--text);
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 5px 15px rgba(231, 72, 200, 0.3);
 }
 
 /* Bas de page */
@@ -181,16 +153,6 @@
   .footer-col h4 {
     font-size: 1.2rem;
   }
-
-  .footer-socials {
-    gap: 12px;
-  }
-
-  .footer-socials a {
-    width: 36px;
-    height: 36px;
-    font-size: 1.1rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -212,13 +174,7 @@
     font-size: 0.9rem;
   }
 
-  .footer-socials a {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-  }
-
-  .footer-bottom {
+    .footer-bottom {
     font-size: 0.85rem;
   }
 }
@@ -239,12 +195,7 @@
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  
-  @keyframes glow {
-    0% { box-shadow: 0 0 5px var(--primary); }
-    50% { box-shadow: 0 0 20px var(--primary-light); }
-    100% { box-shadow: 0 0 5px var(--primary); }
-  }
+
   
   .animate-footer {
     animation: fadeIn 1s ease forwards;
@@ -259,20 +210,6 @@
     animation: fadeIn 2s ease forwards;
   }
   
-  /* ===== Glassmorphism hover ===== */
-  .footer-socials a {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
-    transition: all 0.3s ease, transform 0.4s ease;
-  }
-  
-  .footer-socials a:hover {
-    background: rgba(231, 72, 200, 0.15);
-    transform: translateY(-5px) scale(1.15) rotate(6deg);
-    animation: glow 1.5s infinite alternate;
-    color: var(--primary-light);
-  }
   
   /* Glass hover for contact items */
   .contact-list li {
@@ -330,30 +267,6 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-  }
-  
-  .footer-socials a {
-    background: linear-gradient(270deg, var(--accent), var(--accent-hover), var(--accent-strong));
-    background-size: 600% 600%;
-    animation: gradientMove 6s ease infinite;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    border: 1px solid var(--border);
-    transition: all 0.4s ease;
-  }
-  
-  .footer-socials a:hover {
-    transform: translateY(-6px) scale(1.2) rotate(8deg);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 20px rgba(231, 72, 200, 0.3);
   }
   
   /* ===== Contact List Glass Hover ===== */

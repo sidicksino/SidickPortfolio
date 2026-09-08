@@ -90,6 +90,12 @@
   --brand-github: #4a5261;
   --brand-linkedin: #0a66c2;
   --brand-facebook: #1877f2;
+  /* Instagram's mark is a gradient, not a flat colour. --*-glow is the solid
+     value used for the ring and the shadow, which can't take a gradient. */
+  --brand-instagram: linear-gradient(45deg, #f9ce34, #ee2a7b 50%, #6228d7);
+  --brand-instagram-glow: #ee2a7b;
+  /* X is pure black — same problem GitHub had against a dark page. */
+  --brand-x: #3a3a3c;
 
   /* --- Decorative lines ---------------------------------------------------
      The hero's background grid. Theme-aware: it used to be a hard-coded
@@ -171,8 +177,9 @@ html.light-theme {
   /* Dark ink instead of white, or the grid vanishes on a light page. */
   --grid-line: rgba(17, 17, 17, 0.07);
 
-  /* GitHub's real brand value works here — it's a white page. */
+  /* Real brand values work here — it's a white page. */
   --brand-github: #24292f;
+  --brand-x: #000000;
 }
 
 * {

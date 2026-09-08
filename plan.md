@@ -252,6 +252,23 @@ linking to an account that doesn't exist. Dropped.
 Standardised on the long-slug one over `https://www.`, since that's the shape
 LinkedIn's own share URLs use.
 
+- [x] **Instagram and X added** (2026-09-08). Tracking parameters stripped from
+      the supplied URLs — `?stkn=…&utm_source=qr` on Instagram (a share token
+      tied to his device) and `?s=11` on X. Both confirmed HTTP 200.
+- [x] Instagram hovers to its real **gradient**; `--brand-x` is theme-aware like
+      GitHub, since pure black vanishes on the dark page. Ring and shadow use a
+      separate solid `--glow`, because `color-mix()` cannot take a gradient.
+- [x] **Footer icons were cropped.** `.footer-col ul li a` — the footer's
+      *navigation* rule — also matched the social row, since that's a
+      `<ul><li><a>` inside `.footer-col` too. At (0,1,3) it beat
+      `.social-row a` (0,1,1) and forced `display: inline-block`, so the flex
+      centring never applied and `overflow: hidden` clipped the icons. Its
+      `::before { content: "→" }` was also colliding with the colour fill.
+      Scoped all six `.footer-col ul` selectors with `:not(.social-row)`.
+      Now measured at 11px above / 11px below in both themes.
+- [x] Removed the redundant `.footer-socials` wrapper (a second rule set on the
+      same links) and the `@keyframes glow` it orphaned.
+
 - [ ] **Sidick to confirm** which LinkedIn slug is the real profile. Both return
       200, but LinkedIn serves a page for almost any `/in/` path, so the check
       is not conclusive.

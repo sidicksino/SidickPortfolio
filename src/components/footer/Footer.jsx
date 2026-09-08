@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaFacebook } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import SocialLinks from '../SocialLinks';
 import './Footer.css';
@@ -16,9 +16,7 @@ const Footer = () => {
           <p className="footer-desc">
             {t('footer.text')}
           </p>
-          <div className="footer-socials">
-            <SocialLinks variant="footer" />
-          </div>
+          <SocialLinks variant="footer" />
         </div>
 
         {/* Column 2 : Navigation */}
