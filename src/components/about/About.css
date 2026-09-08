@@ -269,7 +269,27 @@
   }
 
   .about-tiles {
-    grid-template-columns: 1fr;
+    /* "Based in" and "Focus" are short enough to share a line on a phone.
+       "Working on" and "Mission" carry full sentences, so they span both
+       columns rather than being squeezed to ~150px. */
+    grid-template-columns: 1fr 1fr;
     gap: var(--s-3);
+  }
+
+  .about-tile:nth-child(1),
+  .about-tile:nth-child(2) {
+    padding: var(--s-4);
+  }
+
+  .about-tile:nth-child(3),
+  .about-tile:nth-child(4) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Below this the two short tiles start breaking city names awkwardly */
+  .about-tiles {
+    grid-template-columns: 1fr;
   }
 }

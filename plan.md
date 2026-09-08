@@ -474,6 +474,12 @@ paragraph carries the voice.
 - [x] Verified no About string names a project or a count, in either locale
 - [x] Kept the **80px gutters** Sidick asked for; verified 80/80 at 1440
 
+**Phone layout, on Sidick's request:** "Based in" and "Focus" share a row —
+they're short enough — while "Working on" and "Mission" carry full sentences
+and span both columns rather than being squeezed to ~165px. Below **360px**
+the pair drops to one column too, since "N'Djamena, Chad" starts breaking
+badly at that width. Verified at 430 / 414 / 390 / 375 / 360 / 320.
+
 `auto-fit` on the tile grid packed three across and stranded the fourth on its
 own row — replaced with a fixed 2×2 that collapses to one column at 1100 and
 back to two at 900 (once the card moves above the text).
