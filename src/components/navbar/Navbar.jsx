@@ -6,6 +6,7 @@ import { RiContactsBook2Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import LanguageToggle from "../LanguageToggle";
 import {
+  CloseIcon,
   MenuIcon,
   HomeIcon,
   SkillsIcon,
@@ -131,10 +132,14 @@ const Navbar = ({ scrolled = false }) => {
         <button
           className={`nav-toggle ${isMenuOpen ? "open" : ""}`}
           onClick={toggleMenu}
-          aria-label="Toggle navigation"
+          aria-label={isMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
           aria-expanded={isMenuOpen}
         >
+          {isMenuOpen ? (
+          <CloseIcon className="menu-icon" />
+        ) : (
           <MenuIcon className="menu-icon" />
+        )}
         </button>
 
         <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>

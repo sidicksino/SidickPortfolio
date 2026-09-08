@@ -1,5 +1,27 @@
 import React from "react";
 
+/* The hamburger used to be rotated 135deg to "become" a close icon, but its
+   three lines are 15, 20 and 10 units long — rotating them gives three
+   diagonal slashes, not an X. This is an explicit close mark instead, so the
+   button says what it does. */
+export const CloseIcon = ({ className }) => (
+  <svg
+    width="30"
+    height="30"
+    viewBox="0 0 30 30"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M22 8L8 22M8 8l14 14"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const MenuIcon = ({ className }) => (
   <svg
     width="30"

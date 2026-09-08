@@ -349,6 +349,13 @@ The drawer stays inside `<nav>` because on desktop it's a flex child of it; its
 `bottom: 0` was removed, since that would have resolved to the navbar's box
 too. Height is set explicitly instead, and the reason is commented in place.
 
+- [x] **Real close icon.** Sidick's catch: the button rotated the hamburger
+      135° to "become" a close mark — but its three lines are 15, 20 and 10
+      units long, so rotating them produced three diagonal slashes, not an X.
+      There was no way to tell what the button did once the menu was open.
+      Added an explicit `CloseIcon`, swapped on state, with a short scale-in so
+      it doesn't just pop. `aria-label` follows the state and is translated
+      (`nav.openMenu` / `nav.closeMenu`, both locales); `aria-expanded` too.
 - [x] Bottom padding clears the floating theme toggle, which was sitting on top
       of the Get Started button (verified: CTA bottom 746, toggle top 785).
 

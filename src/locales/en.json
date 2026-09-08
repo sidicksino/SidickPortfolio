@@ -6,7 +6,9 @@
     "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "greeting": "Hi,",
