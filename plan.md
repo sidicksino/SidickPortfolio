@@ -35,7 +35,29 @@ Update this table whenever a phase starts or finishes. Status markers:
 | 4 — Typography | ✅ **Done** | 2026-09-07 | Arial purged; 26 @imports → 1 <link> |
 | 5 — Light mode | ✅ **Done** | 2026-09-08 | 0 contrast failures, both themes |
 | 6 — Polish & a11y | ✅ **Done** | 2026-09-08 | Images 15.5MB→1.2MB; 19 missing alts fixed |
-| 7 — Repo hygiene | ⬜ Not started | — | |
+| 7 — Repo hygiene | ✅ **Done** | 2026-09-08 | Real README; 0 prod vulnerabilities |
+
+### Phase 8 — SEO & social preview ✅ **Done** (2026-09-08)
+
+Raised by Sidick: *"if I publish, will people find the new images or the old
+ones?"* Investigating turned up a live bug.
+
+**`og:image` pointed at `/preview.jpg`, which never existed.** `curl` returns
+HTTP 200, but `content-type: text/html` — `vercel.json` rewrites every unmatched
+path to `/`, so the 200 was the SPA fallback serving `index.html` under an image
+filename. **Every share on WhatsApp / LinkedIn / X / Slack had no preview card.**
+
+- [x] Built a real `public/preview.jpg` — 1200×630, 78 KB, brand background with
+      the cut-out portrait, name, role and URL
+- [x] Added `og:image:width` / `:height` / `:alt`, `og:site_name`, `og:locale`
+      (+ `fr_FR` alternate) and `twitter:image:alt` so platforms render the large
+      card reliably instead of guessing
+- [x] `sitemap.xml` `lastmod` was frozen at **2025-10-24** on all 5 URLs —
+      now today's date, which is the signal crawlers use to re-fetch
+- [ ] **Inconsistency for Sidick to settle:** `og:description` and
+      `twitter:description` are in **French** while the site defaults to English
+      and `og:locale` is now `en_US`. Pick one — it's a positioning call, not a
+      technical one.
 
 ### Environment setup
 
@@ -875,7 +897,57 @@ Originals removed from the working tree (git history still has them).
 
 ---
 
-## Phase 7 — Repo hygiene
+## Phase 7 — Repo hygiene ✅ **DONE** (2026-09-08)
+
+- [x] **README rewritten.** Was the stock `# React + Vite` template with
+      `# SidickPortfolio` appended — the first thing a recruiter sees on GitHub.
+      Now: what the site is, the live URL, two screenshots, the stack, how to
+      run it, the directory layout, and the two conventions someone needs before
+      touching it (tokens live only in `index.css`; content lives in `data/` and
+      `locales/`). Every referenced path verified to exist.
+- [x] **Screenshots** committed to `docs/`, converted to WebP first —
+      801 KB → 26 KB and 867 KB → 69 KB. No point fixing image weight in Phase 6
+      and then adding 1.7 MB of PNGs to the repo.
+- [x] **Dead `<Art />` removed** from `App.jsx` — a commented-out element plus
+      its unused import. The component files stay in `src/components/art/` so it
+      can be re-enabled.
+- [x] `plan.md` kept tracked — it's the record of what was measured and why.
+
+### Security: 3 vulnerabilities → 0 in production
+
+`npm audit` reported 2 high + 1 critical. They are not equivalent, and the
+distinction is the whole point:
+
+| Package | Severity | Ships to the browser? | Action |
+|---|---|---|---|
+| `react-router` / `react-router-dom` | HIGH | **Yes** | Upgraded 7.9.1 → **7.18.3** |
+| `tar` (via `@tailwindcss/oxide`) | CRITICAL | **No** | Upgraded Tailwind 4.1.13 → **4.3.3** |
+
+The `tar` advisories are about extracting malicious archives — it's pulled in to
+unpack Tailwind's native binary at **install** time and never reaches the
+bundle. Alarming label, no runtime exposure for a static site. The React Router
+ones (open redirect via `<Link>`/`useNavigate`, XSS) genuinely do ship.
+
+**`npm audit --omit=dev` now reports 0 vulnerabilities.**
+
+Verified after the router jump: all six routes render, client-side navigation
+works, no console or page errors.
+
+### Still open — deliberately
+
+13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint
+chain). Clearing them needs **Vite 7 → 8**, a major bump that can break the
+build. It's a real piece of work, not a one-liner, and it affects nothing a
+visitor touches. Do it as its own task with the build verified after.
+
+> **Caught while writing the README:** `package.json`'s `allowScripts` block
+> still pinned `@tailwindcss/oxide@4.1.13` after the upgrade to 4.3.3. The
+> current `node_modules` was fine, but a **fresh clone** would have had the new
+> version's postinstall blocked and the build would have failed — the exact
+> thing the README tells people to keep. Re-approved to 4.3.3.
+
+<details>
+<summary>Original Phase 7 instructions (superseded)</summary>
 
 - [ ] **`README.md` is still the stock Vite template.** It's the first thing a
       recruiter sees on GitHub. Replace with: what the site is, live URL,
@@ -883,6 +955,8 @@ Originals removed from the working tree (git history still has them).
 - [ ] `plan.md` (this file) — decide whether to keep it tracked or gitignore it
 - [ ] `npm audit` reports 16 vulnerabilities (1 critical) — review
 - [ ] Remove the commented-out `<Art />` in `src/App.jsx:43` or finish it
+
+</details>
 
 ---
 
