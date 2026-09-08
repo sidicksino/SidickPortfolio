@@ -15,6 +15,11 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  /* A 50/50 split. The photo block sits at the left of its half, which leaves
+     air before the text — that breathing room is intentional, and it's what
+     lets the section span the page rather than sitting in a narrow centred
+     column. Sizing the column to its contents instead pulled everything in
+     and left large outer margins. */
   gap: 80px;
 }
 

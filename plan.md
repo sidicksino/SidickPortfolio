@@ -364,6 +364,55 @@ too. Height is set explicitly instead, and the reason is commented in place.
 > can't tell that `<Icon />` is a use, and the config's `varsIgnorePattern`
 > `^[A-Z_]` covers *variables* but not *arguments*. Held as a local instead.
 
+### Phase 15 — About section ✅ **Done** (2026-09-08)
+
+**A broken sentence was live in English but correct in French.**
+`myMissionText` read *"…entrepreneurs in Africa scalable, reliable and simple
+to use."* The French carried an em-dash (`en Afrique—scalables`); the English
+had lost it, so the sentence didn't parse. Two more places where the English
+had drifted from the French:
+
+| | English (before) | French says |
+|---|---|---|
+| Word order | "developer of **web, app platforms**" | "plateformes web, d'applications" → *web platforms, applications* |
+| Hyphens | "product minded", "detail oriented" | correct in FR |
+
+The French version was the more carefully written one throughout — worth
+checking the English against it elsewhere.
+
+- [x] All three fixed, in both locales, em-dash verified present in each
+- [x] Copy grounded in facts **already in `projectData.js`** — a Chadian
+      non-profit site (AAPT), diabetes and disease-risk models on Streamlit,
+      working between N'Djamena and Kigali. No metrics or claims invented.
+- [x] **Photo 2 swapped** `phote5` → `sidick1`. `phote5` is the exact source
+      the hero cut-out was generated from, so the same person, outfit and pose
+      appeared twice within one scroll.
+### ↩️ The "280px of dead space" — my call was wrong, reverted
+
+I read the gap between the photos and the text as dead space and tightened it.
+Sidick compared before and after and preferred the original, correctly:
+
+> *"the spacing is better the one before… we have also a gap between the images
+> and the text nicely… for you the one you changed is like you take the same
+> space as the hero section."*
+
+He's right. That gap is the trailing half of a **50/50 split**, and the split is
+what makes the section span the page. Sizing the photo column to its contents
+pulled everything inward and left large outer margins — the section stopped
+filling the width and started looking like the hero's narrower centred column.
+I optimised a local measurement and broke the composition.
+
+Reverted to `justify-content: space-between`, `flex: 1` on both columns,
+`gap: 80px`. Verified back to the original geometry exactly: images 80–680,
+text 760–1360, 80px margins each side.
+
+*(Worth keeping in mind: an empty region isn't automatically wasted. It was
+doing work here — holding the layout open.)*
+
+- [ ] **Still Sidick's to add:** a concrete outcome per block — who used a
+      thing, what changed. The copy is accurate now but still describes
+      capability rather than result.
+
 ### Environment setup
 
 - ✅ **Context7 MCP installed** (2026-09-07) — user scope, health check passing.

@@ -1,7 +1,9 @@
 import "./About.css";
 import { useTranslation } from 'react-i18next';
 import photo1 from "../../assets/SI1.webp";
-import photo2 from "../../assets/phote5.webp";
+/* Was phote5.webp — the same photo the hero cut-out was generated from, so a
+   visitor met the same person, outfit and pose twice in one scroll. */
+import photo2 from "../../assets/sidick1.webp";
 import { motion } from "framer-motion";
 
 const About = () => {

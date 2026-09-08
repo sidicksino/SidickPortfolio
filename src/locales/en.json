@@ -32,11 +32,11 @@
   "about": {
     "title": "About Me",
     "whoIAm": "Who I Am",
-    "whoIAmText": "I'm a Data Science student and product minded builder. Curious, resourceful and detail oriented, I care about clarity, usability and a smooth experience for real users.",
+    "whoIAmText": "I'm a Data Science student and product-minded builder, working between N'Djamena and Kigali. Curious, resourceful and detail-oriented, I care about clarity, usability and a smooth experience for real users.",
     "whatIDo": "What I Do",
-    "whatIDoText": "Data Analyst and developer of web, app platforms and small tools that solve concrete problems. I iterate quickly, ship frequently, and validate ideas with working prototypes and measurable outcomes.",
+    "whatIDoText": "I build web platforms, mobile apps and machine-learning tools — from a site for a Chadian non-profit to diabetes and disease-risk models deployed with Streamlit. I iterate quickly, ship frequently, and validate ideas with working prototypes.",
     "myMission": "My Mission",
-    "myMissionText": "Build thoughtful digital products that empower students and entrepreneurs in Africa scalable, reliable and simple to use. I'm driven by impact and continuous improvement.",
+    "myMissionText": "Build digital products that genuinely serve students and entrepreneurs across Africa — scalable, reliable and simple to use. I'm driven by impact and continuous improvement.",
     "journey": "My Journey",
     "values": "My Values"
   },
