@@ -1939,6 +1939,44 @@ made in Phase 1.
 
 ---
 
+## Phase 25 — backend API ✅ **Built** (2026-09-09), awaiting deploy
+
+FastAPI + **Neon Postgres** + Cloudinary, in `backend/`. Sidick deploys to
+Render, then hands over the URL for the frontend wiring.
+
+**Why Neon over MongoDB:** the project shape is fixed (bilingual title and
+description, one category, a tech array, a URL) — that is a table. And every
+data fault found by hand this session was an integrity failure a schema
+prevents: `CHECK` on category, `NOT NULL` on the text, `UNIQUE` on `live_url`.
+Also the same engine he already ships via Supabase.
+
+**Why FastAPI over Express:** Python is his lead language and the site sells
+him as a data scientist; Pydantic validation is the right tool for this data.
+
+`image_url` is deliberately **nullable in the column but required by
+`ProjectCreate`** — the migration must not invent screenshots for `mobile/1`
+and `mobile/4`, but nothing new can be added without one.
+
+### Three bugs found by actually running it
+
+1. **`psycopg[binary,pool]==3.2.3` does not exist** — no wheel; versions skip
+   3.1.18 -> 3.2.4. Pinned 3.2.9.
+2. **Auth was resolved after the DB connection.** FastAPI resolves dependencies
+   in signature order, so `conn=Depends(get_conn)` before
+   `_=Depends(require_admin)` opened a pooled connection for requests that were
+   about to 401. Reordered in all three write handlers, with a comment so it is
+   not "tidied" back.
+3. **Whitespace-only titles passed validation.** `Field(min_length=1)` counts
+   spaces, so `"   "` has length 3 and reached the database — where the CHECK
+   constraint would have turned it into a 500 rather than a 422. Now
+   `StringConstraints(strip_whitespace=True, min_length=1)`.
+
+Bug 3 was caught only because the test's stub connection *raises* when touched
+instead of returning a mock. A permissive stub would have reported a pass.
+
+`test_api.py` — 20 checks, no database required. Also added: `.gitignore` rules
+for `.env`, which the repo had none of.
+
 ## Suggested order
 
 | Session | Phases | Outcome |

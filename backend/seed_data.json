@@ -1,0 +1,348 @@
+[
+  {
+    "legacy_id": 1,
+    "category": "web",
+    "title_en": "AAPT",
+    "title_fr": "AAPT",
+    "description_en": "A web platform for the Association Actions Pour Tous Tchad, promoting social cohesion and community support.",
+    "description_fr": "Une plateforme web pour l'Association Actions Pour Tous Tchad, promouvant la cohésion sociale et l'entraide communautaire.",
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Supabase",
+      "i18next",
+      "Vercel"
+    ],
+    "image_file": "aapt.webp",
+    "live_url": "https://aapt-eight.vercel.app/",
+    "github_url": null
+  },
+  {
+    "legacy_id": 2,
+    "category": "web",
+    "title_en": "Académie Royale",
+    "title_fr": "Académie Royale",
+    "description_en": "An official website for Académie Royale, an elite educational institution in N'Djamena focusing on excellence.",
+    "description_fr": "Site web de l'Académie Royale, une institution éducative d'élite à N'Djamena axée sur l'excellence.",
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Supabase",
+      "i18next",
+      "Vercel"
+    ],
+    "image_file": "royal.webp",
+    "live_url": "https://school-rosy-nine.vercel.app/",
+    "github_url": null
+  },
+  {
+    "legacy_id": 3,
+    "category": "web",
+    "title_en": "SinoCoffee",
+    "title_fr": "SinoCoffee",
+    "description_en": "SinoCoffee is a modern app by Sidick, offering a fast and intuitive platform with a sleek, up-to-date interface.",
+    "description_fr": "SinoCoffee est une application moderne de Sidick, offrant une plateforme rapide et intuitive avec une interface élégante.",
+    "technologies": [
+      "React",
+      "Vite",
+      "Supabase",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn-ui"
+    ],
+    "image_file": "SinoCoffee.webp",
+    "live_url": "https://sino-coffee.vercel.app/",
+    "github_url": "https://github.com/sidicksino/SinoCoffee"
+  },
+  {
+    "legacy_id": 4,
+    "category": "web",
+    "title_en": "SinoAgency",
+    "title_fr": "SinoAgency",
+    "description_en": "Risk-Free Web Design. Your Dream Website. Preview It First. Pay Later. We build a custom preview of your future website before you commit.",
+    "description_fr": "Conception web sans risque. Votre site de rêve. Prévisualisez-le d'abord. Payez plus tard. Nous créons un aperçu personnalisé de votre futur site web avant que vous ne vous engagiez.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Tailwind CSS"
+    ],
+    "image_file": "sinoagency.webp",
+    "live_url": "https://sinoagency.netlify.app/",
+    "github_url": null
+  },
+  {
+    "legacy_id": 5,
+    "category": "web",
+    "title_en": "Sino Ai",
+    "title_fr": "Sino Ai",
+    "description_en": "A modern AI web application, providing intelligent features and real-time interactions.",
+    "description_fr": "Une application web IA moderne offrant des fonctionnalités intelligentes et des interactions en temps réel.",
+    "technologies": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "OpenAI API",
+      "Tailwind CSS",
+      "Axios"
+    ],
+    "image_file": "sino-ai.webp",
+    "live_url": "https://sinoai-chi.vercel.app/",
+    "github_url": "https://github.com/sidicksino/sino_Ai"
+  },
+  {
+    "legacy_id": 6,
+    "category": "web",
+    "title_en": "Insta Abeche Website",
+    "title_fr": "Insta Abeche Website",
+    "description_en": "A simple and responsive website for Institut d'Abeche, providing essential information and services online.",
+    "description_fr": "Un site simple et réactif pour l'Institut d'Abeche, fournissant des informations et services essentiels en ligne.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "MySQL"
+    ],
+    "image_file": "insta.webp",
+    "live_url": "https://insta-uxnh.onrender.com/",
+    "github_url": "https://github.com/sidicksino/insta_abeche"
+  },
+  {
+    "legacy_id": 7,
+    "category": "web",
+    "title_en": "Sino Ecommerce Website",
+    "title_fr": "Sino Ecommerce Website",
+    "description_en": "A modern e-commerce website for selling products online with a sleek design, responsive layout, and smooth user experience.",
+    "description_fr": "Un site e-commerce moderne pour vendre des produits en ligne avec un design épuré et une expérience fluide.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "MySQL"
+    ],
+    "image_file": "team-work.webp",
+    "live_url": "https://team-work-30tj.onrender.com/",
+    "github_url": "https://github.com/sidicksino/team_work"
+  },
+  {
+    "legacy_id": 8,
+    "category": "web",
+    "title_en": "SINOINFOS",
+    "title_fr": "SINOINFOS",
+    "description_en": "A dynamic news aggregator platform built with Django, featuring real-time content delivery through seamless integration with NewsData.io API.",
+    "description_fr": "Une plateforme d'agrégation d'actualités dynamique construite avec Django, intégrant du contenu en temps réel via l'API NewsData.io.",
+    "technologies": [
+      "Django",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "SQLite",
+      "newsdata.io"
+    ],
+    "image_file": "news.webp",
+    "live_url": "https://news-7oyn.onrender.com",
+    "github_url": null
+  },
+  {
+    "legacy_id": 1,
+    "category": "mobile",
+    "title_en": "SinoBoutique",
+    "title_fr": "SinoBoutique",
+    "description_en": "SinoBoutique is a sleek e-commerce app providing a seamless shopping experience with secure transactions and an intuitive UI.",
+    "description_fr": "SinoBoutique est une application e-commerce offrant une expérience d'achat fluide, des transactions sécurisées et une interface intuitive.",
+    "technologies": [
+      "React Native",
+      "Expo",
+      "Axios",
+      "JavaScript",
+      "CSS",
+      "Node.js",
+      "Express.js",
+      "NeonDatabase",
+      "Cloudinary",
+      "Nodemailer",
+      "Twilio"
+    ],
+    "image_file": null,
+    "live_url": null,
+    "github_url": "https://github.com/sidicksino/Boutique_Frontend"
+  },
+  {
+    "legacy_id": 2,
+    "category": "mobile",
+    "title_en": "TchadInfos",
+    "title_fr": "TchadInfos",
+    "description_en": "TchadInfos is a modern news app providing real-time updates, curated content, and an intuitive browsing experience.",
+    "description_fr": "TchadInfos est une application d'actualités moderne fournissant des mises à jour en temps réel et un contenu éditorialisé.",
+    "technologies": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "JavaScript",
+      "CSS",
+      "Axios",
+      "NewsData.io"
+    ],
+    "image_file": "tchadInfos.webp",
+    "live_url": null,
+    "github_url": "https://github.com/sidicksino/tchadInfos_version1"
+  },
+  {
+    "legacy_id": 3,
+    "category": "mobile",
+    "title_en": "Wallet",
+    "title_fr": "Wallet",
+    "description_en": "Wallet is a digital finance app that helps users manage expenses, track transactions, and visualize spending insights.",
+    "description_fr": "Wallet est une application de finance numérique permettant de gérer les dépenses, suivre les transactions et visualiser les dépenses.",
+    "technologies": [
+      "React Native",
+      "Expo",
+      "JavaScript",
+      "CSS",
+      "Node.js",
+      "Express.js",
+      "Neon",
+      "Clerk",
+      "Upstash",
+      "Axios",
+      "NewsData.io"
+    ],
+    "image_file": "wallet.webp",
+    "live_url": null,
+    "github_url": "https://github.com/sidicksino/wallet"
+  },
+  {
+    "legacy_id": 4,
+    "category": "mobile",
+    "title_en": "To-Do",
+    "title_fr": "To-Do",
+    "description_en": "To-Do is a minimalist task management app built to help users organize daily activities and priorities.",
+    "description_fr": "To-Do est une application de gestion de tâches minimaliste conçue pour aider les utilisateurs à organiser leurs activités quotidiennes.",
+    "technologies": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "CSS",
+      "Convex"
+    ],
+    "image_file": null,
+    "live_url": null,
+    "github_url": "https://github.com/sidicksino/to-do"
+  },
+  {
+    "legacy_id": 1,
+    "category": "design",
+    "title_en": "TchadInfos Design",
+    "title_fr": "TchadInfos Design",
+    "description_en": "A modern news app design for TchadInfos, focusing on a clean layout and user-friendly reading experience.",
+    "description_fr": "Un design moderne d'application d'actualités pour TchadInfos, axé sur une mise en page claire et une lecture conviviale.",
+    "technologies": [
+      "Figma"
+    ],
+    "image_file": "tchadInfos.webp",
+    "live_url": "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=477-727&p=f&t=DtBIxtgBPNmUUJ8u-0",
+    "github_url": null
+  },
+  {
+    "legacy_id": 2,
+    "category": "design",
+    "title_en": "Ecommerce Mobile Design",
+    "title_fr": "Ecommerce Mobile Design",
+    "description_en": "A modern e-commerce app UI/UX design for a seamless and engaging shopping experience.",
+    "description_fr": "Un design UI/UX mobile e-commerce moderne pour une expérience d'achat fluide et engageante.",
+    "technologies": [
+      "Figma"
+    ],
+    "image_file": "ecomerce.webp",
+    "live_url": "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=0-1&p=f&t=DtBIxtgBPNmUUJ8u-0",
+    "github_url": null
+  },
+  {
+    "legacy_id": 3,
+    "category": "design",
+    "title_en": "Sidick Portfolio Design",
+    "title_fr": "Sidick Portfolio Design",
+    "description_en": "A modern portfolio web UI/UX design showcasing projects and skills with a clean, responsive layout.",
+    "description_fr": "Un design moderne de portfolio web présentant des projets et compétences avec une mise en page propre et réactive.",
+    "technologies": [
+      "Figma"
+    ],
+    "image_file": "team-work.webp",
+    "live_url": "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=173-168&p=f&t=DtBIxtgBPNmUUJ8u-0",
+    "github_url": null
+  },
+  {
+    "legacy_id": 4,
+    "category": "design",
+    "title_en": "Sino Ecommerce Design",
+    "title_fr": "Sino Ecommerce Design",
+    "description_en": "A modern e-commerce web UI/UX design for a seamless and engaging shopping experience.",
+    "description_fr": "Un design web e-commerce moderne pour une expérience d'achat fluide et engageante.",
+    "technologies": [
+      "Figma"
+    ],
+    "image_file": "team-work.webp",
+    "live_url": "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=156-132&t=DtBIxtgBPNmUUJ8u-0",
+    "github_url": null
+  },
+  {
+    "legacy_id": 1,
+    "category": "ai",
+    "title_en": "Sino Ai",
+    "title_fr": "Sino Ai",
+    "description_en": "A modern AI web application, providing intelligent features and real-time interactions.",
+    "description_fr": "Une application web IA moderne offrant des fonctionnalités intelligentes et des interactions en temps réel.",
+    "technologies": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "OpenAI API",
+      "Tailwind CSS",
+      "Axios"
+    ],
+    "image_file": "sino-ai.webp",
+    "live_url": "https://sinoai-chi.vercel.app/",
+    "github_url": "https://github.com/sidicksino/sino_Ai"
+  },
+  {
+    "legacy_id": 2,
+    "category": "ai",
+    "title_en": "Pima Diabetes Prediction App",
+    "title_fr": "Pima Diabetes Prediction App",
+    "description_en": "A machine learning web app that predicts diabetes likelihood using the Pima Indians dataset.",
+    "description_fr": "Une application de ML qui prédit la probabilité de diabète en utilisant le jeu de données Pima Indians.",
+    "technologies": [
+      "Python",
+      "Scikit-learn",
+      "Pandas",
+      "Numpy",
+      "Streamlit",
+      "Joblib",
+      "GitHub"
+    ],
+    "image_file": "pima.webp",
+    "live_url": "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
+    "github_url": "https://github.com/sidicksino/machine_learning_lecture"
+  },
+  {
+    "legacy_id": 3,
+    "category": "ai",
+    "title_en": "Disease Prediction System",
+    "title_fr": "Disease Prediction System",
+    "description_en": "A comprehensive disease prediction system using ML algorithms, built with Python and deployed with Streamlit.",
+    "description_fr": "Un système complet de prédiction de maladies utilisant des algorithmes de ML, construit avec Python et déployé avec Streamlit.",
+    "technologies": [
+      "Python",
+      "Scikit-learn",
+      "Pandas",
+      "Numpy",
+      "Streamlit",
+      "Joblib",
+      "GitHub"
+    ],
+    "image_file": "disease.webp",
+    "live_url": "https://sidicksino-disease-risk-prediction-app-aqgd49.streamlit.app/",
+    "github_url": "https://github.com/sidicksino/Disease-Risk-Prediction"
+  }
+]
