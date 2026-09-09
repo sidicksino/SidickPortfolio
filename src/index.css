@@ -158,6 +158,10 @@ html.light-theme {
 
   --border: rgba(17, 17, 17, 0.12);
 
+  /* --shadow had no light value, so 30% black fell on a white page and read as
+     a grey smudge. Light UI needs a far weaker, slightly cool shadow. */
+  --shadow: rgba(16, 24, 40, 0.08);
+
   /* Plain --accent is only 3.23:1 on this background, so accent *text* and
      accent *borders* step down to the strong variant here. Fills keep
      --accent. */

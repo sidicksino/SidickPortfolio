@@ -143,7 +143,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px var(--shadow);
 }
 
 .btn-primary {

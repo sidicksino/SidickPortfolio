@@ -102,7 +102,7 @@
   border-radius: 28px;
   padding: 20px 30px;
   border: 1px solid var(--border);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 6px 16px var(--shadow);
   transition: all 0.4s ease;
 }
 
@@ -281,11 +281,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    align-items: start;
+    /* No align-items: start — Location wraps to two lines and Phone to one, so
+       sizing each card to its own content left them visibly mismatched.
+       Grid's default `stretch` makes both fill the row. */
   }
 
   .contact-info .info-card:nth-child(3) {
     grid-column: 1 / -1;
+  }
+
+  /* Stretched to match its neighbour, the shorter card left its content
+     stranded at the top. Centre it in the box. */
+  .contact-info .info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   /* Half-width cards: at the desktop size the phone number broke mid-number

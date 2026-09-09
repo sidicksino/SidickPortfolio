@@ -769,6 +769,35 @@ which reads as two numbers. Its copy drops to 0.86rem with `white-space: nowrap`
 on that card only. Verified at 390 / 375 / 340px: one line, no overflow, no
 horizontal scroll.
 
+### Phase 23b — light-mode shadows + equal-height cards ✅ **Done** (2026-09-09)
+
+Sidick sent a real-device light-mode screenshot showing two faults.
+
+**`--shadow` had no light-mode value.** It is declared once —
+`rgba(0, 0, 0, 0.3)` — and the `html.light-theme` block overrode surfaces, text,
+borders, hues and `--grid-line` but never this. So a 30%-black drop landed on a
+white page and read as a grey smudge. Light theme now gets
+`rgba(16, 24, 40, 0.08)`.
+
+Six more shadows were **hardcoded black** and could not follow the theme at all
+(`Navbar.css` x2, `Contact.css`, `Hero.css`, `HeroPage.css` x2). All now use
+`var(--shadow)`. Verified: the token resolves to `rgba(16, 24, 40, 0.08)` in
+light and `rgba(0, 0, 0, 0.3)` in dark.
+
+**The mismatched card heights were my own doing.** I had written
+`align-items: start` on the mobile `.contact-info` grid, which sizes each card
+to its own content — Location wraps to two lines, Phone to one. Removed, so
+grid's default `stretch` applies; both measure 226px. The shorter card's
+content is centred rather than stranded at the top.
+
+### A screenshot taken mid-animation
+
+The first light-mode capture came back as a half-transparent, half-slid mess,
+because it used a bare `scrollIntoView` instead of the walk-then-settle
+sequence established in Phase 19. The capture now **asserts** that nothing in
+`#contact` is below full opacity or still carrying a transform, and throws
+rather than saving a misleading picture.
+
 ### Two visual reads that measurement overturned
 
 The footer's "Contact" column *looked* washed out next to "Navigation" in every

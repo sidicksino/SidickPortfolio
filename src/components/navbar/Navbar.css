@@ -22,7 +22,7 @@
 
 .navbar.scrolled {
   background-color: rgba(24, 23, 55, 0.95);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px var(--shadow);
 }
 
 /* Logo */
@@ -408,7 +408,7 @@
     gap: var(--s-1);
     background: var(--surface);
     border-left: 1px solid var(--border);
-    box-shadow: -18px 0 44px rgba(0, 0, 0, 0.4);
+    box-shadow: -18px 0 44px var(--shadow);
     overflow-y: auto;
     overscroll-behavior: contain;
     transform: translateX(100%);
