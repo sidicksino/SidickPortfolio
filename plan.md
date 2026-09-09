@@ -745,6 +745,30 @@ Also: copyright read "All rights reserved Made with 💜" (no separator), and th
 exact fault**, after Skills and Services. Every section now measures real
 vertical padding at both sizes; none is 0.
 
+### Phase 23 — shadows + contact card layout ✅ **Done** (2026-09-09)
+
+Per Sidick: the project cards and the contact form were casting heavy shadows.
+They were — 35px and 50px blurs read as a drop, not a lift:
+
+| | before | after |
+|---|---|---|
+| `.project-card` | `0 15px 35px` | `0 4px 12px` |
+| `.project-wrapper` | `0 8px 25px` | `0 3px 10px` |
+| `.project-wrapper:hover` | `0 15px 35px` | `0 8px 20px` |
+| `.contact-form-wrapper` | `0 20px 50px` | `0 6px 16px` |
+| `.contact-form-wrapper:hover` | `0 30px 60px` | `0 10px 26px` |
+| `.info-card:hover` | `0 15px 35px` | `0 8px 20px` |
+
+**Location and Phone now share a row on phones**, Email keeps the full width —
+its address would wrap badly in half. `.contact-info` becomes a 2-column grid
+below 768px with the third card spanning; below 360px it stacks, since two
+cards cannot hold an icon plus a label at that width.
+
+The half-width card broke the phone number mid-number — "+250 793 22 / 58 53",
+which reads as two numbers. Its copy drops to 0.86rem with `white-space: nowrap`
+on that card only. Verified at 390 / 375 / 340px: one line, no overflow, no
+horizontal scroll.
+
 ### Two visual reads that measurement overturned
 
 The footer's "Contact" column *looked* washed out next to "Navigation" in every

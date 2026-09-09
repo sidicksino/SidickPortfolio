@@ -67,7 +67,7 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border);
-  box-shadow: 0 8px 25px var(--shadow);
+  box-shadow: 0 3px 10px var(--shadow);
   transition: all 0.3s ease;
   max-width: 340px;
   margin: 0 auto;
@@ -75,7 +75,7 @@
 
 .project-wrapper:hover {
   transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(231, 72, 200, 0.2);
+  box-shadow: 0 8px 20px rgba(231, 72, 200, 0.18);
   border-color: var(--primary-transparent);
 }
 
