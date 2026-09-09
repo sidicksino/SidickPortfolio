@@ -21,6 +21,7 @@ const Services = () => {
         className="rrrr"
         initial={{ opacity: 0, translateX: "50%" }}
         whileInView={{ opacity: 1, translateX: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 1 }}
       >
         <div className="floating-image-slight">
@@ -39,6 +40,7 @@ const Services = () => {
           <motion.h2
             initial={{ opacity: 0, translateX: "50%" }}
             whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 1 }}
           >
             {t('services.title')}
@@ -47,6 +49,7 @@ const Services = () => {
           <motion.p
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.5 }}
           >
             {t('services.webDevDesc')}
@@ -55,6 +58,7 @@ const Services = () => {
           <motion.ul
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.5 }}
           >
             {servicesData.map((serviceKey, index) => (
@@ -72,6 +76,7 @@ const Services = () => {
           className="services-image-wrapper"
           initial={{ opacity: 0, translateX: "50%" }}
           whileInView={{ opacity: 1, translateX: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 1 }}
         >
           <div className="floating-image">

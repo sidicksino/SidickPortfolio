@@ -657,6 +657,43 @@ section bypassing the locale files. Now `descKey` + entries in `en.json` /
   The `768px` and `390px` queries were resetting it back to `0rem 2rem`, so they
   carry `var(--s-8)` now — the phone gap went 25px → 89px.
 
+### Phase 20 — Services fixes + cleanup ✅ **Done** (2026-09-09)
+
+**Services content reverted to invisible.** All five `whileInView` animations in
+`Services.jsx` had **no `viewport={{ once: true }}`** — the only section in the
+site missing it. framer-motion therefore reversed each one on exit, so scrolling
+past Services and back left the heading, paragraph, list and image at
+`opacity: 0`. The list was worse: its `initial` is `scale: 0`, so it measured
+**0px tall**. Reproduced by scrolling the full page on a phone viewport, then
+re-checked after the fix — everything holds at opacity 1, list 108–120px.
+
+**A third `.services-section` padding rule.** The base rule sets
+`0px 120px` and the 768px query sets `80px 20px`, but a **fourth**
+declaration inside `@media (max-width: 480px)` set `padding: 0px` — content ran
+to both screen edges on phones. Base is `var(--s-9) 120px` now (zero vertical
+had it butting into its neighbours) and the 480 rule is `var(--s-8) 20px`.
+Measured: desktop `96px 120px`, phone `64px 20px`.
+
+**Featured now guards its image.** `MobileProjects.jsx` already did
+(`{project.image && …}`); the featured card did not, so promoting any project
+with `image: ""` would have rendered a broken-image box. Guarded, with a tinted
+placeholder. *The underlying data gap stands* — mobile 1 and 4 still have no
+screenshot; that is content, not code.
+
+**Category pill moved to the bottom of the media.** `object-position: top
+center` means the top strip of every screenshot is the app's own header, which
+is exactly what the pill covered on the two ML & AI cards.
+
+**Deleted `docs/skills-image-prompt.md`** — the code-built cluster replaced it.
+
+### An over-strict check
+
+The verification flagged desktop FAIL on one element at `opacity: 0` — the
+`.rrrr` theme illustration, which is `display: none` above 480px. A hidden
+element's opacity is meaningless. Counting invisible nodes as failures is the
+mirror of the earlier problem: those checks could not fail, this one could not
+pass. Both come from asserting on a proxy instead of the thing itself.
+
 ### Phase 19 — Featured Work card size ✅ **Done** (2026-09-09)
 
 Cards were **424 x 504** — a 0.84 portrait ratio, which is what made them read

@@ -64,7 +64,14 @@ const Featured = () => {
               transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.3) }}
             >
               <div className="featured-media">
-                <img src={project.image} alt={title} loading="lazy" />
+                {/* Two mobile projects carry image: "" — without this guard an
+                    empty src renders a broken-image box. MobileProjects.jsx
+                    already guards the same way. */}
+                {project.image ? (
+                  <img src={project.image} alt={title} loading="lazy" />
+                ) : (
+                  <span className="featured-media-empty" aria-hidden="true" />
+                )}
                 <span className="featured-tag">{t(cat.labelKey)}</span>
               </div>
 

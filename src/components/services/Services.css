@@ -4,7 +4,8 @@
 
 /* ========== SERVICES SECTION ========== */
 .services-section {
-  padding: 0px 120px;
+  /* Vertical was 0: the section butted straight into its neighbours. */
+  padding: var(--s-9) 120px;
   background: var(--background);
   color: var(--text);
   align-items: center;
@@ -232,7 +233,9 @@
     display: block;
     margin-bottom: 80px;
   }
+
   .services-section {
-    padding: 0px;
+    /* Was padding: 0px — content ran to both screen edges on phones. */
+    padding: var(--s-8) 20px;
   }
 }
