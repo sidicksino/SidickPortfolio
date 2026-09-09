@@ -2,10 +2,7 @@
    Do not redeclare tokens here. */
 
 .featured-section {
-  /* Card width is set by the grid band, not by the card: three columns across
-     1400px forced every card to 424px. 1140 keeps the tidy 3+3 layout while
-     bringing each card down to ~337. */
-  max-width: 1140px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: var(--s-9) var(--s-6);
   font-family: var(--font-body);
@@ -37,8 +34,10 @@
 /* ===== Grid ===== */
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--s-6);
+  /* Fixed 4x2 on desktop. auto-fill with a 320px floor resolved to 3 columns
+     at this width, which is what made the cards 424px wide. */
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
 }
 
 /* ===== Card — the whole card is the link ===== */
@@ -230,6 +229,12 @@
 }
 
 /* ===== Responsive ===== */
+@media (max-width: 1180px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .featured-section {
     padding: var(--s-8) var(--s-4);
@@ -238,5 +243,11 @@
   .featured-grid {
     grid-template-columns: 1fr;
     gap: var(--s-5);
+  }
+
+  /* Phones show the best six; cards 7-8 exist for the desktop 4x2 only.
+     display:none also keeps their lazy images from ever being fetched. */
+  .featured-card:nth-child(n + 7) {
+    display: none;
   }
 }

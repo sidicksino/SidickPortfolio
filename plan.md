@@ -681,6 +681,32 @@ tidy 3+3 layout while shrinking every card, plus a tighter body
 
 **424 x 504 → 337 x 369 — 42% less area.** Grid 1041 → 770, section 1541 → 1270.
 
+**Third pass — 4x2 desktop, 6 on phones.** Per Sidick: four across on
+laptop/desktop showing the **top 8**, single column on phones showing the
+**best 6**.
+
+- `.featured-grid` is now an explicit `repeat(4, 1fr)`. The old
+  `auto-fill, minmax(320px, 1fr)` resolved to 3 columns at this width — that
+  implicit resolution is what pinned cards at 424px in the first place.
+- Band restored to 1400px (it had been narrowed to 1140 to shrink 3 columns;
+  with 4 columns the wider band is what keeps cards readable).
+- 2 columns between 768–1180px; 1 column below 768.
+- The phone cap is `\.featured-card:nth-child(n + 7) { display: none }`, not a
+  JS viewport check — no resize listener, no hydration mismatch, and
+  `display: none` means those two lazy images are never fetched on a phone.
+- `featuredProjects` grew 6 → 8. **Order matters now**: 7–8 are the ones phones
+  drop, so the strongest six stay first.
+
+**Picking the two additions surfaced data problems.** The obvious candidates
+were unusable and only a check caught it: **mobile 1 and 4 have `image: ""`**,
+and **design 1 reuses the TchadInfos image** already shown by the featured
+mobile card. Also **web 5 and ai 1 are the same project** (identical liveUrl),
+so featuring both would have shown it twice. Added SinoAI (ai 1) and Sino
+Coffee (web 3) — distinct images, real live URLs.
+
+Verified: desktop 8 visible / 4 cols / **316 x 357**; tablet 8 / 2 cols; phone
+**6 of 8** / 1 col. Zero broken images, zero faded cards, no console errors.
+
 ### The dead space that wasn't
 
 The first screenshot showed three cards and ~850px of emptiness below, which

@@ -296,6 +296,13 @@ export const featuredProjects = [
   { ...pick(mobileProjects, 2), category: "mobile" }, // TchadInfos
   { ...pick(aiProjects, 2), category: "ai" }, // Pima Diabetes
   { ...pick(aiProjects, 3), category: "ai" }, // Disease Prediction
+  /* 7-8 are desktop-only: the grid is 4x2 on desktop and a single column
+     capped at 6 on phones, so these two are the ones that drop. Order matters
+     for that reason — the first six are the strongest set.
+     Deliberately not used here: mobile 1 and 4 have image: "", and design 1
+     reuses the TchadInfos image already shown by the mobile card. */
+  { ...pick(aiProjects, 1), category: "ai" }, // SinoAI
+  { ...pick(webProjects, 3), category: "web" }, // Sino Coffee
 ];
 
 export const totalProjectCount =
