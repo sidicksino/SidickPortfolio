@@ -1962,6 +1962,34 @@ Also swapped the straight apostrophe for a typographic one in both locales;
 `--font-display` renders `'` with a visible gap (the same quirk visible in the
 hero's "I'm SIDICK").
 
+### Phase 29 — dashboard wording ✅ **Done** (2026-09-09)
+
+Sidick used `/admin` and asked what **Publish** and **Show in Featured Work**
+meant. If a label needs explaining, the screen should explain it — both are now
+self-documenting rather than something to remember:
+
+- A line under the header states that **Saving** records a change while
+  **Publish** rebuilds the live site (~1 min), and that several saves can share
+  one publish. The two really are separate steps because the site is static.
+- The featured toggle is a `<fieldset>` with a legend and a sentence: the
+  homepage shows a small selection, ticking adds the project to it, and **every
+  project appears on its category page either way**. The position field says
+  "1 shows first" and warns that **phones show only the first 6**, so anything
+  past position 6 is invisible there.
+
+### A pre-existing CSS bug the screenshot caught
+
+The featured checkbox was rendering **stacked above its own label**, centred, in
+the original form too. `.af label` (0,1,1) sets `flex-direction: column` and
+out-specifies a bare `.af-check` (0,1,0), so the row override never applied.
+Qualified to `.af label.af-check` (0,2,1) — no `!important`. Verified from the
+DOM: `flex-direction: row`, checkbox and text vertically centred on each other,
+box before the label.
+
+Third time this session that specificity silently beat an intended rule, after
+`.footer-col ul li a` over `.social-row a` and `.services-text ul` over
+`.services-list`.
+
 ### Still open — deliberately
 
 13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint

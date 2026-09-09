@@ -332,16 +332,24 @@
   margin: 0;
 }
 
-.af-check {
+/* `.af label` (0,1,1) sets flex-direction: column and out-specifies a bare
+   `.af-check` (0,1,0), which left the checkbox stacked above its own label.
+   Qualifying it with the element wins without !important. */
+.af label.af-check {
   flex-direction: row;
   align-items: center;
   gap: var(--s-2);
-  align-self: end;
-  padding-bottom: 10px;
+  align-self: center;
+  padding-bottom: 0;
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 600;
 }
 
-.af-check input {
+.af label.af-check input {
   width: auto;
+  flex: none;
+  cursor: pointer;
 }
 
 .af-actions {
@@ -361,4 +369,38 @@
   .af-image {
     flex-direction: column;
   }
+}
+
+/* Explains the save-vs-publish split. The site is static, so the two really
+   are separate steps and the screen should say so rather than assume. */
+.ad-explain {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-2);
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  margin: 0 0 var(--s-5);
+}
+
+.ad-explain strong {
+  color: var(--text);
+}
+
+.af-featured {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--s-4);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.af-featured legend {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  padding: 0 6px;
 }

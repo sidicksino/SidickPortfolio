@@ -201,21 +201,34 @@ const ProjectForm = ({ project, onSaved, onCancel }) => {
         </div>
       </div>
 
-      <div className="af-row af-featured">
-        <label className="af-check">
-          <input type="checkbox" checked={form.featured} onChange={set("featured")} />
-          <span>Show in Featured Work</span>
-        </label>
-        <label>
-          <span>Featured position — phones show only the first 6</span>
-          <input
-            type="number"
-            value={form.featured_order}
-            onChange={set("featured_order")}
-            disabled={!form.featured}
-          />
-        </label>
-      </div>
+      <fieldset className="af-featured">
+        <legend>Featured Work</legend>
+        <p className="af-hint">
+          The homepage shows a small selection above &ldquo;My Projects&rdquo;.
+          Tick this to put the project there. Every project appears on its
+          category page either way — this only controls the homepage.
+        </p>
+        <div className="af-row">
+          <label className="af-check">
+            <input type="checkbox" checked={form.featured} onChange={set("featured")} />
+            <span>Show in Featured Work</span>
+          </label>
+          <label>
+            <span>Position — 1 shows first</span>
+            <input
+              type="number"
+              min="1"
+              value={form.featured_order}
+              onChange={set("featured_order")}
+              disabled={!form.featured}
+            />
+            <span className="af-hint">
+              Desktop shows 8, phones show only the first 6 — so anything past
+              position 6 is invisible on a phone.
+            </span>
+          </label>
+        </div>
+      </fieldset>
 
       <div className="af-actions">
         <button type="submit" className="af-primary" disabled={busy || uploading}>

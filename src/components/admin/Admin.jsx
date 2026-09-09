@@ -177,6 +177,15 @@ const Admin = () => {
         </div>
       </header>
 
+      {/* Sidick asked what "Publish" does — if a label needs explaining, the
+          screen should explain it. Saving and publishing are genuinely two
+          steps here, because the site is static. */}
+      <p className="ad-explain">
+        <strong>Saving</strong> records your change here.{" "}
+        <strong>Publish</strong> rebuilds the live site so visitors can see it —
+        it takes about a minute. You can save several projects and publish once.
+      </p>
+
       {error && <p className="ad-error">{error}</p>}
       {notice && <p className="ad-notice">{notice}</p>}
       {loading && slow && <Waking />}
