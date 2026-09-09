@@ -1891,6 +1891,15 @@ successful build**, so a schema addition needs a re-fetch *after* the API
 redeploys, not before. Nothing warns about this — the stale file is valid JSON
 and the site renders happily with the wrong order.
 
+### Sino Ai moved to the AI category (2026-09-09)
+
+The surviving row landed in `web` because it was inserted first, leaving the AI
+page with 2 projects on a site that leads with data science. Moved to `ai`:
+web 7, ai 3. It also picks up the "ML & AI" tag in Featured, since that label
+is derived from the category. AI page order is Pima, Disease, Sino Ai —
+`sort_order` is still its legacy web id (5), so it sorts last; say if it should
+lead.
+
 ### Still open — deliberately
 
 13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint
