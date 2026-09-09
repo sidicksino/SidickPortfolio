@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft } from "react-icons/fa";
+import "./BackToHome.css";
 
 /**
  * The four category routes render outside the "/" route element, so they get

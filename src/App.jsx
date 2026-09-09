@@ -31,6 +31,9 @@ const DesignProjects = lazy(
 const AIProjects = lazy(() => import("./components/projects/AIProjects"));
 /* Admin is lazy like the project pages: visitors never load it. */
 const Admin = lazy(() => import("./components/admin/Admin"));
+/* Catch-all. vercel.json rewrites every path to index.html, so without
+   this an unknown URL renders a blank page with HTTP 200. */
+const NotFound = lazy(() => import("./components/NotFound"));
 
 function App() {
   return (
@@ -67,6 +70,8 @@ function App() {
             <Route path="/admin" element={<Admin />} />
 
             <Route path="/pages/hero" element={<HeroPage />} />
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
         <ThemeToggle />

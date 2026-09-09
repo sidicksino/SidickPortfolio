@@ -1,0 +1,57 @@
+/* Design tokens live in src/index.css — the single source of truth.
+   Do not redeclare tokens here. */
+
+.nf {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  text-align: center;
+  padding: var(--s-9) var(--s-5);
+  font-family: var(--font-body);
+  color: var(--text);
+}
+
+.nf-code {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
+  color: var(--accent-text);
+}
+
+.nf h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  margin: 0;
+}
+
+.nf-text {
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 46ch;
+  margin: 0;
+}
+
+.nf-path {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  /* A long unknown path must not push the page sideways. */
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* BackToHome carries a bottom margin for the category pages, where it sits
+   above the heading. Centred here, that margin is wrong. */
+.nf .back-home {
+  margin-bottom: 0;
+}

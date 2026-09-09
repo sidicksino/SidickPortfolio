@@ -1938,6 +1938,30 @@ was set to the Vercel domain only, so the dashboard works in production but not
 in local development — `Failed to fetch` with no ACAO header. The local `.env`
 has both origins; Render's copy does not. Sidick needs to update it there.
 
+### Phase 28 — catch-all 404 route ✅ **Done** (2026-09-09)
+
+`vercel.json` rewrites every path to `index.html` so the SPA can route itself,
+and `App.jsx` had no `*` route — so a typo like `/admn` returned **HTTP 200 and
+a completely blank page**: no error, no navigation, nothing. Added a lazy
+`NotFound` route that shows the code, a translated message, the path that was
+tried, and a link home. It injects `noindex, nofollow` (removed on unmount),
+since the server did answer 200.
+
+**`BackToHome` had a hidden dependency.** Its `.back-home` styles lived in
+`ProjectsPage.css`, which only the four category pages import — so reusing the
+component anywhere else would have rendered it unstyled. Moved to
+`BackToHome.css`, imported by the component itself. Verified `border-radius`
+still resolves to `999px` on all four category pages *and* on the 404.
+
+Verified: 25 checks — the page renders in both languages, shows the attempted
+path, the link navigates home, no horizontal scroll on a long path, no page
+errors, and `/`, the four category routes and `/admin` are **not** hijacked by
+the catch-all.
+
+Also swapped the straight apostrophe for a typographic one in both locales;
+`--font-display` renders `'` with a visible gap (the same quirk visible in the
+hero's "I'm SIDICK").
+
 ### Still open — deliberately
 
 13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint
