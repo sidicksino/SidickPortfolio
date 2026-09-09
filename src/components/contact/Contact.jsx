@@ -70,6 +70,7 @@ const Contact = () => {
           <motion.h2
             initial={{ opacity: 0, translateX: "50%" }}
             whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
             <span>{t("contact.title")}</span>
@@ -77,6 +78,7 @@ const Contact = () => {
           <motion.p
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
             {t("contact.subtitle")}
@@ -89,6 +91,7 @@ const Contact = () => {
             className="contact-form-wrapper"
             initial={{ opacity: 0, translateX: "-50%" }}
             whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
             <form
@@ -139,6 +142,7 @@ const Contact = () => {
             className="contact-info"
             initial={{ opacity: 0, translateX: "50%" }}
             whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
             <div className="info-card">
@@ -158,15 +162,19 @@ const Contact = () => {
                 <FaPhoneAlt />
               </div>
               <h3>{t("contact.phone")}</h3>
-              <p>+250 793 22 58 53</p>
+              <p>
+                <a href="tel:+250793225853">+250 793 22 58 53</a>
+              </p>
             </div>
 
             <div className="info-card">
               <div className="info-icon">
                 <FaEnvelope />
               </div>
-              <h3>Email</h3>
-              <p>sidickabdoulayesino1@gmail.com</p>
+              <h3>{t("contact.email")}</h3>
+              <p>
+                <a href="mailto:sidickabdoulayesino1@gmail.com">sidickabdoulayesino1@gmail.com</a>
+              </p>
             </div>
           </motion.div>
         </div>

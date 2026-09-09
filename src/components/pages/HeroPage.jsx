@@ -108,6 +108,7 @@ const HeroPage = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="section-title"
           >
@@ -143,6 +144,7 @@ const HeroPage = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="section-title"
           >
@@ -154,6 +156,7 @@ const HeroPage = () => {
               className="about-text"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <h3>{t('about.whoIAm')}</h3>
@@ -164,6 +167,7 @@ const HeroPage = () => {
               className="about-text"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <h3>{t('about.whatIDo')}</h3>
@@ -179,6 +183,7 @@ const HeroPage = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="section-title"
           >
@@ -190,6 +195,7 @@ const HeroPage = () => {
               className="timeline-item"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <div className="timeline-marker"></div>
@@ -206,6 +212,7 @@ const HeroPage = () => {
               className="timeline-item"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="timeline-marker"></div>
@@ -222,6 +229,7 @@ const HeroPage = () => {
               className="timeline-item"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="timeline-marker"></div>
@@ -238,6 +246,7 @@ const HeroPage = () => {
               className="timeline-item"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="timeline-marker"></div>
@@ -259,6 +268,7 @@ const HeroPage = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="section-title"
           >
@@ -270,6 +280,7 @@ const HeroPage = () => {
               className="value-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <div className="value-icon">💡</div>
@@ -281,6 +292,7 @@ const HeroPage = () => {
               className="value-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="value-icon">🎯</div>
@@ -292,6 +304,7 @@ const HeroPage = () => {
               className="value-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="value-icon">🤝</div>
@@ -303,6 +316,7 @@ const HeroPage = () => {
               className="value-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="value-icon">📚</div>
@@ -320,6 +334,7 @@ const HeroPage = () => {
             className="cta-content"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
             <h2>{t('cta.title')}</h2>
@@ -338,6 +353,7 @@ const HeroPage = () => {
             className="social-content"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
             <h3>Connect With Me</h3>

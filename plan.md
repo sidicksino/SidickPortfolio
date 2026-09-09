@@ -712,6 +712,51 @@ the tagline stops doubling as Web Development's description.
 - **Flutter dropped** from `mobileAppDesc` (now React Native and Expo). Nothing
   else on the site mentioned Flutter; Skills lists Expo.
 
+### Phase 22 — Contact + footer ✅ **Done** (2026-09-09)
+
+**The animation bug was systemic, not a Services quirk.** Fixing one file was
+the wrong response — a repo-wide audit found **25 unanchored `whileInView`**
+across five components:
+
+| file | unanchored |
+|---|---|
+| `pages/HeroPage.jsx` | 16 of 17 |
+| `contact/Contact.jsx` | 4 of 4 |
+| `project/Projects.jsx` | 2 of 2 |
+| `skills/Skills.jsx` | 2 of 3 |
+| `hero/Hero.jsx` | 1 of 1 |
+
+Every one reverted to its `initial` state on scroll-out. All 39 `whileInView`
+calls now carry `viewport`. The sweep adds `{ once: true }` **only** — no
+`amount` — so trigger timing is unchanged and the single behavioural difference
+is that content stops disappearing.
+
+**`footer.byMe` was the template placeholder** — "MyPortfolio" / "MonPortfolio",
+rendered twice (footer heading and copyright) while the site brands itself
+SidickSino everywhere else. Now SidickSino in both locales.
+
+**Email and phone were dead text.** `#contact` contained **zero links**; the
+footer's address and number were plain `<span>`s. Tapping a phone number on a
+phone did nothing. Now `mailto:` / `tel:` in both places (2 of each), with the
+`Email` heading in the contact card i18n'd — it was hardcoded English.
+
+Also: copyright read "All rights reserved Made with 💜" (no separator), and the
+`480px` query zeroed `.contact-section` padding — **the third section with that
+exact fault**, after Skills and Services. Every section now measures real
+vertical padding at both sizes; none is 0.
+
+### Two visual reads that measurement overturned
+
+The footer's "Contact" column *looked* washed out next to "Navigation" in every
+screenshot. Contrast said otherwise: **17.26:1, identical to "Navigation"**, and
+the faded audit found no footer element below 0.99 opacity. It is a
+`fade-up delay-2` CSS animation caught mid-flight by the capture.
+
+And the final audit's 13 faded elements were all deliberate hover-reveals —
+9 `.tech-cube__label` and 4 `.card-glow` (`.project-card:hover`). Checking
+*which* elements, rather than the count, is what separated those from the real
+reverts.
+
 ### A leftover rule that silently killed the grid
 
 `@media (max-width: 1024px) { .services-text ul { display: inline-block } }` —

@@ -16,6 +16,7 @@ const ProjectsSection = () => {
       <motion.h2
         initial={{ opacity: 0, translateX: "50%" }}
         whileInView={{ opacity: 1, translateX: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 1 }}
       >
         <span className="span1">{t('projects.title')}</span>
@@ -29,6 +30,7 @@ const ProjectsSection = () => {
             style={{ "--card-color": project.color }}
             initial={{ opacity: 0, translateX: "100%" }}
             whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.3 }}
           >
             <div className="card-glow"></div>

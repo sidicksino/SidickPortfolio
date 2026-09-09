@@ -304,8 +304,9 @@
 
 @media (max-width: 480px) {
   .contact-section {
-    padding: 0px 15px;
-    padding-bottom: 20px;
+    /* Was 0 top / 20px bottom — the heading sat flush under the section above.
+       Same 480px-query fault that Skills and Services had. */
+    padding: var(--s-8) 15px;
   }
 
   .contact-header {
@@ -331,4 +332,16 @@
     height: 50px;
     font-size: 1.3rem;
   }
+}
+/* Same for the info cards. */
+.info-card a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.info-card a:hover,
+.info-card a:focus-visible {
+  color: var(--accent-text);
+  text-decoration: underline;
 }

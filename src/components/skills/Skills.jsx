@@ -14,6 +14,7 @@ const Skills = () => {
       <motion.h2
         initial={{ opacity: 0, translateX: "50%" }}
         whileInView={{ opacity: 1, translateX: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 1 }}
       >
         <span className="span1">{t('skills.title')}</span>
@@ -30,6 +31,7 @@ const Skills = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
                 className="text-blocks"
               >

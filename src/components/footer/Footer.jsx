@@ -38,7 +38,7 @@ const Footer = () => {
           <ul className="contact-list">
             <li>
               <FaEnvelope className="contact-icon" />
-              <span>sidickabdoulayesino1@gmail.com</span>
+              <a href="mailto:sidickabdoulayesino1@gmail.com">sidickabdoulayesino1@gmail.com</a>
             </li>
             <li>
               <FaMapMarkerAlt className="contact-icon" />
@@ -50,7 +50,7 @@ const Footer = () => {
             </li>
             <li>
               <FaPhoneAlt className="contact-icon" />
-              <span>+250 793 22 58 53</span>
+              <a href="tel:+250793225853">+250 793 22 58 53</a>
             </li>
           </ul>
         </div>
@@ -58,7 +58,7 @@ const Footer = () => {
 
       <div className="footer-bottom fade-in">
         <p>
-          &copy; {new Date().getFullYear()} <strong>{t('footer.byMe')}</strong> — {t('footer.rights')} {t('footer.madeWith')} 💜
+          &copy; {new Date().getFullYear()} <strong>{t('footer.byMe')}</strong> — {t('footer.rights')} · {t('footer.madeWith')} 💜
         </p>
       </div>
     </footer>

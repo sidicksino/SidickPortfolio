@@ -37,6 +37,7 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, translateX: "-100%" }}
           whileInView={{ opacity: 1, translateX: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
           {t('hero.title')}
