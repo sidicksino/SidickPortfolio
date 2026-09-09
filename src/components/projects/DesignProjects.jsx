@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import "./ProjectsPage.css";
+import BackToHome from "./BackToHome";
 // Images are now imported in projectData.js
 import { designProjects as projects } from "../../data/projectData";
 
@@ -16,6 +17,7 @@ const DesignProjects = () => {
         <meta name="description" content={t('projectsPage.designIntro')} />
       </>
       <div className="projects-page">
+      <BackToHome />
       <h1>{t('projectsPage.designTitle')}</h1>
       <p>{t('projectsPage.designIntro')}</p>
   

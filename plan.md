@@ -790,6 +790,49 @@ to its own content — Location wraps to two lines, Phone to one. Removed, so
 grid's default `stretch` applies; both measure 226px. The shorter card's
 content is centred rather than stranded at the top.
 
+### Phase 24 — Hero, #projects, category pages, token sweep ✅ **Done** (2026-09-09)
+
+**`min-height: 100vh` was manufacturing dead space.** `.projects-section` and
+`.contact-section` both forced a viewport height, but neither has enough content
+to fill one — so the browser padded the difference, and **the gap grew with
+screen height**: 355px of nothing under the project cards at 1000px tall,
+**755px at 1400px**. That scaling is what identified it as forced height rather
+than a layout bug. Removed from both; every section's slack now equals its own
+padding-bottom. `#projects` 1400 → 745px, `#contact` 1400 → 1025px. The hero
+keeps its 100vh — filling the viewport is the point there.
+
+**The category pages were a navigation dead end.** `/projects/web|mobile|design|ai`
+render *outside* the `"/"` route element, so they get no Navbar and no Footer,
+and no page carried a back link. A visitor arriving from "View Project" could
+only use the browser button. Worth noting why simply adding the chrome would not
+have fixed it: every nav and footer link is an `#anchor`, which does nothing from
+a sub-route. Added a `BackToHome` component — a real `<Link to="/">` — to all
+four, with `projectsPage.backHome` in both locales. Verified by clicking it:
+lands on `/` with the hero mounted.
+
+**Category card CTAs were at four different heights per row**, because tech
+chips wrap to a different number of lines per project. `.project-wrapper` is a
+column flex, `.project-card1` grows, and `.project-links` takes `margin-top:
+auto`. Measured across all four pages: **0 rows with a misaligned CTA**.
+
+**36 hardcoded brand colours replaced.** Every `rgba(231, 72, 200, α)` became
+`color-mix(in srgb, var(--accent) α%, transparent)` across 8 files — three more
+than the first count found (`LanguageToggle`, `ThemeToggle`, `Footer` also had
+them). Changing `--accent` now actually changes the site.
+
+### A string comparison that reported a false mismatch
+
+The check that the colour refactor was a no-op compared computed values with
+`===` and reported every one as differing. They were identical — `color-mix`
+serializes as `color(srgb 0.905882 0.282353 0.784314 / 0.3)` while `rgba()`
+serializes as `rgba(231, 72, 200, 0.3)`. Same colour, different notation
+(`0.905882 x 255 = 231`). Fixed to normalise both to 0–255 channels before
+comparing: **all identical**.
+
+Fourth instance this session of asserting on a representation instead of the
+thing itself, after the theme attribute, the grid-template string, and the
+`.tech-cubes` padding box.
+
 ### A screenshot taken mid-animation
 
 The first light-mode capture came back as a half-transparent, half-slid mess,

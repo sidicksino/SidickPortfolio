@@ -17,7 +17,7 @@
 .language-toggle:hover {
   background: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(231, 72, 200, 0.3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .language-toggle:active {

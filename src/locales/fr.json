@@ -182,7 +182,8 @@
     "designTitle": "Mes Projets Design",
     "designIntro": "Designs UI/UX et produits présentant des interfaces modernes.",
     "viewLive": "Voir en Ligne",
-    "viewCode": "Code"
+    "viewCode": "Code",
+    "backHome": "Retour au portfolio"
   },
   "skills": {
     "title": "Mes Compétences",

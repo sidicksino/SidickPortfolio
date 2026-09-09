@@ -4,7 +4,9 @@
 
 /* ===== Section ===== */
 .projects-section {
-  min-height: 100vh;
+  /* No min-height: 100vh. Four short cards do not fill a viewport, so it
+     padded the difference with dead space that GREW with screen height —
+     755px of nothing on a 1400px-tall display. Padding gives it presence. */
   padding: 100px 20px;
   color: var(--text);
   position: relative;

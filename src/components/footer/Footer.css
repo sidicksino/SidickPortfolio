@@ -252,7 +252,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(231,72,200,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 70%);
     animation: floatBlob 25s linear infinite;
   }
   

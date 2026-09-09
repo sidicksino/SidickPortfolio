@@ -13,14 +13,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 25px rgba(231, 72, 200, 0.4);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent) 40%, transparent);
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
   overflow: hidden;
 }
 
 .theme-toggle-btn:hover {
-  box-shadow: 0 12px 35px rgba(231, 72, 200, 0.6);
+  box-shadow: 0 12px 35px color-mix(in srgb, var(--accent) 60%, transparent);
   transform: translateY(-3px);
 }
 

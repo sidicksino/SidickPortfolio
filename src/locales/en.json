@@ -182,7 +182,8 @@
     "designTitle": "My Design Projects",
     "designIntro": "UI/UX and product designs showcasing modern interfaces.",
     "viewLive": "View Live",
-    "viewCode": "Code"
+    "viewCode": "Code",
+    "backHome": "Back to portfolio"
   },
   "skills": {
     "title": "My Skills",

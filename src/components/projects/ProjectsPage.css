@@ -20,7 +20,7 @@
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at 30% 70%, var(--primary-dark) 0%, transparent 40%),
-              radial-gradient(circle at 70% 30%, rgba(231, 72, 200, 0.03) 0%, transparent 50%);
+              radial-gradient(circle at 70% 30%, color-mix(in srgb, var(--accent) 3%, transparent) 0%, transparent 50%);
   z-index: -1;
   animation: subtleGlow 8s ease-in-out infinite alternate;
 }
@@ -62,6 +62,11 @@
 
 /* ========== WRAPPER ========== */
 .project-wrapper {
+  /* Column flex so the body can grow and pin the CTA to the bottom: tech
+     chips wrap to a different number of lines per project, which left the
+     "View Live" buttons at four different heights across a row. */
+  display: flex;
+  flex-direction: column;
   background: var(--background-light);
   backdrop-filter: blur(8px);
   border-radius: 16px;
@@ -75,7 +80,7 @@
 
 .project-wrapper:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(231, 72, 200, 0.18);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 18%, transparent);
   border-color: var(--primary-transparent);
 }
 
@@ -102,6 +107,9 @@
 
 /* ========== CARD ========== */
 .project-card1 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 16px;
 }
 
@@ -133,13 +141,13 @@
 }
 
 .tech-tag {
-  background: rgba(231, 72, 200, 0.1);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   color: var(--accent-text);
   padding: 4px 10px;
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid rgba(231, 72, 200, 0.2);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
   transition: all 0.3s ease;
 }
 
@@ -153,6 +161,9 @@
 .project-links {
   display: flex;
   gap: 10px;
+  /* Pushes the CTA row to the bottom of the card, whatever the copy length. */
+  margin-top: auto;
+  padding-top: var(--s-3);
 }
 
 .btn-live,
@@ -171,12 +182,12 @@
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
   color: var(--text);
   border: none;
-  box-shadow: 0 3px 10px rgba(231, 72, 200, 0.25);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
 .btn-live:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 18px rgba(231, 72, 200, 0.4);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .btn-github {
@@ -186,7 +197,7 @@
 }
 
 .btn-github:hover {
-  background: rgba(231, 72, 200, 0.1);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   color: var(--accent-text);
   border-color: var(--primary);
   transform: translateY(-2px);
@@ -210,5 +221,42 @@
 @media (max-width: 300px) {
   .projects-list {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Back link — these routes render without the Navbar/Footer chrome. */
+.back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-5);
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.back-home:hover,
+.back-home:focus-visible {
+  color: var(--accent-text);
+  border-color: var(--accent-text);
+  transform: translateX(-3px);
+}
+
+.back-home svg {
+  font-size: 0.8rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-home {
+    transition: none;
+  }
+
+  .back-home:hover {
+    transform: none;
   }
 }

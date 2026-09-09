@@ -4,7 +4,8 @@
 
 /* ========== CONTACT SECTION ========== */
 .contact-section {
-  min-height: 100vh;
+  /* Same as .projects-section: forcing a viewport height left ~495px of dead
+     space below the form on a tall display. */
   padding: 120px 120px;
   background: var(--background);
   color: var(--text);
@@ -21,7 +22,7 @@
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at 20% 30%, var(--primary-dark) 0%, transparent 40%),
-              radial-gradient(circle at 80% 70%, rgba(231, 72, 200, 0.03) 0%, transparent 50%);
+              radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--accent) 3%, transparent) 0%, transparent 50%);
   z-index: -1;
   animation: subtlePulse 10s ease-in-out infinite alternate;
 }
@@ -108,7 +109,7 @@
 
 .contact-form-wrapper:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 26px rgba(231, 72, 200, 0.16);
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 16%, transparent);
   border-color: var(--primary-transparent);
 }
 
@@ -148,7 +149,7 @@
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--primary);
-  background: rgba(231, 72, 200, 0.05);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
   box-shadow: 0 0 0 3px var(--primary-transparent);
   transform: translateY(-2px);
 }
@@ -172,7 +173,7 @@
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 20px rgba(231, 72, 200, 0.3);
+  box-shadow: 0 5px 20px color-mix(in srgb, var(--accent) 30%, transparent);
   position: relative;
   overflow: hidden;
 }
@@ -194,7 +195,7 @@
 
 .submit-btn:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(231, 72, 200, 0.5);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent) 50%, transparent);
 }
 
 .plane-icon {
@@ -224,7 +225,7 @@
 .info-card:hover {
   transform: translateY(-8px) scale(1.02);
   border-color: var(--primary-transparent);
-  box-shadow: 0 8px 20px rgba(231, 72, 200, 0.16);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
 .info-icon {

@@ -277,14 +277,14 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
-  box-shadow: 0 4px 12px rgba(231, 72, 200, 0.3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
   border: none;
 }
 
 .nav-cta:hover {
   background: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(231, 72, 200, 0.4);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .nav-actions {
@@ -310,7 +310,7 @@
 
   .mobile-actions {
     padding: 16px 16px !important;
-    border-top: 1px solid rgba(231, 72, 200, 0.2);
+    border-top: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
     margin-top: 16px;
   }
 
