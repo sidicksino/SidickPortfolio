@@ -63,13 +63,14 @@
   "services": {
     "title": "Services",
     "webDevelopment": "Web Development",
-    "webDevDesc": "I create tailor made digital experiences performant, aesthetic, and intelligent.",
+    "webDevDesc": "Fast, responsive web platforms built with React, Node.js and Django.",
     "mobileApp": "Mobile Development",
-    "mobileAppDesc": "Cross-platform mobile apps with React Native and Flutter",
+    "mobileAppDesc": "Cross-platform mobile apps with React Native and Expo.",
     "uiDesign": "UI/UX Design",
     "uiDesignDesc": "Beautiful, user-centric interfaces that engage and convert",
     "consulting": "Tech Consulting",
-    "consultingDesc": "Strategic guidance for your tech projects and digital transformation"
+    "consultingDesc": "Strategic guidance for your tech projects and digital transformation",
+    "subtitle": "I create tailor made digital experiences performant, aesthetic, and intelligent."
   },
   "projects": {
     "title": "My Projects",

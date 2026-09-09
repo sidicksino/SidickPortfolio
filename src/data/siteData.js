@@ -79,10 +79,38 @@ export const skillsData = [
   },
 ];
 
+/* Each service carries the description that was already written in both locale
+   files but never rendered — the section showed bare titles while
+   uiDesignDesc / consultingDesc / mobileAppDesc sat unused. */
 export const servicesData = [
-  'services.webDevelopment',
-  'services.uiDesign',
-  'services.consulting',
+  {
+    id: "web",
+    icon: FaLaptopCode,
+    color: "var(--fam-1)",
+    titleKey: "services.webDevelopment",
+    descKey: "services.webDevDesc",
+  },
+  {
+    id: "mobile",
+    icon: FaMobileAlt,
+    color: "var(--fam-2)",
+    titleKey: "services.mobileApp",
+    descKey: "services.mobileAppDesc",
+  },
+  {
+    id: "design",
+    icon: FaPaintBrush,
+    color: "var(--fam-3)",
+    titleKey: "services.uiDesign",
+    descKey: "services.uiDesignDesc",
+  },
+  {
+    id: "consulting",
+    icon: FaBrain,
+    color: "var(--fam-4)",
+    titleKey: "services.consulting",
+    descKey: "services.consultingDesc",
+  },
 ];
 
 /* ---------------------------------------------------------------------------

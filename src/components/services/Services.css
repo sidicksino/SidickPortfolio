@@ -77,27 +77,60 @@
   max-width: 500px;
 }
 
-.services-text ul {
+/* 2x2 grid of services. Mirrors the Skills section: tinted icon, title, and a
+   line of detail — Services is the section that sells, and it was the thinnest
+   thing on the page. Hue comes from the shared --fam-* family. */
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-5);
   list-style: none;
   padding: 0;
-  margin-bottom: 40px;
+  margin: 0 0 40px;
 }
 
-.services-text ul li {
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+
+.service-icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1rem;
+  color: var(--service-color, var(--accent));
+  background: color-mix(
+    in srgb,
+    var(--service-color, var(--accent)) 16%,
+    transparent
+  );
+}
+
+.service-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.service-copy strong {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1.02rem;
+  font-weight: 700;
   color: var(--text);
-  margin-bottom: 12px;
-  padding-left: 30px;
-  position: relative;
+  line-height: 1.3;
 }
 
-.services-text ul li::before {
-  content: "✦";
-  position: absolute;
-  left: 0;
-  color: var(--accent-text);
-  font-weight: bold;
+/* Scoped: `.services-text p` sets 1.1rem and a 30px bottom margin, which is
+   the section tagline's styling, not a service's. */
+.service-copy > span {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-2);
 }
 
 .cta-button {
@@ -174,15 +207,26 @@
     max-width: 100%;
   }
 
-  .services-text ul {
+  /* This block used to set `display: inline-block` to centre the old bullet
+     list — which silently overrode `display: grid` on .services-list and
+     collapsed it to one column. Keep it a grid; just centre and cap it. */
+  .services-list {
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-    display: inline-block;
+    max-width: 620px;
   }
 
   .services-text h2 {
     font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 700px) {
+  /* One column: two 150px columns cannot hold a title plus a line of copy. */
+  .services-list {
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
   }
 }
 

@@ -63,13 +63,14 @@
   "services": {
     "title": "Services",
     "webDevelopment": "Développement Web",
-    "webDevDesc": "Je crée des expériences numériques sur mesure performantes, esthétiques et intelligentes.",
+    "webDevDesc": "Des plateformes web rapides et responsives, avec React, Node.js et Django.",
     "mobileApp": "Développement Mobile",
-    "mobileAppDesc": "Applications mobiles multiplateformes avec React Native et Flutter",
+    "mobileAppDesc": "Applications mobiles multiplateformes avec React Native et Expo.",
     "uiDesign": "Design UI/UX",
     "uiDesignDesc": "Interfaces belles et centrées sur l'utilisateur qui engagent et convertissent",
     "consulting": "Conseil Technologique",
-    "consultingDesc": "Conseils stratégiques pour vos projets technologiques et transformation numérique"
+    "consultingDesc": "Conseils stratégiques pour vos projets technologiques et transformation numérique",
+    "subtitle": "Je crée des expériences numériques sur mesure performantes, esthétiques et intelligentes."
   },
   "projects": {
     "title": "Mes Projets",

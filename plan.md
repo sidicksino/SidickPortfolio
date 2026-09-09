@@ -686,6 +686,50 @@ is exactly what the pill covered on the two ML & AI cards.
 
 **Deleted `docs/skills-image-prompt.md`** — the code-built cluster replaced it.
 
+### Phase 21 — Services design pass ✅ **Done** (2026-09-09)
+
+Services had only ever been bug-fixed, never reviewed. The review found that
+**the copy was already written and simply never rendered**:
+
+| key | uses before |
+|---|---|
+| `uiDesignDesc` | 0 |
+| `consultingDesc` | 0 |
+| `mobileApp` / `mobileAppDesc` | 0 |
+| `webDevDesc` | 1 — as the *section subtitle*, not Web Development's own line |
+
+So the section showed three bare bullets while three finished descriptions sat
+unused in both locale files, and Skills — a section that only lists tools — was
+richer than the section that actually sells.
+
+Now a **2x2 grid** matching the Skills pattern: tinted `--fam-*` icon, title,
+and the description that already existed. `services.subtitle` is a new key so
+the tagline stops doubling as Web Development's description.
+
+**Two content decisions were Sidick's, not mine:**
+- **Mobile Development added** as a fourth service — it was written in both
+  locales but never shown, and Skills/Featured both carry mobile work.
+- **Flutter dropped** from `mobileAppDesc` (now React Native and Expo). Nothing
+  else on the site mentioned Flutter; Skills lists Expo.
+
+### A leftover rule that silently killed the grid
+
+`@media (max-width: 1024px) { .services-text ul { display: inline-block } }` —
+written to centre the old bullet list — **overrode `display: grid`** on the new
+list. Below 1024px it was not a grid at all, so it collapsed to one column *by
+accident*. Now explicit: 2 columns to 700px, 1 column below.
+
+### A check that read an unresolved value
+
+The column check was
+`getComputedStyle(el).gridTemplateColumns.split(' ').length`. When an element is
+**not** a grid container, that property returns the *specified* value —
+`"repeat(2, 1fr)"` — which splits into 2 tokens. So it reported "2 columns" for
+a page rendering a single column, and it was the screenshot that contradicted
+it. It counts distinct `left` offsets of the actual items now, and reports
+`display` alongside. Third variant of the same mistake this session: asserting
+on a proxy rather than the rendered result.
+
 ### An over-strict check
 
 The verification flagged desktop FAIL on one element at `opacity: 0` — the

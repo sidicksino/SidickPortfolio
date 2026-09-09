@@ -52,19 +52,36 @@ const Services = () => {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.5 }}
           >
-            {t('services.webDevDesc')}
+            {t('services.subtitle')}
           </motion.p>
 
-          <motion.ul
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.5 }}
-          >
-            {servicesData.map((serviceKey, index) => (
-              <li key={index}>{t(serviceKey)}</li>
-            ))}
-          </motion.ul>
+          <ul className="services-list">
+            {servicesData.map((service, i) => {
+              const Icon = service.icon;
+              return (
+                <motion.li
+                  key={service.id}
+                  className="service-item"
+                  style={{ "--service-color": service.color }}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{
+                    duration: 0.45,
+                    delay: Math.min(i * 0.07, 0.28),
+                  }}
+                >
+                  <span className="service-icon">
+                    <Icon aria-hidden="true" />
+                  </span>
+                  <span className="service-copy">
+                    <strong>{t(service.titleKey)}</strong>
+                    <span>{t(service.descKey)}</span>
+                  </span>
+                </motion.li>
+              );
+            })}
+          </ul>
 
           <a href="#contact" className="cta-button">
             {t('cta.button')} →
