@@ -1864,6 +1864,33 @@ ones (open redirect via `<Link>`/`useNavigate`, XSS) genuinely do ship.
 Verified after the router jump: all six routes render, client-side navigation
 works, no console or page errors.
 
+### 19 vs 18 — both counts were right (2026-09-09)
+
+Sidick counted 19 projects and the API reports 18. The old hardcoded data had
+**19 listings but 18 distinct projects**: SinoAI appeared in *both* `web/5` and
+`ai/1` with the identical `liveUrl`
+(`https://sinoai-chi.vercel.app/`). The `UNIQUE (live_url)` constraint rejected
+the second insert during the migration — that was the "skipped" row. Nothing is
+missing; one project simply stopped appearing twice.
+
+### The real bug the question surfaced
+
+`projects.generated.json` had been committed *before* `featured_order` reached
+the deployed API, so the featured grid fell back to id order. Live, the first
+six were AAPT, Académie Royale, SinoCoffee, Sino Ai, SINOINFOS, TchadInfos —
+and phones show only the first six, so **both ML projects were invisible on
+mobile**. A data scientist's portfolio was showing no machine-learning work to
+phone visitors.
+
+Re-fetched after the redeploy. Order is now AAPT, Académie Royale, SINOINFOS,
+TchadInfos, Pima, Disease | Sino Ai, SinoCoffee — verified 8 on desktop and the
+right 6 on a 390px viewport.
+
+Worth keeping: **`projects.generated.json` is only as fresh as the last
+successful build**, so a schema addition needs a re-fetch *after* the API
+redeploys, not before. Nothing warns about this — the stale file is valid JSON
+and the site renders happily with the wrong order.
+
 ### Still open — deliberately
 
 13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint
