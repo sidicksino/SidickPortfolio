@@ -2005,6 +2005,34 @@ hook.
 
 Nothing else is affected — saving, uploading and deleting never touch the hook.
 
+### Phase 30 — admin dashboard on mobile ✅ **Done** (2026-09-09)
+
+Tested at 430 / 390 / 360 / 320px. The **form** was already fine — every
+`.af-row` collapsed to one column, inputs full width, no overflow.
+
+The **list was not**. `.ad-item` only had `flex-wrap: wrap`, which kept the
+Edit/Delete controls on the same line as the meta column, sitting **on top of
+the badges**: "FEATURED #1" was clipped to "FEATU… #1" and "NO LIVE URL" was
+squeezed onto three lines. Replaced with an explicit grid — thumb and title
+side by side, badges on their own line, buttons full-width underneath.
+
+Also raised every dashboard button to `min-height: 44px` below 720px. They were
+~37px, under the WCAG 2.5.8 / iOS touch-target minimum.
+
+Verified: 0 overlaps, 0 clipped badges, 0 buttons under 44px, 0 horizontal
+overflow at all four widths.
+
+### A check that measured the wrong thing
+
+The first mobile pass reported "no overflow" at every width and I nearly called
+it responsive. It was only the screenshot that showed the buttons sitting on
+the badges. The check tested elements against the **viewport** — but these
+elements were colliding with **each other**, entirely inside it.
+
+Rewritten to test pairwise intersection of the control block against every
+label, plus `scrollWidth > clientWidth` per badge to catch clipping. That is
+what now returns 0.
+
 ### Still open — deliberately
 
 13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint

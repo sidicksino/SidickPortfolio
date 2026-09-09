@@ -362,12 +362,45 @@
     grid-template-columns: 1fr;
   }
 
-  .ad-item {
-    flex-wrap: wrap;
-  }
-
   .af-image {
     flex-direction: column;
+  }
+
+  /* `flex-wrap: wrap` was not enough: the controls stayed on the same line as
+     the meta column and sat on top of the badges, clipping "FEATURED #1" and
+     squeezing "NO LIVE URL" onto three lines. An explicit grid gives the
+     buttons their own full-width row. */
+  .ad-item {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    grid-template-areas:
+      "thumb meta"
+      "ctl   ctl";
+    gap: var(--s-3);
+    align-items: start;
+  }
+
+  .ad-thumb {
+    grid-area: thumb;
+    width: 100%;
+  }
+
+  .ad-meta {
+    grid-area: meta;
+  }
+
+  .ad-itemctl {
+    grid-area: ctl;
+  }
+
+  .ad-itemctl button {
+    flex: 1;
+  }
+
+  /* 44px is the WCAG 2.5.8 / iOS minimum for a touch target; the buttons were
+     ~37px, which is a miss on a phone. */
+  .ad button {
+    min-height: 44px;
   }
 }
 

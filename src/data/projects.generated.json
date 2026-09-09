@@ -46,8 +46,8 @@
     "featured_order": 0,
     "sort_order": 1,
     "id": 9,
-    "image_url": null,
-    "image_public_id": null
+    "image_url": "https://res.cloudinary.com/daeickn92/image/upload/v1788987523/portfolio/projects/hdyp7idwwj6guo1ruyxd.webp",
+    "image_public_id": "portfolio/projects/hdyp7idwwj6guo1ruyxd"
   },
   {
     "category": "design",
