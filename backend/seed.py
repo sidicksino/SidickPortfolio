@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 from db import pool
-from storage import upload_image
+from storage import delete_image, upload_image
 
 HERE = Path(__file__).parent
 ASSETS = HERE.parent / "src" / "assets"
@@ -89,7 +89,13 @@ def main() -> int:
                 inserted += 1
             else:
                 skipped += 1
-                print(f"  skipped {r['category']}/{r['legacy_id']} (live_url exists)")
+                # The upload happens before the insert, so a row skipped by
+                # ON CONFLICT leaves its image behind in Cloudinary — an asset
+                # nothing references and nobody sees. Clean it up.
+                if image_id:
+                    delete_image(image_id)
+                print(f"  skipped {r['category']}/{r['legacy_id']} "
+                      f"(live_url exists){' — image removed' if image_id else ''}")
 
     print(f"\ninserted {inserted}, skipped {skipped}")
     pool.close()

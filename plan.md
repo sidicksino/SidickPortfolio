@@ -1900,6 +1900,44 @@ is derived from the category. AI page order is Pima, Disease, Sino Ai —
 `sort_order` is still its legacy web id (5), so it sorts last; say if it should
 lead.
 
+## Phase 27 — admin dashboard ✅ **Built** (2026-09-09)
+
+`/admin` — a lazy route (11.5 KB chunk), so no visitor ever downloads it. Not
+in the sitemap, and it injects `<meta name="robots" content="noindex, nofollow">`
+on mount.
+
+- **Login** -> JWT in localStorage; a 401 clears it and asks for a fresh sign-in.
+- **List** with category filters, thumbnails, and badges for featured position,
+  category, and "no live URL".
+- **Form** with **EN and FR side by side** — the site is bilingual, and a
+  project saved in one language only would show an empty card to half the
+  audience. Client validation mirrors the API; the server still enforces it.
+- **Cloudinary upload** with a live preview, via `POST /upload`.
+- **Publish** calls `POST /publish`, which fires the Vercel hook server-side.
+- **Cold-start honesty:** any request slower than 3s shows "Waking the server…
+  Render's free tier sleeps after 15 minutes idle" rather than a spinner that
+  looks broken.
+
+Verified end to end against a local backend with a throwaway password (deleted
+after): login rejects a wrong password and accepts the right one, lists 18,
+filters, rejects an empty form, uploads a real image to Cloudinary, creates,
+confirms the API trimmed and de-duplicated `" React , react , , Node.js "` to
+`React, Node.js`, edits, fires a real Vercel rebuild, deletes. Production ended
+back at exactly 18 rows with no test data left behind.
+
+### Two real problems the testing found
+
+**An orphaned Cloudinary asset.** `portfolio/projects/ai-1` existed with nothing
+referencing it — 18 assets for 17 images in use. `seed.py` uploads *before*
+inserting, so when `ON CONFLICT DO NOTHING` skipped the SinoAI duplicate, its
+image had already been uploaded and was never cleaned up. Orphan deleted, and
+`seed.py` now destroys the image when an insert is skipped.
+
+**The deployed API blocks `http://localhost:5173`.** Render's `CORS_ORIGINS`
+was set to the Vercel domain only, so the dashboard works in production but not
+in local development — `Failed to fetch` with no ACAO header. The local `.env`
+has both origins; Render's copy does not. Sidick needs to update it there.
+
 ### Still open — deliberately
 
 13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint

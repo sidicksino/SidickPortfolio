@@ -29,6 +29,8 @@ const DesignProjects = lazy(
   () => import("./components/projects/DesignProjects"),
 );
 const AIProjects = lazy(() => import("./components/projects/AIProjects"));
+/* Admin is lazy like the project pages: visitors never load it. */
+const Admin = lazy(() => import("./components/admin/Admin"));
 
 function App() {
   return (
@@ -61,6 +63,8 @@ function App() {
             <Route path="/projects/mobile" element={<MobileProjects />} />
             <Route path="/projects/design" element={<DesignProjects />} />
             <Route path="/projects/ai" element={<AIProjects />} />
+
+            <Route path="/admin" element={<Admin />} />
 
             <Route path="/pages/hero" element={<HeroPage />} />
           </Routes>

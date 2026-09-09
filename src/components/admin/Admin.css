@@ -1,0 +1,364 @@
+/* Design tokens live in src/index.css — the single source of truth.
+   Do not redeclare tokens here. */
+
+.ad {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--s-8) var(--s-5);
+  font-family: var(--font-body);
+  color: var(--text);
+}
+
+.ad h1 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.ad-sub {
+  color: var(--text-2);
+  font-size: 0.9rem;
+  margin: var(--s-2) 0 0;
+}
+
+.ad-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--s-6);
+}
+
+.ad-headctl {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.ad button {
+  font: inherit;
+  font-size: 0.87rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.ad button:hover:not(:disabled) {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+
+.ad button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ad .ad-primary,
+.ad .af-primary {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--on-accent);
+}
+
+.ad .ad-primary:hover:not(:disabled),
+.ad .af-primary:hover:not(:disabled) {
+  color: var(--on-accent);
+  filter: brightness(1.08);
+}
+
+.ad .ad-danger:hover:not(:disabled) {
+  border-color: #e0455f;
+  color: #e0455f;
+}
+
+.ad .ad-ghost {
+  background: transparent;
+}
+
+/* ===== messages ===== */
+.ad-error,
+.ad-notice,
+.ad-waking,
+.af-error {
+  font-size: 0.87rem;
+  padding: 11px 14px;
+  border-radius: 10px;
+  margin: 0 0 var(--s-4);
+  line-height: 1.5;
+}
+
+.ad-error,
+.af-error {
+  color: #ff8fa3;
+  background: color-mix(in srgb, #e0455f 12%, transparent);
+  border: 1px solid color-mix(in srgb, #e0455f 40%, transparent);
+}
+
+.ad-notice {
+  color: var(--accent-text);
+  background: var(--accent-subtle);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.ad-waking {
+  color: var(--text-2);
+  background: var(--elevated);
+  border: 1px solid var(--border);
+}
+
+/* ===== login ===== */
+.ad-login {
+  max-width: 380px;
+  margin: 12vh auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.ad-login button {
+  margin-top: var(--s-2);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--on-accent);
+  padding: 12px;
+}
+
+/* ===== filters ===== */
+.ad-filters {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-5);
+}
+
+.ad-filters button.on {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+  background: var(--accent-subtle);
+}
+
+/* ===== list ===== */
+.ad-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.ad-item {
+  display: flex;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.ad-thumb {
+  width: 108px;
+  aspect-ratio: 16 / 9;
+  flex: none;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--elevated);
+  display: grid;
+  place-items: center;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.ad-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ad-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ad-fr {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.ad-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ad-tags em {
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--elevated);
+  color: var(--text-muted);
+}
+
+.ad-tags em.on {
+  background: var(--accent-subtle);
+  color: var(--accent-text);
+}
+
+.ad-itemctl {
+  display: flex;
+  gap: var(--s-2);
+  flex: none;
+}
+
+/* ===== form ===== */
+.af {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--s-5);
+}
+
+.af h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.af-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4);
+}
+
+.ad label,
+.af label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+.ad input,
+.ad select,
+.ad textarea,
+.af input,
+.af select,
+.af textarea {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+
+.af textarea {
+  resize: vertical;
+}
+
+.ad input:focus-visible,
+.ad select:focus-visible,
+.ad textarea:focus-visible,
+.af input:focus-visible,
+.af textarea:focus-visible,
+.af select:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 1px;
+}
+
+.af-image {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+}
+
+.af-preview {
+  width: 190px;
+  aspect-ratio: 16 / 9;
+  flex: none;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.af-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.af-imagectl {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.af-lbl {
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+.af-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.af-check {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--s-2);
+  align-self: end;
+  padding-bottom: 10px;
+}
+
+.af-check input {
+  width: auto;
+}
+
+.af-actions {
+  display: flex;
+  gap: var(--s-2);
+}
+
+@media (max-width: 720px) {
+  .af-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-item {
+    flex-wrap: wrap;
+  }
+
+  .af-image {
+    flex-direction: column;
+  }
+}
