@@ -1,0 +1,44 @@
+# Wake the Render API on demand — Actions tab -> "Wake API" -> Run workflow.
+#
+# There is deliberately NO schedule here.
+#
+# Render gives a workspace 750 free instance-hours per MONTH, shared across
+# every free service in it, and suspends ALL of them until the next month once
+# that runs out. A calendar month is ~730 hours, so pinging this service every
+# 10 minutes around the clock consumes essentially the entire workspace quota
+# on its own — and would take the other free services down with it.
+#
+# Nothing here needs to be warm: no site visitor touches this API. It is read
+# by the build step and by the admin dashboard, both of which are triggered by
+# a human who can wait ~1 minute for a cold start.
+#
+# If you do want it warm during the hours you actually use the dashboard,
+# uncomment the block below (weekdays 08:00-20:00 UTC ~= 264 h/month, 35% of
+# the quota) rather than running it 24/7:
+#
+# on:
+#   schedule:
+#     - cron: "*/10 8-19 * * 1-5"
+#   workflow_dispatch:
+
+name: Wake API
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping /health
+        run: |
+          set -euo pipefail
+          URL="https://sidickportfolio.onrender.com/health"
+          # --max-time 90 covers a full cold start; retries cover a flaky wake-up.
+          code=$(curl -sS -o /tmp/body.txt -w '%{http_code}' \
+                   --max-time 90 --retry 3 --retry-delay 20 --retry-all-errors "$URL")
+          echo "HTTP $code — $(cat /tmp/body.txt)"
+          # Fail on a bad status so a broken API shows up here rather than
+          # silently "succeeding".
+          test "$code" = "200"

@@ -24,6 +24,10 @@ CREATE TABLE IF NOT EXISTS projects (
   github_url      TEXT,
 
   featured        BOOLEAN     NOT NULL DEFAULT FALSE,
+  -- Separate from sort_order: sort_order ranks a project inside its category
+  -- page, featured_order ranks it in the Featured Work grid. They differ, and
+  -- the Featured order matters because phones show only the first six.
+  featured_order  INTEGER     NOT NULL DEFAULT 0,
   sort_order      INTEGER     NOT NULL DEFAULT 0,
 
   created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -41,3 +45,6 @@ $$ LANGUAGE plpgsql;
 DROP TRIGGER IF EXISTS projects_touch ON projects;
 CREATE TRIGGER projects_touch BEFORE UPDATE ON projects
   FOR EACH ROW EXECUTE FUNCTION touch_updated_at();
+
+-- Added after the first deploy; safe to re-run.
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS featured_order INTEGER NOT NULL DEFAULT 0;

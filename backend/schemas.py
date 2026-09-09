@@ -42,6 +42,7 @@ class ProjectBase(BaseModel):
     live_url: HttpUrl | None = None
     github_url: HttpUrl | None = None
     featured: bool = False
+    featured_order: int = 0
     sort_order: int = 0
 
     @field_validator("technologies")
@@ -79,6 +80,7 @@ class ProjectUpdate(BaseModel):
     live_url: HttpUrl | None = None
     github_url: HttpUrl | None = None
     featured: bool | None = None
+    featured_order: int | None = None
     sort_order: int | None = None
 
 

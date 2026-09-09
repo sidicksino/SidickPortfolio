@@ -5,14 +5,21 @@ import { useTranslation } from "react-i18next";
 import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
 import "./Featured.css";
 
-import { featuredProjects, totalProjectCount } from "../../data/projectData";
+import {
+  featuredProjects,
+  pickLang,
+  totalProjectCount,
+} from "../../data/projectData";
 
 const MotionLink = motion(Link);
 
 /* Mobile apps have no public web URL — their liveUrl is "#" in the data.
    Those cards route to the category page instead of pretending to be a
    dead external link. */
-const hasLiveSite = (url) => Boolean(url) && url.trim() !== "#";
+/* Mobile and design projects have no public URL — the API stores null, which
+   shape() turns into "". Those cards route to the category page instead of
+   pretending to be a dead external link. */
+const hasLiveSite = (url) => Boolean(url) && url.trim() !== "" && url.trim() !== "#";
 
 /* Category drives the card's accent and its label. Colours come from the
    shared --fam-* family via the semantic --cat-* aliases in index.css. */
@@ -24,7 +31,7 @@ const CATEGORY = {
 };
 
 const Featured = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <section className="featured-section" id="work">
@@ -42,7 +49,7 @@ const Featured = () => {
       <div className="featured-grid">
         {featuredProjects.map((project, i) => {
           const cat = CATEGORY[project.category] ?? CATEGORY.web;
-          const title = t(project.titleKey);
+          const { title, description } = pickLang(project, i18n.language);
           const live = hasLiveSite(project.liveUrl);
           const ctaLabel = t(live ? "featured.viewLive" : "featured.viewDetails");
 
@@ -77,7 +84,7 @@ const Featured = () => {
 
               <div className="featured-body">
                 <h3>{title}</h3>
-                <p>{t(project.descriptionKey)}</p>
+                <p>{description}</p>
 
                 <ul className="featured-tech">
                   {project.technologies.slice(0, 3).map((tech) => (

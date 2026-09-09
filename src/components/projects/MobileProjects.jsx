@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import "./ProjectsPage.css";
 import BackToHome from "./BackToHome";
 // Images are now imported in projectData.js
-import { mobileProjects as projects } from "../../data/projectData";
+import { mobileProjects as projects, pickLang } from "../../data/projectData";
 
 const MobileProjects = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -23,7 +23,9 @@ const MobileProjects = () => {
 
       <div className="projects-list">
 
-        {projects.map((project) => (
+        {projects.map((project) => {
+          const { title, description } = pickLang(project, i18n.language);
+          return (
           <div key={project.id} className="project-wrapper">
             {/* SinoBoutique and To-Do have no screenshot in projectData yet.
                 Rendering the <img> anyway gave src="" — which React warns
@@ -32,15 +34,15 @@ const MobileProjects = () => {
               <div className="project-image-container">
                 <img
                   src={project.image}
-                  alt={t(project.titleKey)}
+                  alt={title}
                   className="project-image"
                   loading="lazy"
                 />
               </div>
             )}
             <div className="project-card1">
-              <h3 className="project-title">{t(project.titleKey)}</h3>
-              <p className="project-description">{t(project.descriptionKey)}</p>
+              <h3 className="project-title">{title}</h3>
+              <p className="project-description">{description}</p>
 
               <div className="project-tech">
                 {project.technologies.map((tech, index) => (
@@ -64,7 +66,8 @@ const MobileProjects = () => {
               </div>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
     </>

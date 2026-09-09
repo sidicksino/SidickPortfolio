@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 
+import httpx
 from fastapi import Depends, FastAPI, File, HTTPException, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from psycopg import errors
@@ -25,7 +26,7 @@ ALLOWED_IMAGE_TYPES = {"image/png", "image/jpeg", "image/webp", "image/avif"}
 # opened a database connection for requests that were about to be rejected.
 COLUMNS = """id, category, title_en, title_fr, description_en, description_fr,
              technologies, image_url, image_public_id, live_url, github_url,
-             featured, sort_order"""
+             featured, featured_order, sort_order"""
 
 
 @asynccontextmanager
@@ -80,7 +81,8 @@ def list_projects(category: str | None = None, featured: bool | None = None,
         params.append(featured)
     if where:
         sql += " WHERE " + " AND ".join(where)
-    sql += " ORDER BY sort_order, id"
+    sql += " ORDER BY featured_order, sort_order, id" if featured \
+        else " ORDER BY sort_order, id"
     return conn.execute(sql, params).fetchall()
 
 
@@ -151,6 +153,28 @@ def delete_project(project_id: int, _: str = Depends(require_admin),
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Project not found")
     if row["image_public_id"]:
         delete_image(row["image_public_id"])
+
+
+# -------------------------------------------------------------- publish
+@app.post("/publish")
+def publish(_: str = Depends(require_admin)):
+    """Trigger a Vercel rebuild so the static site picks up the new data.
+
+    The site reads projects from a JSON file baked at build time, so a save is
+    not visible until a rebuild runs. Takes about a minute.
+    """
+    if not settings.vercel_deploy_hook:
+        raise HTTPException(
+            status.HTTP_501_NOT_IMPLEMENTED, "VERCEL_DEPLOY_HOOK is not set"
+        )
+    try:
+        r = httpx.post(settings.vercel_deploy_hook, timeout=20)
+        r.raise_for_status()
+    except httpx.HTTPError as exc:
+        raise HTTPException(
+            status.HTTP_502_BAD_GATEWAY, f"Deploy hook failed: {exc}"
+        )
+    return {"triggered": True, "vercel": r.json() if r.content else None}
 
 
 # -------------------------------------------------------------- uploads

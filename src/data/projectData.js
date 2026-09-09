@@ -1,312 +1,61 @@
-import SinoAi from "../assets/sino-ai.webp";
-import SinoCoffee from "../assets/SinoCoffee.webp";
-import Insta from "../assets/insta.webp";
-import SinoEcommerce from "../assets/team-work.webp";
-import Wallet from "../assets/wallet.webp";
-import TchadInfos from "../assets/tchadInfos.webp";
-import Ecomerce from "../assets/ecomerce.webp";
-import PimaDiabetes from "../assets/pima.webp";
-import Disease from "../assets/disease.webp";
-import AAPT from "../assets/aapt.webp";
-import News from "../assets/news.webp";
-import ROYAL from "../assets/royal.webp";
-import SinoAgency from "../assets/sinoagency.webp";
+/**
+ * Projects now come from the API, baked into this bundle at build time by
+ * scripts/fetch-projects.mjs. Nothing here is edited by hand any more — add a
+ * project in the dashboard and the deploy hook rebuilds the site.
+ *
+ * Two shape changes from the old hardcoded array:
+ *
+ *  - Titles and descriptions are real columns (title_en / title_fr), not
+ *    i18n keys pointing into en.json / fr.json. Use pickLang() to read them.
+ *    That indirection was the thing that made adding a project a three-file
+ *    edit in the first place.
+ *  - liveUrl is null when there is no public site, where it used to be "#".
+ */
+import generated from "./projects.generated.json";
 
-export const webProjects = [
-  {
-    id: 1,
-    titleKey: 'projects.items.web.1.title',
-    descriptionKey: 'projects.items.web.1.description',
-    technologies: [
-      "React",
-      "Tailwind CSS",
-      "Supabase",
-      "i18next",
-      "Vercel",
-    ],
-    image: AAPT,
-    liveUrl: "https://aapt-eight.vercel.app/",
-  },
-  {
-    id: 2,
-    titleKey: 'projects.items.web.2.title',
-    descriptionKey: 'projects.items.web.2.description',
-    technologies: [
-      "React",
-      "Tailwind CSS",
-      "Supabase",
-      "i18next",
-      "Vercel",
-    ],
-    image: ROYAL,
-    liveUrl: "https://school-rosy-nine.vercel.app/",
-  },
-  {
-    id: 3,
-    titleKey: 'projects.items.web.3.title',
-    descriptionKey: 'projects.items.web.3.description',
-    technologies: [
-      "React",
-      "Vite",
-      "Supabase",
-      "TypeScript",
-      "Tailwind CSS",
-      "shadcn-ui",
-    ],
-    image: SinoCoffee,
-    liveUrl: "https://sino-coffee.vercel.app/",
-    // githubUrl: "https://github.com/sidicksino/SinoCoffee",
-  },
-  {
-    id: 4,
-    titleKey: 'projects.items.web.4.title',
-    descriptionKey: 'projects.items.web.4.description',
-    technologies: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
-    image: SinoAgency,
-    liveUrl: "https://sinoagency.netlify.app/",
-  },
-  {
-    id: 5,
-    titleKey: 'projects.items.web.5.title',
-    descriptionKey: 'projects.items.web.5.description',
-    technologies: [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "OpenAI API",
-      "Tailwind CSS",
-      "Axios",
-    ],
-    image: SinoAi,
-    liveUrl: "https://sinoai-chi.vercel.app/",
-    // githubUrl: "https://github.com/sidicksino/sino_Ai",
-  },
-  {
-    id: 6,
-    titleKey: 'projects.items.web.6.title',
-    descriptionKey: 'projects.items.web.6.description',
-    technologies: ["HTML", "CSS", "JavaScript", "MySQL"],
-    image: Insta,
-    liveUrl: "https://insta-uxnh.onrender.com/",
-    // githubUrl: "https://github.com/sidicksino/insta_abeche",
-  },
-  {
-    id: 7,
-    titleKey: 'projects.items.web.7.title',
-    descriptionKey: 'projects.items.web.7.description',
-    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "MySQL"],
-    image: SinoEcommerce,
-    liveUrl: "https://team-work-30tj.onrender.com/",
-    // githubUrl: "https://github.com/sidicksino/team_work",
-  },
-  {
-    id: 8,
-    titleKey: 'projects.items.web.8.title',
-    descriptionKey: 'projects.items.web.8.description',
-    technologies: ["Django", "HTML", "CSS", "JavaScript", "SQLite", "newsdata.io"],
-    image: News,
-    liveUrl: "https://news-7oyn.onrender.com",
-  },
-];
+const byCategory = (cat) => generated.filter((p) => p.category === cat);
 
-export const mobileProjects = [
-  {
-    id: 1,
-    titleKey: 'projects.items.mobile.1.title',
-    descriptionKey: 'projects.items.mobile.1.description',
-    technologies: [
-      "React Native",
-      "Expo",
-      "Axios",
-      "JavaScript",
-      "CSS",
-      "Node.js",
-      "Express.js",
-      "NeonDatabase",
-      "Cloudinary",
-      "Nodemailer",
-      "Twilio",
-    ],
-    image: "",
-    liveUrl: "#",
-    // githubUrl: "https://github.com/sidicksino/Boutique_Frontend",
-  },
-  {
-    id: 2,
-    titleKey: 'projects.items.mobile.2.title',
-    descriptionKey: 'projects.items.mobile.2.description',
-    technologies: [
-      "React Native",
-      "Expo",
-      "TypeScript",
-      "JavaScript",
-      "CSS",
-      "Axios",
-      "NewsData.io",
-    ],
-    image: TchadInfos,
-    liveUrl: "#",
-    // githubUrl: "https://github.com/sidicksino/tchadInfos_version1",
-  },
-  {
-    id: 3,
-    titleKey: 'projects.items.mobile.3.title',
-    descriptionKey: 'projects.items.mobile.3.description',
-    technologies: [
-      "React Native",
-      "Expo",
-      "JavaScript",
-      "CSS",
-      "Node.js",
-      "Express.js",
-      "Neon",
-      "Clerk",
-      "Upstash",
-      "Axios",
-      "NewsData.io",
-    ],
-    image: Wallet,
-    liveUrl: "#",
-    // githubUrl: "https://github.com/sidicksino/wallet",
-  },
-  {
-    id: 4,
-    titleKey: 'projects.items.mobile.4.title',
-    descriptionKey: 'projects.items.mobile.4.description',
-    technologies: ["React Native", "Expo", "TypeScript", "CSS", "Convex"],
-    image: "",
-    liveUrl: "#",
-    // githubUrl: "https://github.com/sidicksino/to-do",
-  },
-];
+/** Normalises one API row into the shape the components read. */
+const shape = (p) => ({
+  id: p.id,
+  category: p.category,
+  title_en: p.title_en,
+  title_fr: p.title_fr,
+  description_en: p.description_en,
+  description_fr: p.description_fr,
+  technologies: p.technologies ?? [],
+  image: p.image_url || "",
+  liveUrl: p.live_url || "",
+  githubUrl: p.github_url || "",
+  featured: Boolean(p.featured),
+  featuredOrder: p.featured_order ?? 0,
+});
 
-export const designProjects = [
-  {
-    id: 1,
-    titleKey: 'projects.items.design.1.title',
-    descriptionKey: 'projects.items.design.1.description',
-    technologies: ["Figma"],
-    image: TchadInfos,
-    viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=477-727&p=f&t=DtBIxtgBPNmUUJ8u-0",
-  },       
-  {
-    id: 2,
-    titleKey: 'projects.items.design.2.title',
-    descriptionKey: 'projects.items.design.2.description',
-    technologies: ["Figma"],
-    image: Ecomerce,
-    viewUrl: "https://www.figma.com/design/zN5aQNdxfQNNE2feEx4yfi/TEAM-WORK1?node-id=0-1&p=f&t=DtBIxtgBPNmUUJ8u-0",
-  },  
-  {
-    id: 3,
-    titleKey: 'projects.items.design.3.title',
-    descriptionKey: 'projects.items.design.3.description',
-    technologies: ["Figma"],
-    image: SinoEcommerce,
-    viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=173-168&p=f&t=DtBIxtgBPNmUUJ8u-0",
-  },       
-  {
-    id: 4,
-    titleKey: 'projects.items.design.4.title',
-    descriptionKey: 'projects.items.design.4.description',
-    technologies: ["Figma"],
-    image: SinoEcommerce,
-    viewUrl: "https://www.figma.com/design/Gbc29anWMxWxIH9MKtBAIA/Boutique-Sino?node-id=156-132&t=DtBIxtgBPNmUUJ8u-0",
-  }      
-];
+export const webProjects = byCategory("web").map(shape);
+export const mobileProjects = byCategory("mobile").map(shape);
+export const designProjects = byCategory("design").map(shape);
+export const aiProjects = byCategory("ai").map(shape);
 
-export const aiProjects = [
-  {
-    id: 1,
-    titleKey: 'projects.items.ai.1.title',
-    descriptionKey: 'projects.items.ai.1.description',
-    technologies: [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "OpenAI API",
-      "Tailwind CSS",
-      "Axios",
-    ],
-    image: SinoAi,
-    liveUrl: "https://sinoai-chi.vercel.app/",
-    // githubUrl: "https://github.com/sidicksino/sino_Ai",
-  },
-  {
+export const featuredProjects = generated
+  .filter((p) => p.featured)
+  .map(shape)
+  /* featured_order is its own column: sort_order ranks a project inside its
+     category page, this ranks it in the Featured grid — and phones show only
+     the first six, so the order decides what they see. */
+  .sort((a, b) => a.featuredOrder - b.featuredOrder || a.id - b.id);
 
-    id: 2,
-    titleKey: 'projects.items.ai.2.title',
-    descriptionKey: 'projects.items.ai.2.description',
-    technologies: [
-      "Python",
-      "Scikit-learn",
-      "Pandas",
-      "Numpy",
-      "Streamlit",
-      "Joblib",
-      "GitHub",
-    ],
-    image: PimaDiabetes,
-    liveUrl:
-      "https://sidicksino-machine-learning-lecture-app-h8qu2o.streamlit.app/",
-    // githubUrl: "https://github.com/sidicksino/machine_learning_lecture",
-  },
-  {
-    id: 3,
-    titleKey: 'projects.items.ai.3.title',
-    descriptionKey: 'projects.items.ai.3.description',
-    technologies: [
-      "Python",
-      "Scikit-learn",
-      "Pandas",
-      "Numpy",
-      "Streamlit",
-      "Joblib",
-      "GitHub",
-    ],
-    image: Disease,
-    liveUrl: "https://sidicksino-disease-risk-prediction-app-aqgd49.streamlit.app/",
-    // githubUrl: "https://github.com/sidicksino/Disease-Risk-Prediction",
-  },
-];
+export const totalProjectCount = generated.length;
 
-/* ---------------------------------------------------------------------------
-   FEATURED — what appears on the homepage.
-
-   The homepage used to show only four category cards with generic copy, so a
-   visitor saw no evidence of actual work in the first screen. These are the
-   real builds, surfaced directly.
-
-   To change what's featured: edit this list. Each entry references a project
-   that already exists above by its id, so titles, descriptions, images, tech
-   and links stay in one place. `category` drives the card's colour and label.
-
-   Aim for 4–6. More than six and the section stops feeling curated.
---------------------------------------------------------------------------- */
-const pick = (list, id) => {
-  const found = list.find((p) => p.id === id);
-  if (!found) throw new Error(`featuredProjects: no project with id ${id}`);
-  return found;
+/**
+ * Reads the right language off a project.
+ * i18next reports "fr", "fr-FR", "en-US"... so match on the prefix.
+ */
+export const pickLang = (project, language) => {
+  const fr = String(language || "en").toLowerCase().startsWith("fr");
+  return {
+    title: (fr ? project.title_fr : project.title_en) || project.title_en,
+    description:
+      (fr ? project.description_fr : project.description_en) ||
+      project.description_en,
+  };
 };
-
-export const featuredProjects = [
-  { ...pick(webProjects, 1), category: "web" }, // AAPT — NGO platform
-  { ...pick(webProjects, 2), category: "web" }, // Académie Royale
-  { ...pick(webProjects, 8), category: "web" }, // SINOINFOS — Django aggregator
-  { ...pick(mobileProjects, 2), category: "mobile" }, // TchadInfos
-  { ...pick(aiProjects, 2), category: "ai" }, // Pima Diabetes
-  { ...pick(aiProjects, 3), category: "ai" }, // Disease Prediction
-  /* 7-8 are desktop-only: the grid is 4x2 on desktop and a single column
-     capped at 6 on phones, so these two are the ones that drop. Order matters
-     for that reason — the first six are the strongest set.
-     Deliberately not used here: mobile 1 and 4 have image: "", and design 1
-     reuses the TchadInfos image already shown by the mobile card. */
-  { ...pick(aiProjects, 1), category: "ai" }, // SinoAI
-  { ...pick(webProjects, 3), category: "web" }, // Sino Coffee
-];
-
-export const totalProjectCount =
-  webProjects.length +
-  mobileProjects.length +
-  designProjects.length +
-  aiProjects.length;

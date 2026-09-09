@@ -1939,7 +1939,148 @@ made in Phase 1.
 
 ---
 
-## Phase 25 — backend API ✅ **Built** (2026-09-09), awaiting deploy
+## Phase 25 — backend API ✅ **Live** (2026-09-09)
+
+**Deployed:** https://sidickportfolio.onrender.com — verified end to end.
+
+| check | result |
+|---|---|
+| `/health` | 200, 1.9s warm |
+| projects seeded | **18** — 19 minus the SinoAI duplicate, exactly as the dry-run predicted |
+| by category | web 8, mobile 4, design 4, ai 2 |
+| images on Cloudinary | 16 of 18, sample URL returns 200 |
+| rows without an image | `SinoBoutique` and `To-Do` — the two known gaps, nothing invented |
+| duplicate `live_url` | none — the UNIQUE constraint held |
+| French text | complete on all 18 |
+| CORS | allows `sidick.vercel.app`, no ACAO header for other origins |
+| unauthenticated `POST /projects` | 401 |
+| bad login | 401 with a generic message, not a 500 |
+
+The constraints did the job they were chosen for: the duplicate was rejected at
+the database rather than silently shipping the same project twice.
+
+### Two things that tripped the deploy
+
+- **`seed.py --dry-run   # comment` failed.** zsh does not strip `#` comments in
+  interactive mode, so argparse received them as arguments. The table read
+  "No rows" and looked like a seeding failure when nothing had run.
+- **Render autofilled `gunicorn your_application.wsgi`** as the start command
+  from a Node/Django guess. Corrected to
+  `uvicorn main:app --host 0.0.0.0 --port $PORT`.
+
+### Phase 25b — To-Do artwork + keep-alive ✅ **Done** (2026-09-09)
+
+**To-Do now has an image.** The repo at `github.com/sidicksino/to-do` returns
+404 (private or renamed) and has no README or committed screenshots, so there
+was nothing real to pull. Built a two-screen device mockup in the site's own
+brand colours — the same presentation as the existing TchadInfos card, which is
+already two phone frames on a background. Deliberately a *promotional mockup*,
+not a fabricated screen capture. Rendered at 2x via Playwright, uploaded to
+Cloudinary (25KB WebP, serving 200), attached to row 12.
+
+`SinoBoutique` is now the only row without an image.
+
+**Keep-alive:** `.github/workflows/keep-alive.yml` pings `/health` every
+**10 minutes**, not every 10 seconds as first asked — Render's idle window is
+15 minutes, so anything more frequent buys nothing and burns instance-hours
+faster. The step fails the run on a non-200 so a broken API surfaces in the
+Actions tab instead of silently passing. Validated: YAML parses, and the exact
+curl command returns `{"status":"ok"}`.
+
+Two caveats recorded for Sidick:
+- GitHub disables scheduled workflows after 60 days with no repo activity.
+- Render's free tier gives **750 instance-hours/month across the account**, and
+  a month is ~730 hours. Keeping this service awake 24/7 consumes essentially
+  all of it — and the Render form showed 15 existing services in Oregon. If any
+  of those are also free web services, the quota is shared.
+
+### Phase 25c — quota fix + featured flags ✅ **Done** (2026-09-09)
+
+**The 24/7 keep-alive was dangerous, not just wasteful.** Confirmed against
+Render's docs: the 750 free instance-hours are **per workspace, shared across
+every free service**, and exhausting them **suspends all of them until the next
+month**. A calendar month is ~730 h, so a 10-minute ping around the clock
+consumes essentially the whole quota — and Sidick's Render page showed 15
+services in Oregon.
+
+| approach | h/month | % of quota |
+|---|---|---|
+| every 10 min, 24/7 | ~730 | ~100% |
+| weekdays 08:00–20:00 | ~264 | 35% |
+| **no cron, wake on demand** | ~2–5 | **<1%** |
+
+The workflow is now **`workflow_dispatch` only** — no schedule — renamed
+"Wake API", with the business-hours cron left commented in the file. Nothing
+needs to be warm: no site visitor touches this API, only the build step and the
+dashboard, both human-triggered.
+
+**Featured flags set.** All 8 marked in the database, matching the hardcoded
+list and its order. Added a `featured_order` column rather than reusing
+`sort_order` — `sort_order` ranks a project inside its category page, while
+featured order decides which six survive on a phone. They are different
+orderings and conflating them would have silently changed what phones show.
+`GET /projects?featured=true` now sorts by it. Schema migration is idempotent
+(`ADD COLUMN IF NOT EXISTS`) and `schema.sql` is in sync for fresh installs.
+
+20 local tests still pass. The deployed build returns the 8 but not yet in
+order — `featured_order` lands on the next Render deploy.
+
+### Phase 26 — frontend wired to the API ✅ **Done** (2026-09-09)
+
+The site is **static and API-backed**: `scripts/fetch-projects.mjs` runs in
+`prebuild`, pulls `GET /projects` and writes `src/data/projects.generated.json`
+into the bundle. No visitor ever calls Render — verified the project text is
+present in `dist/assets/*.js`, so SEO, the sitemap and hreflang are unaffected.
+
+The fetch retries 5 times with backoff (Render cold starts take ~60s) and, if
+the API is unreachable, **keeps the last committed JSON and lets the build
+continue**. A sleeping backend must not be able to take the portfolio down.
+
+**`POST /publish`** on the backend fires the Vercel deploy hook. The hook lives
+in the backend's env, not the frontend: called from the browser it would sit in
+the bundle for anyone to trigger.
+
+**The i18n indirection is gone.** `title_en` / `title_fr` are read directly via
+`pickLang()`; `projects.items.web.1.title` chains no longer exist. That
+indirection was the reason adding a project meant editing three files.
+
+### Three latent crashes found by testing with data that does not exist yet
+
+Injecting four synthetic projects with `live_url: null` and `image_url: null` —
+exactly what the dashboard can now produce — broke pages that all 18 real
+projects happened to avoid:
+
+1. **`DesignProjects` read `project.viewUrl`**, a field that no longer exists;
+   the seed folded design links into `live_url`. `undefined.trim()` — the whole
+   design page was blank, and this one was already live.
+2. **`WebProjects` and `AIProjects` called `project.liveUrl.trim()` unguarded.**
+   Fine for the current data, a crash the first time a project is added without
+   a public URL.
+3. **Only `MobileProjects` guarded the image.** The other three rendered
+   `<img src="">` for a project with no screenshot.
+
+All guarded; the edge-case run then came back clean on all 10 route/language
+combinations. Writing the test data first is what surfaced these — the real
+data set has no row that exercises any of the three paths.
+
+Also fixed: eslint was linting jQuery files bundled inside the Cloudinary
+**Python** package under `backend/.venv` (119 errors). `backend` added to
+`globalIgnores`.
+
+### Still open
+
+- `SinoBoutique` is the only project with no image.
+- The `/admin` dashboard is not built yet — adding a project still means
+  calling the API by hand.
+- `featured_order` is in the database and in the code, but the **deployed**
+  Render build predates it, so `?featured=true` returns the right 8 in the
+  wrong order until Sidick pushes and Render redeploys.
+
+- `featured` is **false on all 18 rows**, so Featured Work still reads the
+  hardcoded list in `projectData.js`. Eight need flagging.
+- The admin password was pasted into the chat transcript in plaintext and must
+  be rotated.
+
 
 FastAPI + **Neon Postgres** + Cloudinary, in `backend/`. Sidick deploys to
 Render, then hands over the URL for the frontend wiring.

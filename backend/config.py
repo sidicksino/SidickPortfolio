@@ -20,6 +20,10 @@ class Settings(BaseSettings):
 
     token_ttl_hours: int = 12
 
+    # Kept server-side deliberately: if the dashboard called Vercel directly,
+    # the hook would sit in the browser bundle for anyone to fire.
+    vercel_deploy_hook: str = ''
+
     @property
     def origins(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
