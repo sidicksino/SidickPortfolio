@@ -164,8 +164,15 @@ def publish(_: str = Depends(require_admin)):
     not visible until a rebuild runs. Takes about a minute.
     """
     if not settings.vercel_deploy_hook:
+        # Naming the variable is not enough — say where to put it. This fires
+        # when the env var exists locally but was never added to the host.
         raise HTTPException(
-            status.HTTP_501_NOT_IMPLEMENTED, "VERCEL_DEPLOY_HOOK is not set"
+            status.HTTP_501_NOT_IMPLEMENTED,
+            "Publishing is not configured: VERCEL_DEPLOY_HOOK is missing from "
+            "this server's environment. Add it in Render > your service > "
+            "Environment (Vercel > Settings > Git > Deploy Hooks), then save — "
+            "Render redeploys and Publish will work. Saving projects is "
+            "unaffected; only the rebuild is.",
         )
     try:
         r = httpx.post(settings.vercel_deploy_hook, timeout=20)

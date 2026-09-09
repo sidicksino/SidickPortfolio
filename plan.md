@@ -1990,6 +1990,21 @@ Third time this session that specificity silently beat an intended rule, after
 `.footer-col ul li a` over `.social-row a` and `.services-text ul` over
 `.services-list`.
 
+### Publish returned 501 — a missing env var, not a bug (2026-09-09)
+
+`VERCEL_DEPLOY_HOOK is not set` in the dashboard. Cause: the variable was added
+to `backend/.env` *after* Sidick had already entered his environment variables
+in Render, so the deployed API has the code but not the value. It refuses with
+501 rather than pretending to publish, which is the right behaviour — but the
+message only named the variable.
+
+Rewritten to say where to put it and what is unaffected. Verified both
+branches: blank hook -> 501 with the new text; hook present but unreachable ->
+**502**, proving the request got past the config check and actually tried the
+hook.
+
+Nothing else is affected — saving, uploading and deleting never touch the hook.
+
 ### Still open — deliberately
 
 13 advisories remain in **dev** dependencies (vite, rollup, postcss, the eslint
