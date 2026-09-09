@@ -3,7 +3,9 @@
    Do not redeclare tokens here. */
 
 .skills {
-  padding: 0rem 6rem;
+  /* Was 0 vertical: the next section began at the exact pixel this one
+     ended. Matches About's rhythm. */
+  padding: var(--s-9) 6rem;
   color: var(--text);
 }
 
@@ -71,10 +73,15 @@
   75% { transform: translateY(15px) rotate(-1deg); }
 }
 
+/* Only between categories — on the first one it pushed the opening heading
+   37px below the top of the cube cluster beside it. */
+.skill-category + .skill-category {
+  margin-top: 3rem;
+}
+
 .skill-category {
   display: flex;
   gap: 1rem;
-  margin-top: 3rem;
   align-items: flex-start;
 }
 
@@ -139,10 +146,11 @@
   .skills-container {
     grid-template-columns: 1fr;
   }
-    .skills {
-    padding: 0rem 2rem;
+  .skills {
+    /* Keep vertical rhythm on mobile — this used to reset it to 0 */
+    padding: var(--s-8) 2rem;
   }
-  .skill-category {
+  .skill-category + .skill-category {
     margin-top: 1rem;
   }
 }
@@ -153,10 +161,11 @@
   .skills-container {
     grid-template-columns: 1fr;
   }
-    .skills {
-    padding: 0rem 2rem;
+  .skills {
+    /* Keep vertical rhythm on mobile — this used to reset it to 0 */
+    padding: var(--s-8) 2rem;
   }
-  .skill-category {
+  .skill-category + .skill-category {
     margin-top: 1rem;
   }
 }

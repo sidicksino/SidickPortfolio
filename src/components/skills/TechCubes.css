@@ -16,8 +16,10 @@
 .tech-cubes {
   --cube: 76px;    /* footprint of one cube */
   --depth: 25px;   /* height of the extrusion */
-  --gap-x: 34px;   /* clear space between cubes in the same row */
-  --gap-y: 8px;    /* clear space between rows */
+  --gap-x: 64px;   /* clear space between cubes in the same row */
+  --gap-y: 30px;   /* clear space between rows */
+  --rest: 8px;     /* the lid sits slightly ajar at rest, not flush shut */
+  --lift: 22px;    /* how far it opens on hover */
   --float: 5px;    /* idle-float amplitude; padded for, so nothing clips */
 
   /* Projected geometry at rotateX(54.7deg) rotateZ(45deg) */
@@ -39,7 +41,10 @@
   margin: 0;
   /* Each cube is taller than its row — that overlap is the isometric lattice —
      so the last row hangs below the grid box. */
-  padding: var(--float) 0 calc(var(--rh) + var(--dp) - var(--row-pitch) + var(--float));
+  padding: calc(var(--float) + var(--rest) * 0.8161) 0
+    calc(
+      var(--rh) + var(--dp) - var(--row-pitch) + var(--float) + var(--gap-y)
+    );
   /* No `perspective`: perspective vanishes toward one point, so cubes away
      from centre tilt differently and the lattice stops reading as isometric.
      True isometric projection is orthographic. */
@@ -89,13 +94,7 @@
   transform-style: preserve-3d;
   /* 54.7deg is the true isometric tilt; 45deg turns the square so a corner
      faces the viewer, exposing both side planes. */
-  transform: translateY(calc(var(--cube) / -2 + var(--rh) / 2))
-    rotateX(54.7deg) rotateZ(45deg);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.tech-cube:hover .tech-cube__box {
-  transform: translateY(calc(var(--cube) / -2 + var(--rh) / 2 - 10px))
+  transform: translateY(calc(var(--dp) + var(--rh) / 2 - var(--cube) / 2))
     rotateX(54.7deg) rotateZ(45deg);
 }
 
@@ -108,7 +107,8 @@
   inset: 0;
   display: grid;
   place-items: center;
-  transform: translateZ(var(--depth));
+  transform: translateZ(calc(var(--depth) + var(--rest)));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   background: linear-gradient(
     135deg,
     color-mix(in srgb, var(--top) 78%, #fff),
@@ -124,7 +124,7 @@
   top: 100%;
   left: 0;
   transform-origin: top center;
-  transform: rotateX(-90deg);
+  transform: translateZ(var(--depth)) rotateX(-90deg);
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--side) 92%, #fff),
@@ -139,7 +139,7 @@
   top: 0;
   left: 100%;
   transform-origin: left center;
-  transform: rotateY(90deg);
+  transform: translateZ(var(--depth)) rotateY(90deg);
   /* Darker — this plane turns away from the light */
   background: linear-gradient(
     90deg,
@@ -157,6 +157,13 @@
   color: var(--ink);
   /* No counter-rotation: the mark sits ON the tilted face, as it does in the
      illustration this replaces. */
+}
+
+/* Hover lifts the lid along the cube's own up-axis rather than moving the
+   whole cube, so it reads as opening. */
+.tech-cube:hover .tech-cube__face--top,
+.tech-cube:focus-within .tech-cube__face--top {
+  transform: translateZ(calc(var(--depth) + var(--lift)));
 }
 
 .tech-cube__label {
@@ -184,13 +191,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tech-cube__box {
+  .tech-cube__face--top {
     transition: none;
-  }
-
-  .tech-cube:hover .tech-cube__box {
-    transform: translateY(calc(var(--cube) / -2 + var(--rh) / 2))
-      rotateX(54.7deg) rotateZ(45deg);
   }
 }
 
@@ -199,7 +201,7 @@
   .tech-cubes {
     --cube: 64px;
     --depth: 21px;
-    --gap-x: 28px;
+    --gap-x: 52px;
   }
 }
 
@@ -214,7 +216,8 @@
   .tech-cubes {
     --cube: 50px;
     --depth: 17px;
-    --gap-x: 20px;
-    --gap-y: 6px;
+    --gap-x: 40px;
+    --gap-y: 20px;
+    --rest: 6px;
   }
 }

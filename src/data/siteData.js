@@ -44,26 +44,38 @@ export const mainProjectsData = [
 ];
 
 export const skillsData = [
+  /* Every technology shown in the TechCubes cluster appears in exactly one
+     category here. The picture and the list have to agree — an all-frontend
+     image over a data-science list was the original reason to redo it, and
+     Figma / Expo were showing in the cubes with no home in the text.
+     Tool lists live in the locale files like every other user-facing string. */
   {
     id: "data",
     icon: FaChartBar,
     color: "var(--fam-1)",
-    titleKey: 'skills.data',
-    desc: "R, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau, Matplotlib, Seaborn",
+    titleKey: "skills.data",
+    descKey: "skills.dataTools",
   },
   {
     id: "frontend",
     icon: FaCode,
     color: "var(--fam-2)",
-    titleKey: 'skills.frontend',
-    desc: "HTML, CSS, JavaScript, React.js, React Native",
+    titleKey: "skills.frontend",
+    descKey: "skills.frontendTools",
+  },
+  {
+    id: "mobile",
+    icon: FaMobileAlt,
+    color: "var(--fam-3)",
+    titleKey: "skills.mobile",
+    descKey: "skills.mobileTools",
   },
   {
     id: "backend",
     icon: FaDatabase,
-    color: "var(--fam-3)",
-    titleKey: 'skills.backend',
-    desc: "Python, Node.js, SQL, MySQL, MongoDB",
+    color: "var(--fam-4)",
+    titleKey: "skills.backend",
+    descKey: "skills.backendTools",
   },
 ];
 

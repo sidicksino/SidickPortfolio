@@ -187,7 +187,12 @@
     "title": "My Skills",
     "data": "Data Science & Visualization",
     "frontend": "Frontend Development",
-    "backend": "Backend Development"
+    "backend": "Backend Development",
+    "mobile": "Mobile & Design",
+    "dataTools": "Python, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau, Matplotlib, Seaborn",
+    "frontendTools": "HTML, CSS, JavaScript, React.js",
+    "mobileTools": "React Native, Expo, Figma",
+    "backendTools": "Node.js, SQL, MySQL, MongoDB"
   },
   "contact": {
     "title": "Contact",

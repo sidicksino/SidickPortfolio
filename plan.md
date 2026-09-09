@@ -603,6 +603,88 @@ Note: the section has `padding-bottom: 0`, so on phone the bottom cube sits
 flush against the next section. Pre-existing, not caused by this change —
 raised with Sidick rather than changed, since section spacing is his call.
 
+### Phase 17d — closed-ish cubes, wider gaps, lid opens on hover ✅ **Done** (2026-09-09)
+
+**The lids were floating.** `rotateX(-90deg)` about a hinge at the base sends a
+wall to `z = 0 .. -depth`, but the top face sits at `z = +depth` — so every wall
+hung a full depth *below* its own lid, and the dark seam under each top face was
+the page showing through. Sidick spotted it as "the top is more open." The walls
+now `translateZ(var(--depth))` before folding, so they span `0 .. depth`. This
+also made the geometry match the maths `--rw / --rh / --dp` already assumed.
+
+**The lid rests ajar, not shut.** Fully flush read as too tight, so `--rest`
+(8px) leaves a deliberate sliver of shadow; hover raises it to `--lift` (22px).
+Verified from the DOM: `translateZ` 33 → 47px, label opacity 0 → 1.
+
+**Gaps widened** — `--gap-x` 34→64px, `--gap-y` 8→30px — and the container
+reserves one `--gap-y` below the cluster, since the taller art was landing flush
+against the next section (`#skills` has `padding-bottom: 0`). That padding lives
+on `.tech-cubes`, not the section, so it doesn't touch Sidick's page rhythm.
+
+### Phase 18 — Skills text and alignment ✅ **Done** (2026-09-09)
+
+**The picture and the words disagreed again.** The cube cluster showed Figma and
+Expo; neither appeared in any category. That is the same fault that started this
+whole section — an all-frontend image over a data-science list — just inverted.
+There are four categories now, and every one of the nine cubes appears in
+exactly one of them:
+
+| | |
+|---|---|
+| Data Science & Visualization | Python, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau, Matplotlib, Seaborn |
+| Frontend Development | HTML, CSS, JavaScript, React.js |
+| Mobile & Design | React Native, Expo, Figma |
+| Backend Development | Node.js, SQL, MySQL, MongoDB |
+
+- **R is gone**, as Sidick asked when the image was still being generated.
+- **Python leads Data Science** instead of sitting under Backend. It is his lead
+  data language and the crown cube; filing it under Backend read as a mismatch.
+  *Assumption flagged to him* — his call to move it back.
+
+**Tool lists now go through i18n.** They were hardcoded English in
+`siteData.js` while the titles used `t()` — the only user-facing strings in the
+section bypassing the locale files. Now `descKey` + entries in `en.json` /
+`fr.json`, so both languages are complete. Verified by rendering `?lang=fr`.
+
+**Two alignment defects, both measured:**
+
+- `.skill-category { margin-top: 3rem }` applied to the *first* category too, so
+  the opening heading sat **37px below** the top of the cube cluster while the
+  two column boxes aligned perfectly at 405px. Scoped to
+  `.skill-category + .skill-category`; the heading now sits 11px above.
+- `.skills` had `padding: 0rem 6rem` — **zero vertical**. The next section began
+  at the exact pixel this one ended. Now `var(--s-9)`, matching About's rhythm.
+  The `768px` and `390px` queries were resetting it back to `0rem 2rem`, so they
+  carry `var(--s-8)` now — the phone gap went 25px → 89px.
+
+### A third measurement that couldn't fail
+
+"Does the next section start after this one ends" is always true for adjacent
+siblings, and padding added *inside* a box moves its border edge with it — so
+both framings reported 0 regardless. Measure the last **cube** against the next
+**section**: 159px desktop, 89px phone.
+
+Same lesson as the `.tech-cubes` padding check and the `data-theme` theme check:
+**a check whose value cannot change is not a check.** Also nearly reported the
+Skills title as hidden under the navbar — that was `scrollIntoViewIfNeeded`
+ignoring `scroll-margin-top`. A real scroll clears it by 114px.
+
+### Two process failures worth keeping
+
+**A rewind silently undid this work mid-edit.** Sidick ran Code rewind, which
+reverted `TechCubes.css` to its pre-hinge-fix state and killed the dev server.
+The follow-up patch was written against the file as I remembered it, so most of
+its `str.replace` calls matched nothing and did nothing — except one, which left
+a `var(--rest)` reference with no definition. **`str.replace` without a check is
+silent on failure.** Every substitution in the reapply asserts its anchor exists
+first and prints per-edit, which is how the half-state was caught.
+
+**A measurement that couldn't detect what it claimed to.** The fit check
+compared `.tech-cubes`' bottom to the section's to prove there was room below the
+last cube — but the new padding is *inside* `.tech-cubes`, so its border box
+moves with it and the number is 0 no matter what. It measures the last
+`.tech-cube` against the section now: 35px desktop, 25px phone.
+
 ### A test that lied
 
 The first pass at verifying both themes reported light mode passing while the

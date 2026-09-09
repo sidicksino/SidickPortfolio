@@ -34,7 +34,7 @@ const Skills = () => {
                 className="text-blocks"
               >
                 <h3>{t(skill.titleKey)}</h3>
-                <p>{skill.desc}</p>
+                <p>{t(skill.descKey)}</p>
               </motion.div>
             </div>
           ))}
