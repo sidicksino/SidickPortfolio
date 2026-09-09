@@ -2,7 +2,10 @@
    Do not redeclare tokens here. */
 
 .featured-section {
-  max-width: 1400px;
+  /* Card width is set by the grid band, not by the card: three columns across
+     1400px forced every card to 424px. 1140 keeps the tidy 3+3 layout while
+     bringing each card down to ~337. */
+  max-width: 1140px;
   margin: 0 auto;
   padding: var(--s-9) var(--s-6);
   font-family: var(--font-body);
@@ -108,13 +111,13 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: var(--s-4) var(--s-5) var(--s-5);
-  gap: var(--s-3);
+  padding: var(--s-4) var(--s-4) var(--s-4);
+  gap: var(--s-2);
 }
 
 .featured-body h3 {
   font-family: var(--font-display);
-  font-size: 1.22rem;
+  font-size: 1.12rem;
   font-weight: 900;
   color: var(--text);
   margin: 0;
@@ -123,8 +126,8 @@
 
 .featured-body > p {
   color: var(--text-2);
-  font-size: 0.93rem;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  line-height: 1.55;
   margin: 0;
   flex: 1;
   /* Capped at two lines. The longest blurb set every card's height, since the

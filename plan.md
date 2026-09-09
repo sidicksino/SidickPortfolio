@@ -673,6 +673,14 @@ The clamp mattered most: the paragraph is the `flex: 1` element, so the single
 longest blurb set the height of **all six** cards. Result — card 504 → **444**
 (now 1.05, roughly square), grid 1041 → 919, section 1541 → 1419.
 
+**Second pass — still too big.** Height alone was not the lever: card *width*
+is set by the grid band, and three columns across a 1400px section forces 424px
+regardless of what the card does. Narrowing the band to **1140px** keeps the
+tidy 3+3 layout while shrinking every card, plus a tighter body
+(`--s-4` padding, `--s-2` gap, 1.12rem title, 0.88rem copy).
+
+**424 x 504 → 337 x 369 — 42% less area.** Grid 1041 → 770, section 1541 → 1270.
+
 ### The dead space that wasn't
 
 The first screenshot showed three cards and ~850px of emptiness below, which
