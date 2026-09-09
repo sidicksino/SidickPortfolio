@@ -66,7 +66,7 @@
 /* ===== Media ===== */
 .featured-media {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--elevated);
 }
@@ -108,13 +108,13 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: var(--s-5);
+  padding: var(--s-4) var(--s-5) var(--s-5);
   gap: var(--s-3);
 }
 
 .featured-body h3 {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.22rem;
   font-weight: 900;
   color: var(--text);
   margin: 0;
@@ -127,6 +127,13 @@
   line-height: 1.6;
   margin: 0;
   flex: 1;
+  /* Capped at two lines. The longest blurb set every card's height, since the
+     paragraph is the flex-grow element — one 3-line description made all six
+     cards 24px taller. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ===== Tech chips ===== */

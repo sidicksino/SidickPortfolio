@@ -657,6 +657,42 @@ section bypassing the locale files. Now `descKey` + entries in `en.json` /
   The `768px` and `390px` queries were resetting it back to `0rem 2rem`, so they
   carry `var(--s-8)` now — the phone gap went 25px → 89px.
 
+### Phase 19 — Featured Work card size ✅ **Done** (2026-09-09)
+
+Cards were **424 x 504** — a 0.84 portrait ratio, which is what made them read
+as oversized. Four changes, all proportional rather than scaling anything down:
+
+| | before | after |
+|---|---|---|
+| media aspect | 16 / 10 (265px) | 16 / 9 (238px) |
+| body top padding | `--s-5` | `--s-4` |
+| card title | 1.35rem | 1.22rem |
+| description | unbounded (3 lines) | clamped to 2 |
+
+The clamp mattered most: the paragraph is the `flex: 1` element, so the single
+longest blurb set the height of **all six** cards. Result — card 504 → **444**
+(now 1.05, roughly square), grid 1041 → 919, section 1541 → 1419.
+
+### The dead space that wasn't
+
+The first screenshot showed three cards and ~850px of emptiness below, which
+looked like a serious layout bug. It was not. There are **six** featured
+projects in two rows, and the second row plus the See-all button were still at
+`opacity: 0` — framer-motion's `whileInView` had not fired for anything below
+the fold at capture time.
+
+`scrollIntoView` alone does not trigger it either. The capture now walks the
+whole section in 200px steps, settles, and then **asserts every card and the
+See-all link have reached full opacity** before screenshotting; it prints the
+count of still-faded elements (0 desktop, 0 phone). Screenshotting an animated
+page without waiting for its entrance animations reports a layout that never
+ships.
+
+**Noted, not fixed:** the category pill collides with the app's own header text
+on the two ML & AI cards — `object-position: top center` shows the very top of
+each screenshot, which is exactly where those apps put their titles. Raised with
+Sidick rather than changed.
+
 ### A third measurement that couldn't fail
 
 "Does the next section start after this one ends" is always true for adjacent
