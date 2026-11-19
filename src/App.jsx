@@ -12,7 +12,6 @@ import Footer from "./components/footer/Footer";
 import Contact from "./components/contact/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import Seo from "./components/Seo";
-import ThemeToggle from "./components/ThemeToggle";
 import HeroPage from "./components/pages/HeroPage";
 
 /* GSAP was imported and its plugins registered here, but the only component
@@ -74,7 +73,9 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
-        <ThemeToggle />
+        {/* The theme toggle used to float here (fixed, bottom-right). It now
+            lives in the Navbar and in <BackToHome /> on the sub-pages, and the
+            bottom-right corner belongs to the chat assistant (see main.jsx). */}
       </MotionConfig>
     </>
   );

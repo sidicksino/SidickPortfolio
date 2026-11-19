@@ -9,6 +9,8 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap; /* the flag and "FR" were stacking on two lines */
+  flex: none;
   display: flex;
   align-items: center;
   gap: 6px;

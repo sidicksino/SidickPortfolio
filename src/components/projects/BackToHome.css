@@ -6,12 +6,19 @@
    silently depends on another page's stylesheet renders unstyled the first
    time it is reused somewhere new. */
 
-/* Back link — these routes render without the Navbar/Footer chrome. */
+/* Back link + theme toggle — these routes render without the Navbar/Footer chrome. */
+.back-home-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+}
+
 .back-home {
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  margin-bottom: var(--s-5);
   padding: 9px 18px;
   border-radius: 999px;
   border: 1px solid var(--border);

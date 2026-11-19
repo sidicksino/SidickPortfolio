@@ -8,7 +8,9 @@
     "contact": "Contact",
     "getStarted": "Commencer",
     "openMenu": "Ouvrir le menu",
-    "closeMenu": "Fermer le menu"
+    "closeMenu": "Fermer le menu",
+    "lightMode": "Passer en mode clair",
+    "darkMode": "Passer en mode sombre"
   },
   "hero": {
     "greeting": "Salut,",

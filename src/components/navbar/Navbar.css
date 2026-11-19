@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px; /* minimum space between logo, links and buttons */
   padding: 16px 40px;
   background-color: var(--background-transparent);
   backdrop-filter: blur(12px);
@@ -28,6 +29,7 @@
 /* Logo */
 .nav-logo {
   display: flex;
+  flex: none; /* was being squeezed under the links on small laptops */
   align-items: center;
   gap: 12px;
   transition: transform 0.3s ease;
@@ -241,6 +243,7 @@
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 500;
+  white-space: nowrap; /* "À Propos" etc. must never break onto two lines */
   padding: 8px 4px;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
@@ -277,6 +280,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
+  white-space: nowrap; /* was wrapping to two lines on small laptops */
+  text-decoration: none;
   box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
   border: none;
 }
@@ -289,8 +294,14 @@
 
 .nav-actions {
   display: flex;
+  flex: none; /* never squeezed: the links give way first */
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+/* Wrapper around the language toggle: no box of its own on desktop. */
+span.nav-desktop-only {
+  display: contents;
 }
 
 .mobile-actions,
@@ -298,9 +309,20 @@
   display: none !important;
 }
 
-@media (max-width: 768px) {
-  .nav-actions {
+/* Drawer mode starts at 1200px, not 768px: logo + 6 links + language + theme
+   + Get Started need ~1100px in English and ~1200px in French. Between 769 and
+   ~1050px the old layout wrapped "FR" and "Get Started" onto two lines and
+   pushed Get Started off the right edge of the screen. */
+@media (max-width: 1200px) {
+  /* Language + Get Started move into the drawer; theme + menu stay in the bar. */
+  .nav-actions .nav-desktop-only {
     display: none;
+  }
+
+  /* Keep the theme toggle usable above the open drawer, like the menu button. */
+  .nav-actions .theme-toggle-btn {
+    position: relative;
+    z-index: 1001;
   }
 
   .mobile-actions,
@@ -332,18 +354,27 @@
   }
 }
 
-/* Tablet & Mobile */
-@media (max-width: 1024px) {
+/* Small laptops: tighten the desktop bar a little before switching to the drawer.
+   (Scoped with min-width so it can't override the drawer's own gap.) */
+@media (min-width: 1201px) and (max-width: 1360px) {
   .navbar {
     padding: 16px 30px;
   }
 
   .nav-menu {
-    gap: 20px;
+    gap: 18px;
+  }
+
+  .nav-menu li a {
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 16px 30px;
+  }
+
   .nav-toggle {
     display: flex;
     /* Above the drawer. The navbar's backdrop-filter makes it a stacking
@@ -401,9 +432,9 @@
     align-items: stretch;
     justify-content: flex-start;
     /* clears the 65px navbar, which floats above this panel */
-    /* Bottom padding clears the floating theme toggle (fixed, 56px, 30px from
-       each edge, z-index 1000) — it was sitting on top of the Get Started
-       button. 30 + 56 + 12 of breathing room. */
+    /* Bottom padding clears the floating chat assistant bubble (fixed
+       bottom-right, 58px, 20px from the edge) so it never covers the
+       Get Started button. 20 + 58 + ~20 of breathing room. */
     padding: calc(65px + var(--s-5)) var(--s-4) 98px;
     gap: var(--s-1);
     background: var(--surface);
@@ -493,6 +524,17 @@
 
   .mobile-cta {
     padding: 0 var(--s-2) !important;
+  }
+
+  /* `.nav-menu li a` (drawer link style: muted text, hover background) is more
+     specific than `.mobile-cta a`, so the button's text was greyed out and it
+     lost its color on hover. Pin the button colors explicitly. */
+  .nav-menu .mobile-cta .nav-cta,
+  .nav-menu .mobile-cta .nav-cta:hover,
+  .nav-menu .mobile-cta .nav-cta:focus-visible {
+    color: var(--on-accent);
+    background: var(--accent-strong);
+    font-weight: 600;
   }
 
   .mobile-cta .nav-cta {

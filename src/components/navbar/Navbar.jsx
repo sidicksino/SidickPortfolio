@@ -5,6 +5,7 @@ import Logo from "../../assets/Logo.svg";
 import { RiContactsBook2Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import LanguageToggle from "../LanguageToggle";
+import ThemeToggle from "../ThemeToggle";
 import {
   CloseIcon,
   MenuIcon,
@@ -128,20 +129,6 @@ const Navbar = ({ scrolled = false }) => {
           <span className="nav-active" aria-hidden="true"></span>
         </div>
 
-        {/* Nouveau bouton avec SVG animé */}
-        <button
-          className={`nav-toggle ${isMenuOpen ? "open" : ""}`}
-          onClick={toggleMenu}
-          aria-label={isMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
-          aria-expanded={isMenuOpen}
-        >
-          {isMenuOpen ? (
-          <CloseIcon className="menu-icon" />
-        ) : (
-          <MenuIcon className="menu-icon" />
-        )}
-        </button>
-
         <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
           {NAV_ITEMS.map((item) => {
             const { key, label, href, match } = item;
@@ -178,11 +165,29 @@ const Navbar = ({ scrolled = false }) => {
           </li>
         </ul>
 
+        {/* Right-hand group. Desktop: language · theme · Get Started.
+            Drawer mode (<= 1200px): theme · menu button — language and
+            Get Started move into the drawer (.mobile-actions / .mobile-cta). */}
         <div className="nav-actions">
-          <LanguageToggle />
-          <a href="#contact" className="nav-cta">
+          <span className="nav-desktop-only">
+            <LanguageToggle />
+          </span>
+          <ThemeToggle />
+          <a href="#contact" className="nav-cta nav-desktop-only">
             {t("nav.getStarted")}
           </a>
+          <button
+            className={`nav-toggle ${isMenuOpen ? "open" : ""}`}
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? (
+              <CloseIcon className="menu-icon" />
+            ) : (
+              <MenuIcon className="menu-icon" />
+            )}
+          </button>
         </div>
       </nav>
     </>

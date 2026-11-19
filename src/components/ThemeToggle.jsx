@@ -1,75 +1,41 @@
-import { useEffect } from "react";
-import { useTheme } from "./theme/useTheme";
 import { motion } from "framer-motion";
-import './ThemeToggle.css'
-function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
+import { useTranslation } from "react-i18next";
+import { FiMoon, FiSun } from "react-icons/fi";
+import { useTheme } from "./theme/useTheme";
+import "./ThemeToggle.css";
 
-  // Applique la classe sur <html> quand le thème change
-  useEffect(() => {
-    const html = document.documentElement;
-    if (theme === "light") {
-      html.classList.add("light-theme");
-    } else {
-      html.classList.remove("light-theme");
-    }
-  }, [theme]);
+/**
+ * Compact sun/moon button. It used to float fixed in the bottom-right corner;
+ * that corner now belongs to the chat assistant, so this lives in the Navbar
+ * (and next to "Back to portfolio" on the sub-pages). The <html> class itself
+ * is applied by ThemeProvider, so this component only flips the value.
+ */
+function ThemeToggle({ className = "" }) {
+  const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
+  const isDark = theme === "dark";
+  const label = isDark ? t("nav.lightMode") : t("nav.darkMode");
 
   return (
-    <motion.button
+    <button
+      type="button"
       onClick={toggleTheme}
-      className="theme-toggle-btn"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
-      aria-label={`Activer le mode ${theme === "dark" ? "clair" : "sombre"}`}
-      title={`Changer pour le mode ${theme === "dark" ? "clair" : "sombre"}`}
+      className={`theme-toggle-btn ${className}`.trim()}
+      aria-label={label}
+      title={label}
     >
-      <div className="toggle-icon">
-        {theme === "dark" ? (
-          <>
-            <motion.div
-              className="sun"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              transition={{ duration: 0.3 }}
-            >
-              ☀️
-            </motion.div>
-            <motion.div
-              className="moon"
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{ opacity: 0, scale: 0.5 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              transition={{ duration: 0.3 }}
-            >
-              🌙
-            </motion.div>
-          </>
-        ) : (
-          <>
-            <motion.div
-              className="sun"
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{ opacity: 0, scale: 0.5 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              transition={{ duration: 0.3 }}
-            >
-              ☀️
-            </motion.div>
-            <motion.div
-              className="moon"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              🌙
-            </motion.div>
-          </>
-        )}
-      </div>
-    </motion.button>
+      <motion.span
+        key={theme}
+        className="theme-toggle-icon"
+        initial={{ rotate: -90, scale: 0.6, opacity: 0 }}
+        animate={{ rotate: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        aria-hidden="true"
+      >
+        {/* Shows the mode you will switch TO, like most sites. */}
+        {isDark ? <FiSun /> : <FiMoon />}
+      </motion.span>
+    </button>
   );
 }
 
