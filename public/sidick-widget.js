@@ -89,8 +89,16 @@
     ".sw-head small{display:block;font-weight:400;opacity:.85;font-size:12px}",
     ".sw-x{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;line-height:1}",
     ".sw-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}",
-    ".sw-m{max-width:85%;padding:9px 12px;border-radius:14px;white-space:pre-wrap;word-wrap:break-word}",
+    ".sw-m{max-width:85%;padding:9px 12px;border-radius:14px;overflow-wrap:anywhere}",
     ".sw-m a{color:inherit;text-decoration:underline}",
+    ".sw-m p{margin:0 0 8px}.sw-m p:last-child{margin-bottom:0}",
+    // list-style is set explicitly: host sites (like the portfolio) often reset it to none.
+    ".sw-m ul,.sw-m ol{margin:0 0 8px;padding-left:20px}.sw-m ul:last-child,.sw-m ol:last-child{margin-bottom:0}",
+    ".sw-m ul{list-style:disc outside}.sw-m ol{list-style:decimal outside}",
+    ".sw-m li{display:list-item;margin:6px 0}.sw-m li::marker{color:var(--sw-accent)}",
+    ".sw-m .sw-h{font-weight:700;margin-top:4px}",
+    ".sw-m code{font:0.9em ui-monospace,SFMono-Regular,Menlo,monospace;background:rgba(127,127,127,.15);padding:1px 4px;border-radius:4px}",
+    ".sw-m strong{font-weight:700}",
     ".sw-bot{background:var(--sw-bot);align-self:flex-start;border-bottom-left-radius:4px}",
     ".sw-user{background:var(--sw-accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}",
     ".sw-err{color:#c2410c}",
@@ -112,12 +120,59 @@
     return e;
   }
 
-  // Safe formatting: escape everything, then turn **bold** and URLs into markup.
+  // Light, safe Markdown: everything is HTML-escaped first, then only these become markup:
+  // paragraphs, "- "/"1." lists, "#" headings (shown as a bold line), **bold**, *italic*,
+  // `code`, [text](url) and bare URLs. Re-run on every streamed chunk, so it must tolerate
+  // half-finished Markdown (an unclosed ** just stays as text until it closes).
+  function escapeHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function inline(s) {
+    var A = '" target="_blank" rel="noopener noreferrer">';
+    s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+    s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2' + A + "$1</a>");
+    s = s.replace(/(^|[^"'>=])(https?:\/\/[^\s<)"]+[^\s<)".,;:!?])/g, '$1<a href="$2' + A + "$2</a>");
+    s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/(^|[^*\w])\*([^*\s][^*]*?)\*(?!\*)/g, "$1<em>$2</em>");
+    return s;
+  }
+
+  function markdown(text) {
+    var html = [];
+    var para = [];
+    var list = null; // "ul" | "ol"
+    function flushPara() {
+      if (para.length) html.push("<p>" + para.join("<br>") + "</p>");
+      para = [];
+    }
+    function closeList() {
+      if (list) html.push("</" + list + ">");
+      list = null;
+    }
+    escapeHtml(text).split("\n").forEach(function (line) {
+      var m;
+      if (!line.trim()) { flushPara(); closeList(); return; }
+      if ((m = line.match(/^\s*#{1,6}\s+(.*)$/))) {
+        flushPara(); closeList();
+        html.push('<p class="sw-h">' + inline(m[1].replace(/\*\*/g, "")) + "</p>");
+      } else if ((m = line.match(/^\s*[-*•]\s+(.*)$/)) || (m = line.match(/^\s*\d+[.)]\s+(.*)$/))) {
+        var type = /^\s*\d/.test(line) ? "ol" : "ul";
+        flushPara();
+        if (list !== type) { closeList(); html.push("<" + type + ">"); list = type; }
+        html.push("<li>" + inline(m[1]) + "</li>");
+      } else {
+        closeList();
+        para.push(inline(line.trim()));
+      }
+    });
+    flushPara();
+    closeList();
+    return html.join("");
+  }
+
   function render(node, text) {
-    var esc = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    esc = esc.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-    esc = esc.replace(/(https?:\/\/[^\s<)]+[^\s<).,;!?])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
-    node.innerHTML = esc;
+    node.innerHTML = markdown(text);
   }
 
   var root = el("div", "sw-root" + (LEFT ? " sw-left" : "") + (PAGE_THEME ? " sw-page" : ""));
