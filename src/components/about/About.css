@@ -196,31 +196,38 @@
   }
 }
 
-/* Phones and small tablets: no sticking, just a column of cards. */
+/* Phones and small tablets: the portrait scrolls away normally, and the cards
+   still pile up — each sticks just under the navbar, 16px lower than the one
+   before. Cards are sized to fit a phone screen so the pile never covers
+   more than the viewport. */
 @media (max-width: 900px) {
   .about-layout {
     flex-direction: column;
     gap: var(--s-7);
   }
 
-  .about-aside,
-  .about-card {
-    position: static;
-  }
-
   .about-aside {
+    position: static;
     flex: none;
   }
 
   .about-stack {
     flex: none;
     width: 100%;
-    gap: var(--s-4);
+    gap: var(--s-6);
+    /* Room after the last card, so it has time to land before the section ends */
+    padding-bottom: var(--s-8);
   }
 
   .about-card {
-    min-height: 0;
+    top: calc(88px + var(--i) * 16px);
+    min-height: min(380px, 62svh);
     padding: var(--s-7) var(--s-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .about-card p {
+    font-size: 16px;
   }
 
   .about-card-num {
@@ -229,6 +236,7 @@
   }
 
   .about-hint {
-    display: none;
+    display: block;
+    text-align: center;
   }
 }
