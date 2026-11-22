@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 /**
  * The site's one entrance animation: fade in and rise 24px as it scrolls into
@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
  * it off for people who ask for less motion.
  */
 const Reveal = ({ as = "div", delay = 0, y = 24, amount = 0.25, children, ...rest }) => {
-  const Tag = motion[as] ?? motion.div;
+  const Tag = m[as] ?? m.div;
   return (
     <Tag
       initial={{ opacity: 0, y }}

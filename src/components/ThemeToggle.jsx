@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { useTheme } from "./theme/useTheme";
@@ -24,7 +24,7 @@ function ThemeToggle({ className = "" }) {
       aria-label={label}
       title={label}
     >
-      <motion.span
+      <m.span
         key={theme}
         className="theme-toggle-icon"
         initial={{ rotate: -90, scale: 0.6, opacity: 0 }}
@@ -34,7 +34,7 @@ function ThemeToggle({ className = "" }) {
       >
         {/* Shows the mode you will switch TO, like most sites. */}
         {isDark ? <FiSun /> : <FiMoon />}
-      </motion.span>
+      </m.span>
     </button>
   );
 }

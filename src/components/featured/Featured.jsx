@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight, FaGithub } from "react-icons/fa";
 import "./Featured.css";
@@ -87,14 +87,14 @@ const Featured = ({ initialCategory }) => {
           </Reveal>
         </div>
 
-        <motion.div layout className="work-grid">
+        <m.div layout className="work-grid">
           <AnimatePresence mode="popLayout">
             {visible.map((project, i) => {
               const cat = CATEGORY[project.category] ?? CATEGORY.web;
               const { title, description } = pickLang(project, i18n.language);
               const live = hasLiveSite(project.liveUrl);
               return (
-                <motion.article
+                <m.article
                   layout
                   key={project.id}
                   className="work-card"
@@ -136,11 +136,11 @@ const Featured = ({ initialCategory }) => {
                       )}
                     </div>
                   </div>
-                </motion.article>
+                </m.article>
               );
             })}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

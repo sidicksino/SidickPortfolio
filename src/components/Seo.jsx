@@ -11,7 +11,7 @@ const SITE = "https://www.sidickabdoulaye.com";
  *                 Facebook, Slack) see. They do NOT execute JS, so the share
  *                 card is always English. Owns og:* and twitter:*.
  *   this file   — dynamic, per language. Google renders JS, so it sees these
- *                 and can index /?lang=en and /?lang=fr separately. Owns
+ *                 and can index / (English) and /?lang=fr separately. Owns
  *                 <title>, description, canonical and hreflang.
  *
  * Nothing is declared in both places: react-helmet-async appends its tags
@@ -36,8 +36,9 @@ const Seo = () => {
       <title>{t("seo.title")}</title>
       <meta name="description" content={t("seo.description")} />
 
-      <link rel="canonical" href={`${SITE}/?lang=${lang}`} />
-      <link rel="alternate" hrefLang="en" href={`${SITE}/?lang=en`} />
+      {/* English is the plain URL, French adds ?lang=fr (same as the sitemap). */}
+      <link rel="canonical" href={lang === "en" ? `${SITE}/` : `${SITE}/?lang=fr`} />
+      <link rel="alternate" hrefLang="en" href={`${SITE}/`} />
       <link rel="alternate" hrefLang="fr" href={`${SITE}/?lang=fr`} />
       <link rel="alternate" hrefLang="x-default" href={`${SITE}/`} />
     </>

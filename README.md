@@ -27,7 +27,7 @@ on hover) → About (stacking story cards) → Where I build from (wireframe glo
 | **i18n** | i18next / react-i18next — English + French |
 | **Styling** | Hand-written CSS with a design-token system, Tailwind v4 available |
 | **Type** | Space Grotesk (display), Inter (body), JetBrains Mono (labels) |
-| **Motion** | Framer Motion, GSAP (ScrollTrigger) |
+| **Motion** | Framer Motion (lazy-loaded via `LazyMotion`), CSS animations |
 | **Forms** | EmailJS + SweetAlert2 |
 | **SEO** | React 19 native document metadata, generated sitemap, robots.txt, hreflang (en/fr) |
 | **Hosting** | Vercel |

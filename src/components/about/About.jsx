@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import "./About.css";
 import Reveal from "../common/Reveal";
 import portrait from "../../assets/about-portrait.webp";
+import portrait400 from "../../assets/about-portrait-400.webp";
+import portrait600 from "../../assets/about-portrait-600.webp";
 
 /* Four cards that pile up as you scroll. Each one sticks a little lower than
    the last, so the earlier cards stay peeking out above the newest. The last
@@ -23,7 +25,15 @@ const About = () => {
           </Reveal>
           <Reveal as="figure" className="about-portrait" delay={0.1}>
             <span className="about-portrait-ring" aria-hidden="true" />
-            <img src={portrait} alt={t("about.photoAlt")} loading="lazy" />
+            {/* Rendered about 0.73 x the card width (max 400px): phones get the
+                400px file instead of the full 829px one. */}
+            <img
+              src={portrait}
+              srcSet={`${portrait400} 400w, ${portrait600} 600w, ${portrait} 829w`}
+              sizes="(max-width: 440px) 66vw, 293px"
+              alt={t("about.photoAlt")}
+              loading="lazy"
+            />
             <figcaption>
               <span className="about-portrait-name">Sidick Abdoulaye Hissein</span>
               <span className="about-portrait-role">{t("about.eyebrow")}</span>

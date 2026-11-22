@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
 
           <nav className="footer-col" aria-label={t("footer.navigation")}>
-            <h4>{t("footer.navigation")}</h4>
+            <h3>{t("footer.navigation")}</h3>
             <ul>
               {LINKS.map((link) => (
                 <li key={link.href}>
@@ -36,7 +36,7 @@ const Footer = () => {
           </nav>
 
           <div className="footer-col">
-            <h4>{t("footer.contact")}</h4>
+            <h3>{t("footer.contact")}</h3>
             <ul>
               <li>
                 <a href="mailto:sidickabdoulayesino1@gmail.com">sidickabdoulayesino1@gmail.com</a>

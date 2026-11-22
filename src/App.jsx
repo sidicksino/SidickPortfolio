@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import { MotionConfig } from "framer-motion";
+import { LazyMotion, MotionConfig } from "framer-motion";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
@@ -12,6 +12,12 @@ import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Seo from "./components/Seo";
+
+/* Components use the slim `m.*` elements; the engine that animates them loads
+   separately, after the page is on screen. `strict` makes a stray `motion.*`
+   (which would pull the whole engine back into the main bundle) an error. */
+const loadMotionFeatures = () =>
+  import("./components/common/motionFeatures").then((mod) => mod.default);
 
 /* Admin is lazy: visitors never load it. */
 const Admin = lazy(() => import("./components/admin/Admin"));
@@ -55,16 +61,21 @@ function App() {
     /* framer-motion animates in JS, so the CSS reduced-motion reset in
        index.css can't reach it. "user" makes it follow the OS setting. */
     <MotionConfig reducedMotion="user">
-      <ScrollToTop />
-      <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects/:category" element={<CategoryRoute />} />
-          <Route path="/pages/hero" element={<Navigate to="/#about" replace />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <LazyMotion features={loadMotionFeatures} strict>
+        <ScrollToTop />
+        <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects/:category" element={<CategoryRoute />} />
+            <Route
+              path="/pages/hero"
+              element={<Navigate to="/#about" replace />}
+            />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </LazyMotion>
     </MotionConfig>
   );
 }

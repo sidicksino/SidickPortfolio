@@ -34,7 +34,7 @@
   gap: var(--s-4);
 }
 
-.footer-col h4 {
+.footer-col h3 {
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 500;

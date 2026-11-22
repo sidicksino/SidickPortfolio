@@ -22,11 +22,17 @@ const ROUTES = [{ path: "/", priority: "1.0" }];
 
 const lastmod = new Date().toISOString().slice(0, 10);
 
+// English, the default language, lives at the plain URL; French adds
+// ?lang=fr. Keep in sync with src/components/Seo.jsx. (English used to be
+// /?lang=en, which made "/" a duplicate of it that pointed its canonical
+// elsewhere, and Lighthouse flagged the canonical as invalid.)
+const urlFor = (path, lang) => `${SITE}${path}${lang === "en" ? "" : `?lang=${lang}`}`;
+
 const alternates = (path) =>
   [
     ...LANGUAGES.map(
       (l) =>
-        `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE}${path}?lang=${l}"/>`,
+        `    <xhtml:link rel="alternate" hreflang="${l}" href="${urlFor(path, l)}"/>`,
     ),
     `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${path}"/>`,
   ].join("\n");
@@ -36,7 +42,7 @@ const entries = ROUTES.flatMap(({ path, priority }) =>
   // Google ignores a set where the alternates don't point back at each other.
   LANGUAGES.map(
     (lang) => `  <url>
-    <loc>${SITE}${path}?lang=${lang}</loc>
+    <loc>${urlFor(path, lang)}</loc>
 ${alternates(path)}
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>

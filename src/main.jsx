@@ -1,6 +1,13 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+/* Fonts are self-hosted (bundled by Vite) instead of loaded from Google Fonts:
+   that stylesheet blocked the first paint while the browser opened a
+   connection to two more domains. Variable fonts, so one file per family
+   covers every weight; unicode-range means only the Latin file downloads. */
+import "@fontsource-variable/inter";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/jetbrains-mono";
 import "./index.css";
 import "./i18n";
 import App from "./App.jsx";

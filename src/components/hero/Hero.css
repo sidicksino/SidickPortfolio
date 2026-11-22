@@ -134,6 +134,15 @@
   aspect-ratio: 638 / 1404;
   transform: translateX(-50%);
   cursor: crosshair;
+  /* Holding a finger on the photo scans it (see Hero.jsx); stop iOS and
+     Android from offering to save or select the image instead. */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.hero-portrait-wrap img {
+  -webkit-user-drag: none;
 }
 
 .hero-portrait {
@@ -425,6 +434,28 @@
   50% { transform: scaleY(0.5); transform-origin: top; opacity: 0.5; }
 }
 
+/* ---- Entrance ------------------------------------------------------------ */
+/* Fade and rise on load, staggered by --d (set inline in Hero.jsx). Plain CSS
+   so the first screen never waits on JavaScript to animate. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in {
+    animation: hero-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s) both;
+  }
+
+  .hero-in--portrait {
+    --rise: 40px;
+    animation-duration: 1.1s;
+    animation-delay: 0.15s;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise, 28px));
+  }
+}
+
 /* ---- Responsive ---------------------------------------------------------- */
 @media (max-width: 1100px) {
   .hero { --stage-h: 640px; }
@@ -453,6 +484,7 @@
 
 @media (max-width: 520px) {
   .hero { --stage-h: 440px; }
+  .hero-portrait-wrap { --lens: 80px; } /* the photo is ~190px wide here */
   .hero-chip { font-size: 12px; padding: 8px 12px; }
   .hero-chip--1 { top: 14%; }
   .hero-chip--2 { top: 40%; }

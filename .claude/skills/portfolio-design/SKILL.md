@@ -129,13 +129,25 @@ for the admin dashboard and NotFound. Never introduce a new use.
   light, or background removal (rembg `isnet-general-use`) — and check the
   face against the original.
 - Hovering the hero portrait shows a scan lens (accent dot-matrix masked to
-  his silhouette and a circle at the cursor). Fine pointers only.
+  his silhouette and a circle at the cursor). On touch screens, holding a
+  finger on the photo turns it on and dragging moves it (drawn 60px above
+  the finger); a quick swipe still scrolls, a tap shows it briefly.
 - Pointer effects (hero ring tilt and spotlight) write CSS variables inside
   `requestAnimationFrame` — never React state — and are skipped for touch and
   reduced motion.
 - Every CSS animation must be inside `@media (prefers-reduced-motion:
   no-preference)`; `index.css` also has a global reduced-motion reset, and
   `<MotionConfig reducedMotion="user">` covers framer-motion.
+- Speed rules (mobile Lighthouse went 82 → 88 with these):
+  - Use `m.*` from framer-motion, never `motion.*`. `<LazyMotion strict>` in
+    App.jsx loads the engine after first paint and throws on `motion.*`.
+  - The hero entrance is CSS (`.hero-in`), not framer-motion, so the first
+    screen never waits for the engine.
+  - Fonts are self-hosted (`@fontsource-variable/*`, imported in main.jsx).
+    Don't add a Google Fonts `<link>` back: it blocked the first paint.
+  - Large photos ship a smaller copy with `srcSet` (`hero-cutout-400.webp`,
+    `about-portrait-400/600.webp`). `vite.config.js` preloads the hero
+    photo; its `sizes` live in `src/components/hero/heroImage.js`.
 - Never animate `transform` on an element that also transforms on hover.
 
 ## How the Portal hero works (don't break it)

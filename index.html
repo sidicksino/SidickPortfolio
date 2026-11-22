@@ -57,21 +57,7 @@
     />
     <meta name="google-site-verification" content="-MDj_7J5aMW8x4XK-D202rj7wAS8awtx2z7JY_QARgQ" />
 
-    <!-- Fonts, loaded once.
-         Previously each of 10 component stylesheets carried its own
-         @import url(...) for the same families. @import inside CSS is
-         render-blocking and serialised — the browser must fetch the CSS,
-         parse it, then start the font request — so it was both duplicated and
-         on the slow path. A <link> here starts the fetch immediately.
-
-         2026-11 redesign: Space Grotesk (display), Inter (body) and
-         JetBrains Mono (labels). Only the weights actually used. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
+    <!-- Fonts are self-hosted: see the imports at the top of src/main.jsx. -->
     <!-- Apply a visitor's saved colour and light/dark choice before anything
          paints, so the page never flashes the defaults first. Keep this list in sync
          with src/components/theme/accents.js. -->

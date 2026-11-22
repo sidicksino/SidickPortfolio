@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import "./Hero.css";
 import heroImage from "../../assets/hero-cutout.webp";
+import heroImage400 from "../../assets/hero-cutout-400.webp";
+import { HERO_SIZES } from "./heroImage";
 import MyPDF from "../../assets/sidick.pdf";
 import SocialLinks from "../SocialLinks";
 
@@ -35,11 +36,10 @@ const Orbit = ({ front = false }) => (
   </div>
 );
 
-const fadeUp = (delay) => ({
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.9, delay, ease: [0.2, 0.7, 0.2, 1] },
-});
+/* The entrance is a CSS animation (.hero-in in Hero.css), not framer-motion:
+   the hero is the first thing on screen, and this way it never waits for the
+   animation library to download. */
+const fadeUp = (delay) => ({ style: { "--d": `${delay}s` } });
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -110,6 +110,88 @@ const Hero = () => {
     };
   }, []);
 
+  /* The same lens on touch screens. The photo fills most of a phone's first
+     screen, so it can't swallow swipes: a quick swipe still scrolls the page.
+     Holding a finger still for a moment turns the lens on, and from then on
+     dragging moves the lens instead of the page. A plain tap shows it
+     briefly, so people discover it. */
+  useEffect(() => {
+    const el = portraitRef.current;
+    if (!el) return undefined;
+
+    const HOLD_MS = 180;
+    const TAP_SHOW_MS = 1400;
+    let holdTimer = 0;
+    let hideTimer = 0;
+    let scanning = false;
+    let start = null;
+
+    // Drawn a little above the finger, like the iOS text loupe, so the
+    // finger doesn't hide the part being scanned.
+    const LIFT = 60;
+    const place = (touch) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--sx", `${(touch.clientX - r.left).toFixed(1)}px`);
+      el.style.setProperty("--sy", `${(touch.clientY - r.top - LIFT).toFixed(1)}px`);
+    };
+    const show = () => {
+      clearTimeout(hideTimer);
+      el.classList.add("is-scanning");
+    };
+    const hide = () => el.classList.remove("is-scanning");
+
+    const onStart = (e) => {
+      if (e.touches.length !== 1) return;
+      const touch = e.touches[0];
+      start = { x: touch.clientX, y: touch.clientY };
+      place(touch);
+      holdTimer = setTimeout(() => {
+        scanning = true;
+        show();
+      }, HOLD_MS);
+    };
+    const onMove = (e) => {
+      const touch = e.touches[0];
+      if (scanning) {
+        e.preventDefault(); // the finger is steering the lens, not the page
+        place(touch);
+      } else if (start && Math.hypot(touch.clientX - start.x, touch.clientY - start.y) > 10) {
+        clearTimeout(holdTimer); // it's a swipe: let the page scroll
+        start = null;
+      }
+    };
+    const onEnd = () => {
+      clearTimeout(holdTimer);
+      if (scanning) {
+        scanning = false;
+        hide();
+      } else if (start) {
+        show(); // a tap: show the lens where they touched, then fade it
+        hideTimer = setTimeout(hide, TAP_SHOW_MS);
+      }
+      start = null;
+    };
+    const onCancel = () => {
+      clearTimeout(holdTimer);
+      scanning = false;
+      start = null;
+      hide();
+    };
+
+    el.addEventListener("touchstart", onStart, { passive: true });
+    el.addEventListener("touchmove", onMove, { passive: false });
+    el.addEventListener("touchend", onEnd);
+    el.addEventListener("touchcancel", onCancel);
+    return () => {
+      clearTimeout(holdTimer);
+      clearTimeout(hideTimer);
+      el.removeEventListener("touchstart", onStart);
+      el.removeEventListener("touchmove", onMove);
+      el.removeEventListener("touchend", onEnd);
+      el.removeEventListener("touchcancel", onCancel);
+    };
+  }, []);
+
   return (
     <section className="hero" id="home" ref={heroRef}>
       <div className="hero-grid-bg" aria-hidden="true" />
@@ -117,22 +199,22 @@ const Hero = () => {
 
       <div className="container hero-layout">
         <div className="hero-copy">
-          <motion.p className="hero-eyebrow" {...fadeUp(0)}>
+          <p className="hero-eyebrow hero-in" {...fadeUp(0)}>
             <span className="hero-dot" aria-hidden="true" />
             {t("hero.eyebrow")}
-          </motion.p>
+          </p>
 
-          <motion.h1 className="hero-title" {...fadeUp(0.1)}>
+          <h1 className="hero-title hero-in" {...fadeUp(0.1)}>
             {t("hero.hello")}
             <br />
             <em>{t("hero.name")}</em>
-          </motion.h1>
+          </h1>
 
-          <motion.p className="hero-lead" {...fadeUp(0.2)}>
+          <p className="hero-lead hero-in" {...fadeUp(0.2)}>
             {t("hero.lead")}
-          </motion.p>
+          </p>
 
-          <motion.div className="hero-actions" {...fadeUp(0.3)}>
+          <div className="hero-actions hero-in" {...fadeUp(0.3)}>
             <a href="#work" className="btn btn-primary">
               {t("hero.ctaWork")}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -142,11 +224,11 @@ const Hero = () => {
             <a href={MyPDF} download="Sidick_CV.pdf" className="btn btn-ghost">
               {t("hero.downloadCV")}
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div {...fadeUp(0.4)}>
+          <div className="hero-in" {...fadeUp(0.4)}>
             <SocialLinks variant="hero" />
-          </motion.div>
+          </div>
         </div>
 
         <div className="hero-stage">
@@ -155,16 +237,16 @@ const Hero = () => {
           <div
             className="hero-portrait-wrap"
             ref={portraitRef}
-            style={{ "--portrait": `url(${heroImage})` }}
+            /* The scan mask only needs the outline, so it uses the small file. */
+            style={{ "--portrait": `url(${heroImage400})` }}
           >
-            <motion.img
-              className="hero-portrait"
+            <img
+              className="hero-portrait hero-in hero-in--portrait"
               src={heroImage}
+              srcSet={`${heroImage400} 400w, ${heroImage} 638w`}
+              sizes={HERO_SIZES}
               alt={t("hero.portraitAlt")}
               fetchPriority="high"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
             />
             {/* Each layer is masked twice: to his silhouette (the image's own
                 alpha) and to a circle at the cursor. */}
