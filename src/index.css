@@ -13,19 +13,27 @@
    ========================================================================== */
 
 :root {
-  /* --- Accent ------------------------------------------------------------
-     --accent fills shapes and colours glyphs on dark (5.4:1 on --bg).
-     Text ON an accent fill is --on-accent, a near-black: 6.0:1. White on
-     magenta is only 3.41:1, which is why the old buttons failed. */
+  /* --- THE BRAND COLOUR --------------------------------------------------
+     Change this one line and the whole site follows: buttons, links, rings,
+     glows, the globe, the logo, focus rings, the light theme's accent text.
+     Everything else below is derived from it.
+
+     Pick a BRIGHT colour. Text on accent fills is near-black (--on-accent),
+     and the light theme darkens the accent for text, so a mid-to-light
+     colour works in both themes. Tested choices (see SKILL.md):
+       #e748c8 magenta · #2dd4bf aqua · #8b7cff violet · #a3e635 lime */
   --accent: #e748c8;
-  --accent-hover: #f087dd;
-  --accent-strong: #b52a9d;
-  --accent-subtle: rgba(231, 72, 200, 0.12);
-  --accent-glow: rgba(231, 72, 200, 0.35);
+
+  --accent-hover: color-mix(in oklab, var(--accent) 75%, white);
+  /* 60% is the darkest mix that still keeps every tested colour at 4.5:1+
+     as text on the light theme's backgrounds. */
+  --accent-strong: color-mix(in oklab, var(--accent) 60%, black);
+  --accent-subtle: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-glow: color-mix(in srgb, var(--accent) 35%, transparent);
   --on-accent: #0b0b12;
 
   /* Accent as GLYPHS (text, icons, thin borders). Plain --accent on dark;
-     the light theme steps it down to --accent-strong (5.27:1 on white). */
+     the light theme steps it down to --accent-strong. */
   --accent-text: var(--accent);
 
   /* --- Surfaces (dark) --------------------------------------------------- */
@@ -52,8 +60,9 @@
      The one sanctioned exception to the one-accent rule: the four project
      categories are colour-coded so the Work filter stays scannable. Shared
      saturation, hues spaced evenly from the brand magenta, lightness tuned to
-     ~5:1 on each theme's card. Do not add a fifth without re-deriving all. */
-  --fam-1: #e24dc4; /* magenta — the brand anchor */
+     ~5:1 on each theme's card. Do not add a fifth without re-deriving all.
+     --fam-1 IS the brand colour, so the first category follows --accent. */
+  --fam-1: var(--accent);
   --fam-2: #e45b77; /* rose   */
   --fam-3: #b468e6; /* purple */
   --fam-4: #5e87e5; /* blue   */
@@ -127,11 +136,11 @@ html.light-theme {
   --grid-line: rgba(15, 15, 26, 0.05);
 
   --accent-text: var(--accent-strong);
-  --accent-subtle: rgba(231, 72, 200, 0.1);
-  --accent-glow: rgba(231, 72, 200, 0.25);
+  --accent-subtle: color-mix(in srgb, var(--accent) 10%, transparent);
+  --accent-glow: color-mix(in srgb, var(--accent) 25%, transparent);
   --shadow: rgba(16, 24, 40, 0.12);
 
-  --fam-1: #c720a5;
+  --fam-1: var(--accent-strong);
   --fam-2: #d62347;
   --fam-3: #9e3ddf;
   --fam-4: #3668de;

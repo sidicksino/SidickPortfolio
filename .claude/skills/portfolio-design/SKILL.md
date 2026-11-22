@@ -39,8 +39,28 @@ Navbar → Hero (Portal) → 01 About → 02 Where I build from (globe) → 03 S
 
 ## Tokens (src/index.css)
 
+**The brand colour is ONE line: `--accent` in `src/index.css`.** Every other
+accent shade is derived from it with `color-mix()` — hover, strong (light-theme
+text), subtle, glow, `--fam-1`, and the logo (`<LogoMark>` uses
+`currentColor`). Never hard-code an accent shade anywhere else, or changing
+the brand colour stops working. Exceptions that can't follow CSS:
+`public/favicon.svg` and `public/preview.jpg` (update by hand).
+
+Tested choices (dark text on the fill, accent text on dark, and the derived
+strong shade on the light theme all pass 4.5:1):
+
+| Colour | Hex |
+|---|---|
+| Magenta (current) | `#e748c8` |
+| Aqua | `#2dd4bf` |
+| Electric violet | `#8b7cff` |
+| Lime | `#a3e635` |
+
+Pick bright colours: `--on-accent` is near-black, so a dark accent would fail.
+
 ```css
---accent / --accent-hover / --accent-strong / --accent-subtle / --accent-glow
+--accent           /* THE line */
+--accent-hover / --accent-strong / --accent-subtle / --accent-glow  /* derived */
 --accent-text      /* accent as GLYPHS — --accent on dark, --accent-strong on light */
 --on-accent        /* #0b0b12 — text on an accent fill */
 --bg / --surface / --elevated / --overlay

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./Navbar.css";
-import Logo from "../../assets/Logo.svg";
+import LogoMark from "../common/LogoMark";
 import LanguageToggle from "../LanguageToggle";
 import ThemeToggle from "../ThemeToggle";
 import { CloseIcon, MenuIcon } from "../common/Icons";
@@ -69,7 +69,7 @@ const Navbar = () => {
       <nav className={`navbar ${scrolled || isMenuOpen ? "scrolled" : ""}`} aria-label="Main">
         <div className="navbar-inner">
           <a href="#home" className="nav-logo" onClick={closeMenu}>
-            <img src={Logo} alt="" width="26" height="28" />
+            <LogoMark className="nav-logo-mark" />
             <span className="nav-logo-text">
               Sidick<span>Sino</span>
             </span>

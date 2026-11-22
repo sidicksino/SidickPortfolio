@@ -39,9 +39,9 @@
   color: var(--text);
 }
 
-.nav-logo img {
-  width: 26px;
-  height: auto;
+.nav-logo-mark {
+  color: var(--accent);
+  flex: none;
 }
 
 .nav-logo-text {
