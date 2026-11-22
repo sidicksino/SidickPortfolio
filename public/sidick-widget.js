@@ -285,7 +285,8 @@
         res = await fetch(API + "/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text, history: history.slice(-6) }),
+          // lang only breaks ties: the bot answers in the language the visitor typed in.
+          body: JSON.stringify({ message: text, history: history.slice(-6), lang: lang() }),
         });
         if (res.ok) break;
         err = await res.json().catch(function () { return {}; });
