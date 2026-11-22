@@ -37,7 +37,7 @@
   right: 0;
   top: calc(100% + 10px);
   z-index: 1100;
-  width: 236px;
+  width: 220px;
   padding: var(--s-4);
   border-radius: var(--radius-lg);
   background: var(--surface);
@@ -67,18 +67,22 @@
   margin-bottom: var(--s-3);
 }
 
+/* One column, not two: in French "Citron vert" wrapped onto two lines and
+   "Magenta" ran into its border in a half-width cell. */
 .accent-picker-swatches {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--s-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
 }
 
 .accent-swatch {
   display: flex;
   align-items: center;
-  gap: var(--s-2);
+  gap: var(--s-3);
   min-height: 44px;
   padding: 0 var(--s-3);
+  white-space: nowrap;
+  text-align: left;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: transparent;
