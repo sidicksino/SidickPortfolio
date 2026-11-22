@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sidick.vercel.app/sitemap.xml
+Sitemap: https://www.sidickabdoulaye.com/sitemap.xml

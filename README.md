@@ -3,7 +3,7 @@
 Personal portfolio of **Sidick Abdoulaye Hissein** — Data Scientist and
 Full-Stack Developer based between N'Djamena, Chad and Kigali, Rwanda.
 
-**Live:** <https://sidick.vercel.app>
+**Live:** <https://www.sidickabdoulaye.com>
 
 ![The portfolio homepage](docs/screenshot-hero.webp)
 

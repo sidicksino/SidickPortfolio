@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-const SITE = "https://sidick.vercel.app";
+const SITE = "https://www.sidickabdoulaye.com";
 
 /* Per-language metadata for the homepage.
  *
