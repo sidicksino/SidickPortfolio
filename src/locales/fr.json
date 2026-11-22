@@ -273,5 +273,12 @@
     "kigaliCity": "Kigali",
     "kigaliCountry": "Rwanda",
     "globeAlt": "Un globe filaire en rotation qui marque N'Djamena et Kigali"
+  },
+  "accent": {
+    "label": "Couleur du thème",
+    "magenta": "Magenta",
+    "aqua": "Turquoise",
+    "violet": "Violet",
+    "lime": "Citron vert"
   }
 }

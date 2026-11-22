@@ -22,7 +22,7 @@
      and the light theme darkens the accent for text, so a mid-to-light
      colour works in both themes. Tested choices (see SKILL.md):
        #e748c8 magenta · #2dd4bf aqua · #8b7cff violet · #a3e635 lime */
-  --accent: #8b7cff;
+  --accent: #a3e635;
 
   --accent-hover: color-mix(in oklab, var(--accent) 75%, white);
   /* 60% is the darkest mix that still keeps every tested colour at 4.5:1+
@@ -43,9 +43,12 @@
   --overlay: rgba(7, 7, 12, 0.72);
 
   /* --- Text -------------------------------------------------------------- */
-  --text: #f4f3f8;      /* 18.4:1 */
-  --text-2: #a9a6bc;    /*  8.1:1 */
-  --text-muted: #8c89a3;/*  5.7:1 */
+  --text: #f4f3f8;
+  /* 18.4:1 */
+  --text-2: #a9a6bc;
+  /*  8.1:1 */
+  --text-muted: #8c89a3;
+  /*  5.7:1 */
 
   /* --- Lines ------------------------------------------------------------- */
   --border: rgba(255, 255, 255, 0.08);
@@ -63,9 +66,12 @@
      ~5:1 on each theme's card. Do not add a fifth without re-deriving all.
      --fam-1 IS the brand colour, so the first category follows --accent. */
   --fam-1: var(--accent);
-  --fam-2: #e45b77; /* rose   */
-  --fam-3: #b468e6; /* purple */
-  --fam-4: #5e87e5; /* blue   */
+  --fam-2: #e45b77;
+  /* rose   */
+  --fam-3: #b468e6;
+  /* purple */
+  --fam-4: #5e87e5;
+  /* blue   */
   --cat-web: var(--fam-1);
   --cat-mobile: var(--fam-2);
   --cat-design: var(--fam-3);
@@ -127,9 +133,12 @@ html.light-theme {
   --elevated: #ecebf3;
   --overlay: rgba(255, 255, 255, 0.78);
 
-  --text: #0f0f1a;      /* 17.6:1 */
-  --text-2: #4a4a5c;    /*  8.3:1 */
-  --text-muted: #5f5f73;/*  5.9:1 */
+  --text: #0f0f1a;
+  /* 17.6:1 */
+  --text-2: #4a4a5c;
+  /*  8.3:1 */
+  --text-muted: #5f5f73;
+  /*  5.9:1 */
 
   --border: rgba(15, 15, 26, 0.1);
   --border-strong: rgba(15, 15, 26, 0.2);

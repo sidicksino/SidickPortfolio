@@ -57,6 +57,14 @@ strong shade on the light theme all pass 4.5:1):
 | Magenta (original) | `#e748c8` |
 | Lime | `#a3e635` |
 
+**Visitors can switch between the tested colours** with the picker in the
+navbar (`AccentPicker.jsx`). The list lives in
+`src/components/theme/accents.js` and is duplicated in a small inline script
+in `index.html` that applies a saved choice before first paint — keep the two
+in sync. The choice is saved per browser (`localStorage.accent`); the line in
+`index.css` stays the default for anyone who hasn't picked. The picker also
+redraws the tab icon in the chosen colour.
+
 Pick bright colours: `--on-accent` is near-black, so a dark accent would fail.
 
 ```css

@@ -213,7 +213,7 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Have a project, a role or just a question? Write to me — I read everything.",
+    "subtitle": "Have a project, a role or just a question? Write to me I read everything.",
     "name": "Name",
     "email": "Email",
     "subject": "Subject",
@@ -273,5 +273,12 @@
     "kigaliCity": "Kigali",
     "kigaliCountry": "Rwanda",
     "globeAlt": "A rotating wireframe globe marking N'Djamena and Kigali"
+  },
+  "accent": {
+    "label": "Colour theme",
+    "magenta": "Magenta",
+    "aqua": "Aqua",
+    "violet": "Violet",
+    "lime": "Lime"
   }
 }

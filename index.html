@@ -72,6 +72,16 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     />
+    <!-- Apply a visitor's saved colour theme before anything paints, so the
+         page never flashes the default colour first. Keep this list in sync
+         with src/components/theme/accents.js. -->
+    <script>
+      try {
+        var accents = { magenta: "#e748c8", aqua: "#2dd4bf", violet: "#8b7cff", lime: "#a3e635" };
+        var saved = accents[localStorage.getItem("accent")];
+        if (saved) document.documentElement.style.setProperty("--accent", saved);
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,107 @@
+/* Tokens live in src/index.css. The swatch colours themselves are the one
+   place raw brand values appear in markup — they ARE the choices. */
+
+.accent-picker {
+  position: relative;
+}
+
+.accent-picker-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s var(--ease-out);
+}
+
+.accent-picker-btn:hover {
+  border-color: var(--accent-text);
+  transform: translateY(-2px);
+}
+
+.accent-picker-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.accent-picker-pop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 1100;
+  width: 236px;
+  padding: var(--s-4);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px -20px var(--shadow);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accent-picker-pop {
+    animation: accent-pop 0.2s var(--ease-out);
+  }
+}
+
+@keyframes accent-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.accent-picker-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--s-3);
+}
+
+.accent-picker-swatches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-2);
+}
+
+.accent-swatch {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding: 0 var(--s-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.accent-swatch:hover {
+  background: var(--elevated);
+}
+
+.accent-swatch.selected {
+  border-color: var(--text);
+}
+
+.accent-swatch-color {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 50%;
+}

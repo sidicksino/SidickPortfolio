@@ -4,6 +4,7 @@ import "./Navbar.css";
 import LogoMark from "../common/LogoMark";
 import LanguageToggle from "../LanguageToggle";
 import ThemeToggle from "../ThemeToggle";
+import AccentPicker from "../AccentPicker";
 import { CloseIcon, MenuIcon } from "../common/Icons";
 import { useActiveSection } from "../../hooks/useActiveSection";
 
@@ -110,6 +111,7 @@ const Navbar = () => {
             <span className="nav-desktop-only">
               <LanguageToggle />
             </span>
+            <AccentPicker />
             <ThemeToggle />
             <a href="#contact" className="btn btn-primary nav-cta nav-desktop-only">
               {t("nav.getStarted")}
