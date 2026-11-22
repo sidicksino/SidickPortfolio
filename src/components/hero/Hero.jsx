@@ -44,6 +44,7 @@ const fadeUp = (delay) => ({
 const Hero = () => {
   const { t } = useTranslation();
   const heroRef = useRef(null);
+  const portraitRef = useRef(null);
 
   /* Pointer drives two CSS variables: the ring tilt and the spotlight. They're
      written straight to the element inside requestAnimationFrame, so moving
@@ -73,6 +74,39 @@ const Hero = () => {
     return () => {
       cancelAnimationFrame(frame);
       el.removeEventListener("pointermove", onMove);
+    };
+  }, []);
+
+  /* The scan lens: hovering the portrait reveals a "scanned" circle of it
+     (accent dot-matrix over a dimmed photo, like the Scan concept) that
+     follows the cursor. Position goes straight into CSS variables, again
+     without re-rendering. Touch screens have no hover, so they skip it. */
+  useEffect(() => {
+    const el = portraitRef.current;
+    if (!el || !window.matchMedia("(pointer: fine)").matches) return undefined;
+
+    let frame = 0;
+    const onMove = (e) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--sx", `${(e.clientX - r.left).toFixed(1)}px`);
+        el.style.setProperty("--sy", `${(e.clientY - r.top).toFixed(1)}px`);
+      });
+    };
+    const onEnter = (e) => {
+      onMove(e);
+      el.classList.add("is-scanning");
+    };
+    const onLeave = () => el.classList.remove("is-scanning");
+    el.addEventListener("pointerenter", onEnter);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerleave", onLeave);
+    return () => {
+      cancelAnimationFrame(frame);
+      el.removeEventListener("pointerenter", onEnter);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerleave", onLeave);
     };
   }, []);
 
@@ -118,15 +152,29 @@ const Hero = () => {
         <div className="hero-stage">
           <div className="hero-halo" aria-hidden="true" />
           <Orbit />
-          <motion.img
-            className="hero-portrait"
-            src={heroImage}
-            alt={t("hero.portraitAlt")}
-            fetchPriority="high"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
-          />
+          <div
+            className="hero-portrait-wrap"
+            ref={portraitRef}
+            style={{ "--portrait": `url(${heroImage})` }}
+          >
+            <motion.img
+              className="hero-portrait"
+              src={heroImage}
+              alt={t("hero.portraitAlt")}
+              fetchPriority="high"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.1, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
+            />
+            {/* Each layer is masked twice: to his silhouette (the image's own
+                alpha) and to a circle at the cursor. */}
+            <span className="hero-scan hero-scan--dim" aria-hidden="true" />
+            <span className="hero-scan hero-scan--dots" aria-hidden="true" />
+            <span className="hero-scan hero-scan--line" aria-hidden="true" />
+            <span className="hero-scan-ring" aria-hidden="true">
+              <span className="hero-scan-label">{t("hero.scanning")}</span>
+            </span>
+          </div>
           <Orbit front />
 
           {CHIPS.map((chip) => (

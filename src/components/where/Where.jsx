@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import "./Where.css";
 import Reveal from "../common/Reveal";
+import kigaliPhoto from "../../assets/kigali.webp";
 
 /* Sphere radius as a fraction of the stage. The globe is built from CSS
    rings — nine meridians and five parallels — so it needs no 3D library and
@@ -63,15 +64,25 @@ const Where = () => {
           <Reveal as="p" className="section-lead" delay={0.1}>
             {t("where.text")}
           </Reveal>
-          <Reveal className="where-cities" delay={0.15}>
-            {CITIES.map((city) => (
-              <div key={city.key} className="where-city">
-                <span className="where-coords">{city.coords}</span>
-                <h3>{t(`where.${city.key}City`)}</h3>
-                <span className="where-country">{t(`where.${city.key}Country`)}</span>
-              </div>
-            ))}
-          </Reveal>
+          <div className="where-detail">
+            {/* A real photo from Kigali — the city on the globe, in person. */}
+            <Reveal as="figure" className="where-photo" delay={0.15}>
+              <img src={kigaliPhoto} alt={t("where.photoAlt")} loading="lazy" />
+              <figcaption>
+                <span className="where-photo-dot" aria-hidden="true" />
+                {t("where.photoCaption")}
+              </figcaption>
+            </Reveal>
+            <Reveal className="where-cities" delay={0.2}>
+              {CITIES.map((city) => (
+                <div key={city.key} className="where-city">
+                  <span className="where-coords">{city.coords}</span>
+                  <h3>{t(`where.${city.key}City`)}</h3>
+                  <span className="where-country">{t(`where.${city.key}Country`)}</span>
+                </div>
+              ))}
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

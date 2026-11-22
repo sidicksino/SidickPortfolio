@@ -60,11 +60,13 @@
   }
 }
 
+/* The lake photo, cut out by a background-removal model (not regenerated,
+   so the face is untouched). Seated, so it sits on the card's bottom edge. */
 .about-portrait img {
   position: absolute;
   left: 50%;
-  bottom: -10%;
-  height: 105%;
+  bottom: 0;
+  height: 92%;
   width: auto;
   max-width: none;
   transform: translateX(-50%);

@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import "./About.css";
 import Reveal from "../common/Reveal";
-import portrait from "../../assets/hero-cutout.webp";
+import portrait from "../../assets/about-portrait.webp";
 
 /* Four cards that pile up as you scroll. Each one sticks a little lower than
    the last, so the earlier cards stay peeking out above the newest. The last

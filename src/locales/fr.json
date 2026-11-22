@@ -21,7 +21,8 @@
     "ctaWork": "Voir mes projets",
     "badge": "DATA SCIENTIST • DÉVELOPPEUR FULL-STACK • ",
     "scroll": "Défiler",
-    "portraitAlt": "Sidick Abdoulaye Hissein"
+    "portraitAlt": "Sidick Abdoulaye Hissein",
+    "scanning": "ANALYSE…"
   },
   "about": {
     "title": "À Propos",
@@ -272,7 +273,9 @@
     "ndjamenaCountry": "Tchad",
     "kigaliCity": "Kigali",
     "kigaliCountry": "Rwanda",
-    "globeAlt": "Un globe filaire en rotation qui marque N'Djamena et Kigali"
+    "globeAlt": "Un globe filaire en rotation qui marque N'Djamena et Kigali",
+    "photoAlt": "Sidick en jalabiya et turban blancs devant le Kigali Convention Centre",
+    "photoCaption": "KIGALI CONVENTION CENTRE"
   },
   "accent": {
     "label": "Couleur du thème",

@@ -120,16 +120,145 @@
   );
 }
 
-.hero-portrait {
+/* The wrapper is exactly the portrait's box, so the scan lens reacts only
+   over the image. Aspect ratio is the cutout's 638×1404. */
+.hero-portrait-wrap {
+  --sx: 50%;
+  --sy: 25%;
+  --lens: 120px; /* lens radius */
   position: absolute;
   left: 50%;
   bottom: 0;
   z-index: 2;
   height: calc(var(--stage-h) * 0.97);
-  width: auto;
-  max-width: none;
-  margin-left: calc(var(--stage-h) * -0.2204);
+  aspect-ratio: 638 / 1404;
+  transform: translateX(-50%);
+  cursor: crosshair;
+}
+
+.hero-portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
   filter: drop-shadow(0 0 40px var(--accent-glow));
+}
+
+/* ---- Scan lens ----------------------------------------------------------- */
+.hero-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  -webkit-mask-image:
+    var(--portrait),
+    radial-gradient(circle var(--lens) at var(--sx) var(--sy), #000 70%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-image:
+    var(--portrait),
+    radial-gradient(circle var(--lens) at var(--sx) var(--sy), #000 70%, transparent 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-repeat: no-repeat;
+  mask-composite: intersect;
+}
+
+.hero-scan--dim {
+  background: rgba(7, 7, 12, 0.62);
+}
+
+.hero-scan--dots {
+  background: radial-gradient(circle, var(--accent) 1.3px, transparent 1.9px) 0 0 / 6px 6px;
+  filter: drop-shadow(0 0 2px var(--accent));
+}
+
+.hero-scan--line {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 220px,
+    var(--accent) 220px 222px,
+    transparent 222px 240px
+  );
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+.hero-portrait-wrap.is-scanning .hero-scan,
+.hero-portrait-wrap.is-scanning .hero-scan-ring {
+  opacity: 1;
+}
+
+.hero-scan-ring {
+  position: absolute;
+  left: var(--sx);
+  top: var(--sy);
+  width: calc(var(--lens) * 2);
+  height: calc(var(--lens) * 2);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  box-shadow:
+    0 0 24px var(--accent-glow),
+    inset 0 0 24px var(--accent-glow);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Crosshair ticks at the four compass points. */
+.hero-scan-ring::before,
+.hero-scan-ring::after {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+}
+
+.hero-scan-ring::before {
+  left: 50%;
+  top: -8px;
+  bottom: -8px;
+  width: 1px;
+  transform: translateX(-50%);
+  mask-image: linear-gradient(#000 0 14px, transparent 14px calc(100% - 14px), #000 calc(100% - 14px));
+  -webkit-mask-image: linear-gradient(#000 0 14px, transparent 14px calc(100% - 14px), #000 calc(100% - 14px));
+}
+
+.hero-scan-ring::after {
+  top: 50%;
+  left: -8px;
+  right: -8px;
+  height: 1px;
+  transform: translateY(-50%);
+  mask-image: linear-gradient(90deg, #000 0 14px, transparent 14px calc(100% - 14px), #000 calc(100% - 14px));
+  -webkit-mask-image: linear-gradient(90deg, #000 0 14px, transparent 14px calc(100% - 14px), #000 calc(100% - 14px));
+}
+
+.hero-scan-label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--overlay);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent-text);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-scan--line {
+    animation: hero-scanline 1.8s linear infinite;
+  }
+}
+
+@keyframes hero-scanline {
+  to {
+    background-position: 0 240px;
+  }
 }
 
 .orbit {
