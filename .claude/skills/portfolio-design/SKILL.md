@@ -30,7 +30,8 @@ Navbar → Hero (Portal) → 01 About → 02 Where I build from (globe) → 03 S
 
 ## The three rules that matter most
 
-1. **One accent colour.** Magenta `#e748c8` is the brand — it's in the logo.
+1. **One accent colour.** Electric violet `#8b7cff` is the brand (was magenta,
+   then aqua, on 2026-11-22) — it's in the logo.
    Everything interactive is magenta. Nothing else is chromatic, except the
    exceptions listed below.
 2. **Colour carries meaning, never decoration.**
@@ -51,9 +52,9 @@ strong shade on the light theme all pass 4.5:1):
 
 | Colour | Hex |
 |---|---|
-| Magenta (current) | `#e748c8` |
+| Electric violet (current) | `#8b7cff` |
 | Aqua | `#2dd4bf` |
-| Electric violet | `#8b7cff` |
+| Magenta (original) | `#e748c8` |
 | Lime | `#a3e635` |
 
 Pick bright colours: `--on-accent` is near-black, so a dark accent would fail.

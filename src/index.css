@@ -22,7 +22,7 @@
      and the light theme darkens the accent for text, so a mid-to-light
      colour works in both themes. Tested choices (see SKILL.md):
        #e748c8 magenta · #2dd4bf aqua · #8b7cff violet · #a3e635 lime */
-  --accent: #e748c8;
+  --accent: #8b7cff;
 
   --accent-hover: color-mix(in oklab, var(--accent) 75%, white);
   /* 60% is the darkest mix that still keeps every tested colour at 4.5:1+
