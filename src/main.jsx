@@ -15,6 +15,7 @@ if (chatApi) {
   widget.defer = true;
   widget.dataset.api = chatApi;
   widget.dataset.color = "var(--accent)";
+  widget.dataset.onColor = "var(--on-accent)"; // dark text: every brand colour here is light
   widget.dataset.theme = "page"; // follow the portfolio's own light/dark toggle
   document.body.appendChild(widget); // bottom-right (the theme toggle is in the Navbar)
 }

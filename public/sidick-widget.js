@@ -18,6 +18,9 @@
   var CUSTOM_TITLE = script && script.dataset.title;
   var FORCED_LANG = script && script.dataset.lang;
   var ACCENT = (script && script.dataset.color) || "#7c3aed";
+  // Text/icon colour on accent fills. White suits dark accents; a light accent
+  // (lime, aqua) needs dark text, so the host page can pass data-on-color.
+  var ON_ACCENT = (script && script.dataset.onColor) || "#fff";
   var LEFT = script && script.dataset.position === "left";
   var PAGE_THEME = script && script.dataset.theme === "page";
 
@@ -71,23 +74,23 @@
   var woke = false;
 
   var css = [
-    ".sw-root{--sw-accent:" + ACCENT + ";--sw-bg:#fff;--sw-fg:#1f2330;--sw-muted:#6b7080;--sw-bot:#f1f2f6;--sw-border:#e3e5ec;",
+    ".sw-root{--sw-accent:" + ACCENT + ";--sw-on-accent:" + ON_ACCENT + ";--sw-bg:#fff;--sw-fg:#1f2330;--sw-muted:#6b7080;--sw-bot:#f1f2f6;--sw-border:#e3e5ec;",
     "position:fixed;right:20px;bottom:20px;z-index:2147483000;font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}",
     "@media (prefers-color-scheme:dark){.sw-root{--sw-bg:#17181d;--sw-fg:#ececf1;--sw-muted:#9a9db0;--sw-bot:#24262e;--sw-border:#30323c}}",
     ".sw-root.sw-page{--sw-bg:var(--surface,#fff);--sw-fg:var(--text,#1f2330);--sw-muted:var(--text-muted,#6b7080);",
     "--sw-bot:var(--bg,#f1f2f6);--sw-border:var(--border,#e3e5ec)}",
     ".sw-root.sw-left{right:auto;left:20px}",
     ".sw-left .sw-btn{margin-left:0}",
-    ".sw-btn{width:58px;height:58px;border-radius:50%;border:0;background:var(--sw-accent);color:#fff;cursor:pointer;",
+    ".sw-btn{width:58px;height:58px;border-radius:50%;border:0;background:var(--sw-accent);color:var(--sw-on-accent);cursor:pointer;",
     "box-shadow:0 6px 20px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;margin-left:auto}",
     ".sw-btn svg{width:28px;height:28px}",
     ".sw-panel{display:none;flex-direction:column;width:min(380px,calc(100vw - 32px));height:min(560px,calc(100vh - 110px));",
     "background:var(--sw-bg);color:var(--sw-fg);border:1px solid var(--sw-border);border-radius:16px;overflow:hidden;",
     "box-shadow:0 12px 40px rgba(0,0,0,.25);margin-bottom:12px}",
     ".sw-open .sw-panel{display:flex}",
-    ".sw-head{background:var(--sw-accent);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600}",
+    ".sw-head{background:var(--sw-accent);color:var(--sw-on-accent);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600}",
     ".sw-head small{display:block;font-weight:400;opacity:.85;font-size:12px}",
-    ".sw-x{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;line-height:1}",
+    ".sw-x{background:none;border:0;color:var(--sw-on-accent);font-size:22px;cursor:pointer;line-height:1}",
     ".sw-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}",
     ".sw-m{max-width:85%;padding:9px 12px;border-radius:14px;overflow-wrap:anywhere}",
     ".sw-m a{color:inherit;text-decoration:underline}",
@@ -100,14 +103,14 @@
     ".sw-m code{font:0.9em ui-monospace,SFMono-Regular,Menlo,monospace;background:rgba(127,127,127,.15);padding:1px 4px;border-radius:4px}",
     ".sw-m strong{font-weight:700}",
     ".sw-bot{background:var(--sw-bot);align-self:flex-start;border-bottom-left-radius:4px}",
-    ".sw-user{background:var(--sw-accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}",
+    ".sw-user{background:var(--sw-accent);color:var(--sw-on-accent);align-self:flex-end;border-bottom-right-radius:4px}",
     ".sw-err{color:#c2410c}",
     ".sw-sugs{display:flex;flex-wrap:wrap;gap:6px}",
     ".sw-sug{border:1px solid var(--sw-border);background:none;color:var(--sw-fg);border-radius:999px;padding:5px 10px;font-size:13px;cursor:pointer}",
     ".sw-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--sw-border)}",
     ".sw-in{flex:1;min-width:0;border:1px solid var(--sw-border);background:var(--sw-bg);color:var(--sw-fg);border-radius:10px;padding:9px 11px;font:inherit;outline:none}",
     ".sw-in:focus{border-color:var(--sw-accent)}",
-    ".sw-send{border:0;background:var(--sw-accent);color:#fff;border-radius:10px;padding:0 14px;font:inherit;cursor:pointer}",
+    ".sw-send{border:0;background:var(--sw-accent);color:var(--sw-on-accent);border-radius:10px;padding:0 14px;font:inherit;cursor:pointer}",
     ".sw-send:disabled{opacity:.5;cursor:default}",
     ".sw-dots::after{content:'…';animation:sw-blink 1s infinite}",
     "@keyframes sw-blink{50%{opacity:.2}}",

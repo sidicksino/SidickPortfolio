@@ -45,7 +45,10 @@ accent shade is derived from it with `color-mix()` — hover, strong (light-them
 text), subtle, glow, `--fam-1`, and the logo (`<LogoMark>` uses
 `currentColor`). Never hard-code an accent shade anywhere else, or changing
 the brand colour stops working. Exceptions that can't follow CSS:
-`public/favicon.svg` and `public/preview.jpg` (update by hand).
+`public/favicon.svg` and `public/preview.jpg` — update both by hand
+when you change the default `--accent` (the picker redraws the tab icon at
+runtime, but search results and first paint use the file). The chat widget
+reads `--accent` and `--on-accent` via `main.jsx`.
 
 Tested choices (dark text on the fill, accent text on dark, and the derived
 strong shade on the light theme all pass 4.5:1):
