@@ -17,7 +17,7 @@
     "eyebrow": "Data Scientist · Développeur Full-Stack",
     "hello": "Salut, je suis",
     "name": "Sidick.",
-    "lead": "Je transforme des données brutes et des idées en plateformes web, applications mobiles et outils de machine learning que les gens utilisent vraiment — entre N'Djamena et Kigali.",
+    "lead": "Je transforme des données brutes et des idées en plateformes web, applications mobiles et outils de machine learning que les gens utilisent vraiment entre N'Djamena et Kigali.",
     "ctaWork": "Voir mes projets",
     "badge": "DATA SCIENTIST • DÉVELOPPEUR FULL-STACK • ",
     "scroll": "Défiler",
@@ -67,12 +67,12 @@
       "how": {
         "label": "Comment je travaille",
         "title": "Itérer vite. Livrer souvent. Prouver que ça marche.",
-        "text": "Je valide les idées avec des prototypes fonctionnels plutôt qu'avec des plans — puis je continue de les améliorer."
+        "text": "Je valide les idées avec des prototypes fonctionnels plutôt qu'avec des plans puis je continue de les améliorer."
       },
       "mission": {
         "label": "Ma mission",
         "title": "Des produits qui servent vraiment les étudiants et les entrepreneurs à travers l'Afrique.",
-        "text": "Évolutifs, fiables et simples à utiliser — guidés par l'impact et l'amélioration continue."
+        "text": "Évolutifs, fiables et simples à utiliser guidés par l'impact et l'amélioration continue."
       }
     }
   },
@@ -91,7 +91,7 @@
     "uiDesignDesc": "Des interfaces claires et utilisables, conçues dans Figma avant la première ligne de code.",
     "consulting": "Conseil Technologique",
     "consultingDesc": "De l’aide pour choisir la bonne stack, le bon périmètre et les bonnes priorités pour ton produit.",
-    "subtitle": "De la première esquisse au produit entre les mains des utilisateurs — je conçois, développe et livre de bout en bout.",
+    "subtitle": "De la première esquisse au produit entre les mains des utilisateurs je conçois, développe et livre de bout en bout.",
     "headline": "Ce que je peux",
     "headlineAccent": "construire pour toi."
   },
@@ -214,7 +214,7 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Un projet, un poste ou simplement une question ? Écris-moi — je lis tout.",
+    "subtitle": "Un projet, un poste ou simplement une question ? Écris-moi je lis tout.",
     "name": "Nom",
     "email": "Email",
     "subject": "Sujet",
@@ -268,7 +268,7 @@
     "eyebrow": "D'où je construis",
     "titleA": "Deux villes.",
     "titleB": "Une mission.",
-    "text": "Je travaille entre le Tchad et le Rwanda, en créant des produits numériques qui servent vraiment les étudiants et les entrepreneurs à travers l'Afrique — évolutifs, fiables et simples à utiliser.",
+    "text": "Je travaille entre le Tchad et le Rwanda, en créant des produits numériques qui servent vraiment les étudiants et les entrepreneurs à travers l'Afrique évolutifs, fiables et simples à utiliser.",
     "ndjamenaCity": "N'Djamena",
     "ndjamenaCountry": "Tchad",
     "kigaliCity": "Kigali",
