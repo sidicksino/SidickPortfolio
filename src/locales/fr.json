@@ -48,8 +48,32 @@
     "tileStackDataValue": "Machine learning, analyse et visualisation",
     "tileStackProductLabel": "Produit",
     "tileStackProductValue": "Plateformes web et applications mobiles",
-    "statement": "Je pars d'une donnée brute et d'une maquette pour arriver à quelque chose que les gens peuvent vraiment utiliser. J'itère vite, je livre souvent et je prouve avec des prototypes fonctionnels plutôt qu'avec des plans.",
-    "photoAlt": "Sidick Abdoulaye Hissein à une table de café"
+    "photoAlt": "Sidick Abdoulaye Hissein",
+    "headline": "Curieux. Ingénieux.",
+    "headlineAccent": "Soucieux du détail.",
+    "scrollHint": "défile — quatre cartes, une histoire",
+    "cards": {
+      "who": {
+        "label": "Qui je suis",
+        "title": "Étudiant en Data Science et créateur orienté produit.",
+        "text": "Entre N'Djamena et Kigali. J'attache de l'importance à la clarté, à l'utilisabilité et à une expérience fluide pour de vrais utilisateurs."
+      },
+      "what": {
+        "label": "Ce que je fais",
+        "title": "Plateformes web, applications mobiles et outils de machine learning.",
+        "text": "De la donnée brute et d'une maquette jusqu'à quelque chose que les gens peuvent vraiment utiliser."
+      },
+      "how": {
+        "label": "Comment je travaille",
+        "title": "Itérer vite. Livrer souvent. Prouver que ça marche.",
+        "text": "Je valide les idées avec des prototypes fonctionnels plutôt qu'avec des plans — puis je continue de les améliorer."
+      },
+      "mission": {
+        "label": "Ma mission",
+        "title": "Des produits qui servent vraiment les étudiants et les entrepreneurs à travers l'Afrique.",
+        "text": "Évolutifs, fiables et simples à utiliser — guidés par l'impact et l'amélioration continue."
+      }
+    }
   },
   "cta": {
     "title": "Un projet en tête ?",

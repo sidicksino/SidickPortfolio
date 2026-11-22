@@ -48,8 +48,32 @@
     "tileStackDataValue": "Machine learning, analysis and visualisation",
     "tileStackProductLabel": "Product",
     "tileStackProductValue": "Web platforms and mobile apps",
-    "statement": "I take an idea from raw data and a rough design through to something people can actually use. I iterate quickly, ship often, and prove things with working prototypes rather than plans.",
-    "photoAlt": "Sidick Abdoulaye Hissein at a café table"
+    "photoAlt": "Sidick Abdoulaye Hissein",
+    "headline": "Curious. Resourceful.",
+    "headlineAccent": "Detail-oriented.",
+    "scrollHint": "scroll — four cards, one story",
+    "cards": {
+      "who": {
+        "label": "Who I am",
+        "title": "A Data Science student and product-minded builder.",
+        "text": "Working between N'Djamena and Kigali. I care about clarity, usability and a smooth experience for real users."
+      },
+      "what": {
+        "label": "What I do",
+        "title": "Web platforms, mobile apps and machine-learning tools.",
+        "text": "From raw data and a rough design to something people can actually use."
+      },
+      "how": {
+        "label": "How I work",
+        "title": "Iterate quickly. Ship often. Prove it working.",
+        "text": "I validate ideas with working prototypes rather than plans — then keep improving them."
+      },
+      "mission": {
+        "label": "My mission",
+        "title": "Products that genuinely serve students and entrepreneurs across Africa.",
+        "text": "Scalable, reliable and simple to use — driven by impact and continuous improvement."
+      }
+    }
   },
   "cta": {
     "title": "Have a project in mind?",

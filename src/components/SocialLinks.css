@@ -1,10 +1,6 @@
 /* Design tokens live in src/index.css — the single source of truth.
    Do not redeclare tokens here.
 
-   The class is `social-row`, not `social-links`: HeroPage.css already owns
-   `.social-links`, CSS here isn't scoped, and two files styling one class is
-   how the logo gradient silently diverged between routes.
-
    HOVER: each network's own brand colour floods in from the centre. `--brand`
    is set per link from siteData.js. This is a narrow, deliberate exception to
    the one-accent rule — people recognise these marks by colour, and a GitHub

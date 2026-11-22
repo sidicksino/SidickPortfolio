@@ -87,8 +87,11 @@ for the admin dashboard and NotFound. Never introduce a new use.
 - Decorative loops are allowed **only** in: the hero rings, hero badge and
   floating chips, the globe, the green status dot, the tech cubes and the
   scroll cue. Content (text, cards, photos) never loops.
-- The About statement brightens word by word via CSS `animation-timeline:
-  view()` (`.reveal-word`); browsers without it show plain text.
+- About is four sticky cards that pile up as you scroll (each sticks 28px
+  lower than the last) and settle in via `animation-timeline: view()`.
+  Sticky only works because html/body use `overflow-x: clip` — never change
+  that back to `hidden`. Below 900px the cards are a plain column. The
+  About portrait reuses the hero cutout on a magenta glow — Sidick's call.
 - Pointer effects (hero ring tilt and spotlight) write CSS variables inside
   `requestAnimationFrame` — never React state — and are skipped for touch and
   reduced motion.
