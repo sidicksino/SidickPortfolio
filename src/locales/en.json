@@ -6,30 +6,22 @@
     "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact",
-    "getStarted": "Get Started",
+    "getStarted": "Let's talk",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "lightMode": "Switch to light mode",
     "darkMode": "Switch to dark mode"
   },
   "hero": {
-    "greeting": "Hi,",
-    "namePart": "I'm",
-    "title": "Data Scientist | Full Stack Developer | ML Enthusiast",
-    "subtitle": "Crafting beautiful, functional digital experiences with modern technologies",
-    "cta": "More About Me",
-    "downloadCV": "Download CV"
-  },
-  "features": {
-    "title": "Capabilities",
-    "connectedCapabilities": "Connected Capabilities",
-    "advancedIntelligence": "Advanced Intelligence",
-    "trueFlexibility": "True Flexibility",
-    "collaborativeWork": "Collaborative Work",
-    "desc1": "Seamless integration across all your tools",
-    "desc2": "AI-powered insights and automation",
-    "desc3": "Adapt to any workflow or need",
-    "desc4": "Work together in real-time"
+    "downloadCV": "Download CV",
+    "eyebrow": "Data Scientist · Full-Stack Developer",
+    "hello": "Hi, I'm",
+    "name": "Sidick.",
+    "lead": "I turn raw data and rough ideas into web platforms, mobile apps and machine-learning tools people actually use — from N'Djamena and Kigali.",
+    "ctaWork": "See my work",
+    "badge": "DATA SCIENTIST • FULL-STACK DEVELOPER • ",
+    "scroll": "Scroll",
+    "portraitAlt": "Sidick Abdoulaye Hissein"
   },
   "about": {
     "title": "About Me",
@@ -55,12 +47,14 @@
     "tileStackDataLabel": "Data",
     "tileStackDataValue": "Machine learning, analysis and visualisation",
     "tileStackProductLabel": "Product",
-    "tileStackProductValue": "Web platforms and mobile apps"
+    "tileStackProductValue": "Web platforms and mobile apps",
+    "statement": "I take an idea from raw data and a rough design through to something people can actually use. I iterate quickly, ship often, and prove things with working prototypes rather than plans.",
+    "photoAlt": "Sidick Abdoulaye Hissein at a café table"
   },
   "cta": {
-    "title": "Let's Work Together",
-    "text": "Interested in collaborating or have a project in mind?",
-    "button": "Get in Touch"
+    "title": "Have a project in mind?",
+    "text": "Tell me what you're building — I usually reply within a day or two.",
+    "button": "Get in touch"
   },
   "services": {
     "title": "Services",
@@ -69,10 +63,12 @@
     "mobileApp": "Mobile Development",
     "mobileAppDesc": "Cross-platform mobile apps with React Native and Expo.",
     "uiDesign": "UI/UX Design",
-    "uiDesignDesc": "Beautiful, user-centric interfaces that engage and convert",
+    "uiDesignDesc": "Clear, usable interfaces designed in Figma before a line of code is written.",
     "consulting": "Tech Consulting",
-    "consultingDesc": "Strategic guidance for your tech projects and digital transformation",
-    "subtitle": "I create tailor made digital experiences performant, aesthetic, and intelligent."
+    "consultingDesc": "Help choosing the right stack, scope and priorities for your product.",
+    "subtitle": "From the first sketch to a product in people’s hands — I design, build and ship it end to end.",
+    "headline": "What I can",
+    "headlineAccent": "build for you."
   },
   "projects": {
     "title": "My Projects",
@@ -175,20 +171,11 @@
     }
   },
   "projectsPage": {
-    "webTitle": "My Web Projects",
-    "webIntro": "Here is a selection of my most recent and impactful web applications.",
-    "aiTitle": "My ML & AI Projects",
-    "aiIntro": "Intelligent models for automation, prediction, and optimization.",
-    "mobileTitle": "My Mobile Projects",
-    "mobileIntro": "iOS & Android applications designed for the best user experience.",
-    "designTitle": "My Design Projects",
-    "designIntro": "UI/UX and product designs showcasing modern interfaces.",
-    "viewLive": "View Live",
     "viewCode": "Code",
     "backHome": "Back to portfolio"
   },
   "skills": {
-    "title": "My Skills",
+    "title": "Skills",
     "data": "Data Science & Visualization",
     "frontend": "Frontend Development",
     "backend": "Backend Development",
@@ -196,11 +183,13 @@
     "dataTools": "Python, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau, Matplotlib, Seaborn",
     "frontendTools": "HTML, CSS, JavaScript, React.js",
     "mobileTools": "React Native, Expo, Figma",
-    "backendTools": "Node.js, SQL, MySQL, MongoDB"
+    "backendTools": "Node.js, SQL, MySQL, MongoDB",
+    "headline": "The toolkit behind",
+    "headlineAccent": "the work."
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Ready to create something extraordinary together? Write to me.",
+    "subtitle": "Have a project, a role or just a question? Write to me — I read everything.",
     "name": "Name",
     "email": "Email",
     "subject": "Subject",
@@ -208,38 +197,57 @@
     "send": "Send",
     "sending": "Sending...",
     "sentSuccess": "Message sent!",
-    "sentSuccessMsg": "I'll reply very soon 💜",
+    "sentSuccessMsg": "I'll reply very soon.",
     "sentError": "Error, message not sent!",
     "contactByEmail": "Contact us by email",
     "location": "Location",
     "phone": "Phone",
     "ndjamena": "N'djamena, Chad",
-    "kigali": "Kigali, Rwanda"
+    "kigali": "Kigali, Rwanda",
+    "headline": "Let's build",
+    "headlineAccent": "something together."
   },
   "footer": {
-    "madeWith": "Made with",
-    "text": "Creating tailor-made digital experiences elegant, smart, and performant.",
-    "byMe": "SidickSino",
+    "text": "Data scientist and full-stack developer, building for students and entrepreneurs across Africa.",
     "rights": "All rights reserved",
-    "followMe": "Follow Me",
     "navigation": "Navigation",
-    "contact": "Contact"
+    "contact": "Contact",
+    "backToTop": "Back to top"
   },
   "featured": {
-    "title": "Featured Work",
-    "subtitle": "A selection of things I've built and shipped — client platforms, products and machine-learning apps.",
+    "title": "Things I have",
+    "subtitle": "Client platforms, products and machine-learning apps. Filter by type, or open any project live.",
     "viewLive": "Visit site",
-    "seeAll": "Browse all {{count}} projects",
-    "viewDetails": "See details"
+    "eyebrow": "Work",
+    "titleAccent": "built and shipped.",
+    "filterLabel": "Filter projects",
+    "viewDesign": "Open in Figma",
+    "filter": {
+      "featured": "Featured",
+      "web": "Web",
+      "mobile": "Mobile",
+      "ai": "ML & AI",
+      "design": "Design",
+      "all": "All"
+    }
   },
   "seo": {
     "title": "Sidick Abdoulaye Hissein | Data Scientist & Full-Stack Developer",
-    "description": "Portfolio of Sidick Abdoulaye Hissein — Data Scientist and Full-Stack Developer based in N'Djamena and Kigali. Web platforms, mobile apps and machine-learning products.",
-    "heroPageTitle": "About Sidick Abdoulaye Hissein | Data Scientist & Full-Stack Developer",
-    "heroPageDescription": "More about Sidick Abdoulaye Hissein — background, approach and the journey from data analysis into full-stack and machine-learning work."
+    "description": "Portfolio of Sidick Abdoulaye Hissein — Data Scientist and Full-Stack Developer based in N'Djamena and Kigali. Web platforms, mobile apps and machine-learning products."
   },
   "notFound": {
     "title": "This page doesn’t exist",
     "text": "The link may be broken, or the page may have moved. Everything else is still where you left it."
+  },
+  "where": {
+    "eyebrow": "Where I build from",
+    "titleA": "Two cities.",
+    "titleB": "One mission.",
+    "text": "I work between Chad and Rwanda, building digital products that genuinely serve students and entrepreneurs across Africa — scalable, reliable and simple to use.",
+    "ndjamenaCity": "N'Djamena",
+    "ndjamenaCountry": "Chad",
+    "kigaliCity": "Kigali",
+    "kigaliCountry": "Rwanda",
+    "globeAlt": "A rotating wireframe globe marking N'Djamena and Kigali"
   }
 }

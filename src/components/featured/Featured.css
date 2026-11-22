@@ -1,267 +1,226 @@
-/* Design tokens live in src/index.css — the single source of truth.
-   Do not redeclare tokens here. */
+/* Work — the filterable project grid. Tokens live in src/index.css. */
 
-.featured-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--s-9) var(--s-6);
-  font-family: var(--font-body);
+.work-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-6);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-7);
 }
 
-/* ===== Heading ===== */
-.featured-head {
-  text-align: center;
-  margin-bottom: var(--s-8);
+.work-head .section-head {
+  margin-bottom: 0;
 }
 
-.featured-head h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 900;
-  color: var(--accent-text);
-  margin: 0 0 var(--s-3);
-  line-height: 1.15;
+.work-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
 }
 
-.featured-head p {
+.work-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
   color: var(--text-2);
-  font-size: 1.05rem;
-  max-width: 60ch;
-  margin: 0 auto;
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-/* ===== Grid ===== */
-.featured-grid {
+.work-filter:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.work-filter.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.work-filter-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.work-grid {
   display: grid;
-  /* Fixed 4x2 on desktop. auto-fill with a 320px floor resolved to 3 columns
-     at this width, which is what made the cards 424px wide. */
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--s-5);
 }
 
-/* ===== Card — the whole card is the link ===== */
-.featured-card {
+.work-card {
   display: flex;
   flex-direction: column;
+  border-radius: var(--radius-lg);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.4s var(--ease-out);
 }
 
-.featured-card:hover,
-.featured-card:focus-visible {
-  transform: translateY(-4px);
-  border-color: var(--card-color);
-  box-shadow: 0 16px 40px var(--shadow);
+@media (hover: hover) {
+  .work-card:hover {
+    border-color: color-mix(in srgb, var(--card-color) 50%, transparent);
+    box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--card-color) 45%, transparent);
+    transform: translateY(-6px);
+  }
+
+  .work-card:hover .work-media img {
+    transform: scale(1.06);
+  }
 }
 
-.featured-card:focus-visible {
-  outline: 2px solid var(--card-color);
-  outline-offset: 3px;
-}
-
-/* ===== Media ===== */
-.featured-media {
+.work-media {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--elevated);
 }
 
-.featured-media img {
+.work-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: top;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s var(--ease-out);
 }
 
-.featured-card:hover .featured-media img {
-  transform: scale(1.04);
-}
-
-/* Category pill, tinted from the card's own hue */
-.featured-tag {
+.work-media-empty {
   position: absolute;
-  /* Bottom, not top: object-position is `top center`, so the top strip of every
-     screenshot is the app's own header — the pill sat on top of its title. */
-  bottom: var(--s-3);
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--card-color) 30%, transparent), transparent 70%);
+}
+
+.work-tag {
+  position: absolute;
   left: var(--s-3);
-  font-size: 0.72rem;
-  font-weight: 600;
+  top: var(--s-3);
+  padding: 4px 12px;
+  border-radius: 999px;
+  /* Solid, not translucent: the --fam-* hues are tuned to ~5:1 on --surface,
+     and a see-through pill over a bright screenshot fell to 4.2:1. */
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--card-color) 45%, transparent);
+  color: var(--card-color);
+  font-family: var(--font-mono);
+  font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--card-color);
-  /* Opaque, not translucent: over a photo the effective background was
-     unpredictable and the 11.5px label landed at ~4.15:1. */
-  background: var(--bg);
-  border: 1px solid color-mix(in srgb, var(--card-color) 45%, transparent);
-  padding: 5px 11px;
-  border-radius: 999px;
-  backdrop-filter: blur(6px);
 }
 
-/* Placeholder for a project with no screenshot yet */
-.featured-media-empty {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    var(--elevated),
-    color-mix(in srgb, var(--card-color) 14%, var(--elevated))
-  );
-}
-
-/* ===== Body ===== */
-.featured-body {
+.work-body {
   display: flex;
   flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
   flex: 1;
-  padding: var(--s-4) var(--s-4) var(--s-4);
-  gap: var(--s-2);
 }
 
-.featured-body h3 {
-  font-family: var(--font-display);
-  font-size: 1.12rem;
-  font-weight: 900;
-  color: var(--text);
-  margin: 0;
-  line-height: 1.25;
+.work-body h3 {
+  font-size: 22px;
+  font-weight: 600;
 }
 
-.featured-body > p {
+.work-body p {
   color: var(--text-2);
-  font-size: 0.88rem;
+  font-size: 15px;
   line-height: 1.55;
-  margin: 0;
-  flex: 1;
-  /* Capped at two lines. The longest blurb set every card's height, since the
-     paragraph is the flex-grow element — one 3-line description made all six
-     cards 24px taller. */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ===== Tech chips ===== */
-.featured-tech {
+.work-tech {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-2);
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 6px;
 }
 
-.featured-tech li {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
+.work-tech li {
+  padding: 3px 10px;
   border-radius: 999px;
-  padding: 4px 10px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
-/* ===== CTA ===== */
-.featured-cta {
+.work-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin-top: auto;
+  padding-top: var(--s-2);
+}
+
+.work-link {
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--card-color);
-  margin-top: var(--s-1);
-}
-
-.featured-cta svg {
-  font-size: 0.75rem;
-  transition: transform 0.3s ease;
-}
-
-.featured-card:hover .featured-cta svg {
-  transform: translate(2px, -2px);
-}
-
-/* ===== See-all link ===== */
-.featured-all {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-2);
-  margin: var(--s-8) auto 0;
-  width: fit-content;
-  padding: 13px 30px;
-  border-radius: 999px;
-  border: 2px solid var(--accent-text);
-  color: var(--accent-text);
+  min-height: 44px;
+  color: var(--text-2);
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  transition: color 0.2s ease;
 }
 
-.featured-all:hover,
-.featured-all:focus-visible {
-  background: var(--accent-strong);
-  color: var(--on-accent);
-  transform: translateY(-3px);
+.work-link:hover {
+  color: var(--text);
 }
 
-.featured-all svg {
-  transition: transform 0.3s ease;
+.work-link--primary {
+  color: var(--accent-text);
 }
 
-.featured-all:hover svg {
-  transform: translateX(4px);
+.work-link--primary:hover {
+  color: var(--accent-hover);
 }
 
-/* Entrance animations only; nothing loops. */
-@media (prefers-reduced-motion: reduce) {
-  .featured-card,
-  .featured-media img,
-  .featured-cta svg,
-  .featured-all,
-  .featured-all svg {
-    transition: none;
-  }
+.work-link svg {
+  width: 14px;
+  height: 14px;
+}
 
-  .featured-card:hover {
-    transform: none;
-  }
-
-  .featured-card:hover .featured-media img {
-    transform: none;
+@media (max-width: 1024px) {
+  .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1180px) {
-  .featured-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .featured-section {
-    padding: var(--s-8) var(--s-4);
-  }
-
-  .featured-grid {
+@media (max-width: 640px) {
+  .work-grid {
     grid-template-columns: 1fr;
-    gap: var(--s-5);
   }
 
-  /* Phones show the best six; cards 7-8 exist for the desktop 4x2 only.
-     display:none also keeps their lazy images from ever being fetched. */
-  .featured-card:nth-child(n + 7) {
-    display: none;
+  .work-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0 calc(var(--s-5) * -1);
+    padding: 0 var(--s-5) var(--s-2);
+    scrollbar-width: none;
+  }
+
+  .work-filter {
+    flex: none;
   }
 }

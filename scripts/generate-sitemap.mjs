@@ -16,13 +16,9 @@ const SITE = "https://sidick.vercel.app";
 const LANGUAGES = ["en", "fr"];
 
 /** Add a route here when you add one to App.jsx. */
-const ROUTES = [
-  { path: "/", priority: "1.0" },
-  { path: "/projects/web", priority: "0.8" },
-  { path: "/projects/mobile", priority: "0.8" },
-  { path: "/projects/design", priority: "0.8" },
-  { path: "/projects/ai", priority: "0.8" },
-];
+// One page since the 2026-11 redesign: /projects/* now open the homepage's
+// Work grid, so listing them would only index the same page five times.
+const ROUTES = [{ path: "/", priority: "1.0" }];
 
 const lastmod = new Date().toISOString().slice(0, 10);
 

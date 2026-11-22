@@ -1,65 +1,71 @@
-import React from 'react';
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
-import { useTranslation } from 'react-i18next';
-import SocialLinks from '../SocialLinks';
-import './Footer.css';
+import { useTranslation } from "react-i18next";
+import SocialLinks from "../SocialLinks";
+import "./Footer.css";
+
+const LINKS = [
+  { href: "#about", key: "nav.about" },
+  { href: "#skills", key: "nav.skills" },
+  { href: "#work", key: "nav.projects" },
+  { href: "#services", key: "nav.services" },
+  { href: "#contact", key: "nav.contact" },
+];
 
 const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="custom-footer animate-footer" id='footer'>
-      <div className="footer-container">
-        {/* Column 1 : Brand + Description */}
-        <div className="footer-col fade-up">
-          <h3 className="footer-logo">{t('footer.byMe')}</h3>
-          <p className="footer-desc">
-            {t('footer.text')}
-          </p>
-          <SocialLinks variant="footer" />
+    <footer className="site-footer" id="footer">
+      <div className="container">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <p className="footer-pitch">{t("footer.text")}</p>
+            <a href="#contact" className="btn btn-primary">
+              {t("cta.button")}
+            </a>
+          </div>
+
+          <nav className="footer-col" aria-label={t("footer.navigation")}>
+            <h4>{t("footer.navigation")}</h4>
+            <ul>
+              {LINKS.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href}>{t(link.key)}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="footer-col">
+            <h4>{t("footer.contact")}</h4>
+            <ul>
+              <li>
+                <a href="mailto:sidickabdoulayesino1@gmail.com">sidickabdoulayesino1@gmail.com</a>
+              </li>
+              <li>
+                <a href="tel:+250793225853">+250 793 22 58 53</a>
+              </li>
+              <li>
+                {t("contact.ndjamena")} · {t("contact.kigali")}
+              </li>
+            </ul>
+            <SocialLinks variant="footer" />
+          </div>
         </div>
 
-        {/* Column 2 : Navigation */}
-        <div className="footer-col fade-up delay-1">
-          <h4>{t('footer.navigation') || 'Navigation'}</h4>
-          <ul>
-            <li><a href="#home">{t('nav.home') || 'Home'}</a></li>
-            <li><a href="#about">{t('nav.about')}</a></li>
-            <li><a href="#skills">{t('skills.title')}</a></li>
-            <li><a href="#projects">{t('projects.title')}</a></li>
-            <li><a href="#services">{t('services.title')}</a></li>
-            <li><a href="#contact">{t('nav.contact')}</a></li>
-          </ul>
-        </div>
-
-        {/* Column 3 : Contact */}
-        <div className="footer-col fade-up delay-2">
-          <h4>{t('footer.contact') || 'Contact'}</h4>
-          <ul className="contact-list">
-            <li>
-              <FaEnvelope className="contact-icon" />
-              <a href="mailto:sidickabdoulayesino1@gmail.com">sidickabdoulayesino1@gmail.com</a>
-            </li>
-            <li>
-              <FaMapMarkerAlt className="contact-icon" />
-              <span>{t('contact.ndjamena')}</span>
-            </li>
-            <li>
-              <FaMapMarkerAlt className="contact-icon" />
-              <span>{t('contact.kigali')}</span>
-            </li>
-            <li>
-              <FaPhoneAlt className="contact-icon" />
-              <a href="tel:+250793225853">+250 793 22 58 53</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="footer-bottom fade-in">
-        <p>
-          &copy; {new Date().getFullYear()} <strong>{t('footer.byMe')}</strong> — {t('footer.rights')} · {t('footer.madeWith')} 💜
+        {/* The oversized wordmark that closes the page. Decorative — the brand
+            name is already read out by the logo at the top. */}
+        <p className="footer-wordmark" aria-hidden="true">
+          Sidick<span>Sino</span>
         </p>
+
+        <div className="footer-bottom">
+          <p>
+            &copy; {new Date().getFullYear()} Sidick Abdoulaye Hissein — {t("footer.rights")}
+          </p>
+          <a href="#home" className="footer-top-link">
+            {t("footer.backToTop")} ↑
+          </a>
+        </div>
       </div>
     </footer>
   );

@@ -6,30 +6,22 @@
     "skills": "Compétences",
     "projects": "Projets",
     "contact": "Contact",
-    "getStarted": "Commencer",
+    "getStarted": "Discutons",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
     "lightMode": "Passer en mode clair",
     "darkMode": "Passer en mode sombre"
   },
   "hero": {
-    "greeting": "Salut,",
-    "namePart": "je suis",
-    "title": "Data Scientist | Développeur Full Stack | Passionné de ML",
-    "subtitle": "Créer des expériences numériques belles et fonctionnelles avec les technologies modernes",
-    "cta": "En Savoir Plus Sur Moi",
-    "downloadCV": "Télécharger CV"
-  },
-  "features": {
-    "title": "Capacités",
-    "connectedCapabilities": "Capacités Connectées",
-    "advancedIntelligence": "Intelligence Avancée",
-    "trueFlexibility": "Véritable Flexibilité",
-    "collaborativeWork": "Travail Collaboratif",
-    "desc1": "Intégration transparente sur tous vos outils",
-    "desc2": "Perspectives et automatisation alimentées par l'IA",
-    "desc3": "Adaptez-vous à n'importe quel flux de travail ou besoin",
-    "desc4": "Travaillez ensemble en temps réel"
+    "downloadCV": "Télécharger CV",
+    "eyebrow": "Data Scientist · Développeur Full-Stack",
+    "hello": "Salut, je suis",
+    "name": "Sidick.",
+    "lead": "Je transforme des données brutes et des idées en plateformes web, applications mobiles et outils de machine learning que les gens utilisent vraiment — entre N'Djamena et Kigali.",
+    "ctaWork": "Voir mes projets",
+    "badge": "DATA SCIENTIST • DÉVELOPPEUR FULL-STACK • ",
+    "scroll": "Défiler",
+    "portraitAlt": "Sidick Abdoulaye Hissein"
   },
   "about": {
     "title": "À Propos",
@@ -55,12 +47,14 @@
     "tileStackDataLabel": "Data",
     "tileStackDataValue": "Machine learning, analyse et visualisation",
     "tileStackProductLabel": "Produit",
-    "tileStackProductValue": "Plateformes web et applications mobiles"
+    "tileStackProductValue": "Plateformes web et applications mobiles",
+    "statement": "Je pars d'une donnée brute et d'une maquette pour arriver à quelque chose que les gens peuvent vraiment utiliser. J'itère vite, je livre souvent et je prouve avec des prototypes fonctionnels plutôt qu'avec des plans.",
+    "photoAlt": "Sidick Abdoulaye Hissein à une table de café"
   },
   "cta": {
-    "title": "Travaillons ensemble",
-    "text": "Intéressé par une collaboration ou un projet ?",
-    "button": "Contactez-moi"
+    "title": "Un projet en tête ?",
+    "text": "Dis-moi ce que tu construis — je réponds généralement en un ou deux jours.",
+    "button": "Me contacter"
   },
   "services": {
     "title": "Services",
@@ -69,10 +63,12 @@
     "mobileApp": "Développement Mobile",
     "mobileAppDesc": "Applications mobiles multiplateformes avec React Native et Expo.",
     "uiDesign": "Design UI/UX",
-    "uiDesignDesc": "Interfaces belles et centrées sur l'utilisateur qui engagent et convertissent",
+    "uiDesignDesc": "Des interfaces claires et utilisables, conçues dans Figma avant la première ligne de code.",
     "consulting": "Conseil Technologique",
-    "consultingDesc": "Conseils stratégiques pour vos projets technologiques et transformation numérique",
-    "subtitle": "Je crée des expériences numériques sur mesure performantes, esthétiques et intelligentes."
+    "consultingDesc": "De l’aide pour choisir la bonne stack, le bon périmètre et les bonnes priorités pour ton produit.",
+    "subtitle": "De la première esquisse au produit entre les mains des utilisateurs — je conçois, développe et livre de bout en bout.",
+    "headline": "Ce que je peux",
+    "headlineAccent": "construire pour toi."
   },
   "projects": {
     "title": "Mes Projets",
@@ -175,20 +171,11 @@
     }
   },
   "projectsPage": {
-    "webTitle": "Mes Projets Web",
-    "webIntro": "Voici une sélection de mes applications web récentes et impactantes.",
-    "aiTitle": "Mes Projets IA & ML",
-    "aiIntro": "Modèles intelligents pour l'automatisation, la prédiction et l'optimisation.",
-    "mobileTitle": "Mes Projets Mobiles",
-    "mobileIntro": "Applications iOS & Android conçues pour la meilleure expérience utilisateur.",
-    "designTitle": "Mes Projets Design",
-    "designIntro": "Designs UI/UX et produits présentant des interfaces modernes.",
-    "viewLive": "Voir en Ligne",
     "viewCode": "Code",
     "backHome": "Retour au portfolio"
   },
   "skills": {
-    "title": "Mes Compétences",
+    "title": "Compétences",
     "data": "Science des Données & Visualisation",
     "frontend": "Développement Frontend",
     "backend": "Développement Backend",
@@ -196,11 +183,13 @@
     "dataTools": "Python, Pandas, NumPy, Scikit-learn, TensorFlow, Power BI, Tableau, Matplotlib, Seaborn",
     "frontendTools": "HTML, CSS, JavaScript, React.js",
     "mobileTools": "React Native, Expo, Figma",
-    "backendTools": "Node.js, SQL, MySQL, MongoDB"
+    "backendTools": "Node.js, SQL, MySQL, MongoDB",
+    "headline": "Les outils derrière",
+    "headlineAccent": "le travail."
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Prêt à créer quelque chose d'extraordinaire ensemble ? Écris-moi.",
+    "subtitle": "Un projet, un poste ou simplement une question ? Écris-moi — je lis tout.",
     "name": "Nom",
     "email": "Email",
     "subject": "Sujet",
@@ -208,38 +197,57 @@
     "send": "Envoyer",
     "sending": "Envoi...",
     "sentSuccess": "Message envoyé !",
-    "sentSuccessMsg": "Je te réponds très vite 💜",
+    "sentSuccessMsg": "Je te réponds très vite.",
     "sentError": "Erreur, message non envoyé !",
     "contactByEmail": "Contacte-nous par email",
     "location": "Localisation",
     "phone": "Téléphone",
     "ndjamena": "N'djamena, Tchad",
-    "kigali": "Kigali, Rwanda"
+    "kigali": "Kigali, Rwanda",
+    "headline": "Construisons",
+    "headlineAccent": "quelque chose ensemble."
   },
   "footer": {
-    "madeWith": "Réalisé avec",
-    "text": "Création d'expériences numériques sur mesure élégantes, intelligentes et performantes.",
-    "byMe": "SidickSino",
+    "text": "Data scientist et développeur full-stack, au service des étudiants et des entrepreneurs à travers l'Afrique.",
     "rights": "Tous droits réservés",
-    "followMe": "Me Suivre",
     "navigation": "Navigation",
-    "contact": "Contact"
+    "contact": "Contact",
+    "backToTop": "Retour en haut"
   },
   "featured": {
-    "title": "Projets en Vedette",
-    "subtitle": "Une sélection de projets que j'ai conçus et réalisés — plateformes clients, produits et applications de machine learning.",
+    "title": "Ce que j'ai",
+    "subtitle": "Plateformes clients, produits et applications de machine learning. Filtre par type, ou ouvre n’importe quel projet en ligne.",
     "viewLive": "Voir le site",
-    "seeAll": "Voir les {{count}} projets",
-    "viewDetails": "Voir les détails"
+    "eyebrow": "Projets",
+    "titleAccent": "conçu et livré.",
+    "filterLabel": "Filtrer les projets",
+    "viewDesign": "Ouvrir dans Figma",
+    "filter": {
+      "featured": "En vedette",
+      "web": "Web",
+      "mobile": "Mobile",
+      "ai": "ML & IA",
+      "design": "Design",
+      "all": "Tous"
+    }
   },
   "seo": {
     "title": "Sidick Abdoulaye Hissein | Data Scientist & Développeur Full-Stack",
-    "description": "Portfolio de Sidick Abdoulaye Hissein — Data Scientist et développeur full-stack basé à N'Djamena et Kigali. Plateformes web, applications mobiles et projets de machine learning.",
-    "heroPageTitle": "À propos de Sidick Abdoulaye Hissein | Data Scientist & Développeur Full-Stack",
-    "heroPageDescription": "En savoir plus sur Sidick Abdoulaye Hissein — parcours, approche et cheminement de l'analyse de données vers le full-stack et le machine learning."
+    "description": "Portfolio de Sidick Abdoulaye Hissein — Data Scientist et développeur full-stack basé à N'Djamena et Kigali. Plateformes web, applications mobiles et projets de machine learning."
   },
   "notFound": {
     "title": "Cette page n’existe pas",
     "text": "Le lien est peut-être cassé, ou la page a été déplacée. Tout le reste est à sa place."
+  },
+  "where": {
+    "eyebrow": "D'où je construis",
+    "titleA": "Deux villes.",
+    "titleB": "Une mission.",
+    "text": "Je travaille entre le Tchad et le Rwanda, en créant des produits numériques qui servent vraiment les étudiants et les entrepreneurs à travers l'Afrique — évolutifs, fiables et simples à utiliser.",
+    "ndjamenaCity": "N'Djamena",
+    "ndjamenaCountry": "Tchad",
+    "kigaliCity": "Kigali",
+    "kigaliCountry": "Rwanda",
+    "globeAlt": "Un globe filaire en rotation qui marque N'Djamena et Kigali"
   }
 }

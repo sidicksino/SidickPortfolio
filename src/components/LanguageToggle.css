@@ -1,34 +1,26 @@
+/* Same footprint as the theme toggle beside it: a quiet outlined pill. */
 .language-toggle {
-  /* --text flipped this to near-black in light mode; pin it. */
-  background: var(--accent-strong);
-  color: var(--on-accent);
-  border: none;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap; /* the flag and "FR" were stacking on two lines */
   flex: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  min-width: 44px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s var(--ease-out);
 }
 
 .language-toggle:hover {
-  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent-text);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
-}
-
-.language-toggle:active {
-  transform: translateY(0);
-}
-
-@media (max-width: 768px) {
-  .language-toggle {
-    padding: 6px 12px;
-    font-size: 13px;
-  }
 }

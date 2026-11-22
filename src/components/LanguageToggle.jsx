@@ -22,10 +22,10 @@ const LanguageToggle = () => {
     <button
       className="language-toggle"
       onClick={toggleLanguage}
-      aria-label="Toggle language"
+      aria-label={i18n.language === 'en' ? 'Passer en français' : 'Switch to English'}
       title={i18n.language === 'en' ? 'Français' : 'English'}
     >
-      {i18n.language === 'en' ? '🇫🇷 FR' : '🇬🇧 EN'}
+      {i18n.language === 'en' ? 'FR' : 'EN'}
     </button>
   );
 };

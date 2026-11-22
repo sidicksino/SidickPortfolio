@@ -92,7 +92,7 @@
 
 /* Hero: sits below the buttons, so it gets breathing room above it */
 .social-row--hero {
-  margin-top: var(--s-6);
+  margin-top: var(--s-2);
 }
 
 /* Footer: smaller, already in a dense block.
@@ -138,13 +138,5 @@
 
   .social-row a:hover svg {
     transform: none;
-  }
-}
-
-@media (max-width: 992px) {
-  /* The hero stacks and centres on small screens */
-  .social-row--hero {
-    justify-content: center;
-    margin-top: var(--s-5);
   }
 }

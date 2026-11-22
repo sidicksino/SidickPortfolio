@@ -1,171 +1,98 @@
-/* Design tokens live in src/index.css — the single source of truth.
-   This file's duplicate :root block was removed 2026-09-07.
-   Do not redeclare tokens here. */
+/* Tokens live in src/index.css. The cube cluster has its own TechCubes.css. */
 
-.skills {
-  /* Was 0 vertical: the next section began at the exact pixel this one
-     ended. Matches About's rhythm. */
-  padding: var(--s-9) 6rem;
-  color: var(--text);
-}
-
-
-.skills h2 {
-  text-align: center;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  background: linear-gradient(to right, var(--primary), var(--primary-light));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 80px;
-  letter-spacing: -1px;
-  position: relative;
-  font-family: var(--font-fire);
-}
-
-.skills h2 .span1 {
-  position: relative;
-  background: linear-gradient(to right, var(--primary), var(--primary-light));
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.skills h2 .span1::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--primary);
-  border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: slideIn 1s ease-out forwards 0.5s;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(1.1);
-  }
-}
-
-.skills-container {
+.skills-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: var(--s-8);
+  align-items: center;
+}
+
+.skills-list {
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 40px 52px minmax(0, 1fr);
+  gap: var(--s-4);
   align-items: start;
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.3s var(--ease-out);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-15px) rotate(1deg); }
-  50% { transform: translateY(0px) rotate(0deg); }
-  75% { transform: translateY(15px) rotate(-1deg); }
+@media (hover: hover) {
+  .skill-row:hover {
+    padding-left: var(--s-3);
+  }
 }
 
-/* Only between categories — on the first one it pushed the opening heading
-   37px below the top of the cube cluster beside it. */
-.skill-category + .skill-category {
-  margin-top: 3rem;
+.skill-index {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  padding-top: 14px;
 }
 
-.skill-category {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-/* Hue comes per-category from --icon-color (set in Skills.jsx from
-   skillsData), drawn from the shared --fam-* family. The icon itself was
-   var(--text) — a white glyph on a magenta wash, so the colour carried no
-   meaning. */
-.skill-category .icon {
-  padding: 15px;
-  border-radius: 50%;
-  display: flex;
+/* Each category keeps its hue from the shared --fam-* family. */
+.skill-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--icon-color, var(--accent));
-  background: var(--accent-subtle);
-  background: color-mix(
-    in srgb,
-    var(--icon-color, var(--accent)) 16%,
-    transparent
-  );
-  transition: all 0.3s ease;
+  font-size: 20px;
+  color: var(--icon-color);
+  background: color-mix(in srgb, var(--icon-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--icon-color) 30%, transparent);
 }
 
-.skill-category .icon:hover {
-  background: color-mix(
-    in srgb,
-    var(--icon-color, var(--accent)) 30%,
-    transparent
-  );
-}
-.text-blocks h3 {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  margin: 0 0 12px 0;
-  color: var(--text);
-  font-weight: 700;
-  font-family: var(--font-body);
-  line-height: 1.3;
+.skill-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
 }
 
-.text-blocks p {
-  padding-right: 1px;
-  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-  line-height: 1.7;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.6;
-}
-.logo:hover {
-  transform: translateY(-8px);
+.skill-copy h3 {
+  font-size: 24px;
+  font-weight: 600;
 }
 
-@media (max-width: 992px) {
-  .skills-title {
-    font-size: 2.2rem;
-  }
+.skill-tools {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
 }
-/* Responsive */
-@media (max-width: 768px) {
-  .skills-title {
-    font-size: 2rem;
-  }
-  .skills-container {
+
+.skill-tools li {
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.skills-visual {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .skills-layout {
     grid-template-columns: 1fr;
-  }
-  .skills {
-    /* Keep vertical rhythm on mobile — this used to reset it to 0 */
-    padding: var(--s-8) 2rem;
-  }
-  .skill-category + .skill-category {
-    margin-top: 1rem;
+    gap: var(--s-7);
   }
 }
-@media (max-width: 390px) {
-  .skills-title {
-    font-size: 1rem;
+
+@media (max-width: 480px) {
+  .skill-row {
+    grid-template-columns: 44px minmax(0, 1fr);
   }
-  .skills-container {
-    grid-template-columns: 1fr;
-  }
-  .skills {
-    /* Keep vertical rhythm on mobile — this used to reset it to 0 */
-    padding: var(--s-8) 2rem;
-  }
-  .skill-category + .skill-category {
-    margin-top: 1rem;
+
+  .skill-index {
+    display: none;
   }
 }

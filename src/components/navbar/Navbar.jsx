@@ -2,89 +2,42 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./Navbar.css";
 import Logo from "../../assets/Logo.svg";
-import { RiContactsBook2Line } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
 import LanguageToggle from "../LanguageToggle";
 import ThemeToggle from "../ThemeToggle";
-import {
-  CloseIcon,
-  MenuIcon,
-  HomeIcon,
-  SkillsIcon,
-  ProjectsIcon,
-  ServicesIcon,
-} from "../common/Icons";
-
+import { CloseIcon, MenuIcon } from "../common/Icons";
 import { useActiveSection } from "../../hooks/useActiveSection";
 
 /**
- * The nav, in the order the sections actually appear on the page.
- *
- * It used to list Contact before Services while the page renders Services
- * before Contact, so scrolling moved the highlight backwards.
- *
- * `match` is the set of section ids that light this item up. "Projects" points
- * at #work — the real, featured projects — and stays lit across the category
- * cards in #projects that follow it, so those don't need their own entry.
+ * The nav, in the order the sections appear on the page. `match` is the set
+ * of section ids that light an item up — About stays lit through the globe
+ * section that follows it, Work through the whole project grid.
  */
 const NAV_ITEMS = [
-  {
-    key: "home",
-    label: "nav.home",
-    href: "#home",
-    match: ["home"],
-    Icon: HomeIcon,
-  },
-  {
-    key: "about",
-    label: "nav.about",
-    href: "#about",
-    match: ["about"],
-    Icon: CgProfile,
-  },
-  {
-    key: "skills",
-    label: "nav.skills",
-    href: "#skills",
-    match: ["skills"],
-    Icon: SkillsIcon,
-  },
-  {
-    key: "projects",
-    label: "nav.projects",
-    href: "#work",
-    match: ["work", "projects"],
-    Icon: ProjectsIcon,
-  },
-  {
-    key: "services",
-    label: "nav.services",
-    href: "#services",
-    match: ["services"],
-    Icon: ServicesIcon,
-  },
-  {
-    key: "contact",
-    label: "nav.contact",
-    href: "#contact",
-    match: ["contact"],
-    Icon: RiContactsBook2Line,
-  },
+  { key: "about", label: "nav.about", href: "#about", match: ["about", "where"] },
+  { key: "skills", label: "nav.skills", href: "#skills", match: ["skills"] },
+  { key: "work", label: "nav.projects", href: "#work", match: ["work"] },
+  { key: "services", label: "nav.services", href: "#services", match: ["services"] },
+  { key: "contact", label: "nav.contact", href: "#contact", match: ["contact"] },
 ];
 
-/* Derived, not hand-maintained: the watch list can't drift out of sync with
-   the nav. #work was missing from the old hard-coded array, so the highlight
-   went stale and kept showing Skills while you were reading Featured Work. */
-const SECTION_IDS = NAV_ITEMS.flatMap((item) => item.match);
+/* Derived, so the watch list can't drift out of sync with the nav. */
+const SECTION_IDS = ["home", ...NAV_ITEMS.flatMap((item) => item.match)];
 
-const Navbar = ({ scrolled = false }) => {
+const Navbar = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const activeSection = useActiveSection(SECTION_IDS);
 
-  /* Lock the page behind the drawer. Without this the content keeps scrolling
-     under an open menu, which on iOS leaves you somewhere unexpected when it
-     closes. */
+  /* Transparent over the hero, a blurred bar once the page moves. */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* Lock the page behind the drawer, or iOS keeps scrolling underneath it. */
   useEffect(() => {
     if (!isMenuOpen) return undefined;
     const previous = document.body.style.overflow;
@@ -94,7 +47,6 @@ const Navbar = ({ scrolled = false }) => {
     };
   }, [isMenuOpen]);
 
-  /* Escape closes it, like any other dialog-ish overlay. */
   useEffect(() => {
     if (!isMenuOpen) return undefined;
     const onKey = (e) => e.key === "Escape" && setIsMenuOpen(false);
@@ -102,92 +54,75 @@ const Navbar = ({ scrolled = false }) => {
     return () => window.removeEventListener("keydown", onKey);
   }, [isMenuOpen]);
 
-  const toggleMenu = () => setIsMenuOpen((open) => !open);
-  /* Tapping a link scrolled the page but left the mobile menu open on top of
-     the section it had just scrolled to. */
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
-      {/* Rendered OUTSIDE <nav> on purpose. The navbar has backdrop-filter,
-          which makes it the containing block for position:fixed descendants —
-          inside it, this element's inset:0 resolved to the navbar's own 65px
-          box instead of the viewport, so it covered nothing and swallowed no
-          taps. Dims the page and closes the drawer. */}
+      {/* Outside <nav> on purpose: the bar's backdrop-filter would make it the
+          containing block for this fixed overlay. */}
       <div
         className={`nav-backdrop ${isMenuOpen ? "active" : ""}`}
         onClick={closeMenu}
         aria-hidden="true"
       />
 
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="nav-logo">
-          <img src={Logo} loading="lazy" alt="Logo" />
-          <p className="nav-logo-text">
-            <span>Sidick</span>Sino
-          </p>
-          <span className="nav-active" aria-hidden="true"></span>
-        </div>
+      <nav className={`navbar ${scrolled || isMenuOpen ? "scrolled" : ""}`} aria-label="Main">
+        <div className="navbar-inner">
+          <a href="#home" className="nav-logo" onClick={closeMenu}>
+            <img src={Logo} alt="" width="26" height="28" />
+            <span className="nav-logo-text">
+              Sidick<span>Sino</span>
+            </span>
+            {/* The green status dot — a deliberate exception, see SKILL.md */}
+            <span className="nav-active" aria-hidden="true"></span>
+          </a>
 
-        <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
-          {NAV_ITEMS.map((item) => {
-            const { key, label, href, match } = item;
-            /* Held as a local rather than destructured in the parameter list:
-             eslint-plugin-react isn't installed, so ESLint can't tell that
-             <Icon /> counts as a use. The config's varsIgnorePattern ^[A-Z_]
-             covers variables but not arguments. */
-            const Icon = item.Icon;
-            const isActive = match.includes(activeSection);
-            return (
-              <li key={key}>
-                <a
-                  href={href}
-                  onClick={closeMenu}
-                  className={isActive ? "active" : ""}
-                  aria-current={isActive ? "true" : undefined}
-                >
-                  <span className="mobile-icon">
-                    <Icon />
-                  </span>
-                  {t(label)}
-                </a>
-              </li>
-            );
-          })}
+          <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
+            {NAV_ITEMS.map(({ key, label, href, match }, i) => {
+              const isActive = match.includes(activeSection);
+              return (
+                <li key={key}>
+                  <a
+                    href={href}
+                    onClick={closeMenu}
+                    className={isActive ? "active" : ""}
+                    aria-current={isActive ? "true" : undefined}
+                  >
+                    <span className="nav-index" aria-hidden="true">
+                      0{i + 1}
+                    </span>
+                    {t(label)}
+                  </a>
+                </li>
+              );
+            })}
+            <li className="nav-drawer-only">
+              <LanguageToggle />
+            </li>
+            <li className="nav-drawer-only">
+              <a href="#contact" className="btn btn-primary" onClick={closeMenu}>
+                {t("nav.getStarted")}
+              </a>
+            </li>
+          </ul>
 
-          <li className="mobile-actions">
-            <LanguageToggle />
-          </li>
-          <li className="mobile-cta">
-            <a href="#contact" className="nav-cta" onClick={closeMenu}>
+          <div className="nav-actions">
+            <span className="nav-desktop-only">
+              <LanguageToggle />
+            </span>
+            <ThemeToggle />
+            <a href="#contact" className="btn btn-primary nav-cta nav-desktop-only">
               {t("nav.getStarted")}
             </a>
-          </li>
-        </ul>
-
-        {/* Right-hand group. Desktop: language · theme · Get Started.
-            Drawer mode (<= 1200px): theme · menu button — language and
-            Get Started move into the drawer (.mobile-actions / .mobile-cta). */}
-        <div className="nav-actions">
-          <span className="nav-desktop-only">
-            <LanguageToggle />
-          </span>
-          <ThemeToggle />
-          <a href="#contact" className="nav-cta nav-desktop-only">
-            {t("nav.getStarted")}
-          </a>
-          <button
-            className={`nav-toggle ${isMenuOpen ? "open" : ""}`}
-            onClick={toggleMenu}
-            aria-label={isMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? (
-              <CloseIcon className="menu-icon" />
-            ) : (
-              <MenuIcon className="menu-icon" />
-            )}
-          </button>
+            <button
+              className="nav-toggle"
+              onClick={() => setIsMenuOpen((open) => !open)}
+              aria-label={isMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? <CloseIcon className="menu-icon" /> : <MenuIcon className="menu-icon" />}
+            </button>
+          </div>
         </div>
       </nav>
     </>

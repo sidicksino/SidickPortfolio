@@ -1,28 +1,15 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
+import { FaArrowRight, FaGithub } from "react-icons/fa";
 import "./Featured.css";
+import Reveal from "../common/Reveal";
+import { allProjects, featuredProjects, pickLang } from "../../data/projectData";
 
-import {
-  featuredProjects,
-  pickLang,
-  totalProjectCount,
-} from "../../data/projectData";
-
-const MotionLink = motion(Link);
-
-/* Mobile apps have no public web URL — their liveUrl is "#" in the data.
-   Those cards route to the category page instead of pretending to be a
-   dead external link. */
-/* Mobile and design projects have no public URL — the API stores null, which
-   shape() turns into "". Those cards route to the category page instead of
-   pretending to be a dead external link. */
+/* Mobile and design projects have no public URL — the API stores null. */
 const hasLiveSite = (url) => Boolean(url) && url.trim() !== "" && url.trim() !== "#";
 
-/* Category drives the card's accent and its label. Colours come from the
-   shared --fam-* family via the semantic --cat-* aliases in index.css. */
+/* Category drives each card's tag colour, from the shared --fam-* family. */
 const CATEGORY = {
   web: { color: "var(--cat-web)", labelKey: "projects.webProjects" },
   mobile: { color: "var(--cat-mobile)", labelKey: "projects.mobileProjects" },
@@ -30,93 +17,131 @@ const CATEGORY = {
   ai: { color: "var(--cat-ai)", labelKey: "projects.aiProjects" },
 };
 
-const Featured = () => {
+/* "featured" is the curated set; the rest filter the full list. These replace
+   the four separate /projects/* pages, which used to take visitors off the
+   homepage with no way back but a "Back" link. */
+const FILTERS = ["featured", "web", "mobile", "ai", "design", "all"];
+
+const Featured = ({ initialCategory }) => {
   const { t, i18n } = useTranslation();
+  const [filter, setFilter] = useState(
+    FILTERS.includes(initialCategory) ? initialCategory : "featured",
+  );
+
+  /* Old links like /projects/web land here with that filter chosen. Scroll to
+     the grid after <ScrollToTop> has had its turn, or it resets us to 0. */
+  useEffect(() => {
+    if (!initialCategory) return undefined;
+    setFilter(FILTERS.includes(initialCategory) ? initialCategory : "featured");
+    /* "instant": a smooth scroll across the whole page gets interrupted
+       while the hero is still animating in, and stops short. */
+    const id = setTimeout(
+      () => document.getElementById("work")?.scrollIntoView({ behavior: "instant" }),
+      150,
+    );
+    return () => clearTimeout(id);
+  }, [initialCategory]);
+
+  const counts = useMemo(() => {
+    const c = { featured: featuredProjects.length, all: allProjects.length };
+    for (const p of allProjects) c[p.category] = (c[p.category] ?? 0) + 1;
+    return c;
+  }, []);
+
+  const visible = useMemo(() => {
+    if (filter === "featured") return featuredProjects;
+    if (filter === "all") return allProjects;
+    return allProjects.filter((p) => p.category === filter);
+  }, [filter]);
 
   return (
-    <section className="featured-section" id="work">
-      <motion.div
-        className="featured-head"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2>{t("featured.title")}</h2>
-        <p>{t("featured.subtitle")}</p>
-      </motion.div>
+    <section className="section work" id="work">
+      <div className="container">
+        <div className="work-head">
+          <div className="section-head">
+            <Reveal as="span" className="eyebrow">
+              04 — {t("featured.eyebrow")}
+            </Reveal>
+            <Reveal as="h2" className="section-title" delay={0.05}>
+              {t("featured.title")} <em>{t("featured.titleAccent")}</em>
+            </Reveal>
+            <Reveal as="p" className="section-lead" delay={0.1}>
+              {t("featured.subtitle")}
+            </Reveal>
+          </div>
 
-      <div className="featured-grid">
-        {featuredProjects.map((project, i) => {
-          const cat = CATEGORY[project.category] ?? CATEGORY.web;
-          const { title, description } = pickLang(project, i18n.language);
-          const live = hasLiveSite(project.liveUrl);
-          const ctaLabel = t(live ? "featured.viewLive" : "featured.viewDetails");
+          <Reveal className="work-filters" role="tablist" aria-label={t("featured.filterLabel")} delay={0.15}>
+            {FILTERS.map((key) => (
+              <button
+                key={key}
+                type="button"
+                role="tab"
+                aria-selected={filter === key}
+                className={`work-filter ${filter === key ? "active" : ""}`}
+                onClick={() => setFilter(key)}
+              >
+                {t(`featured.filter.${key}`)}
+                <span className="work-filter-count">{counts[key] ?? 0}</span>
+              </button>
+            ))}
+          </Reveal>
+        </div>
 
-          const Card = live ? motion.a : MotionLink;
-          const linkProps = live
-            ? { href: project.liveUrl.trim(), target: "_blank", rel: "noreferrer" }
-            : { to: `/projects/${project.category}` };
+        <motion.div layout className="work-grid">
+          <AnimatePresence mode="popLayout">
+            {visible.map((project, i) => {
+              const cat = CATEGORY[project.category] ?? CATEGORY.web;
+              const { title, description } = pickLang(project, i18n.language);
+              const live = hasLiveSite(project.liveUrl);
+              return (
+                <motion.article
+                  layout
+                  key={project.id}
+                  className="work-card"
+                  style={{ "--card-color": cat.color }}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.45, delay: Math.min(i * 0.04, 0.24), ease: [0.2, 0.7, 0.2, 1] }}
+                >
+                  <div className="work-media">
+                    {project.image ? (
+                      <img src={project.image} alt={title} loading="lazy" />
+                    ) : (
+                      <span className="work-media-empty" aria-hidden="true" />
+                    )}
+                    <span className="work-tag">{t(cat.labelKey)}</span>
+                  </div>
 
-          return (
-            <Card
-              key={`${project.category}-${project.id}`}
-              className="featured-card"
-              style={{ "--card-color": cat.color }}
-              {...linkProps}
-              aria-label={`${title} — ${ctaLabel}`}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.3) }}
-            >
-              <div className="featured-media">
-                {/* Two mobile projects carry image: "" — without this guard an
-                    empty src renders a broken-image box. MobileProjects.jsx
-                    already guards the same way. */}
-                {project.image ? (
-                  <img src={project.image} alt={title} loading="lazy" />
-                ) : (
-                  <span className="featured-media-empty" aria-hidden="true" />
-                )}
-                <span className="featured-tag">{t(cat.labelKey)}</span>
-              </div>
-
-              <div className="featured-body">
-                <h3>{title}</h3>
-                <p>{description}</p>
-
-                <ul className="featured-tech">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
-                </ul>
-
-                <span className="featured-cta">
-                  {ctaLabel}
-                  {live ? (
-                    <FaExternalLinkAlt aria-hidden="true" />
-                  ) : (
-                    <FaArrowRight aria-hidden="true" />
-                  )}
-                </span>
-              </div>
-            </Card>
-          );
-        })}
+                  <div className="work-body">
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                    <ul className="work-tech">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <li key={tech}>{tech}</li>
+                      ))}
+                    </ul>
+                    <div className="work-links">
+                      {live && (
+                        <a href={project.liveUrl.trim()} target="_blank" rel="noreferrer" className="work-link work-link--primary">
+                          {t(project.category === "design" ? "featured.viewDesign" : "featured.viewLive")}
+                          <FaArrowRight aria-hidden="true" />
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a href={project.githubUrl.trim()} target="_blank" rel="noreferrer" className="work-link">
+                          <FaGithub aria-hidden="true" />
+                          {t("projectsPage.viewCode")}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
       </div>
-
-      <motion.a
-        className="featured-all"
-        href="#projects"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        {t("featured.seeAll", { count: totalProjectCount })}
-        <FaArrowRight aria-hidden="true" />
-      </motion.a>
     </section>
   );
 };

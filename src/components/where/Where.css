@@ -1,0 +1,137 @@
+/* "Where I build from" — the wireframe globe. Tokens live in src/index.css. */
+
+.where-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--s-8);
+  align-items: center;
+}
+
+.where-stage {
+  --g: min(540px, 82vw);
+  position: relative;
+  width: var(--g);
+  height: var(--g);
+  margin: 0 auto;
+  perspective: 1400px;
+}
+
+.where-glow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow), transparent 68%);
+  filter: blur(12px);
+}
+
+.where-tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(-16deg) rotateZ(-8deg);
+}
+
+.where-globe {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.where-ring {
+  --d: calc(var(--g) * var(--r) * 2);
+  position: absolute;
+  left: calc(50% - var(--d) / 2);
+  top: calc(50% - var(--d) / 2);
+  width: var(--d);
+  height: var(--d);
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.where-marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow:
+    0 0 0 7px var(--accent-subtle),
+    0 0 28px var(--accent);
+}
+
+.where-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+.where-cities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+.where-city {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.where-city h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.where-coords {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.where-country {
+  color: var(--text-2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .where-globe {
+    animation: where-spin 36s linear infinite;
+  }
+
+  .where-marker {
+    animation: where-pulse 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes where-spin {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes where-pulse {
+  50% {
+    box-shadow:
+      0 0 0 14px transparent,
+      0 0 34px var(--accent);
+  }
+}
+
+@media (max-width: 900px) {
+  .where-layout {
+    grid-template-columns: 1fr;
+    gap: var(--s-7);
+  }
+}
+
+@media (max-width: 420px) {
+  .where-cities {
+    grid-template-columns: 1fr;
+  }
+}

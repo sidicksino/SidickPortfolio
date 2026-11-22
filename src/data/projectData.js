@@ -44,6 +44,8 @@ export const featuredProjects = generated
      the first six, so the order decides what they see. */
   .sort((a, b) => a.featuredOrder - b.featuredOrder || a.id - b.id);
 
+export const allProjects = generated.map(shape);
+
 export const totalProjectCount = generated.length;
 
 /**

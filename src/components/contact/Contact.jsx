@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import Reveal from "../common/Reveal";
+import SocialLinks from "../SocialLinks";
 import {
   FaPaperPlane,
   FaMapMarkerAlt,
@@ -63,121 +64,74 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact-section" id="contact">
-      <div className="contact-container">
-        {/* Titre animé */}
-        <div className="contact-header">
-          <motion.h2
-            initial={{ opacity: 0, translateX: "50%" }}
-            whileInView={{ opacity: 1, translateX: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-          >
-            <span>{t("contact.title")}</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+    <section className="section contact" id="contact">
+      <div className="container contact-layout">
+        <div className="contact-intro">
+          <Reveal as="span" className="eyebrow">
+            06 — {t("contact.title")}
+          </Reveal>
+          <Reveal as="h2" className="section-title" delay={0.05}>
+            {t("contact.headline")} <em>{t("contact.headlineAccent")}</em>
+          </Reveal>
+          <Reveal as="p" className="section-lead" delay={0.1}>
             {t("contact.subtitle")}
-          </motion.p>
+          </Reveal>
+
+          <Reveal as="ul" className="contact-info" delay={0.15}>
+            <li>
+              <span className="contact-info-icon" aria-hidden="true"><FaEnvelope /></span>
+              <div>
+                <span className="contact-info-label">{t("contact.email")}</span>
+                <a href="mailto:sidickabdoulayesino1@gmail.com">sidickabdoulayesino1@gmail.com</a>
+              </div>
+            </li>
+            <li>
+              <span className="contact-info-icon" aria-hidden="true"><FaPhoneAlt /></span>
+              <div>
+                <span className="contact-info-label">{t("contact.phone")}</span>
+                <a href="tel:+250793225853">+250 793 22 58 53</a>
+              </div>
+            </li>
+            <li>
+              <span className="contact-info-icon" aria-hidden="true"><FaMapMarkerAlt /></span>
+              <div>
+                <span className="contact-info-label">{t("contact.location")}</span>
+                <span>{t("contact.ndjamena")} · {t("contact.kigali")}</span>
+              </div>
+            </li>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <SocialLinks />
+          </Reveal>
         </div>
 
-        <div className="contact-content">
-          {/* Formulaire */}
-          <motion.div
-            className="contact-form-wrapper"
-            initial={{ opacity: 0, translateX: "-50%" }}
-            whileInView={{ opacity: 1, translateX: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-          >
-            <form
-              ref={formRef}
-              onSubmit={handleSubmit}
-              className="contact-form"
-            >
+        <Reveal className="contact-form-card" delay={0.1}>
+          <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
+            <div className="form-row">
               <div className="form-group">
                 <label htmlFor="name">{t("contact.name")}</label>
-                <input type="text" id="name" name="name" required />
+                <input type="text" id="name" name="name" autoComplete="name" required />
               </div>
-
               <div className="form-group">
                 <label htmlFor="email">{t("contact.email")}</label>
-                <input type="email" id="email" name="email" required />
+                <input type="email" id="email" name="email" autoComplete="email" required />
               </div>
-
-              <div className="form-group">
-                <label htmlFor="subject">{t("contact.subject")}</label>
-                <input type="text" id="subject" name="subject" required />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">{t("contact.message")}</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  required
-                ></textarea>
-              </div>
-
-              <motion.button
-                type="submit"
-                className="submit-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                {loading ? t("contact.sending") : t("contact.send")}{" "}
-                <FaPaperPlane className="plane-icon" />
-              </motion.button>
-            </form>
-          </motion.div>
-
-          {/* Infos de contact */}
-          <motion.div
-            className="contact-info"
-            initial={{ opacity: 0, translateX: "50%" }}
-            whileInView={{ opacity: 1, translateX: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-          >
-            <div className="info-card">
-              <div className="info-icon">
-                <FaMapMarkerAlt />
-              </div>
-              <h3>{t("contact.location")}</h3>
-              <p>
-                {t("contact.ndjamena")}
-                <br />
-                {t("contact.kigali")}
-              </p>
             </div>
-
-            <div className="info-card">
-              <div className="info-icon">
-                <FaPhoneAlt />
-              </div>
-              <h3>{t("contact.phone")}</h3>
-              <p>
-                <a href="tel:+250793225853">+250 793 22 58 53</a>
-              </p>
+            <div className="form-group">
+              <label htmlFor="subject">{t("contact.subject")}</label>
+              <input type="text" id="subject" name="subject" required />
             </div>
-
-            <div className="info-card">
-              <div className="info-icon">
-                <FaEnvelope />
-              </div>
-              <h3>{t("contact.email")}</h3>
-              <p>
-                <a href="mailto:sidickabdoulayesino1@gmail.com">sidickabdoulayesino1@gmail.com</a>
-              </p>
+            <div className="form-group">
+              <label htmlFor="message">{t("contact.message")}</label>
+              <textarea id="message" name="message" rows="6" required></textarea>
             </div>
-          </motion.div>
-        </div>
+            <button type="submit" className="btn btn-primary contact-submit" disabled={loading}>
+              {loading ? t("contact.sending") : t("contact.send")}
+              <FaPaperPlane aria-hidden="true" />
+            </button>
+          </form>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,581 +1,240 @@
-/* Design tokens live in src/index.css — the single source of truth.
-   This file's duplicate :root block was removed 2026-09-07.
-   Do not redeclare tokens here. */
+/* Tokens live in src/index.css. */
 
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px; /* minimum space between logo, links and buttons */
-  padding: 16px 40px;
-  background-color: var(--background-transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  inset: 0 0 auto 0;
   z-index: 1000;
-  font-family: var(--font-body);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 72px;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    backdrop-filter 0.3s ease;
 }
 
 .navbar.scrolled {
-  background-color: rgba(24, 23, 55, 0.95);
-  box-shadow: 0 4px 20px var(--shadow);
+  background: var(--overlay);
+  border-bottom-color: var(--border);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
 }
 
-/* Logo */
-.nav-logo {
+.navbar-inner {
+  height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--s-6);
   display: flex;
-  flex: none; /* was being squeezed under the links on small laptops */
   align-items: center;
-  gap: 12px;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding-right: 20px;
+  justify-content: space-between;
+  gap: var(--s-5);
 }
 
-.nav-logo:hover {
-  transform: scale(1.03);
+.nav-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
 }
 
 .nav-logo img {
-  height: 40px;
-  transition: all 0.3s ease;
-}
-
-.nav-logo img:hover {
-  filter: drop-shadow(0 0 8px var(--primary));
+  width: 26px;
+  height: auto;
 }
 
 .nav-logo-text {
   font-family: var(--font-logo);
   font-weight: 700;
-  font-size: 2.2rem;
-  color: var(--text);
-  line-height: 1;
-  letter-spacing: -0.5px;
+  font-size: 20px;
+  letter-spacing: -0.02em;
 }
 
-/* Magenta-only. This ran magenta -> olive green -> magenta -> green, the same
-   muddy patchwork that was fixed on the SIDICK headline — at logo size the
-   green read as a rendering fault rather than a colour choice.
-   The shimmer was also looping every 2s, fast enough to pull the eye away from
-   the page on every visit; slowed to 8s and it now sweeps rather than flickers.
-   (The global prefers-reduced-motion reset in index.css stops it entirely for
-   anyone who asks for less motion.) */
 .nav-logo-text span {
-  background: linear-gradient(
-    92deg,
-    var(--accent) 0%,
-    var(--accent-hover) 45%,
-    var(--accent) 70%,
-    var(--accent-strong) 100%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent; /* Fallback */
-  position: relative;
-  animation: rotateGradient 8s ease-in-out infinite;
+  color: var(--accent-text);
 }
 
-  @keyframes rotateGradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-
-/* Animated status dot in the navbar — signals "available".
-   Kept deliberately: green reads as a status indicator, not decoration,
-   so it's an intentional exception to the one-accent rule. */
+/* The green status dot beside the logo. Sidick's call: it breaks the
+   one-accent rule and pulses on purpose. */
 .nav-active {
   position: absolute;
-  top: 8px;
-  right: 0;
-  width: 12px;
-  height: 12px;
-  background: #26a32c;
+  top: 2px;
+  right: -10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  box-shadow: 0 0 12px rgba(38, 163, 44, 0.6);
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  background: #26a32c;
+  box-shadow: 0 0 0 0 rgba(38, 163, 44, 0.6);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-active {
-    animation: navPulse 1.6s infinite ease-in-out;
+    animation: navPulse 2s ease-out infinite;
   }
 }
 
 @keyframes navPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
+  70% {
+    box-shadow: 0 0 0 8px rgba(38, 163, 44, 0);
   }
-  50% {
-    transform: scale(1.4);
-    opacity: 0.6;
+  100% {
+    box-shadow: 0 0 0 0 rgba(38, 163, 44, 0);
   }
-}
-
-
-.nav-logo-text span::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: width 0.3s ease;
-}
-
-.nav-logo-text span:hover::after {
-  width: 100%;
-}
-
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 10;
-  transition: transform 0.3s ease;
-}
-/* Hide icons by default (desktop) */
-.mobile-icon {
-  display: none;
-}
-.nav-toggle:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.menu-icon {
-  width: 30px;
-  height: 30px;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.menu-icon path {
-  stroke: var(--text);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: all 0.4s ease;
-}
-
-/* No rotation trick any more — the button renders an actual close mark when
-   open (see CloseIcon). A short scale-in so the swap doesn't just pop. */
-.nav-toggle.open .menu-icon {
-  animation: menuIconIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes menuIconIn {
-  from {
-    opacity: 0;
-    transform: scale(0.7) rotate(-45deg);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
-.nav-toggle.open .menu-icon path {
-  stroke: var(--primary);
-}
-
-.nav-toggle.open {
-  transform: rotate(0);
-}
-
-.bar {
-  width: 100%;
-  height: 3px;
-  background-color: var(--text);
-  border-radius: 10px;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  position: relative;
-}
-
-.nav-toggle .bar:nth-child(1) {
-  transform: translateY(-8px) rotate(0deg);
-}
-
-.nav-toggle .bar:nth-child(3) {
-  transform: translateY(8px) rotate(0deg);
-}
-
-.nav-toggle.open .bar:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.nav-toggle.open .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.nav-toggle.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 .nav-menu {
   display: flex;
+  align-items: center;
+  gap: var(--s-2);
   list-style: none;
-  gap: 28px;
-  margin: 0;
-  padding: 0;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
 }
 
-.nav-menu li a {
-  color: var(--text);
+.nav-menu a:not(.btn) {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: var(--text-2);
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 14px;
   font-weight: 500;
-  white-space: nowrap; /* "À Propos" etc. must never break onto two lines */
-  padding: 8px 4px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-  position: relative;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.nav-menu li a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: width 0.3s ease;
+.nav-index {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-text);
 }
 
-.nav-menu li a:hover::after {
-  width: 100%;
+.nav-menu a:not(.btn):hover {
+  color: var(--text);
 }
 
-.nav-menu li a:hover {
-  color: var(--primary-light);
-}
-
-.nav-cta {
-  /* White on plain --accent is 3.41:1 and fails. --accent-strong carries
-     white at 5.55:1. */
-  background: var(--accent-strong);
-  color: var(--on-accent);
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  white-space: nowrap; /* was wrapping to two lines on small laptops */
-  text-decoration: none;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
-  border: none;
-}
-
-.nav-cta:hover {
-  background: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 40%, transparent);
+.nav-menu a.active {
+  color: var(--text);
+  background: var(--elevated);
 }
 
 .nav-actions {
   display: flex;
-  flex: none; /* never squeezed: the links give way first */
   align-items: center;
-  gap: 12px;
+  gap: var(--s-3);
 }
 
-/* Wrapper around the language toggle: no box of its own on desktop. */
-span.nav-desktop-only {
-  display: contents;
+.nav-cta {
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 14px;
 }
 
-.mobile-actions,
-.mobile-cta {
-  display: none !important;
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-/* Drawer mode starts at 1200px, not 768px: logo + 6 links + language + theme
-   + Get Started need ~1100px in English and ~1200px in French. Between 769 and
-   ~1050px the old layout wrapped "FR" and "Get Started" onto two lines and
-   pushed Get Started off the right edge of the screen. */
-@media (max-width: 1200px) {
-  /* Language + Get Started move into the drawer; theme + menu stay in the bar. */
-  .nav-actions .nav-desktop-only {
-    display: none;
-  }
-
-  /* Keep the theme toggle usable above the open drawer, like the menu button. */
-  .nav-actions .theme-toggle-btn {
-    position: relative;
-    z-index: 1001;
-  }
-
-  .mobile-actions,
-  .mobile-cta {
-    display: flex !important;
-  }
-
-  .mobile-actions {
-    padding: 16px 16px !important;
-    border-top: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-    margin-top: 16px;
-  }
-
-  .mobile-cta {
-    padding: 0 !important;
-  }
-
-  .mobile-cta .nav-cta {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 8px;
-    text-align: center;
-  }
-
-  .mobile-cta a {
-    color: white;
-    text-decoration: none;
-    display: block;
-  }
+.menu-icon {
+  width: 22px;
+  height: 22px;
 }
 
-/* Small laptops: tighten the desktop bar a little before switching to the drawer.
-   (Scoped with min-width so it can't override the drawer's own gap.) */
-@media (min-width: 1201px) and (max-width: 1360px) {
-  .navbar {
-    padding: 16px 30px;
-  }
-
-  .nav-menu {
-    gap: 18px;
-  }
-
-  .nav-menu li a {
-    font-size: 1rem;
-  }
+/* The icon paths carry no stroke of their own. */
+.menu-icon path {
+  stroke: currentColor;
 }
 
-@media (max-width: 1200px) {
-  .navbar {
-    padding: 16px 30px;
+.nav-drawer-only {
+  display: none;
+}
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Drawer mode */
+@media (max-width: 960px) {
+  .navbar-inner {
+    padding: 0 var(--s-5);
   }
 
   .nav-toggle {
-    display: flex;
-    /* Above the drawer. The navbar's backdrop-filter makes it a stacking
-       context, so the drawer (z-index 999) sits inside it and was painting
-       over the logo and the close button — leaving no way to shut the menu. */
-    z-index: 1001;
+    display: inline-flex;
   }
 
-  .nav-logo {
-    position: relative;
-    z-index: 1001;
+  .nav-desktop-only {
+    display: none;
   }
 
-  /* ===== Mobile drawer =================================================
-     Redesigned 2026-09-08. The previous version used --background-dark,
-     darker than the page itself so it read as a different app; sat at
-     top: 65px with height: 100vh so it overhung the bottom by 65px; had a
-     stray magenta "handle" bar floating above it; and left the page behind
-     at full opacity with no scrim. Item spacing was a 24px gap plus 12px
-     padding, so the list sprawled.
-
-     Now: a full-height panel on --surface, spanning behind the navbar (which
-     is z-index 1000 and stays on top), with a dimmed backdrop. */
-
-  .nav-backdrop {
+  .nav-menu {
     position: fixed;
-    inset: 0;
-    background: rgba(6, 5, 18, 0.55);
-    backdrop-filter: blur(3px);
+    top: 72px;
+    left: var(--s-4);
+    right: var(--s-4);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-1);
+    padding: var(--s-4);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: 0 24px 60px -20px var(--shadow);
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
-    z-index: 998;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s var(--ease-out);
+  }
+
+  .nav-menu.active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .nav-menu a:not(.btn) {
+    font-size: 18px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+  }
+
+  .nav-index {
+    display: inline;
+  }
+
+  .nav-drawer-only {
+    display: flex;
+    padding: var(--s-2) var(--s-4) 0;
+  }
+
+  .nav-drawer-only .btn {
+    width: 100%;
   }
 
   .nav-backdrop.active {
     opacity: 1;
-    visibility: visible;
-  }
-
-  .nav-menu {
-    /* NOTE: this stays inside <nav> because on desktop it's a flex child of
-       it. The navbar has backdrop-filter, so it is the containing block for
-       position:fixed descendants — `bottom: 0` here would resolve to the
-       navbar's 65px box, not the viewport. Height is set explicitly instead,
-       and no `bottom` is declared. */
-    position: fixed;
-    top: 0;
-    right: 0;
-    /* dvh, not vh: vh ignores the mobile browser's collapsing address bar
-       and leaves the last item under it. */
-    height: 100dvh;
-    width: min(82%, 330px);
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    /* clears the 65px navbar, which floats above this panel */
-    /* Bottom padding clears the floating chat assistant bubble (fixed
-       bottom-right, 58px, 20px from the edge) so it never covers the
-       Get Started button. 20 + 58 + ~20 of breathing room. */
-    padding: calc(65px + var(--s-5)) var(--s-4) 98px;
-    gap: var(--s-1);
-    background: var(--surface);
-    border-left: 1px solid var(--border);
-    box-shadow: -18px 0 44px var(--shadow);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    transform: translateX(100%);
-    visibility: hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-      visibility 0.4s;
-    z-index: 999;
-  }
-
-  .nav-menu.active {
-    transform: translateX(0);
-    visibility: visible;
-  }
-
-  .mobile-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    flex: none;
-    border-radius: 10px;
-    background: var(--elevated);
-    color: var(--text-2);
-    transition: background 0.25s ease, color 0.25s ease;
-  }
-
-  .mobile-icon svg {
-    width: 17px;
-    height: 17px;
-    stroke: currentColor;
-  }
-
-  .nav-menu li a {
-    display: flex;
-    align-items: center;
-    gap: var(--s-3);
-    font-size: 1.02rem;
-    font-weight: 500;
-    padding: var(--s-3) var(--s-3);
-    border-radius: var(--radius);
-    color: var(--text-2);
-    text-decoration: none;
-    border-bottom: none;
-    transition: background 0.25s ease, color 0.25s ease;
-  }
-
-  /* The desktop underline is meaningless here and it overflowed the panel:
-     it was positioned at left:16px with width:100%, so it ran 16px past the
-     right edge. The active state is a filled row instead. */
-  .nav-menu li a::after {
-    content: none;
-  }
-
-  .nav-menu li a:hover,
-  .nav-menu li a:focus-visible {
-    background: var(--elevated);
-    color: var(--text);
-  }
-
-  .nav-menu li a.active {
-    background: var(--accent-subtle);
-    color: var(--accent-text);
-    font-weight: 600;
-  }
-
-  .nav-menu li a.active .mobile-icon {
-    background: var(--accent-text);
-    color: var(--on-accent);
-  }
-
-  .navbar > .nav-cta {
-    display: none;
-  }
-
-  /* Language + CTA pinned to the bottom of the drawer */
-  .mobile-actions {
-    margin-top: auto;
-    padding: var(--s-5) var(--s-2) var(--s-3) !important;
-    border-top: 1px solid var(--border);
-  }
-
-  .mobile-cta {
-    padding: 0 var(--s-2) !important;
-  }
-
-  /* `.nav-menu li a` (drawer link style: muted text, hover background) is more
-     specific than `.mobile-cta a`, so the button's text was greyed out and it
-     lost its color on hover. Pin the button colors explicitly. */
-  .nav-menu .mobile-cta .nav-cta,
-  .nav-menu .mobile-cta .nav-cta:hover,
-  .nav-menu .mobile-cta .nav-cta:focus-visible {
-    color: var(--on-accent);
-    background: var(--accent-strong);
-    font-weight: 600;
-  }
-
-  .mobile-cta .nav-cta {
-    display: block;
-    width: 100%;
-    padding: var(--s-3) var(--s-4);
-    border-radius: var(--radius);
-    text-align: center;
-    text-decoration: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .nav-menu,
-    .nav-backdrop,
-    .nav-menu li a,
-    .mobile-icon {
-      transition: none;
-    }
+    pointer-events: auto;
   }
 }
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 12px 20px;
-  }
-
-  .nav-logo-text {
-    font-size: 1.8rem;
-  }
-
-  .nav-menu li a {
-    font-size: 1.2rem;
-  }
-}
-
-/* Active link style for ScrollSpy */
-.nav-menu li a.active {
-  color: var(--accent-text);
-}
-
-.nav-menu li a.active::after {
-  width: 100%;
-}
-

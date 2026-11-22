@@ -5,234 +5,148 @@ description: The design system for the SidickSino portfolio - colour tokens, typ
 
 # SidickSino Portfolio — Design System
 
-Rules for keeping this portfolio visually coherent. Established 2026-09-07 after
-a full audit found 33 distinct hex values and no colour discipline. See
-`plan.md` at the repo root for the remediation plan these rules come from.
+Rules for keeping this portfolio visually coherent. Rewritten 2026-11-22 for
+the **"Portal" redesign**, which Sidick chose from a canvas of options: a
+near-black page, one magenta accent, Space Grotesk over Inter, and a hero where
+3D rings orbit through his portrait.
+
+## The page is one continuous scroll
+
+Navbar → Hero (Portal) → 01 About → 02 Where I build from (globe) → 03 Skills →
+04 Work → 05 Services → 06 Contact → Footer.
+
+- **No standalone pages.** The old `/projects/*` category pages and
+  `/pages/hero` were folded into the homepage. Those URLs still resolve:
+  `/projects/:category` renders the homepage with the Work filter preset,
+  `/pages/hero` redirects to `/#about`. Don't add a new route for content —
+  add a section.
+- **Every section uses the shared blocks** in `src/index.css`: `.section`,
+  `.container`, `.section-head`, `.eyebrow` ("04 — Work"), `.section-title`
+  (with an `<em>` for the magenta half), `.section-lead`, `.btn-primary`,
+  `.btn-ghost`. The numbered eyebrows run in page order; renumber if you
+  insert a section.
+- **One entrance animation**: `<Reveal>` (`src/components/common/Reveal.jsx`) —
+  fade + 24px rise, once. Don't hand-roll framer-motion variants per section.
 
 ## The three rules that matter most
 
 1. **One accent colour.** Magenta `#e748c8` is the brand — it's in the logo.
-   Everything interactive is magenta. Nothing else is chromatic.
-2. **Colour carries meaning, never decoration.** Interactive, success, error.
-   If a colour isn't communicating one of those, it shouldn't be there.
-3. **Categories differ by shape and label, not hue** — with one sanctioned
-   exception, the project-category palette below. Do not invent new colour
-   codings beyond it.
+   Everything interactive is magenta. Nothing else is chromatic, except the
+   exceptions listed below.
+2. **Colour carries meaning, never decoration.**
+3. **Never hard-code a hex in component CSS.** Tokens live only in
+   `src/index.css`; no other file may declare `:root`.
 
-## Tokens
-
-Defined in `src/index.css`. **Never hard-code a hex value in component CSS** —
-if you need a colour that isn't here, that's a signal to reconsider, not to add
-one.
+## Tokens (src/index.css)
 
 ```css
---accent / --accent-hover / --accent-strong / --accent-subtle
---accent-text                /* accent as GLYPHS — theme-aware, see below */
---font-logo                  /* Outfit 700 — the wordmark ONLY, not headings */
---on-accent                  /* text colour on an accent fill */
---bg / --surface / --elevated
+--accent / --accent-hover / --accent-strong / --accent-subtle / --accent-glow
+--accent-text      /* accent as GLYPHS — --accent on dark, --accent-strong on light */
+--on-accent        /* #0b0b12 — text on an accent fill */
+--bg / --surface / --elevated / --overlay
 --text / --text-2 / --text-muted
---border / --grid-line       /* --grid-line is theme-aware; it was white-only
-                                and invisible on the light page */
---success / --error          /* status messages only */
---fam-1..4                   /* the hue family */
---cat-web / --cat-mobile / --cat-design / --cat-ai   /* semantic aliases */
---font-display / --font-body
---s-1 … --s-9                /* 4px scale */
---radius / --radius-lg
+--border / --border-strong / --grid-line
+--fam-1..4, --cat-web / --cat-mobile / --cat-design / --cat-ai
+--font-display (Space Grotesk) / --font-body (Inter) / --font-mono (JetBrains Mono)
+--s-1 … --s-10, --radius / --radius-lg / --radius-xl, --container, --ease-out
 ```
 
-Theme switching overrides **only** surfaces, text and border. `--accent` is
-constant across themes — a brand colour that changes isn't a brand colour.
+Dark is the default (`#07070c` page). `html.light-theme` overrides surfaces,
+text, lines and `--accent-text`; `--accent` itself never changes.
 
-### `--accent` vs `--accent-strong` — this one matters
+### Text on magenta is near-black, not white
 
-Measured, not guessed:
+| Combination | Ratio |
+|---|---|
+| `--on-accent` #0b0b12 on `--accent` | 6.0:1 ✅ |
+| white on `--accent` | 3.41:1 ❌ (why the old buttons failed) |
+| `--accent` as text on dark `--bg` | 5.4:1 ✅ |
+| `--accent-strong` as text on light | 5.27:1 ✅ |
 
-| Combination | Ratio | Verdict |
-|---|---|---|
-| white on `--accent` `#e748c8` | 3.41:1 | ❌ fails body text |
-| white on `--accent-strong` `#b52a9d` | 5.55:1 | ✅ |
-| `--accent` as text on light `#f8f9fa` | 3.23:1 | ⚠️ large text only |
-| `--accent-strong` as text on light | 5.27:1 | ✅ |
-| `--accent` as text on dark `#181737` | 5.06:1 | ✅ |
+So: fill with `--accent`, put `--on-accent` on it, colour glyphs with
+`--accent-text`. Never `color: var(--accent)` directly.
 
-So, three rules:
-
-- **Filling a shape** → `--accent`.
-- **Filling a shape that carries white text** → `--accent-strong` with
-  `--on-accent`. Never `--accent`: white on it is 3.41:1 and fails in *both*
-  themes, not just light.
-- **Colouring glyphs** (text, icons, thin borders) → **`--accent-text`**. It is
-  `--accent` on dark and `--accent-strong` on light, so it stays legible
-  either way. Never use raw `--accent`/`--primary` as a `color:`.
-
-And never set a button's text to `var(--text)` — that token flips with the
-theme, which is how `.btn-primary` ended up white-on-magenta in dark and
-black-on-magenta in light.
-
-### Legacy aliases
-
-`--primary`, `--background`, `--text-secondary`, `--background-light` and
-friends still exist in `index.css`, mapped onto the canonical tokens, because
-~10 stylesheets consume them. **Retire them as you touch each component; never
-introduce a new use.**
-
-### Never redeclare `:root`
-
-Until 2026-09-07 all 11 stylesheets declared their own `:root` copy and
-whichever loaded last won. `src/index.css` is now the only file that may
-declare tokens. If a component needs a value that isn't there, that's a signal
-to reconsider — not to add a local block.
-
-(Per-instance custom properties set inline from data, like `--card-color` on a
-project card, are a different thing and are fine.)
+Legacy aliases (`--primary`, `--background`, `--text-secondary`…) remain only
+for the admin dashboard and NotFound. Never introduce a new use.
 
 ## Typography
 
-| Role | Font | Size | Notes |
-|---|---|---|---|
-| h1 | `--font-display` | 48–64px | Elsie. Display only. |
-| h2 | `--font-display` | 32–40px | Section headings. |
-| h3 | `--font-body` | 20–24px | 600 weight. |
-| Body | `--font-body` | 16–18px | `line-height: 1.6`, `max-width: 65ch` |
-| UI (nav, buttons, labels) | `--font-body` | 14–16px | 500 weight. |
+| Role | Font | Size |
+|---|---|---|
+| Hero title | `--font-display` 700 | 56–112px, tracking −0.045em |
+| Section title | `--font-display` 600 | 36–64px (`.section-title`) |
+| Card heading | `--font-display` 600 | 22–26px |
+| Body | `--font-body` | 16–19px, line-height 1.6, max ~60ch |
+| Labels / eyebrows / counts | `--font-mono` | 11–13px, uppercase, tracked |
 
-**Elsie is a decorative display serif — never use it for paragraphs, form
-labels, or buttons.** It was previously rendering body copy at 28.8px and is the
-source of the stray circular glyph artifact seen in "Projects" and "Contact".
-
-Body default is `var(--font-body)`, not Arial.
-
-**No emoji in headings.** Ever.
-
-## Spacing & layout
-
-- Use the `--s-*` scale. No arbitrary px values.
-- Section vertical rhythm: `--s-9` (96px) desktop, `--s-7` (48px) mobile.
-- Content max-width 1200px, centred.
-- **Watch trailing dead space** — several sections currently run 800px+ of empty
-  background before the next one. Cap section height to content.
+**No emoji in headings or UI labels.** (The language toggle reads "FR"/"EN".)
 
 ## Motion
 
-- **Entrance animations only.** One pattern: fade in + 8px rise, 400ms,
-  `ease-out`.
-- **No infinite loops on content.** A spinning headshot reads as a bug, not a
-  feature. This was a real defect (`Hero.css:222`) — don't reintroduce it.
-  **Exception:** the green `.nav-active` status dot beside the logo pulses, and
-  that is intentional — see "Deliberate exceptions" below.
-- Always wrap in `@media (prefers-reduced-motion: no-preference)`.
-- Never animate `transform` on an element that also uses `transform` on hover —
-  they fight.
+- Entrance: `<Reveal>` only.
+- Decorative loops are allowed **only** in: the hero rings, hero badge and
+  floating chips, the globe, the green status dot, the tech cubes and the
+  scroll cue. Content (text, cards, photos) never loops.
+- The About statement brightens word by word via CSS `animation-timeline:
+  view()` (`.reveal-word`); browsers without it show plain text.
+- Pointer effects (hero ring tilt and spotlight) write CSS variables inside
+  `requestAnimationFrame` — never React state — and are skipped for touch and
+  reduced motion.
+- Every CSS animation must be inside `@media (prefers-reduced-motion:
+  no-preference)`; `index.css` also has a global reduced-motion reset, and
+  `<MotionConfig reducedMotion="user">` covers framer-motion.
+- Never animate `transform` on an element that also transforms on hover.
+
+## How the Portal hero works (don't break it)
+
+- Each ring is rendered **twice** (`<Orbit />` and `<Orbit front />`): once
+  behind the portrait, once in front clipped to its lower half. That's what
+  lets the rings pass behind his back and in front of his chest.
+- Everything scales from one variable, `--stage-h`, set per breakpoint in
+  `Hero.css`. The portrait's `margin-left` is `-0.2204 × --stage-h` (half its
+  rendered width for a 638×1404 cutout) — change the image and you must
+  recompute it.
 
 ## Deliberate exceptions
 
-Rules Sidick has explicitly overruled. **Do not "fix" these** — they were
-removed once and restored on request.
+Rules Sidick has explicitly overruled. **Do not "fix" these.**
 
-- **The green status dot** (`.nav-active`, `#26a32c`) beside the logo, in both
-  `Navbar` and `HeroPage`. It breaks the one-accent rule and it pulses forever.
-  Sidick likes it and it stays. Its pulse *is* wrapped in
-  `prefers-reduced-motion: no-preference`, and its parent `.nav-logo` needs
-  `position: relative` in both stylesheets or it anchors to the fixed navbar.
-
-- **The hue family** `--fam-1..4`, and its semantic aliases `--cat-web` /
-  `--cat-mobile` / `--cat-design` / `--cat-ai`. Project cards, About icons and
-  Skills icons are all colour-coded from it on purpose — Sidick's call, so
-  visitors can tell items apart at a glance. **Do not collapse any of them to a
-  single accent.** Components reference a meaning (`--icon-color`, `--card-color`,
-  `--cat-*`), never a raw hue.
-
-  It is not four arbitrary colours, and that distinction is the whole point:
-  one shared saturation, hues spaced evenly and anchored on the brand magenta,
-  lightness tuned per hue so each lands at **~5:1 against its own theme's card
-  surface** (both themes are defined; the dark values are unreadable on white).
-  The set it replaced — `#6366f1` / `#8b5cf6` / `#ec4899` / `#f59e0b` — was
-  default palette entries with no relationship to each other or the brand, and
-  *that* was what looked amateur, not the colour-coding.
-
-  Adding a fifth category means re-deriving the whole set, not appending a
-  colour you like. Reach for the solver approach: fix saturation, spread hue,
-  solve lightness for equal contrast.
-
-- **Social brand colours on hover** (`--brand-github` / `--brand-linkedin` /
-  `--brand-facebook`). The social icons are muted at rest and flood with their
-  own network colour on hover. A narrow, deliberate exception: people recognise
-  these marks by colour, and a GitHub icon that turns magenta reads as a theme
-  rather than as GitHub. **Nothing else on the site may use these values.**
-
-  `--brand-github` is theme-aware — its official `#24292f` is nearly invisible
-  on the dark page, so the dark theme lifts it to `#4a5261` until it separates.
-  As everywhere else, `siteData.js` names the token; the values live in
-  `index.css`.
-
-- ~~The logo gradient runs magenta → green.~~ **Resolved 2026-09-08** — Sidick
-  asked for it fixed. The wordmark is now `--font-logo` (Outfit 700) with a
-  magenta-only gradient, and the shimmer was slowed 2s → 8s. Green now survives
-  in exactly one place site-wide: the `.nav-active` status dot.
-
-  ⚠️ `.nav-logo-text` and `.nav-logo-text span` are declared in **both**
-  `Navbar.css` and `HeroPage.css`. CSS isn't scoped, both ship in the same
-  bundle, and HeroPage.css loads later — so **its rule wins on every route,
-  including the homepage**. They are kept byte-identical on purpose. Change
-  both together, or the homepage will silently take the other file's styling.
+- **The green status dot** (`.nav-active`, `#26a32c`) beside the logo. Breaks
+  the one-accent rule and pulses forever, on purpose.
+- **The hue family** `--fam-1..4` / `--cat-*`: project category tags, Skills
+  icons and Services icons are colour-coded from it. One shared saturation,
+  hues spaced from the brand magenta, lightness tuned to ~5:1 on each theme's
+  `--surface`. A fifth category means re-deriving the set. Tags that carry
+  these colours need a **solid** `--surface` behind them — on a translucent
+  pill over a screenshot they drop to 4.2:1.
+- **Social brand colours on hover** (`--brand-*`), social icons only.
+- **The tech-cube cluster** in Skills uses each tool's real brand colours.
 
 If you think one of these is wrong, say so — don't silently change it.
 
-## Components
-
-**Buttons** — primary: **`--accent-strong` background with `--on-accent` text**
-(white on plain `--accent` is 3.41:1 and fails in both themes; never let
-`--text` set button text — it flips with the theme).
-Secondary: transparent, `--accent-text` border and text.
-
-**Cards** — `--surface` background, `--border` 1px, `--radius-lg`. Hover lifts
-`translateY(-4px)` with a shadow. The whole card is the click target, not just
-the button inside it.
-
-**Inputs** — `--border`, not a coloured border. Focus ring in `--accent-text`.
-Every input needs a real `<label for>`.
-
-**Icons** — `--accent` on `--accent-subtle` circles. Consistent size per group.
-
 ## Content principles
 
-- **Show work, not categories.** `src/data/projectData.js` has 19 real projects
-  with screenshots and live URLs. Surface them; don't hide them behind generic
-  category cards.
-- Project descriptions state what it does and for whom — concrete outcomes, not
-  adjectives. "Bilingual news platform for Chad" beats "ultra-fast and elegant".
-- Copy is bilingual: every user-facing string goes in `src/locales/en.json` and
-  `fr.json`. Never hard-code text in JSX.
+- Show work, not categories: projects come from the API via
+  `src/data/projectData.js`; the Work grid filters them.
+- Concrete over adjectives: say what it does and for whom.
+- Every user-facing string lives in both `src/locales/en.json` and `fr.json`
+  (keys must stay in parity). French copy uses "tu".
 
 ## Before you call it done
 
-Run the app and **look at it** — don't trust the CSS.
+Run the app and **look at it**:
 
 ```bash
 npm run dev    # http://localhost:5173
 ```
 
-- [ ] All six sections, dark theme
-- [ ] All six sections, light theme
-- [ ] 390px wide
-- [ ] Keyboard tab-through shows visible focus
-- [ ] Console clean, no failed requests
-- [ ] `grep -rhoE "#[0-9a-fA-F]{3,8}" src/ | sort -u` — under ~12 values
-- [ ] **Contrast audited, not eyeballed.** Walk every visible leaf text node,
-      resolve its *effective* background by climbing ancestors to the first
-      opaque one, and check against 4.5:1 (3:1 for large text). Run it in
-      **both** themes — the accent-button failure lived in dark mode too, and
-      eyeballing never caught it.
-      Force `*{opacity:1;animation:none}` first, or elements that haven't
-      finished their entrance animation get skipped and you get a false pass.
-
-Note: a full-page screenshot shows blank sections because scroll-triggered
-reveals haven't fired. Scroll to each section before capturing.
-
-## Mocking up a redesign
-
-For a new or substantially reworked section, run `/design` and mock it before
-writing CSS — iterating on a canvas is far cheaper than iterating in code. Apply
-the tokens above to whatever comes out of it.
+- [ ] Every section, dark theme and light theme
+- [ ] 390px wide — no horizontal scroll, drawer menu opens
+- [ ] `/projects/ai` lands on Work with "ML & AI" selected; `/pages/hero` lands on About
+- [ ] Console clean
+- [ ] **Contrast audited, not eyeballed**, in both themes: walk every visible
+      leaf text node, resolve its effective background by climbing to the
+      first opaque ancestor, check 4.5:1 (3:1 for large text). Force
+      `*{opacity:1;animation:none}` first so unrevealed elements aren't skipped.
+- [ ] Scroll with `behavior: "instant"` when screenshotting — the page has
+      `scroll-behavior: smooth`, and reveals fire on entry.

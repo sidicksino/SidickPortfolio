@@ -8,41 +8,6 @@ import {
   FaDatabase,
 } from "react-icons/fa";
 
-export const mainProjectsData = [
-  {
-    id: "web-app",
-    titleKey: 'projects.webProjects',
-    icon: FaLaptopCode,
-    desc: 'projects.webDescription',
-    link: "/projects/web",
-    color: "var(--cat-web)",
-  },
-  {
-    id: "mobile-app",
-    titleKey: 'projects.mobileProjects',
-    icon: FaMobileAlt,
-    desc: 'projects.mobileDescription',
-    link: "/projects/mobile",
-    color: "var(--cat-mobile)",
-  },
-  {
-    id: "design",
-    titleKey: 'projects.designProjects',
-    icon: FaPaintBrush,
-    desc: 'projects.designDescription',
-    link: "/projects/design",
-    color: "var(--cat-design)",
-  },
-  {
-    id: "ml-ai",
-    titleKey: 'projects.aiProjects',
-    icon: FaBrain,
-    desc: 'projects.aiDescription',
-    link: "/projects/ai",
-    color: "var(--cat-ai)",
-  },
-];
-
 export const skillsData = [
   /* Every technology shown in the TechCubes cluster appears in exactly one
      category here. The picture and the list have to agree — an all-frontend

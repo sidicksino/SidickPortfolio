@@ -13,9 +13,6 @@ const ICONS = { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaXTwitter };
  * Entries with an empty `url` are skipped, so a network can sit in the data
  * waiting for its handle without ever rendering a dead link.
  *
- * The class is `social-row`, deliberately NOT `social-links`: HeroPage.css
- * already owns that name, and CSS here isn't scoped.
- *
  * `variant` changes size and spacing. `showLabels` renders the network name
  * beside the icon (used on /pages/hero, which had that treatment already).
  */
